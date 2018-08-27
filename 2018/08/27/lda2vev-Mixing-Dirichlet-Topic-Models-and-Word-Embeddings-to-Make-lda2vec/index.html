@@ -95,7 +95,7 @@
 <meta property="og:description" content="结合主题信息和词潜入，生成包含主题信息的向量化表示lda2vec. 论文地址:https://arxiv.org/abs/1605.02019 ABSTRACT">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://redtongue.github.io/2018/08/27/lda2vev-Mixing-Dirichlet-Topic-Models-and-Word-Embeddings-to-Make-lda2vec/1.png">
-<meta property="og:updated_time" content="2018-08-27T08:16:26.630Z">
+<meta property="og:updated_time" content="2018-08-27T08:20:37.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lda2vev:Mixing Dirichlet Topic Models and Word Embeddings to Make lda2vec">
 <meta name="twitter:description" content="结合主题信息和词潜入，生成包含主题信息的向量化表示lda2vec. 论文地址:https://arxiv.org/abs/1605.02019 ABSTRACT">
@@ -351,7 +351,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-27T16:16:26+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-27T16:20:37+08:00">
                 2018-08-27
               </time>
             
@@ -495,7 +495,7 @@
 </tbody>
 </table>
 <p>图2：给出了在Twenty Newsgroups数据集中由lda2vec发现的平均主题一致性。 主题一致性已被证明与主题模型的人类评估相关（Roder等，2015）。 给出了所选主题的数量，以及负抽样指数参数β。 与β= 1.00相比，β= 0.75将更多的稀有词作为负样本。 在模型n = 20个主题和β= 0.75中找到最好的主题相关性。</p>
-<h2 id="Preprocessing-and-Training"><a href="#Preprocessing-and-Training" class="headerlink" title="Preprocessing and Training"></a>Preprocessing and Training</h2><p>1）中的目标是一次在单独的小批量中进行训练，同时使用Adam优化器（Kingma和Ba，2014）在整个数据集中处理两百个时期。Dirichlet似然项$\iota^d$通常是在所有文档上计算的，因此在将目标修改为小批量时，我们调整术语的损失与小批量大小除以总语料库的大小成比例。我们的软件是开源的，可在线获得，记录和单元测试。最后，将给定主题中前十个最有可能的单词提交给在线Palmetto主题质量测量工具，并记录相干性测量$C_v$。在评估多个替代方案后，$C_v$是Roder等人（2015）推荐的一致性度量。此度量对外部语料库上大小为110的滑动窗口内的每对单词的归一化点互信息（NPMI）进行平均，并返回提交的单词集的NPMI平均值。使用3COSMUL度量来评估令牌到词的相似度（Levy和Goldberg，2014b）。</p>
+<h3 id="Preprocessing-and-Training"><a href="#Preprocessing-and-Training" class="headerlink" title="Preprocessing and Training"></a>Preprocessing and Training</h3><p>1）中的目标是一次在单独的小批量中进行训练，同时使用Adam优化器（Kingma和Ba，2014）在整个数据集中处理两百个时期。Dirichlet似然项$\iota^d$通常是在所有文档上计算的，因此在将目标修改为小批量时，我们调整术语的损失与小批量大小除以总语料库的大小成比例。我们的软件是开源的，可在线获得，记录和单元测试。最后，将给定主题中前十个最有可能的单词提交给在线Palmetto主题质量测量工具，并记录相干性测量$C_v$。在评估多个替代方案后，$C_v$是Roder等人（2015）推荐的一致性度量。此度量对外部语料库上大小为110的滑动窗口内的每对单词的归一化点互信息（NPMI）进行平均，并返回提交的单词集的NPMI平均值。使用3COSMUL度量来评估令牌到词的相似度（Levy和Goldberg，2014b）。</p>
 <table>
 <thead>
 <tr>
@@ -822,7 +822,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ABSTRACT"><span class="nav-number">1.</span> <span class="nav-text">ABSTRACT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">3.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Word-Representation"><span class="nav-number">3.1.</span> <span class="nav-text">Word Representation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Document-Representations"><span class="nav-number">3.2.</span> <span class="nav-text">Document Representations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Document-Mixtures"><span class="nav-number">3.2.1.</span> <span class="nav-text">Document Mixtures</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sparse-Memberships"><span class="nav-number">3.2.2.</span> <span class="nav-text">Sparse Memberships</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Preprocessing-and-Training"><span class="nav-number">4.</span> <span class="nav-text">Preprocessing and Training</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">5.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Twenty-Newsgroups"><span class="nav-number">5.1.</span> <span class="nav-text">Twenty Newsgroups</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hacker-News-Comments-corpus"><span class="nav-number">5.2.</span> <span class="nav-text">Hacker News Comments corpus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-number">5.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ABSTRACT"><span class="nav-number">1.</span> <span class="nav-text">ABSTRACT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">3.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Word-Representation"><span class="nav-number">3.1.</span> <span class="nav-text">Word Representation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Document-Representations"><span class="nav-number">3.2.</span> <span class="nav-text">Document Representations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Document-Mixtures"><span class="nav-number">3.2.1.</span> <span class="nav-text">Document Mixtures</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sparse-Memberships"><span class="nav-number">3.2.2.</span> <span class="nav-text">Sparse Memberships</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Preprocessing-and-Training"><span class="nav-number">3.3.</span> <span class="nav-text">Preprocessing and Training</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">4.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Twenty-Newsgroups"><span class="nav-number">4.1.</span> <span class="nav-text">Twenty Newsgroups</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hacker-News-Comments-corpus"><span class="nav-number">4.2.</span> <span class="nav-text">Hacker News Comments corpus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
             
 
           </div>
