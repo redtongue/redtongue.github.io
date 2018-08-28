@@ -1,6 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[nowcoder]矩形覆盖]]></title>
+    <url>%2F2018%2F08%2F28%2Fnowcoder-%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96%2F</url>
+    <content type="text"><![CDATA[题目描述我们可以用21的小矩形横着或者竖着去覆盖更大的矩形。请问用n个21的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？ 题目链接： https://www.nowcoder.com/practice/72a5a919508a4251859fb2cfb987a0e6 分析 这几题可能是跟斐波那契数列杠上了，同样的分治思想，设F(n)为覆盖2n的大矩形的方法总数，因为都是21的小矩形，所以F(n-1)和F(n-2)可以把F(n)的所有可能性覆盖，虽然F(n-2)到F(n)之间的2*2的剩余有两种覆盖方法，但是其中一种是F(n-1)中已经包含的； 代码也就显而易见了。 参考代码class Solution: def rectCover(self, number): # write code here if(number==0): return 0 a,b=1,1 while(number): a,b=b,a+b number-=1 return a 运行时间： 21ms 占用内存： 5732k]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]变态跳台阶]]></title>
+    <url>%2F2018%2F08%2F28%2Fnowcoder-%E5%8F%98%E6%80%81%E8%B7%B3%E5%8F%B0%E9%98%B6%2F</url>
+    <content type="text"><![CDATA[题目描述一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。 题目链接： https://www.nowcoder.com/practice/22243d016f6b47f2a6928b4313c85387 在跳台阶中的错误代码中考虑可能会有比较厉害的青蛙，万万没想到，来了个变态。 分析 在跳台阶中，青蛙一次只能跳一级或跳两级,用分治的思想的来想，那么青蛙的最后一跳也只能是一个台阶或两个台阶，设F(n)为n级的台阶总共的跳法总数，那么F(n)=F(n-1)+F(n-2)； 同理，虽然变态，但是$F(n) = \sum_{i=0}^{n-1}{F(i)}$，其中F(0)=1 这个规律是显而易见的，但是我们列出来几项方便看的更清楚，{1，2，4，8，16，……} 虽然变态，但是代码很溜。 参考代码class Solution: def jumpFloorII(self, number): # write code here return 2**(number-1) 运行时间： 22ms 占用内存： 5728k]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]跳台阶]]></title>
+    <url>%2F2018%2F08%2F28%2Fnowcoder-%E8%B7%B3%E5%8F%B0%E9%98%B6%2F</url>
+    <content type="text"><![CDATA[题目描述一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。 题目链接： https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4 分析 刚看到这个题目我想的是用递归来做，可惜失败了，时间超限； 后来想一想青蛙一次只能跳一级或跳两级，他每一步选择只有两个，用递归确实浪费了； 用分治的思想的来想，那么青蛙的最后一跳也只能是一个台阶或两个台阶，设F(n)为n级的台阶总共的跳法总数，那么F(n)=F(n-1)+F(n-2)。 参考代码class Solution: def jumpFloor(self, number): # write code here a,b=1,1 while(number): a,b=b,a+b number-=1 return a 运行时间： 21ms 占用内存： 5732k 递归代码好吧，这是错误代码，但是万一下一次青蛙比较厉害，可以很多台阶，就可以借鉴了。 class Solution: def jumpFloor(self, number): if(n==0): return 1 else: #如果青蛙比较厉害，下面就需要相应修改了 if(n&gt;1): a=self.jumpFloor(n-1) a+=self.jumpFloor(n-2) else: a=self.jumpFloor(n-1) return a return _inter(number)]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]斐波那契数列]]></title>
+    <url>%2F2018%2F08%2F28%2Fnowcoder-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%2F</url>
+    <content type="text"><![CDATA[题目描述大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。 n&lt;=39 题目链接： https://www.nowcoder.com/practice/c6c7742f5ba7442aada113136ddea0c3 分析 斐波那契数列如：1，1，2，3，5，8…… ，即F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2)（n&gt;=2） 额外增加一个0，a=0,b=1代表前两个数字，每次只需将b赋值给a，a+b赋值给b，循环次数即斐波那契数列项数。 参考代码class Solution: def Fibonacci(self, n): # write code here a,b=0,1 while(n): a,b=b,a+b n-=1 return a 运行时间： 30ms 占用内存： 5644k]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]旋转数组的最小数字]]></title>
+    <url>%2F2018%2F08%2F28%2Fnowcoder-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97%2F</url>
+    <content type="text"><![CDATA[题目描述把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。 题目链接： https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba 分析 输入是一个非减排序的数组，如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，所以最小数字就是第一个小于前面数字的数字。 如果数组长度为0，返回0。 参考代码class Solution: def minNumberInRotateArray(self, rotateArray): # write code here if(len(rotateArray)==0): return 0 index=rotateArray[0] for i in rotateArray: if i &lt; index: return i 运行时间： 549ms 占用内存： 5860k]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>查找</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]用两个栈实现队列[C]]></title>
+    <url>%2F2018%2F08%2F28%2Fnowcoder-%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%2F</url>
+    <content type="text"><![CDATA[题目描述用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。 题目链接： https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6 分析 栈是先进后出，队列是先进先出，用list的append代表栈的push操作，list的pop代表栈的pop操作； 用s1存储队列push的数据，s2存储队列需要pop的数据； 如果s2为空则将s1的所有数据pop出来后append到s2中，以此将数据反转； 用s2的pop替代队列的pop操作。 参考代码class Solution: def __init__(self): self.s1=[] self.s2=[] def push(self, node): # write code here self.s1.append(node) def pop(self): # return xx if(not self.s2): while(self.s1): self.s2.append(self.s1.pop()) return self.s2.pop() 运行时间： 28ms 占用内存： 5728k]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>队列</tag>
+        <tag>栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]重建二叉树]]></title>
+    <url>%2F2018%2F08%2F28%2Fnowcoder-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目描述输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。 题目链接： https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6 分析 如题目中所给的例子，前序：{1,2,4,7,3,5,6,8}，中序：{4,7,2,1,5,3,8,6}； 前序是“根左右”，中序是“左根右”，所以{1}是根节点，左子树的前序是{2,4,7}，左子树的中序是{4,7,2}，右子树的前序{3,5,6,8}，右子树的中序是{5,3,8,6}，这是一次迭代过程； 以此类推，返回根节点。 参考代码class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: # 返回构造的TreeNode根节点 def reConstructBinaryTree(self, pre, tin): root=None if(len(pre) != 0 and len(tin)!=0): root=TreeNode(pre[0]) index=tin.index(pre[0]) root.left=self.reConstructBinaryTree(pre[1:index+1],tin[:index]) root.right=self.reConstructBinaryTree(pre[index+1:],tin[index+1:]) return root 运行时间： 45ms 占用内存： 5856k]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]从尾到头打印链表]]></title>
+    <url>%2F2018%2F08%2F28%2Fnowcoder-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[题目描述输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。 题目链接： https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035 分析 从头指针开支遍历链表，将每个节点的值（ListNode.val）存储到list中，要求是从尾到头，所以每次添加到list中时用list=[ListNode.val]+list。 参考代码class ListNode: def __init__(self, x): self.val = x self.next = None class Solution: # 返回从尾部到头部的列表值序列，例如[1,2,3] def printListFromTailToHead(self, listNode): # write code here li=[] node=listNode while(node!=None): li=[node.val]+li node=node.next return li 运行时间： 22ms 占用内存： 5728k]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[895.Maximum Frequency Stack]]></title>
     <url>%2F2018%2F08%2F27%2F895-Maximum-Frequency-Stack%2F</url>
     <content type="text"><![CDATA[DescriptionImplement FreqStack, a class which simulates the operation of a stack-like data structure. FreqStack has two functions: push(int x), which pushes an integer x onto the stack. pop(), which removes and returns the most frequent element in the stack.If there is a tie for most frequent element, the element closest to the top of the stack is removed and returned. 题目链接：https://leetcode.com/problems/maximum-frequency-stack/description/ Difficulty: hard Example 1:Input: [&quot;FreqStack&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;pop&quot;,&quot;pop&quot;,&quot;pop&quot;,&quot;pop&quot;],[[],[5],[7],[5],[7],[4],[5],[],[],[],[]] Output: [null,null,null,null,null,null,null,5,7,5,4] Explanation:After making six .push operations, the stack is [5,7,5,7,4,5] from bottom to top. Then: pop() -&gt; returns 5, as 5 is the most frequent. The stack becomes [5,7,5,7,4]. pop() -&gt; returns 7, as 5 and 7 is the most frequent, but 7 is closest to the top. The stack becomes [5,7,5,4]. pop() -&gt; returns 5. The stack becomes [5,7,4]. pop() -&gt; returns 4. The stack becomes [5,7]. Note: Calls to FreqStack.push(int x) will be such that 0 &lt;= x &lt;= 10^9. It is guaranteed that FreqStack.pop() won’t be called if the stack has zero elements. The total number of FreqStack.push calls will not exceed 10000 in a single test case. The total number of FreqStack.pop calls will not exceed 10000 in a single test case. The total number of FreqStack.push and FreqStack.pop calls will not exceed 150000 across all test cases. 分析 未完待续 参考代码]]></content>
