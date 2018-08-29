@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionAlice and Bob have candy bars of different sizes: A[i] is the size of the i-th bar of candy that Alice has, and B[j] is the size of the j-th bar of candy that Bob has. Since they are friend">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-29T14:40:44.647Z">
+<meta property="og:updated_time" content="2018-08-29T14:52:37.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="888.Fair candy Swap">
 <meta name="twitter:description" content="DescriptionAlice and Bob have candy bars of different sizes: A[i] is the size of the i-th bar of candy that Alice has, and B[j] is the size of the j-th bar of candy that Bob has. Since they are friend">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-29T22:40:44+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-29T22:52:37+08:00">
                 2018-08-29
               </time>
             
@@ -455,7 +455,22 @@ Output: [5,4]
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
 <li>未完待续</li>
 </ol>
-<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2>
+<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution:
+def fairCandySwap(self, A, B):
+    sumA=sum(A)
+    sumB=sum(B)
+    index=(sumB-sumA)//2
+    bSet=set()
+    for b in B:
+        bSet.add(b)
+    for i in A:
+        if(i+index in bSet):
+            return [i,i+index]
+    return [0,0]
+
+75 / 75 test cases passed.
+Runtime: 76 ms
+</code></pre>
       
     </div>
     

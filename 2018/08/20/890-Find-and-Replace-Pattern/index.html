@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionYou have a list of words and a pattern, and you want to know which words in words matches the pattern. A word matches the pattern if there exists a permutation of letters p so that after re">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-29T14:44:06.952Z">
+<meta property="og:updated_time" content="2018-08-29T14:50:43.141Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="890.Find and Replace Pattern">
 <meta name="twitter:description" content="DescriptionYou have a list of words and a pattern, and you want to know which words in words matches the pattern. A word matches the pattern if there exists a permutation of letters p so that after re">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-29T22:44:06+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-29T22:50:43+08:00">
                 2018-08-29
               </time>
             
@@ -449,7 +449,32 @@ since a and b map to the same letter.
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
 <li>未完待续</li>
 </ol>
-<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2>
+<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution:
+def findAndReplacePattern(self, words, pattern):
+    def judge(a,b):
+        db={}
+        da={}
+        for i in range(len(a)):
+            if(b[i] in db):
+                if(db[b[i]]!=a[i]):
+                    return False
+            else:
+                db[b[i]] = a[i]
+            if(a[i] in da):
+                if(da[a[i]]!=b[i]):
+                    return False
+            else:
+                da[a[i]]=b[i]
+        return True
+    li=[]
+    for word in words:
+        if(judge(word,pattern)):
+            li.append(word)
+    return li
+
+46 / 46 test cases passed.
+Runtime: 60 ms
+</code></pre>
       
     </div>
     
