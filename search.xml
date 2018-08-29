@@ -1,6 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[nowcoder]包含min函数的栈]]></title>
+    <url>%2F2018%2F08%2F29%2Fnowcoder-%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88%2F</url>
+    <content type="text"><![CDATA[题目描述定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。 题目链接： https://www.nowcoder.com/practice/4c776177d2c04c2494f2555c9fcc1e49 分析 用list代替栈，append代替栈的push操作，pop代替栈的pop操作，定义m为最小值 push：将m更新为m和node之间的最小值 pop：pop出最后一个数，如果pop出的是最小值，则重新更新m top：返回list最后一个数 min：返回m note要求时间复杂度应为O（1），但其实测试用例没有这么大，leetcode上有一题上是要返回频率最大的数字，可以借鉴上面的方法，参考代码：https://redtongue.coding.me/2018/08/27/895-Maximum-Frequency-Stack/ 参考代码class Solution: def __init__(self): self.stack=[] self.m=None def push(self, node): # write code here self.stack.append(node) if(self.m==None): self.m=node else: self.m=min(self.m,node) def pop(self): # write code here self.stack.pop() if(self.stack): self.m=min(self.stack) else: self.m=None def top(self): return self.stack[-1] # write code here def min(self): # write code here return self.m 运行时间： 21ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]顺时针打印矩阵]]></title>
+    <url>%2F2018%2F08%2F29%2Fnowcoder-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5%2F</url>
+    <content type="text"><![CDATA[题目描述输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10. 题目链接： https://www.nowcoder.com/practice/9b4c81a02cd34f76be2659fa0d54342a 分析 定义y_i,y_j,x_i,x_j为左右上下的边界，没输出一条边，便更新边界值，直到不满足{x_i&lt;=x_j and y_i&lt;=y_j}； 定义index为方向，0为向左，1为向下，2为向右，3为向上。 返回遍历值。 note递归应该也是可以做的 输入|:-:|:-:|:-:|:-:||1|2|3|4||5|6|7|8||9|10|11|12||13|14|15|16| 输出 1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10. 参考代码class Solution: # matrix类型为二维列表，需要返回列表 def printMatrix(self, matrix): # write code here y_i,y_j,x_i,x_j=0,len(matrix[0])-1,0,len(matrix)-1 index=0 x,y=0,0 li=[] li.append(matrix[x][y]) while(x_i&lt;=x_j and y_i&lt;=y_j): if(index==0): while(y+1&lt;=y_j): y+=1 li.append(matrix[x][y]) x_i+=1 elif(index==1): while(x+1&lt;=x_j): x+=1 li.append(matrix[x][y]) y_j-=1 elif(index==2): while(y-1&gt;=y_i): y-=1 li.append(matrix[x][y]) x_j-=1 else: while(x-1&gt;=x_i): x-=1 li.append(matrix[x][y]) y_i+=1 index=(index+1)%4 return li 运行时间： 21ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]二叉树的镜像]]></title>
+    <url>%2F2018%2F08%2F29%2Fnowcoder-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F%2F</url>
+    <content type="text"><![CDATA[题目描述操作给定的二叉树，将其变换为源二叉树的镜像。 题目链接： https://www.nowcoder.com/practice/564f4c26aa584921bc75623e48ca3011 分析 二叉树镜像，即把每个结点的左右子树互换； 递归最方便，每次递归过程如下：如果当前结点不为空，左右子树互换，左右子结点进入下一轮递归。 参考代码class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: # 返回镜像树的根节点 def Mirror(self, root): # write code here if(root): index=root.left root.left=root.right root.right=index self.Mirror(root.left) self.Mirror(root.right) return root 运行时间： 27ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]树的子结构]]></title>
+    <url>%2F2018%2F08%2F29%2Fnowcoder-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[题目描述输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构） 题目链接： https://www.nowcoder.com/practice/6e196c44c7004d15b1610b9afca8bd88 分析 首先定义一个函数judge判断两颗树是否为包含关系，递归的每一步，判断当前结点是否都不为空且值相同，否则不是包含关系， 判断两个子结点是否为空，空则返回true，反之进入下一轮迭代； 最后，遍历pRoot1，比较每个结点和pRoot2是否为包含关系，是返回true，否则，遍历结束，返回False。 参考代码class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: def HasSubtree(self, pRoot1, pRoot2): # write code here def judge(p1,p2): if(p1 and p2 and p1.val==p2.val): index=1 else: return 0 if(p2.left): a=judge(p1.left,p2.left) else: a=1 if(p2.right): b=judge(p1.right,p2.right) else: b=1 return index*a*b if(not pRoot2): return False l=[pRoot1] if(not pRoot1): return False while(len(l)!=0): p=pRoot2 if(judge(l[0],pRoot2)): return True else: if(l[0].left): l.append(l[0].left) if(l[0].right): l.append(l[0].right) l=l[1:] return False 运行时间： 28ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]合并两个排序的链表]]></title>
+    <url>%2F2018%2F08%2F29%2Fnowcoder-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[题目描述输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。 题目链接： https://www.nowcoder.com/practice/d8b6b4358f774294a89de2a6ac4d9337 分析 首先比较两个链表的表头，较小的当作新链表的表头； 同时遍历两个链表，一次将较小的结点加入到新链表中，知道有一个链表遍历结束； 将另外一个没有遍历完的链表的剩余部分直接加入到新链表的尾部。 参考代码class ListNode: def __init__(self, x): self.val = x self.next = None class Solution: # 返回合并后列表 def Merge(self, pHead1, pHead2): # write code here head=None if(pHead1!=None and pHead2!=None): if(pHead1.val &lt; pHead2.val): head=pHead1 pHead1=pHead1.next else: head=pHead2 pHead2=pHead2.next elif(pHead1!=None): head=pHead1 pHead1=pHead1.next elif(pHead2!=None): head=pHead2 pHead2=pHead2.next h=head while(pHead1!=None and pHead2!=None): if(pHead1.val &lt; pHead2.val): h.next=pHead1 h=pHead1 pHead1=pHead1.next else: h.next=pHead2 h=pHead2 pHead2=pHead2.next if(pHead1!=None): h.next=pHead1 if(pHead2!=None): h.next=pHead2 return head 运行时间： 22ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]反转链表]]></title>
+    <url>%2F2018%2F08%2F29%2Fnowcoder-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[题目描述输入一个链表，反转链表后，输出新链表的表头。 题目链接： https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca 分析 遍历每个结点，首先保存该结点的next，再将该结点指向前一个结点； 知道遍历到最后一个结点（next为None），将该结点指向前一个结点，并返回该结点。 参考代码class ListNode: def __init__(self, x): self.val = x self.next = None class Solution: # 返回ListNode def ReverseList(self, pHead): # write code here if(pHead==None or pHead.next==None): return pHead ne=None p=pHead while(p): index=p.next p.next=ne ne=p p=index return ne 运行时间： 21ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]链表中倒数第k个结点]]></title>
+    <url>%2F2018%2F08%2F29%2Fnowcoder-%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[题目描述输入一个链表，输出该链表中倒数第k个结点。 题目链接： https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a 分析 遍历链表，将所有结点放在list中； 返回list[-k]。 参考代码class ListNode: def __init__(self, x): self.val = x self.next = None class Solution: def FindKthToTail(self, head, k): # write code here h=head l=[] while(h): l.append(h) h=h.next if(k&gt;len(l) or k&lt;=0): return return l[-k] 运行时间： 24ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]调整数组顺序使得奇数在偶数前面]]></title>
+    <url>%2F2018%2F08%2F29%2Fnowcoder-%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%BE%97%E5%A5%87%E6%95%B0%E5%9C%A8%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2%2F</url>
+    <content type="text"><![CDATA[题目描述输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。 题目链接： https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593 分析 因为需要保持相对位置不变，遍历将奇数和偶数分别放在list中； 组合返回即可。 参考代码class Solution: def reOrderArray(self, array): # write code here s1=[] s2=[] for index in array: if(index%2==0): s2.append(index) else: s1.append(index) return s1+s2 运行时间： 25ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]数值的整数次方]]></title>
+    <url>%2F2018%2F08%2F29%2Fnowcoder-%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9%2F</url>
+    <content type="text"><![CDATA[题目描述给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。 题目链接： https://www.nowcoder.com/practice/1a834e5e3e1a4b7ba251417554e07c00 分析 如果指数exponent是负数，只是将正数次幂的结果取倒数； 结果为result=1乘以base指数exponent次。 参考代码class Solution: def Power(self, base, exponent): # write code here judge=0 if(exponent&lt;0): judge=1 exponent*=(-1) result=1 while(exponent): result*=base exponent-=1 if(judge): return 1/result else: return result 运行时间： 21ms 占用内存： 5852k]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]二进制中1的个数]]></title>
+    <url>%2F2018%2F08%2F29%2Fnowcoder-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[题目描述输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。 题目链接： https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8 分析 首先用list存储整数的二进制形式； 如果为正数，返回list的和； 否则，list中{0，1}取反，再加一。 参考代码class Solution: def NumberOf1(self, n): # write code here index=abs(n) li=[0]*32 i=-1 while(index&gt;0): li[i]=index%2 index//=2 i-=1 if(n&gt;0): return sum(li) else: l=[0 if ii else 1 for ii in li] left=1 for i in range(len(l)-1,-1,-1): if(not left): break if(l[i]): if(left): l[i]=0 else: if(left): l[i] = 1 left=0 return sum(l) 运行时间： 21ms 占用内存： 5736k]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[nowcoder]矩形覆盖]]></title>
     <url>%2F2018%2F08%2F28%2Fnowcoder-%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96%2F</url>
     <content type="text"><![CDATA[题目描述我们可以用21的小矩形横着或者竖着去覆盖更大的矩形。请问用n个21的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？ 题目链接： https://www.nowcoder.com/practice/72a5a919508a4251859fb2cfb987a0e6 分析 这几题可能是跟斐波那契数列杠上了，同样的分治思想，设F(n)为覆盖2n的大矩形的方法总数，因为都是21的小矩形，所以F(n-1)和F(n-2)可以把F(n)的所有可能性覆盖，虽然F(n-2)到F(n)之间的2*2的剩余有两种覆盖方法，但是其中一种是F(n-1)中已经包含的； 代码也就显而易见了。 参考代码class Solution: def rectCover(self, number): # write code here if(number==0): return 0 a,b=1,1 while(number): a,b=b,a+b number-=1 return a 运行时间： 21ms 占用内存： 5732k]]></content>
@@ -71,8 +199,8 @@
       <tags>
         <tag>code</tag>
         <tag>剑指Offer</tag>
-        <tag>队列</tag>
         <tag>栈</tag>
+        <tag>队列</tag>
       </tags>
   </entry>
   <entry>
