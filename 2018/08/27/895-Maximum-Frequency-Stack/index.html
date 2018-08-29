@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionImplement FreqStack, a class which simulates the operation of a stack-like data structure. FreqStack has two functions:  push(int x), which pushes an integer x onto the stack.  pop(), which">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-27T14:49:28.203Z">
+<meta property="og:updated_time" content="2018-08-29T12:58:01.660Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="895.Maximum Frequency Stack">
 <meta name="twitter:description" content="DescriptionImplement FreqStack, a class which simulates the operation of a stack-like data structure. FreqStack has two functions:  push(int x), which pushes an integer x onto the stack.  pop(), which">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-27T22:49:28+08:00">
-                2018-08-27
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-29T20:58:01+08:00">
+                2018-08-29
               </time>
             
           </span>
@@ -458,9 +458,36 @@ The stack becomes [5,7].
 <li>The total number of FreqStack.push and FreqStack.pop calls will not exceed 150000 across all test cases.</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li>未完待续</li>
+<li>因为每次pop都是返回一个出现频率最大的数字，首先想到的是每次push保存下频率最大的数字，但是pop之后可能就会变化，这是如果去遍历所有push的数字时间会超限；</li>
+<li>考虑把所有出现相同次数的数字放在同一个list中，然后把所有的list放入字典中，形如{1: [7, 5, 4], 2: [7, 5]}，代表至少出现一次的是：7，4，5，至少出现两次的是：7，5，题目要求需要在频率相同的情况下pop出最后push进去的，在构建的时候按照push顺序加入到字典中；</li>
+<li>在构建一个字典存储每个数字出现的次数，形如：{7: 2, 5: 2, 4: 1}</li>
+<li>代码如下</li>
 </ol>
-<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2>
+<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class FreqStack:
+def __init__(self):
+    self.count = {}
+    self.group = {}
+    self.max = 0
+
+def push(self, x):
+    if(x in self.count):
+        self.count[x]+=1
+    else:
+        self.count[x]=1
+    f=self.count[x]
+    if(f in self.group):
+        self.group[f].append(x)
+    else:
+        self.group[f]=[x]
+    if(f&gt;self.max):
+        self.max=f
+def pop(self):
+    x=self.group[self.max].pop()
+    self.count[x]-=1
+    if(not self.group[self.max]):
+        self.max-=1
+    return x
+</code></pre>
       
     </div>
     
