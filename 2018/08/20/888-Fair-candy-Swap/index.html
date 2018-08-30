@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionAlice and Bob have candy bars of different sizes: A[i] is the size of the i-th bar of candy that Alice has, and B[j] is the size of the j-th bar of candy that Bob has. Since they are friend">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-29T14:52:37.611Z">
+<meta property="og:updated_time" content="2018-08-30T02:44:57.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="888.Fair candy Swap">
 <meta name="twitter:description" content="DescriptionAlice and Bob have candy bars of different sizes: A[i] is the size of the i-th bar of candy that Alice has, and B[j] is the size of the j-th bar of candy that Bob has. Since they are friend">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-29T22:52:37+08:00">
-                2018-08-29
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-30T10:44:57+08:00">
+                2018-08-30
               </time>
             
           </span>
@@ -453,7 +453,9 @@ Output: [5,4]
 <li>It is guaranteed there exists an answer.</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li>未完待续</li>
+<li>交换一个candy使得两个人的candy总数相等，只需要交换的两个candy的差值为两个人的candy的总和的差值的一半（index）即可；</li>
+<li>遍历A，存入set，为了搜索快；</li>
+<li>遍历B，每一项加上index在set中，即使所需交换的两个candy。</li>
 </ol>
 <h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution:
 def fairCandySwap(self, A, B):

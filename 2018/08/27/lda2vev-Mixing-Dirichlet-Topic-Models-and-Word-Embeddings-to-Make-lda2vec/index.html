@@ -95,7 +95,7 @@
 <meta property="og:description" content="结合主题信息和词潜入，生成包含主题信息的向量化表示lda2vec. 论文地址:https://arxiv.org/abs/1605.02019 ABSTRACT">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://redtongue.github.io/2018/08/27/lda2vev-Mixing-Dirichlet-Topic-Models-and-Word-Embeddings-to-Make-lda2vec/1.png">
-<meta property="og:updated_time" content="2018-08-27T08:20:37.119Z">
+<meta property="og:updated_time" content="2018-08-30T02:31:37.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lda2vev:Mixing Dirichlet Topic Models and Word Embeddings to Make lda2vec">
 <meta name="twitter:description" content="结合主题信息和词潜入，生成包含主题信息的向量化表示lda2vec. 论文地址:https://arxiv.org/abs/1605.02019 ABSTRACT">
@@ -351,8 +351,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-27T16:20:37+08:00">
-                2018-08-27
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-30T10:31:37+08:00">
+                2018-08-30
               </time>
             
           </span>
@@ -440,18 +440,18 @@
 <p>最后，文本上的传统主题模型没有利用分布式词语表示方面的最新进展，它可以捕捉令牌之间语义上有意义的规则。对词语共现的考察已被证明是一个富有成效的研究范式。例如，Mikolov等人（2013）利用Skipgram负抽样（Skipgram NegativeSampling，SGNS）利用跨越文本语料库的窗口形成的单词上下文对来训练单词嵌入。这些向量表示最终编码显着的线性，如king-man+woman=queen。事实上，Levy和Goldberg（2014c）证明，这隐含地分解了点阵互信息（PMI）矩阵的变体，该矩阵强调预测罕见群体的频繁共现。与PMI矩阵密切相关，Pennington 等人（2014）将大型全球字数共生矩阵分解以产生比SGNS更高效且性能稍高的计算嵌入。一旦创建，这些表示就可用于信息检索（Manning等，2009）和解析任务（Levy和Goldberg，2014a）。在这项工作中，我们将利用word级表示来建立文档级抽象。</p>
 <p>本文通过包含可解释文档表示来扩展分布式词语表示，并证明模型推理可以在自动分化框架内执行和扩展。</p>
 <h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>本节介绍lda2vec的模型。 我们有兴趣修改（Mikolov et al。，2013）中的Skipgram负采样（SGNS）目标，以利用文档范围的特征向量，同时学习连续的文档权重加载到主题向量。 网络架构如图1所示。<br>在（1）中的总损失项$\iota$是Skiggram负采样损失（SGNs）$\iota_{ij}^{neg}$的总和，并且在文档权重上增加了Dirichlet似然项，$\iota^d$将在后面讨论。使用上下文向量($\overrightarrow{c_j}$)、支点字向量($\overrightarrow{w_j}$)、目标词向量($\overrightarrow{w_i}$)和负采样词向量($\overrightarrow{w_l}$)进行损失。</p>
-<p>(1)$$ \iota =\iota^d +\sum_{ij}\iota_{ij}^{neg}$$</p>
-<p>(2)$$\iota_{ij}^{neg} = \log_\sigma(\overrightarrow{c_j}\cdot\overrightarrow{w_l})+\sum_{l=0}^n\log_\sigma(-\overrightarrow{c_j}\cdot\overrightarrow{w_l})$$</p>
+<p>$$ \iota =\iota^d +\sum_{ij}\iota_{ij}^{neg} \tag{1}$$</p>
+<p>$$\iota_{ij}^{neg} = \log_\sigma(\overrightarrow{c_j}\cdot\overrightarrow{w_l})+\sum_{l=0}^n\log_\sigma(-\overrightarrow{c_j}\cdot\overrightarrow{w_l}) \tag{2}$$</p>
 <h3 id="Word-Representation"><a href="#Word-Representation" class="headerlink" title="Word Representation"></a>Word Representation</h3><p>如在Mikolov等人（2013），当它们在移动的窗口中共同出现在整个语料库中时，提取枢轴词和目标词对（j，i）。在我们的实验中，窗口在枢轴标记之前和之后包含5个标记。对于每个枢轴目标字对，枢轴字用于预测附近的目标字。每个单词用固定长度的密集分布表示向量表示，但与Mikolov等人（2013年）不同，相同的单词向量用于枢轴和目标表示。2）中所示的SGNS损失试图区分出出现在语料库中的上下文词对，从而随机抽取 “negative”词汇池。当观察到的词与边缘分布完全分离时，该损失最小化。从中得出令牌的分布是$u^β$，其中u表示由总语料库大小归一化的整体词频。除非另有说明，否则，如Mikolov等人(2013)所述，负采样功率β设为3/4，负样本数固定为n = 15。请注意，$u^0.0$的分布会从词汇中绘制负标记而没有受欢迎的概念，而与$u^1.0$成比例的分布则取自经验单字分布。与单字分布相比，$u^{3/4}$的选择稍微强调为负样本选择不常用单词。与优化softmax交叉熵（其需要对每个令牌的总体流行度进行建模）相反，负面抽样侧重于通过从语料库中的每个令牌的边际流行度中抽取负样本来有条件地学习词向量。</p>
 <h3 id="Document-Representations"><a href="#Document-Representations" class="headerlink" title="Document Representations"></a>Document Representations</h3><p>lda2vec将单词和文档向量嵌入同一个空间并同时训练两个表示。通过将枢轴和文档向量相加，两个空间都可以有效地结合在一起。 Mikolov等人（2013）提供了直觉，词向量可以汇总在一起形成两个词的语义上有意义的组合。例如，Germany+airline的载体表示与Lufthansa的载体相似。我们想利用单词向量的加性来构造一个有意义的单词和文档向量。例如，如果lda2vec正在扫描文档，第j个单词是德国，则预测相邻单词如法国，西班牙和奥地利相似。但是，如果文档特别是关于航空公司，那么我们希望构建一个类似于航空公司的单词向量的文档向量。然后，不是单独预测类似于德国的令牌，而是可以对文档和主要词汇进行类似的预测，例如：Lufthansa，Condor Flugdienst和Aero Lloyd。由有意义的词向量的总和驱动，在LDA2VEC中，上下文向量被明确地设计为文档向量和词向量的总和，如（3）：</p>
-<p>(3)$$\overrightarrow{c_j}=\overrightarrow{w_j}+\overrightarrow{d_j}$$</p>
+<p>$$\overrightarrow{c_j}=\overrightarrow{w_j}+\overrightarrow{d_j} \tag{3}$$</p>
 <p>这通过保留文档中所有单词上下文对的($\overrightarrow{d_j}$)来模拟文档范围的关系，同时仍然利用由枢轴词向量($\overrightarrow{w_j}$)和目标词($\overrightarrow{w_i}$)之间的相互作用产生的局部词间关系。文档和单词向量被汇总在一起形成一个上下文向量，分别直观地捕捉长期和短期主题。为了防止共同适应，我们也对非规范化文档向量($\overrightarrow{d_j}$)和枢轴词向量($\overrightarrow{w_j}$)进行dropout（Hinton et al。，2012）。</p>
 <h4 id="Document-Mixtures"><a href="#Document-Mixtures" class="headerlink" title="Document Mixtures"></a>Document Mixtures</h4><p>如果我们只包含到目前为止的结构，模型将为每个文档生成一个密集的向量。 然而，lda2vec致力于形成可解释的表示，并且这样做会施加额外的约束，使得文档表示与传统的LDA模型中的相似。我们的目标是从混合主题向量生成一个文档向量，为此，我们首先约束文档向量($d_j$),投影到一组潜在的主题向量($\overrightarrow{t_0}$),($\overrightarrow{t_1}),⋯,($\overrightarrow{t_k}$):</p>
-<p>(4)$$\overrightarrow{d_j}=p_{j0}\cdot\overrightarrow{t_0}+p_{j2}\cdot\overrightarrow{t_2}+\cdots+p_{jk}\cdot\overrightarrow{t_k}+\cdots+p_{jn}\cdot\overrightarrow{t_n}$$</p>
+<p>$$\overrightarrow{d_j}=p_{j0}\cdot\overrightarrow{t_0}+p_{j2}\cdot\overrightarrow{t_2}+\cdots+p_{jk}\cdot\overrightarrow{t_k}+\cdots+p_{jn}\cdot\overrightarrow{t_n} \tag{4}$$</p>
 <p>每个权重0≤$p_{jk}$≤1是表示主题k中文档j的隶属度的分数。 例如，稍后描述的Twenty Newsgroups 模型具有11313个文档并且k = 20个主题，所以j = 0 … 11312，k = 0 … 19。 当单词向量维数设置为300时，假设文档向量($\overrightarrow{d_j}$)，单词向量($\overrightarrow{w_i}$)和主题向量($\overrightarrow{t_k}$)都具有维度300.注意，主题向量($\overrightarrow{t_k}$)是共享的 并且是所有文档的共同组成部分，但其强度由文档权重p_jk调整。为了有助于可解释性，文档成员资格被设计为非负面的，并且归结为统一。 为了实现这个约束，softmax变换将在R^300中初始化的潜在向量映射到由$p_{jk}$定义的单纯形中。softmax变换自然会强制约束$\sum_k p_{jk} = 1$，并允许我们将成員資格解釋为百分比而非无限权重。</p>
 <p>将（4）中的混合作为总和来保证主题向量($\overrightarrow{t_k}$)，文档向量($\overrightarrow{d_j}$)和词向量($\overrightarrow{w_i}$)在相同的空间中操作。因此，可以直接计算哪些字($\overrightarrow{w_i}$)最类似于任何给定的主题向量($\overrightarrow{t_k}$)。尽管每个主题不是字面上語料庫中存在的标记，但与其他标记的相似性是有意义的并且可以被测量。此外，通过检查最相似的单词列表，可以尝试解释该主题所代表的内容。例如，通过计算与任何主题向量（例如argma$x_i(\overrightarrow{t_0}\cdot\overrightarrow{w_i})$最相似的标记，人们可以发现第一个主题向量($\overrightarrow{t_0}$)与标记pitching，catcher和Braves相似，而第二个主题向量($\overrightarrow{t_1}$)可能与Jesus，God和faith相似。这为我们提供了将第一个主题解释为baseball主题的选项，因此每个文档比例$p_{j0}$中的第一个分量指示文档j在棒球主题中的数量。同样，第二个主题可能被解释为基督教，任何文档比例的第二个组成部分$p_{j1}$表示该文件在基督教主题中的成员身份。</p>
 <h4 id="Sparse-Memberships"><a href="#Sparse-Memberships" class="headerlink" title="Sparse Memberships"></a>Sparse Memberships</h4><p>最后，通过对具有低浓度参数α的Dirichlet似然优化文档权重，使文档权重$p_{ij}$被稀疏化：</p>
-<p>(5)$$\iota^d=\lambda\sum_{jk}(\alpha-1)\log p_{jk}$$</p>
+<p>$$\iota^d=\lambda\sum_{jk}(\alpha-1)\log p_{jk} \tag{5}$$</p>
 <p>5）中的总体目标衡量文档j在主题k中概括所有可用文档的可能性。该项的强度由调整参数λ调整。当α＜1时，每一个主题中的文档比例耦合都是稀疏的，当α＞1时，这种简单的可能性会促使文档的比例耦合。为了提高可解释性，我们有兴趣寻找稀疏成员，并设置α=n^(-1)，其中n是主题。我们还发现将Dirichlet优化的整体强度设置为λ= 200的效果很好。文档比例被初始化为相对均匀，但随着时间的推移，$\iota^d$鼓励文档比例向量随着时间的推移变得更加集中（例如稀疏）。在没有这个稀疏诱导项的实验中（或者当α= 1时），文档权重$p_{ij}$倾向于在所有元素之间展开概率质量。如果没有任何稀疏性引入术语，那么许多非零权重的存在使解释文档向量变得困难。此外，我们发现话题基础也受到强烈影响，话题变得不連貫。</p>
 <table>
 <thead>

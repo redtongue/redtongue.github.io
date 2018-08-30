@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionReturn any binary tree that matches the given preorder and postorder traversals. Values in the traversals pre and post are distinct positive integers. 题目链接：https://leetcode.com/problems/con">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-29T14:51:59.876Z">
+<meta property="og:updated_time" content="2018-08-30T02:59:58.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="889.Construct Binary Tree from Preorder and Postorder Traversal">
 <meta name="twitter:description" content="DescriptionReturn any binary tree that matches the given preorder and postorder traversals. Values in the traversals pre and post are distinct positive integers. 题目链接：https://leetcode.com/problems/con">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-29T22:51:59+08:00">
-                2018-08-29
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-30T10:59:58+08:00">
+                2018-08-30
               </time>
             
           </span>
@@ -439,7 +439,11 @@ Output: [1,2,3,4,5,6,7]
 <li>It is guaranteed an answer exists. If there exists multiple answers, you can return any of them.</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li>未完待续</li>
+<li>根据先序遍历pre和后续遍历post构建二叉树，常规递归方法；</li>
+<li>递归的结束条件是：pre长度为0返回None，长度为1，返回TreeNode(pre[0])</li>
+<li>pre[0]作为当前过程的根节点，pre[1:indexof(pre[1])+2]作为左子树先序，post[:indexof(pre[1])+1]作为左子树后序，pre[indexof(pre[1])+2:]作为右子树先序，post[indexof(pre[1])+1：-1]作为右子树后序；</li>
+<li>如例：{[2,4,5],[4,5,2]}为左子树，{[3，6，7],[6,7,3]}为右子树，indexof(pre[1])为pre[1] (2)在post中的位置，为：2</li>
+<li>以此类推</li>
 </ol>
 <h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>#Definition for a binary tree node.
 class TreeNode:
