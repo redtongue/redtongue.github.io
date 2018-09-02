@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[899.Orderly Queue]]></title>
+    <url>%2F2018%2F09%2F02%2F899-Orderly-Queue%2F</url>
+    <content type="text"><![CDATA[DescriptionA string S of lowercase letters is given. Then, we may make any number of moves. In each move, we choose one of the first K letters (starting from the left), remove it, and place it at the end of the string. Return the lexicographically smallest string we could have after any number of moves. 题目链接：https://leetcode.com/problems/orderly-queue/description/ Difficulty: hard Example 1:Input: S = &quot;cba&quot;, K = 1 Output: &quot;acb&quot; Explanation: In the first move, we move the 1st character (&quot;c&quot;) to the end, obtaining the string &quot;bac&quot;. In the second move, we move the 1st character (&quot;b&quot;) to the end, obtaining the final result &quot;acb&quot;. Example 2:Input: S = &quot;baaca&quot;, K = 3 Output: &quot;aaabc&quot; Explanation: In the first move, we move the 1st character (&quot;b&quot;) to the end, obtaining the string &quot;aacab&quot;. In the second move, we move the 3rd character (&quot;c&quot;) to the end, obtaining the final result &quot;aaabc&quot;. Note: 1 &lt;= K &lt;= S.length &lt;= 1000 S consists of lowercase letters only. 分析 题意：每次可以交换第index（小于等于K）个字母到最后一个，可以交换任意次，是的结果为最小字典顺序； 当K&gt;=2时，相当于时间复杂度为$O(n_2)$的排序算法，当然可能小于$O(n_2)$，最后结果一定是字典顺序；大致过程：每次移到最后相当于字符串循环，每次将待排序字符放在第一位，循环后面的字符串，直到待排序字符排好序，加入循环字符串，以此类推； 当K==1时，相当于首尾相连，找到最小字典顺序字串，简单做法：字符串复制两份，遍历一半，截取length长度的字串，找出最小字典顺序字串。 参考代码class Solution: def orderlyQueue(self, S, K): if(K&gt;1): return &apos;&apos;.join(sorted(S)) s=S+S target=S for i in range(1,len(S)+1): if(s[i:i+len(S)]&lt;target): target=s[i:i+len(S)] return target]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[898.Bitwise ORs of Subarrays]]></title>
+    <url>%2F2018%2F09%2F02%2F898-Bitwise-ORs-of-Subarrays%2F</url>
+    <content type="text"><![CDATA[DescriptionWe have an array A of non-negative integers. For every (contiguous) subarray B = [A[i], A[i+1], …, A[j]] (with i &lt;= j), we take the bitwise OR of all the elements in B, obtaining a result A[i] | A[i+1] | … | A[j]. Return the number of possible results. (Results that occur more than once are only counted once in the final answer.) 题目链接：https://leetcode.com/problems/bitwise-ors-of-subarrays/description/ Difficulty: medium Example 1:Input: [0] Output: 1 Explanation: There is only one possible result: 0. Example 2:Input: [1,1,2] Output: 3 Explanation: The possible subarrays are [1], [1], [2], [1, 1], [1, 2], [1, 1, 2]. These yield the results 1, 1, 2, 1, 3, 3. There are 3 unique values, so the answer is 3. Example 3:Input: [1,2,4] Output: 6 Explanation: The possible results are 1, 2, 3, 4, 6, and 7. Note: 1 &lt;= A.length &lt;= 50000 0 &lt;= A[i] &lt;= 10^9 分析 动态规划：遍历数组，记录以每一个数为结尾的子数组的结果，存在set中； 将当前数与前一个数的结果的取或和本身，存储aSet（set）中； aSet的长度即使所有结果的可能数。 参考代码class Solution: def subarrayBitwiseORs(self, A): index =A[0] aSet=set() judge=set() judge.add(index) aSet.add(index) for i in range(1,len(A)): _judge=set() for j in judge: aSet.add(A[i]) _judge.add(A[i]) aSet.add(j | A[i]) _judge.add(j | A[i]) judge=_judge return len(aSet) 83 / 83 test cases passed. Runtime: 1712 ms]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[897.Increasing Order Search Tree]]></title>
+    <url>%2F2018%2F09%2F02%2F897-Increasing-Order-Search-Tree%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a tree, rearrange the tree in in-order so that the leftmost node in the tree is now the root of the tree, and every node has no left child and only 1 right child. 题目链接：https://leetcode.com/problems/increasing-order-search-tree/description/ Difficulty: easy Example 1:Input: [5,3,6,2,4,null,8,1,null,null,null,7,9] 5 / \ 3 6 / \ \ 2 4 8 / / \ 1 7 9 Output: [1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9] 1 \ 2 \ 3 \ 4 \ 5 \ 6 \ 7 \ 8 \ 9 Note: The number of nodes in the given tree will be between 1 and 100. Each node will have a unique integer value from 0 to 1000. 分析 题意：将二叉搜索树变为只有右结点的二叉搜索树； 遍历得到原二叉搜索树的中序遍历序列； 根据中序遍历序列，遍历构建只有右结点的二叉搜索树，返回根结点； 做到第二题的时候精神有点恍惚，感觉自己的代码不够pythonic。 参考代码Definition for a binary tree node. class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: def increasingBST(self, root): def _inter(ro): if(ro==None): return None left=[] if(ro.left!=None): left=_inter(ro.left) right=[] if(ro.right!=None): right=_inter(ro.right) return left + [ro.val] + right li=_inter(root) if(len(li) ==0 ): return None head=TreeNode(li[0]) p=head for i in range(1,len(li)): q=TreeNode(li[i]) p.right=q p=q return head 2156 / 2156 test cases passed. Runtime: 160 ms]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Depth-first Search</tag>
+        <tag>Binary Search Tree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[896.Monotonic Array]]></title>
+    <url>%2F2018%2F09%2F02%2F896-Monotonic-Array%2F</url>
+    <content type="text"><![CDATA[DescriptionAn array is monotonic if it is either monotone increasing or monotone decreasing. An array A is monotone increasing if for all i &lt;= j, A[i] &lt;= A[j]. An array A is monotone decreasing if for all i &lt;= j, A[i] &gt;= A[j]. Return true if and only if the given array A is monotonic. 题目链接：https://leetcode.com/problems/monotonic-array/description/ Difficulty: easy Example 1:Input: [1,2,2,3] Output: true Example 2:Input: [6,5,4,4] Output: true Example 3:Input: [1,3,2] Output: false Example 4:Input: [1,2,4,5] Output: true Example 5:Input: [1,1,1] Output: true Note: 1 &lt;= A.length &lt;= 50000 100000 &lt;= A[i] &lt;= 100000 分析 判断数组是否是递增或者递减的，定义判断量judge，judge=0初始化，judge=1递增，judge=-1递减，遍历数组； 如果judge=0：当前数大于前一个数，judge=1，如果当前数小于前一个数，judge=-1； 如果judge=1：如果当前数小于前一个数，返回False； 如果judge=-1：如果当前数大于前一个数，返回False； 遍历结束，返回True。 参考代码class Solution: def isMonotonic(self, A): index = A[0] judge=0 for i in range(1,len(A)): if(judge==0): if(A[i]&gt;index): judge=1 if(A[i]&lt;index): judge=-1 index=A[i] elif(judge==1): if(A[i]&lt;index): return False index=A[i] else: if(A[i]&gt;index): return False index=A[i] return True 366 / 366 test cases passed. Runtime: 160 ms]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[nowcoder]复杂链表的复制]]></title>
     <url>%2F2018%2F08%2F31%2Fnowcoder-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6%2F</url>
     <content type="text"><![CDATA[题目描述输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空） 题目链接： https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba 分析 遍历链表可以复制next，但是random指向不一定，所以不能立刻复制，故用dict存储原链表中每个结点的id值（每个结点的id是唯一的）与新结点； 遍历中，复制结点和next指向，random指向原结点的random； 遍历结束后，利用dict重新调整random； 返回p_Head 参考代码class RandomListNode: def __init__(self, x): self.label = x self.next = None self.random = None class Solution: # 返回 RandomListNode def Clone(self, pHead): # write code here head=pHead p_Head=None new_Head=None dict1={} while(head): node=RandomListNode(head.label) node.random=head.random dict1[id(head)]=node head=head.next if(p_Head): new_Head.next=node new_Head=node else: new_Head=node p_Head=node new_Head=p_Head while(new_Head): if(new_Head.random!=None): new_Head.random=dict1[id(new_Head.random)] new_Head=new_Head.next return p_Head 运行时间： 21ms]]></content>
