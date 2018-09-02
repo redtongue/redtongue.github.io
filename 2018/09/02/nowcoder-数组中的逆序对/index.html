@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="题目描述在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007 题目链接： https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-02T09:32:51.416Z">
+<meta property="og:updated_time" content="2018-09-02T09:55:07.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[nowcoder]数组中的逆序对">
 <meta name="twitter:description" content="题目描述在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007 题目链接： https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-02T17:32:51+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-02T17:55:07+08:00">
                 2018-09-02
               </time>
             
@@ -444,7 +444,7 @@
 <h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><pre><code>输入： 1,2,3,4,5,6,7,0
 输出： 7
 </code></pre><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li>如果直接两边遍历比较，时间复杂度为$O(n_2)$,时间会超限；</li>
+<li>如果直接两边遍历比较，时间复杂度为$O(n^2)$,时间会超限；</li>
 <li>考虑利用时间复杂度为O(nlogn)的归并排序解决，归并排序的子步骤是将两部分的排好序的序列合并，且归并排序是稳定的不会导致计数重复；</li>
 <li>每次两部分合并时，若把后面的部分归并时，则该数字比前半部分的剩余序列都小，即逆序对数；</li>
 <li>复现归并排序算法，加入计算逆序部分，返回逆序对总数。</li>
