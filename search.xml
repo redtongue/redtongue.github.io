@@ -1,6 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[nowcoder]数组中只出现一次的数字]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
+    <content type="text"><![CDATA[题目描述一个整型数组里除了两个数字之外，其他的数字都出现了偶数次。请写程序找出这两个只出现一次的数字。 题目链接： https://www.nowcoder.com/practice/e02fdb54d7524710a7d664d082bb7811 分析 遍历数组，用dict存储每个数字及其出现的次数； 遍历dict，返回所有出现一次的数字。 参考代码class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: # 返回[a,b] 其中ab是出现一次的两个数字 def FindNumsAppearOnce(self, array): # write code here d={} for index in array: if(index in d): d[index]+=1 else: d[index]=1 l=[] for index in d: if(d[index]%2==1): l.append(index) return l 运行时间： 21 ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]平衡二叉树]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目描述输入一棵二叉树，判断该二叉树是否是平衡二叉树。 题目链接： https://www.nowcoder.com/practice/8b3b95850edb4115918ecebdf1b4d222 分析 递归：如果当前结点为空，返回平衡判断True以及深度0； 如果左右平衡判断出现False，则返回False； 如果左右子树的深度差值大于1，则返回False； 否则返回平衡判断True以及深度（左右子树最大深度+1） 参考代码class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: def IsBalanced_Solution(self, pRoot): # write code here def judge(root): if(not root): return [True,0] left_judge,left=judge(root.left) right_judge,right=judge(root.right) if(not left_judge or not right_judge): return [False,0] if(abs(left-right)&gt;1): return [False,0] return [True,max(left,right)+1] [bo,dep]=judge(pRoot) return bo 运行时间： 21 ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]二叉树的深度]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6%2F</url>
+    <content type="text"><![CDATA[题目描述输入一棵二叉树，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。 题目链接： https://www.nowcoder.com/practice/435fb86331474282a3499955f0a41e8b 分析 递归：如果当前结点为空，返回0，否则返回左右子树最大深度+1. 参考代码class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: def TreeDepth(self, pRoot): # write code here if(not pRoot): return 0 left=self.TreeDepth(pRoot.left) right=self.TreeDepth(pRoot.right) return max(left,right)+1 运行时间： 20 ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]数字在排序数组中出现的次数]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E6%95%B0%E5%AD%97%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[题目描述统计一个数字在排序数组中出现的次数。 题目链接： https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2 分析 遍历找到数组中等于k的数字（代码中是二分查找）； i，j分别向左右移动，知道，对应的下一个值不等于k； 返回j-i+1 参考代码class Solution: def GetNumberOfK(self, data, k): # write code here i,j=0,len(data)-1 mid=(i+j)//2 while(i&lt;=j and data[mid]!=k): if(k&gt;data[mid]): i=mid+1 mid=(i+j)//2 elif(k==data[mid]): break else: j=mid-1 mid=(i+j)//2 if(i&gt;j): return 0 i=j=mid while(i&gt;0): if(data[i-1]==k): i-=1 else: break while(j&lt;len(data)-1): if(data[j+1]==k): j+=1 else: break return j-i+1 运行时间： 20 ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]两个链表的第一个公共结点]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[题目描述输入两个链表，找出它们的第一个公共结点。 题目链接： https://www.nowcoder.com/practice/6ab1d9a29e88450685099d45c9e31e46 分析 相当于寻找两个数组的第一个相同数； 遍历两个链表，比较每个结点的val值，相同则返回； 遍历结束返回None。 参考代码class ListNode: def __init__(self, x): self.val = x self.next = None class Solution: def FindFirstCommonNode(self, pHead1, pHead2): # write code here p=pHead1 q=pHead2 if(not pHead1 or not pHead2): return None while(p!=None): q=pHead2 while(q): if(p.val==q.val): return q q=q.next p=p.next return None 运行时间： 29 ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]数组中的逆序对]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9%2F</url>
+    <content type="text"><![CDATA[题目描述在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007 题目链接： https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5 输入描述 题目保证输入的数组中没有的相同的数字数据范围： 对于%50的数据,size&lt;=10^4 对于%75的数据,size&lt;=10^5 对于%100的数据,size&lt;=2*10^5 示例1输入： 1,2,3,4,5,6,7,0 输出： 7 分析 如果直接两边遍历比较，时间复杂度为$O(n_2)$,时间会超限； 考虑利用时间复杂度为O(nlogn)的归并排序解决，归并排序的子步骤是将两部分的排好序的序列合并，且归并排序是稳定的不会导致计数重复； 每次两部分合并时，若把后面的部分归并时，则该数字比前半部分的剩余序列都小，即逆序对数； 复现归并排序算法，加入计算逆序部分，返回逆序对总数。 参考代码class Solution: def _inter(self,temp,data,low,high): if(low&gt;=high): temp[low]=data[low] return 0 mid=(low+high)//2 left=self._inter(data,temp,low,mid) right=self._inter(data,temp,mid+1,high) count=0 i,j=low,mid+1 index=low while(i&lt;=mid and j &lt;=high): if(data[i]&lt;=data[j]): temp[index]=data[i] i+=1 else: temp[index]=data[j] j+=1 count+=(mid-i+1) index+=1 while(i&lt;=mid): temp[index]=data[i] i+=1 index+=1 while(j&lt;=high): temp[index]=data[j] j+=1 index+=1 return count+left+right def InversePairs(self, data): # write code here if(not data): return 0 import copy temp = [i for i in data] return self._inter(temp,data,0,len(data)-1)%1000000007 运行时间： 2179 ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]第一次只出现一次的字符]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6%2F</url>
+    <content type="text"><![CDATA[题目描述在一个字符串(0&lt;=字符串长度&lt;=10000，全部由字母组成)中找到第一个只出现一次的字符,并返回它的位置, 如果没有则返回 -1（需要区分大小写）. 题目链接： https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c 分析 用dict存储字符以及出现的位置；若重复出现，赋值为-1； 用list存储只出现一次的字符，若重复出现，将字符移出； 返回list中第一个字符。 参考代码class Solution: def FirstNotRepeatingChar(self, s): # write code here li=[] d={} for i in range(len(s)): if(s[i] in d): if(d[s[i]]!=-1): li.remove(d[s[i]]) d[s[i]]=-1 else: li.append(i) d[s[i]]=i if(li): return li[0] return -1 运行时间： 41 ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]丑数]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E4%B8%91%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[题目描述把只包含质因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含质因子7。 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。 题目链接： https://www.nowcoder.com/practice/6aa9e04fc3794f68acf8778237ba065b 分析 由于丑数是只包含质因子2、3和5的数，所以每个数都是由若干个2，3，5相乘得来的； 故循环计算list存储的数分别乘以2，3，5，将最小的数append到list中，同时，该数字对应的在list中的位置后移； 返回最后一个数 参考代码class Solution: def GetUglyNumber_Solution(self, index): # write code here li=[1] index2,index3,index5=0,0,0 if(index&lt;=0): return 0 while(index-1): m=min(li[index2]*2,li[index3]*3,li[index5]*5) li.append(m) if(m%2==0): index2+=1 if(m%3==0): index3+=1 if(m%5==0): index5+=1 index-=1 return li[-1] 运行时间： 27 ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]把数组排成最小的数]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[题目描述输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。 题目链接： https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993 分析 定义一个新的比较函数，返回a+b拼接的数字与b+a拼接的数字的差值； 按题意，放在前面是的组合数字更小的数字应该放在前面，所以将新定义的函数传入sorted作为cmp参数，直接调用sorted排序； 主义，sorted的cmp参数在python3中已经不可以使用了。 参考代码class Solution: def PrintMinNumber(self, numbers): # write code here def judge(a,b):#a&lt;=b return int(str(a)+str(b))-int(str(b)+str(a)) numbers=sorted(numbers,cmp=judge) index=&apos;&apos; for i in numbers: index+=str(i) return index 运行时间： 21 ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]整数1出现的次数（从1到n整数中1出现的次数）]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E6%95%B4%E6%95%B01%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%EF%BC%88%E4%BB%8E1%E5%88%B0n%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[题目描述求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数（从1 到 n 中1出现的次数）。 题目链接： https://www.nowcoder.com/practice/bd7f978302044eee894445e244c7eee6 分析 1-10之间1出现10次，11-100之间1出现了19次（个位九次，十位九次，百位一次），一次类推； 但是本题的测试用例比较小，如下暴力解法，也通过了，直接计算每个数中1的个数； 建议总结上面的规律。 参考代码class Solution: def NumberOf1Between1AndN_Solution(self, n): # write code here s=0 for index in range(1,n+1): while(index&gt;0): if(index%10==1): s+=1 index/=10 return s 运行时间： 36 ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]连续子数组的最大和]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%2F</url>
+    <content type="text"><![CDATA[题目描述HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后,他又发话了:在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。给一个数组，返回它的最大连续子序列的和，你会不会被他忽悠住？(子向量的长度至少是1) 题目链接： https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484 分析 动态规划问题，遍历数组，每一步根据以前一个数字为结尾的字串的最大和，以及当前数字，计算以当前数字为结尾的字串的最大和； 得到所有字串的最大和。 参考代码class Solution: def FindGreatestSumOfSubArray(self, array): # write code here index=0 ans=array[0] for i in array: index=max(0,index)+i if(index&gt;ans): ans=index return ans 运行时间： 27ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]最小的k个数]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[题目描述输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。 题目链接： https://www.nowcoder.com/practice/6a296eb82cf844ca8539b57c23e6e9bf 分析 排序，返回最后k个数。 参考代码class Solution: def GetLeastNumbers_Solution(self, tinput, k): # write code here tinput.sort() if(k&gt;len(tinput) or k&lt;=0): return [] return tinput[:k] 运行时间： 21ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]数组中出现次数超过一半的数字]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
+    <content type="text"><![CDATA[题目描述数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。 题目链接： https://www.nowcoder.com/practice/e8a1b01a2df14cb2b228b30ee6a92163 分析 遍历数组，将数组中的数字及其相应的出现次数保存到dict中； 返回dict中出现次数大于一般的数字，反之返回0； 参考代码class Solution: def MoreThanHalfNum_Solution(self, numbers): # write code here d={} length=len(numbers) for index in numbers: if(index not in d): d[index]=1 else: d[index]+=1 for index in d: if(d[index]&gt;(length/2)): return index return 0 运行时间： 27ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]字符串的排列]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97%2F</url>
+    <content type="text"><![CDATA[题目描述输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。 题目链接： https://www.nowcoder.com/practice/fe6b651b66ae47d7acce78ffdd9a96c7 输入描述 输入一个字符串,长度不超过9(可能有字符重复),字符只包括大小写字母。 分析 递归，每一步选取s中的一个字母加在list中； 终止条件：len(s)==0，则把list加入到全局变量dic（如果dic中不存在）中； 返回dic 参考代码class Solution: def Permutation(self, ss): # write code here ss=list(ss) dic=[] if(len(ss)==0): return dic def _inter(li,s): if(len(s)==0): li=&apos;&apos;.join(li) if(li not in dic): dic.append(li) return for i in s: import copy S=copy.copy(s) S.remove(i) _inter(li+[i],S) _inter([],ss) return dic 运行时间： 30ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder]二叉搜索树与双向链表]]></title>
+    <url>%2F2018%2F09%2F02%2Fnowcoder-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[题目描述输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。 题目链接： https://www.nowcoder.com/practice/947f6eb80d944a84850b0538bf0ec3a5 分析 递归，递归过程中把root结点的左子树的最右结点与root结点相连，把root结点的右子树的最左结点与root相连； 最后返回root的最左结点，既是根节点。 参考代码class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: def Convert(self, pRootOfTree): # write code here if(pRootOfTree==None): return self.Convert(pRootOfTree.left) left=pRootOfTree.left if(left): while(left.right): left=left.right pRootOfTree.left,left.right=left,pRootOfTree self.Convert(pRootOfTree.right) right=pRootOfTree.right if(right): while(right.left): right=right.left pRootOfTree.right,right.left=right,pRootOfTree while(pRootOfTree.left): pRootOfTree=pRootOfTree.left return pRootOfTree 运行时间： 28ms]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>链表</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[899.Orderly Queue]]></title>
     <url>%2F2018%2F09%2F02%2F899-Orderly-Queue%2F</url>
     <content type="text"><![CDATA[DescriptionA string S of lowercase letters is given. Then, we may make any number of moves. In each move, we choose one of the first K letters (starting from the left), remove it, and place it at the end of the string. Return the lexicographically smallest string we could have after any number of moves. 题目链接：https://leetcode.com/problems/orderly-queue/description/ Difficulty: hard Example 1:Input: S = &quot;cba&quot;, K = 1 Output: &quot;acb&quot; Explanation: In the first move, we move the 1st character (&quot;c&quot;) to the end, obtaining the string &quot;bac&quot;. In the second move, we move the 1st character (&quot;b&quot;) to the end, obtaining the final result &quot;acb&quot;. Example 2:Input: S = &quot;baaca&quot;, K = 3 Output: &quot;aaabc&quot; Explanation: In the first move, we move the 1st character (&quot;b&quot;) to the end, obtaining the string &quot;aacab&quot;. In the second move, we move the 3rd character (&quot;c&quot;) to the end, obtaining the final result &quot;aaabc&quot;. Note: 1 &lt;= K &lt;= S.length &lt;= 1000 S consists of lowercase letters only. 分析 题意：每次可以交换第index（小于等于K）个字母到最后一个，可以交换任意次，是的结果为最小字典顺序； 当K&gt;=2时，相当于时间复杂度为$O(n_2)$的排序算法，当然可能小于$O(n_2)$，最后结果一定是字典顺序；大致过程：每次移到最后相当于字符串循环，每次将待排序字符放在第一位，循环后面的字符串，直到待排序字符排好序，加入循环字符串，以此类推； 当K==1时，相当于首尾相连，找到最小字典顺序字串，简单做法：字符串复制两份，遍历一半，截取length长度的字串，找出最小字典顺序字串。 参考代码class Solution: def orderlyQueue(self, S, K): if(K&gt;1): return &apos;&apos;.join(sorted(S)) s=S+S target=S for i in range(1,len(S)+1): if(s[i:i+len(S)]&lt;target): target=s[i:i+len(S)] return target]]></content>
