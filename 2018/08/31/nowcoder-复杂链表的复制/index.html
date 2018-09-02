@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="题目描述输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空） 题目链接： https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-31T15:10:06.003Z">
+<meta property="og:updated_time" content="2018-09-02T01:11:36.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[nowcoder]复杂链表的复制">
 <meta name="twitter:description" content="题目描述输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空） 题目链接： https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-31T23:10:06+08:00">
-                2018-08-31
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-02T09:11:36+08:00">
+                2018-09-02
               </time>
             
           </span>
@@ -430,40 +430,45 @@
 <p>题目链接： <a href="https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba" title="https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba" target="_blank" rel="noopener">https://www.nowcoder.com/practice/f836b2c43afc4b35ad6adc41ec941dba</a></p>
 <a id="more"></a>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li><h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><p> class RandomListNode:<br> def <strong>init</strong>(self, x):</p>
-<pre><code>self.label = x
-self.next = None
-self.random = None
-</code></pre><p> class Solution:</p>
-<h1 id="返回-RandomListNode"><a href="#返回-RandomListNode" class="headerlink" title="返回 RandomListNode"></a>返回 RandomListNode</h1><p> def Clone(self, pHead):</p>
-<pre><code># write code here
-head=pHead
-p_Head=None
-new_Head=None
-dict1={}
-dict2={}
-while(head):
-    node=RandomListNode(head.label)
-    node.random=head.random
-    dict1[id(head)]=id(node)
-    dict2[id(node)]=node
-    head=head.next
-    if(p_Head):
-        new_Head.next=node
-        new_Head=node
-    else:
-        new_Head=node
-        p_Head=node
-new_Head=p_Head
-while(new_Head):
-    if(new_Head.random!=None):
-        new_Head.random=dict2[dict1[id(new_Head.random)]]
-    new_Head=new_Head.next
-return p_Head
-</code></pre><p> 运行时间： 21ms</p>
-</li>
+<li>遍历链表可以复制next，但是random指向不一定，所以不能立刻复制，故用dict存储原链表中每个结点的id值（每个结点的id是唯一的）与新结点；</li>
+<li>遍历中，复制结点和next指向，random指向原结点的random；</li>
+<li>遍历结束后，利用dict重新调整random；</li>
+<li>返回p_Head</li>
 </ol>
+<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class RandomListNode:
+def __init__(self, x):
+    self.label = x
+    self.next = None
+    self.random = None
 
+class Solution:
+# 返回 RandomListNode
+def Clone(self, pHead):
+    # write code here
+    head=pHead
+    p_Head=None
+    new_Head=None
+    dict1={}
+    while(head):
+        node=RandomListNode(head.label)
+        node.random=head.random
+        dict1[id(head)]=node
+        head=head.next
+        if(p_Head):
+            new_Head.next=node
+            new_Head=node
+        else:
+            new_Head=node
+            p_Head=node
+    new_Head=p_Head
+    while(new_Head):
+        if(new_Head.random!=None):
+            new_Head.random=dict1[id(new_Head.random)]
+        new_Head=new_Head.next
+    return p_Head
+
+运行时间： 21ms
+</code></pre>
       
     </div>
     
@@ -675,7 +680,7 @@ return p_Head
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考代码"><span class="nav-number">3.</span> <span class="nav-text">参考代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#返回-RandomListNode"><span class="nav-number"></span> <span class="nav-text">返回 RandomListNode</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考代码"><span class="nav-number">3.</span> <span class="nav-text">参考代码</span></a></li></ol></div>
             
 
           </div>
