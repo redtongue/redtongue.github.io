@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionWrite an iterator that iterates through a run-length encoded sequence. The iterator is initialized by RLEIterator(int[] A), where A is a run-length encoding of some sequence.  More specific">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-03T03:58:11.732Z">
+<meta property="og:updated_time" content="2018-10-03T04:24:54.915Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="900.RLE Iterator">
 <meta name="twitter:description" content="DescriptionWrite an iterator that iterates through a run-length encoded sequence. The iterator is initialized by RLEIterator(int[] A), where A is a run-length encoding of some sequence.  More specific">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-03T11:58:11+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-03T12:24:54+08:00">
                 2018-10-03
               </time>
             
@@ -448,26 +448,11 @@ RLEIterator.next is then called 4 times:
 .next(2) exhausts 2 terms, returning -1.  This is because the first term exhausted was 5,
 but the second term did not exist.  Since the last term exhausted does not exist, we return -1.
 </code></pre><h3 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h3><ul>
-<li><ol>
 <li>0 &lt;= A.length &lt;= 1000</li>
-</ol>
-</li>
-<li><ol start="2">
 <li>A.length is an even integer.</li>
-</ol>
-</li>
-<li><ol start="3">
 <li>0 &lt;= A[i] &lt;= 10^9</li>
-</ol>
-</li>
-<li><ol start="4">
 <li>There are at most 1000 calls to RLEIterator.next(int n) per test case.</li>
-</ol>
-</li>
-<li><ol start="5">
 <li>Each call to RLEIterator.next(int n) will have 1 &lt;= n &lt;= 10^9.</li>
-</ol>
-</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
 <li>已知A存储的是每个数字及其对应出现的次数，其中0 &lt;= A[i] &lt;= 10^9，所以若把A还原成字符串(如[8,8,8,5,5])，这样取next是很方便，但是可能内存或者时间超限；</li>

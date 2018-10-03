@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionWrite a class StockSpanner which collects daily price quotes for some stock, and returns the span of that stock’s price for the current day. The span of the stock’s price today is defined a">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-03T04:07:54.660Z">
+<meta property="og:updated_time" content="2018-10-03T04:24:44.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="901.Online Stock Span">
 <meta name="twitter:description" content="DescriptionWrite a class StockSpanner which collects daily price quotes for some stock, and returns the span of that stock’s price for the current day. The span of the stock’s price today is defined a">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-03T12:07:54+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-03T12:24:44+08:00">
                 2018-10-03
               </time>
             
@@ -446,22 +446,10 @@ S.next(85) is called and returns 6.
 Note that (for example) S.next(75) returned 4, because the last 4 prices
 (including today&apos;s price of 75) were less than or equal to today&apos;s price.
 </code></pre><h3 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h3><ul>
-<li><ol>
 <li>Calls to StockSpanner.next(int price) will have 1 &lt;= price &lt;= 10^5.</li>
-</ol>
-</li>
-<li><ol start="2">
 <li>There will be at most 10000 calls to StockSpanner.next per test case.</li>
-</ol>
-</li>
-<li><ol start="3">
 <li>There will be at most 150000 calls to StockSpanner.next across all test cases.</li>
-</ol>
-</li>
-<li><ol start="4">
 <li>The total time limit for this problem has been reduced by 75% for C++, and 50% for all other languages.</li>
-</ol>
-</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
 <li>由题意知是为了得到以当前价格为结尾的且每个数字都小于等于当前价格的最长序列的长度；</li>
