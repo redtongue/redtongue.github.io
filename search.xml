@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[916.Word Subsets]]></title>
+    <url>%2F2018%2F10%2F01%2F916-Word-Subsets%2F</url>
+    <content type="text"><![CDATA[DescriptionWe are given two arrays A and B of words. Each word is a string of lowercase letters. Now, say that word b is a subset of word a if every letter in b occurs in a, including multiplicity. For example, “wrr” is a subset of “warrior”, but is not a subset of “world”. Now say a word a from A is universal if for every b in B, b is a subset of a. Return a list of all universal words in A. You can return the words in any order. 题目链接：https://leetcode.com/problems/word-subsets/description/ Difficulty: hard Example 1:Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;e&quot;,&quot;o&quot;] Output: [&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;] Example 2:Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;l&quot;,&quot;e&quot;] Output: [&quot;apple&quot;,&quot;google&quot;,&quot;leetcode&quot;] Example 3:Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;e&quot;,&quot;oo&quot;] Output: [&quot;facebook&quot;,&quot;google&quot;] Example 4:Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;lo&quot;,&quot;eo&quot;] Output: [&quot;google&quot;,&quot;leetcode&quot;] Example 5:Input: A = [&quot;amazon&quot;,&quot;apple&quot;,&quot;facebook&quot;,&quot;google&quot;,&quot;leetcode&quot;], B = [&quot;ec&quot;,&quot;oc&quot;,&quot;ceo&quot;] Output: [&quot;facebook&quot;,&quot;leetcode&quot;] Note: 1 &lt;= A.length, B.length &lt;= 10000 1 &lt;= A[i].length, B[i].length &lt;= 10 A[i] and B[i] consist only of lowercase letters. All words in A[i] are unique: there isn’t i != j with A[i] == A[j]. 分析 如题所定义的包含关系可以转化为，字符串A,B，若B中的每一个字母出现的次数都小于等于A中字母出现的次数，则A包含B； 对于B中每一个字符串，统计对应字母出现次数最多的次数，存在dicb中； 对于A中每个字符串a，计算a中每个字母出现的次数，存在dica中； 若dica包含dicb，则a是满足要求的字符串。 参考代码class Solution: def wordSubsets(self, A, B): from collections import defaultdict dicb=defaultdict(lambda:0) for b in B: d=defaultdict(lambda:0) for tar in b: d[tar]+=1 for tar in d: dicb[tar]=max(dicb[tar],d[tar]) li=[] #print(dicb) for a in A: dica=defaultdict(lambda:0) for tar in a: dica[tar]+=1 #print(dica) if(all(dica[c]&gt;=dicb[c] for c in dicb)): li.append(a) return li]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[915.Partition Array into Disjoint Intervals]]></title>
+    <url>%2F2018%2F10%2F01%2F915-Partition-Array-into-Disjoint-Intervals%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven an array A, partition it into two (contiguous) subarrays left and right so that: Every element in left is less than or equal to every element in right. left and right are non-empty. left has the smallest possible size. Return the length of left after such a partitioning. It is guaranteed that such a partitioning exists. 题目链接：https://leetcode.com/problems/partition-array-into-disjoint-intervals/description/ Difficulty: medium Example 1:Input: [5,0,3,8,6] Output: 3 Explanation: left = [5,0,3], right = [8,6] Example 2:Input: [1,1,1,0,6,12] Output: 4 Explanation: left = [1,1,1,0], right = [6,12] Note: 2 &lt;= A.length &lt;= 30000 0 &lt;= A[i] &lt;= 10^6 It is guaranteed there is at least one way to partition A as described. 分析 定义ml为左边序列的最大值，mr为右边序列的最小值，mr初始值min(A)； 循环遍历A，更新ml，mr，其中，若A[i]&gt;mr，则不需要更新mr(这一步不做，会时间超限)，反之，mr=A[i+1:] 若ml&lt;=mr,则返回当前序号。 参考代码class Solution: def partitionDisjoint(self, A): ml=0 index=0 mr=min(A) for i in range(len(A)-1): ml=max(ml,A[i]) if(A[i]==mr): mr=min(A[i+1:]) if(ml&lt;=mr): index=i+1 return index]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[914.X of a Kind in a Deck of Cards]]></title>
+    <url>%2F2018%2F10%2F01%2F914-X-of-a-Kind-in-a-Deck-of-Cards%2F</url>
+    <content type="text"><![CDATA[DescriptionIn a deck of cards, each card has an integer written on it. Return true if and only if you can choose X &gt;= 2 such that it is possible to split the entire deck into 1 or more groups of cards, where: Each group has exactly X cards. All the cards in each group have the same integer. 题目链接：https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/description/ Difficulty: easy Example 1:Input: [1,2,3,4,4,3,2,1] Output: true Explanation: Possible partition [1,1],[2,2],[3,3],[4,4] Example 2:Input: [1,1,1,2,2,2,3,3] Output: false Explanation: No possible partition. Example 3:Input: [1] Output: false Explanation: No possible partition. Example 4:Input: [1,1] Output: true Explanation: Possible partition [1,1] Example 5:Input: [1,1,2,2,2,2] Output: true Explanation: Possible partition [1,1],[2,2],[2,2] Note: 1 &lt;= deck.length &lt;= 10000 0 &lt;= deck[i] &lt; 10000 分析 由题意知，若每个数字出现的次数都大于1，且次数都可以整除某一个数，则返回True，反之False； 找到最小的出现次数m，若小于2，则返回False，能整除的数在[2，m]； 循环，若存在某一个数i（[2，m]）是的每一个数出现的次数都可以整除i，则返回True； 若没有，返回False。 参考代码class Solution: def hasGroupsSizeX(self, deck): dic={} for d in deck: if(d in dic): dic[d]+=1 else: dic[d]=1 m=10000 for d in dic: m=min(dic[d],m) if(dic[d]==1): return False for i in range(2,m+1): for d in dic: if(dic[d]%i!=0): break else: return True return False]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[913.Cat and Mouse]]></title>
+    <url>%2F2018%2F10%2F01%2F913-Cat-and-Mouse%2F</url>
+    <content type="text"><![CDATA[DescriptionA game on an undirected graph is played by two players, Mouse and Cat, who alternate turns. The graph is given as follows: graph[a] is a list of all nodes b such that ab is an edge of the graph. Mouse starts at node 1 and goes first, Cat starts at node 2 and goes second, and there is a Hole at node 0. During each player’s turn, they must travel along one edge of the graph that meets where they are. For example, if the Mouse is at node 1, it must travel to any node in graph[1]. Additionally, it is not allowed for the Cat to travel to the Hole (node 0.) Then, the game can end in 3 ways: If ever the Cat occupies the same node as the Mouse, the Cat wins. If ever the Mouse reaches the Hole, the Mouse wins. If ever a position is repeated (ie. the players are in the same position as a previous turn, and it is the same player’s turn to move), the game is a draw. Given a graph, and assuming both players play optimally, return 1 if the game is won by Mouse, 2 if the game is won by Cat, and 0 if the game is a draw. 题目链接：https://leetcode.com/problems/cat-and-mouse/description/ Difficulty: hard Example 1:Input: [[2,5],[3],[0,4,5],[1,4,5],[2,3],[0,2,3]] Output: 0 Explanation: 4---3---1 | | 2---5 \ / 0 Note: 3 &lt;= graph.length &lt;= 50 It is guaranteed that graph[1] is non-empty. It is guaranteed that graph[2] contains a non-zero element. 分析 参考代码 updating…….]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Breadth-first Search</tag>
+        <tag>Minimax</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[903.Valid Permutaions for DI Sequence]]></title>
     <url>%2F2018%2F09%2F10%2F903-Valid-Permutaions-for-DI-Sequence%2F</url>
     <content type="text"><![CDATA[DescriptionWe are given S, a length n string of characters from the set {‘D’, ‘I’}. (These letters stand for “decreasing” and “increasing”.) A valid permutation is a permutation P[0], P[1], …, P[n] of integers {0, 1, …, n}, such that for all i: If S[i] == ‘D’, then P[i] &gt; P[i+1], and; If S[i] == ‘I’, then P[i] &lt; P[i+1]. How many valid permutations are there? Since the answer may be large, return your answer modulo 10^9 + 7. 题目链接：https://leetcode.com/problems/valid-permutations-for-di-sequence/description/ Difficulty: hard Example 1:Input: &quot;DID&quot; Output: 5 Explanation: The 5 valid permutations of (0, 1, 2, 3) are: (1, 0, 3, 2) (2, 0, 3, 1) (2, 1, 3, 0) (3, 0, 2, 1) (3, 1, 2, 0) Note: 1 &lt;= S.length &lt;= 200 S consists only of characters from the set {‘D’, ‘I’}. 分析 题意：每次可以交换第index（小于等于K）个字母到最后一个，可以交换任意次，是的结果为最小字典顺序； 当K&gt;=2时，相当于时间复杂度为$O(n_2)$的排序算法，当然可能小于$O(n_2)$，最后结果一定是字典顺序；大致过程：每次移到最后相当于字符串循环，每次将待排序字符放在第一位，循环后面的字符串，直到待排序字符排好序，加入循环字符串，以此类推； 当K==1时，相当于首尾相连，找到最小字典顺序字串，简单做法：字符串复制两份，遍历一半，截取length长度的字串，找出最小字典顺序字串。 参考代码]]></content>
