@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionGiven a string S of ‘(‘ and ‘)’ parentheses, we add the minimum number of parentheses ( ‘(‘ or ‘)’, and in any positions ) so that the resulting parentheses string is valid. Formally, a par">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-14T10:27:22.397Z">
+<meta property="og:updated_time" content="2018-10-14T13:04:14.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="921.Minunum Add to Make Parentheses Valid">
 <meta name="twitter:description" content="DescriptionGiven a string S of ‘(‘ and ‘)’ parentheses, we add the minimum number of parentheses ( ‘(‘ or ‘)’, and in any positions ) so that the resulting parentheses string is valid. Formally, a par">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-14T18:27:22+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-14T21:04:14+08:00">
                 2018-10-14
               </time>
             
@@ -449,7 +449,10 @@ Output: 4
 <li>S only consists of ‘(‘ and ‘)’ characters.</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li>updating</li>
+<li>括号匹配问题，如果“（”先出现，则后面后出现的“）”可以将前面的一个“（”抵消；</li>
+<li>但是“）”先出现，则无法抵消；</li>
+<li>遍历输入字符串，index记录“（”的个数，若出现“）”，index减一，若index等于零，则不合法括号数s加一；</li>
+<li>最后返回index+s。</li>
 </ol>
 <h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution:
 def minAddToMakeValid(self, S):

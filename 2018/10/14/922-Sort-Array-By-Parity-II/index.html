@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionGiven an array A of non-negative integers, half of the integers in A are odd, and half of the integers are even. Sort the array so that whenever A[i] is odd, i is odd; and whenever A[i] is">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-14T10:34:44.885Z">
+<meta property="og:updated_time" content="2018-10-14T13:04:22.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="922.Sort Array By Parity II">
 <meta name="twitter:description" content="DescriptionGiven an array A of non-negative integers, half of the integers in A are odd, and half of the integers are even. Sort the array so that whenever A[i] is odd, i is odd; and whenever A[i] is">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-14T18:34:44+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-14T21:04:22+08:00">
                 2018-10-14
               </time>
             
@@ -440,7 +440,10 @@ Explanation: [4,7,2,5], [2,5,4,7], [2,7,4,5] would also have been accepted.
 <li>0 &lt;= A[i] &lt;= 1000</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li>updating</li>
+<li>由题意知，是为了使得list中每个数与对应的下标的奇偶性一致；</li>
+<li>遍历list，如当前位置的数与下标的奇偶性一致，则继续；</li>
+<li>反之，往后寻找一个数字的奇偶性与当前下标的奇偶性一致的数，交换两个数的位置；</li>
+<li>小改进：往后找的时候，去找数字的奇偶性与它对应的下标奇偶性不一致的数字，减少后续比较的次数，代码中是当时做的时候写的，没有体现这一点，但是也AC了。</li>
 </ol>
 <h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution:
 def sortArrayByParityII(self, A):

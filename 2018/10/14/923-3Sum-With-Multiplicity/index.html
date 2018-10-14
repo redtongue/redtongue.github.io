@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionGiven an integer array A, and an integer target, return the number of tuples i, j, k  such that i &amp;lt; j &amp;lt; k and A[i] + A[j] + A[k] == target. As the answer can be very large, return it">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-14T10:34:23.647Z">
+<meta property="og:updated_time" content="2018-10-14T13:24:55.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="923.3Sum With Multiplicity">
 <meta name="twitter:description" content="DescriptionGiven an integer array A, and an integer target, return the number of tuples i, j, k  such that i &amp;lt; j &amp;lt; k and A[i] + A[j] + A[k] == target. As the answer can be very large, return it">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-14T18:34:23+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-14T21:24:55+08:00">
                 2018-10-14
               </time>
             
@@ -450,7 +450,12 @@ and two 2s from [2,2,2,2] in 6 ways.
 <li>0 &lt;= target &lt;= 300</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li>updating</li>
+<li>如果直接在A中选取三个数字，然后计算和是否为target的话，时间复杂度为 $O(n^3)$</li>
+<li>对A进行压缩计数，得到{1:2,2:2,3:3,4:2,5:2}(如例一)</li>
+<li>从[1,2,3,4,5]中选取三个数，但是每个数被选中的次数不能超过它在A中出现的次数（在judge函数中实现，judge(a,b)相当于从b个中选取a个的可能性）</li>
+<li>三层循环得到三个数字，如和为target，则返回所有数字出现的可能性的乘积，即当前数字的可能的组合个数；</li>
+<li>反之，继续；</li>
+<li>返回所有满足条件的组合总数。</li>
 </ol>
 <h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution:
 def threeSumMulti(self, A, target):
