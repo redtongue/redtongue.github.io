@@ -793,8 +793,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Hash table</tag>
         <tag>Stack</tag>
+        <tag>Hash table</tag>
       </tags>
   </entry>
   <entry>
@@ -955,6 +955,55 @@
       <tags>
         <tag>code</tag>
         <tag>Hash Table</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[883.Projection Area of 3D Shapes]]></title>
+    <url>%2F2018%2F08%2F06%2F883-Projection-Area-of-3D-Shapes%2F</url>
+    <content type="text"><![CDATA[DescriptionOn a N N grid, we place some 1 1 * 1 cubes that are axis-aligned with the x, y, and z axes. Each value v = grid[i][j] represents a tower of v cubes placed on top of grid cell (i, j). Now we view the projection of these cubes onto the xy, yz, and zx planes. A projection is like a shadow, that maps our 3 dimensional figure to a 2 dimensional plane. Here, we are viewing the “shadow” when looking at the cubes from the top, the front, and the side. Return the total area of all three projections. 题目链接：https://leetcode.com/problems/projection-area-of-3d-shapes/description/ Difficulty: easy Example 1:Input: [[2]] Output: 5 Example 2:Input: [[1,2],[3,4]] Output: 17 Explanation: Here are the three projections (&quot;shadows&quot;) of the shape made with each axis-aligned plane. Example 3:Input: [[1,0],[0,2]] Output: 8 Example 4:Input: [[1,1,1],[1,0,1],[1,1,1]] Output: 14 Example 5:Input: [[2,2,2],[2,1,2],[2,2,2]] Output: 21 Note: 1 &lt;= grid.length = grid[0].length &lt;= 50 0 &lt;= grid[i][j] &lt;= 50 分析 updating 参考代码class Solution: def projectionArea(self, grid): row=len(grid) col=len(grid[0]) index=0 for i in range(row): index+=max(grid[i]) for j in range(col): ii=0 for i in range(row): if(grid[i][j]!=0): index+=1 ii=max(ii,grid[i][j]) index+=ii return index]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[882.Reachable Nodes In Subdivided Graph]]></title>
+    <url>%2F2018%2F08%2F06%2F882-Reachable-Nodes-In-Subdivided-Graph%2F</url>
+    <content type="text"><![CDATA[DescriptionStarting with an undirected graph (the “original graph”) with nodes from 0 to N-1, subdivisions are made to some of the edges. The graph is given as follows: edges[k] is a list of integer pairs (i, j, n) such that (i, j) is an edge of the original graph, and n is the total number of new nodes on that edge. Then, the edge (i, j) is deleted from the original graph, n new nodes (x_1, x_2, …, x_n) are added to the original graph, and n+1 new edges (i, x_1), (x_1, x_2), (x_2, x_3), …, (x_{n-1}, x_n), (x_n, j) are added to the original graph. Now, you start at node 0 from the original graph, and in each move, you travel along one edge. Return how many nodes you can reach in at most M moves. 题目链接：https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/description/ Difficulty: hard Example 1:Input: edges = [[0,1,10],[0,2,1],[1,2,2]], M = 6, N = 3 Output: 13 Explanation: The nodes that are reachable in the final graph after M = 6 moves are indicated below. Example 2:Input: edges = [[0,1,4],[1,2,6],[0,2,8],[1,3,1]], M = 10, N = 4 Output: 23 Note: 0 &lt;= edges.length &lt;= 10000 0 &lt;= edges[i][0] &lt; edges[i][1] &lt; N There does not exist any i != j for which edges[i][0] == edges[j][0] and edges[i][1] == edges[j][1]. The original graph has no parallel edges. 0 &lt;= edges[i][2] &lt;= 10000 0 &lt;= M &lt;= 10^9 1 &lt;= N &lt;= 3000 A reachable node is a node that can be travelled to using at most M moves starting from node 0. 分析 updating 参考代码updating]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Heap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[881.Boats to Save People]]></title>
+    <url>%2F2018%2F08%2F06%2F881-Boats-to-Save-People%2F</url>
+    <content type="text"><![CDATA[DescriptionThe i-th person has weight people[i], and each boat can carry a maximum weight of limit. Each boat carries at most 2 people at the same time, provided the sum of the weight of those people is at most limit. Return the minimum number of boats to carry every given person. (It is guaranteed each person can be carried by a boat.) 题目链接：https://leetcode.com/problems/boats-to-save-people/description/ Difficulty: medium Example 1:Input: people = [1,2], limit = 3 Output: 1 Explanation: 1 boat (1, 2) Example 2:Input: people = [3,2,2,1], limit = 3 Output: 3 Explanation: 3 boats (1, 2), (2) and (3) Example 3:Input: people = [3,5,3,4], limit = 5 Output: 4 Explanation: 4 boats (3), (3), (4), (5) Note: 1 &lt;= people.length &lt;= 50000 1 &lt;= people[i] &lt;= limit &lt;= 30000 分析 updating 参考代码class Solution: def numRescueBoats(self, people, limit): peo=sorted(people) length=len(peo) index=0 i,j=0,length-1 while(i&lt;=j): index+=1 if(peo[i]+peo[j]&lt;=limit): i+=1 j-=1 return index]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Two Pointers</tag>
+        <tag>Greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[880.Decoded String at Index]]></title>
+    <url>%2F2018%2F08%2F06%2F880-Decoded-String-at-Index%2F</url>
+    <content type="text"><![CDATA[DescriptionAn encoded string S is given. To find and write the decoded string to a tape, the encoded string is read one character at a time and the following steps are taken: If the character read is a letter, that letter is written onto the tape. If the character read is a digit (say d), the entire current tape isrepeatedly written d-1 more times in total. Now for some encoded string S, and an index K, find and return the K-th letter (1 indexed) in the decoded string. 题目链接：https://leetcode.com/problems/decoded-string-at-index/description/ Difficulty: medium Example 1:Input: S = &quot;leet2code3&quot;, K = 10 Output: &quot;o&quot; Explanation: The decoded string is &quot;leetleetcodeleetleetcodeleetleetcode&quot;. The 10th letter in the string is &quot;o&quot;. Example 2:Input: S = &quot;ha22&quot;, K = 5 Output: &quot;h&quot; Explanation: The decoded string is &quot;hahahaha&quot;. The 5th letter is &quot;h&quot;. Example 3:Input: S = &quot;a2345678999999999999999&quot;, K = 1 Output: &quot;a&quot; Explanation: The decoded string is &quot;a&quot; repeated 8301530446056247680 times. The 1st letter is &quot;a&quot;. Note: 2 &lt;= S.length &lt;= 100 S will only contain lowercase letters and digits 2 through 9. S starts with a letter. 1 &lt;= K &lt;= 10^9 The decoded string is guaranteed to have less than 2^63 letters. 分析 updating 参考代码class Solution: def decodeAtIndex(self, S, K): size=0 for i in S: if(i.isdigit()): size*=int(i) else: size+=1 for index in reversed(S): K %= size if(K==0 and index.isalpha()): return index if(index.isdigit()): size/=int(index) else: size-=1 return]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Stack</tag>
       </tags>
   </entry>
 </search>
