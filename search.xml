@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[928.Minmize Malware Spread II]]></title>
+    <url>%2F2018%2F10%2F23%2F928-Minmize-Malware-Spread-II%2F</url>
+    <content type="text"><![CDATA[Description(This problem is the same as Minimize Malware Spread, with the differences bolded.) In a network of nodes, each node i is directly connected to another node j if and only if graph[i][j] = 1. Some nodes initial are initially infected by malware. Whenever two nodes are directly connected and at least one of those two nodes is infected by malware, both nodes will be infected by malware. This spread of malware will continue until no more nodes can be infected in this manner. Suppose M(initial) is the final number of nodes infected with malware in the entire network, after the spread of malware stops. We will remove one node from the initial list, completely removing it and any connections from this node to any other node. Return the node that if removed, would minimize M(initial). If multiple nodes could be removed to minimize M(initial), return such a node with the smallest index. 题目链接：https://leetcode.com/problems/minimize-malware-spread-ii/ Difficulty: hard Example 1:Input: graph = [[1,1,0],[1,1,0],[0,0,1]], initial = [0,1] Output: 0 Example 2:Input: graph = [[1,1,0],[1,1,1],[0,1,1]], initial = [0,1] Output: 1 Example 3:Input: graph = [[1,1,0,0],[1,1,1,0],[0,1,1,1],[0,0,1,1]], initial = [0,1] Output: 1 Note: 1 &lt; graph.length = graph[0].length &lt;= 300 0 &lt;= graph[i][j] == graph[j][i] &lt;= 1 graph[i][i] = 1 1 &lt;= initial.length &lt; graph.length 0 &lt;= initial[i] &lt; graph.length 分析 updating 参考代码updating]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[927.Three Equal Parts]]></title>
+    <url>%2F2018%2F10%2F23%2F927-Three-Equal-Parts%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven an array A of 0s and 1s, divide the array into 3 non-empty parts such that all of these parts represent the same binary value. If it is possible, return any [i, j] with i+1 &lt; j, such that: A[0], A[1], …, A[i] is the first part;A[i+1], A[i+2], …, A[j-1] is the second part, andA[j], A[j+1], …, A[A.length - 1] is the third part.All three parts have equal binary value.If it is not possible, return [-1, -1]. Note that the entire part is used when considering what binary value it represents. For example, [1,1,0] represents 6 in decimal, not 3. Also, leading zeros are allowed, so [0,1,1] and [1,1] represent the same value. 题目链接：https://leetcode.com/problems/three-equal-parts/ Difficulty: hard Example 1:Input: [1,0,1,0,1] Output: [0,3] Example 2:Input: [1,1,0,1,1] Output: [-1,-1] Note: 3 &lt;= A.length &lt;= 30000 A[i] == 0 or A[i] == 1 分析 updating 参考代码updating]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[926.Flip String to Monotone Increasing]]></title>
+    <url>%2F2018%2F10%2F23%2F926-Flip-String-to-Monotone-Increasing%2F</url>
+    <content type="text"><![CDATA[DescriptionA string of ‘0’s and ‘1’s is monotone increasing if it consists of some number of ‘0’s (possibly 0), followed by some number of ‘1’s (also possibly 0.) We are given a string S of ‘0’s and ‘1’s, and we may flip any ‘0’ to a ‘1’ or a ‘1’ to a ‘0’. Return the minimum number of flips to make S monotone increasing. 题目链接：https://leetcode.com/problems/flip-string-to-monotone-increasing/ Difficulty: medium Example 1:Input: &quot;00110&quot; Output: 1 Explanation: We flip the last digit to get 00111. Example 2:Input: &quot;010110&quot; Output: 2 Explanation: We flip to get 011111, or alternatively 000111. Example 3:Input: &quot;00011000&quot; Output: 2 Explanation: We flip to get 00000000. Note: 1 &lt;= S.length &lt;= 20000 S only consists of ‘0’ and ‘1’ characters. 分析 由题意知，需要将字符串变为前半部分为0后半部分为1的最小变换次数； 记录所有0和1出现的次数，变换次数初始化为其中的最小值； 定义x为前半部分出现1的次数，y为后半部分出现0的次数，变换次数m等于x+y; 遍历s，若当前位置为1则x+=1，反之y-=1，更新m的最小值； 返回m。 参考代码class Solution: def minFlipsMonoIncr(self, S): s0=0 s1=0 for i in S: if(i==&apos;0&apos;): s0+=1 else: s1+=1 m=min(s0,s1) x1=0 y0=s0 for i in S: m=min(m,x1+y0) if(i==&apos;1&apos;): x1+=1 else: y0-=1 return m]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[925.Long Pressed Name]]></title>
+    <url>%2F2018%2F10%2F23%2F925-Long-Pressed-Name%2F</url>
+    <content type="text"><![CDATA[DescriptionYour friend is typing his name into a keyboard. Sometimes, when typing a character c, the key might get long pressed, and the character will be typed 1 or more times. You examine the typed characters of the keyboard. Return True if it is possible that it was your friends name, with some characters (possibly none) being long pressed. 题目链接：https://leetcode.com/problems/long-pressed-name/ Difficulty: easy Example 1:Input: name = &quot;alex&quot;, typed = &quot;aaleex&quot; Output: true Explanation: &apos;a&apos; and &apos;e&apos; in &apos;alex&apos; were long pressed. Example 2:Input: name = &quot;saeed&quot;, typed = &quot;ssaaedd&quot; Output: false Explanation: &apos;e&apos; must have been pressed twice, but it wasn&apos;t in the typed output. Example 3:Input: name = &quot;leelee&quot;, typed = &quot;lleeelee&quot; Output: true Example 4:Input: name = &quot;laiden&quot;, typed = &quot;laiden&quot; Output: true Explanation: It&apos;s not necessary to long press any character. Note: name.length &lt;= 1000 typed.length &lt;= 1000 The characters of name and typed are lowercase letters. 分析 由题意知，由于长按导致的情况是某一个字母出现的次数变多，且是连续的，定义一个get用于返回连续的字母及其出现的次数，形如get(“aaleex”)-&gt;[(‘a’,2),(‘l’,1),(‘e’,2),(‘x’,1)] 若name和typed都为空则返回True； 若get(name)和get(typed)的长度不一致，返回False； 反之，若每一项中get(typed)的次数大于等于get(name)，则返回True，反之False。 参考代码class Solution: def isLongPressedName(self, name, typed): def get(s): if(len(s)==0): return [] li=[] tar=s[0] index=0 for i in s: if(i!=tar): li.append((tar,index)) index=0 tar=i else: index+=1 return li l1=get(name) l2=get(typed) if(len(l1)==0 and len(l2)==0): return True if(len(l1) == len(l2)): for i in range(len(l1)): if(l1[i][0]==l2[i][0] and l1[i][1]&lt;=l2[i][1]): continue else: return False return True else: return False]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[924.Minimize Malware Spread]]></title>
     <url>%2F2018%2F10%2F14%2F924-Minimize-Malware-Spread%2F</url>
     <content type="text"><![CDATA[DescriptionIn a network of nodes, each node i is directly connected to another node j if and only if graph[i][j] = 1. Some nodes initial are initially infected by malware. Whenever two nodes are directly connected and at least one of those two nodes is infected by malware, both nodes will be infected by malware. This spread of malware will continue until no more nodes can be infected in this manner. Suppose M(initial) is the final number of nodes infected with malware in the entire network, after the spread of malware stops. We will remove one node from the initial list. Return the node that if removed, would minimize M(initial). If multiple nodes could be removed to minimize M(initial), return such a node with the smallest index. Note that if a node was removed from the initial list of infected nodes, it may still be infected later as a result of the malware spread. 题目链接：https://leetcode.com/problems/minimize-malware-spread/description/ Difficulty: hard Example 1:Input: graph = [[1,1,0],[1,1,0],[0,0,1]], initial = [0,1] Output: 0 Example 2:Input: graph = [[1,0,0],[0,1,0],[0,0,1]], initial = [0,2] Output: 0 Example 3:Input: graph = [[1,1,1],[1,1,1],[1,1,1]], initial = [1,2] Output: 1 Note: 1 &lt; graph.length = graph[0].length &lt;= 300 0 &lt;= graph[i][j] == graph[j][i] &lt;= 1 graph[i][i] = 1 1 &lt;= initial.length &lt; graph.length 0 &lt;= initial[i] &lt; graph.length 分析 定义dfs（index）为深度遍历函数，返回新感染的结点总数，self.gra存储每个结点的感染状态（1为感染，0为未感染）； dfs从初始结点i开始，遍历所有剩下结点j，若graph[i][j]==1(i,j相连)，则j被感染，以j为初始结点，进入下一层深度遍历，直至所有相连结点都被感染； 遍历initial，即去除当前结点i的感染状态，初始化self.gra，遍历除了i结点外initial中所有结点，作为初始结点，深度遍历，返回新感染的结点个数； 得到返回新感染节点个数最小的对应的去除的结点，即使需要得到的结果； 题目中要求返回最小的结点序号，可以对initial排序之后再处理。 参考代码class Solution: def minMalwareSpread(self, graph, initial): length=len(graph[0]) def dfs(index): s=0 for j in range(length): if(index != j): if(graph[index][j]==1 and self.gra[j]==0): self.gra[j]=1 s+=(dfs(j)+1) return s index =length initial.sort() target=initial[0] for i in initial: self.gra=[0]*length for tar in initial: if(tar!=i): self.gra[tar]=1 curr=0 for tar in initial: if(tar!=i): curr+=dfs(tar) if(curr &lt; index): target=i index=curr return target]]></content>
