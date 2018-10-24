@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="中缀表达式中缀表达式就是常见的运算表达式，如(3+4)*5-6 前缀表达式前缀表达式又称波兰式，前缀表达式的运算符位于操作数之前 比如:- * + 3 4 5 6 前缀表达式的计算机求值从右至左扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时， 弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 op 次顶元素）， 并将结果入栈；重复上述过程直到表达式最左端，最后运算得出的值即为表达式的结">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-24T03:13:35.763Z">
+<meta property="og:updated_time" content="2018-10-24T03:15:11.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="四则运算表达式求值（利用前缀后缀表达式）">
 <meta name="twitter:description" content="中缀表达式中缀表达式就是常见的运算表达式，如(3+4)*5-6 前缀表达式前缀表达式又称波兰式，前缀表达式的运算符位于操作数之前 比如:- * + 3 4 5 6 前缀表达式的计算机求值从右至左扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时， 弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 op 次顶元素）， 并将结果入栈；重复上述过程直到表达式最左端，最后运算得出的值即为表达式的结">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-24T11:13:35+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-24T11:15:11+08:00">
                 2018-10-24
               </time>
             
@@ -432,7 +432,8 @@
 </code></pre><h3 id="前缀表达式的计算机求值"><a href="#前缀表达式的计算机求值" class="headerlink" title="前缀表达式的计算机求值"></a>前缀表达式的计算机求值</h3><pre><code>从右至左扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，
 弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 op 次顶元素），
 并将结果入栈；重复上述过程直到表达式最左端，最后运算得出的值即为表达式的结果
-</code></pre><h3 id="例子（-3-4-5-6）"><a href="#例子（-3-4-5-6）" class="headerlink" title="例子（- * + 3 4 5 6）"></a>例子（- * + 3 4 5 6）</h3><ol>
+</code></pre><a id="more"></a>
+<h3 id="例子（-3-4-5-6）"><a href="#例子（-3-4-5-6）" class="headerlink" title="例子（- * + 3 4 5 6）"></a>例子（- * + 3 4 5 6）</h3><ol>
 <li>从右至左扫描，将6、5、4、3压入堆栈</li>
 <li>遇到+运算符，因此弹出3和4（3为栈顶元素，4为次顶元素，注意与后缀表达式做比较），计算出3+4的值，得7，再将7入栈</li>
 <li>接下来是*运算符，因此弹出7和5，计算出7×5=35，将35入栈</li>
