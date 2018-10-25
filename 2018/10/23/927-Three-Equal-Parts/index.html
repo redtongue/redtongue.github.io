@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionGiven an array A of 0s and 1s, divide the array into 3 non-empty parts such that all of these parts represent the same binary value. If it is possible, return any [i, j] with i+1 &amp;lt; j, su">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-23T14:13:50.027Z">
+<meta property="og:updated_time" content="2018-10-25T13:28:37.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="927.Three Equal Parts">
 <meta name="twitter:description" content="DescriptionGiven an array A of 0s and 1s, divide the array into 3 non-empty parts such that all of these parts represent the same binary value. If it is possible, return any [i, j] with i+1 &amp;lt; j, su">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-23T22:13:50+08:00">
-                2018-10-23
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-25T21:28:37+08:00">
+                2018-10-25
               </time>
             
           </span>
@@ -441,9 +441,46 @@ Output: [-1,-1]
 <li>A[i] == 0 or A[i] == 1</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li>updating</li>
+<li>i,j将数组分为三个部分a1,a2,a3，通过向后移动i或者向前移动j来判断三部分的值是否相等；</li>
+<li>其中移动的i或j的判断依据是移动ij之后对应的a1和a3大小关系，哪个小就移动哪个，我考虑的是移动较小的可以更准确的逼近准确值，相等时，移动i；</li>
+<li>直至a1=a2=a3返回[i,j],否则若i+1&lt;j返回[-1,-1]。</li>
 </ol>
-<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>updating
+<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution:
+def threeEqualParts(self, A):
+    i=0
+    j=len(A)-1
+    a1=A[i]
+    a2=0
+    s=0
+    s+=a1
+    for posi in range(1,len(A)-1):
+        a2*=2
+        if(A[posi]==1):
+            a2+=1
+            s+=1
+    a3=A[j]
+    s+=a3
+    if(s%3!=0):
+        return [-1,-1]
+    index=2
+    indexP=2**(len(A)-3)
+    while(i+1&lt;j):
+        if(a1==a2==a3):
+            return [i,j]
+        if(a1&gt;a2 or a3&gt;a2):
+            return [-1,-1]
+        if(((a1&lt;&lt;1)+A[i+1]) &gt; (index*A[j-1]+a3)):
+            a3+=index*A[j-1]
+            index=index&lt;&lt;1
+            a2=a2&gt;&gt;1
+            indexP=indexP&gt;&gt;1
+            j-=1
+        else:
+            a1=(a1&lt;&lt;1)+A[i+1]
+            a2-=(indexP*A[i+1])
+            indexP=indexP&gt;&gt;1
+            i+=1
+    return [-1,-1]
 </code></pre>
       
     </div>
