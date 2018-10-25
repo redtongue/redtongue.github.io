@@ -446,8 +446,8 @@
       <tags>
         <tag>code</tag>
         <tag>Math</tag>
-        <tag>Binary Search</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
@@ -868,6 +868,56 @@
         <tag>code</tag>
         <tag>剑指Offer</tag>
         <tag>栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[879.Profitable Schemes]]></title>
+    <url>%2F2018%2F07%2F30%2F879-Profitable-Schemes%2F</url>
+    <content type="text"><![CDATA[DescriptionThere are G people in a gang, and a list of various crimes they could commit. The i-th crime generates a profit[i] and requires group[i] gang members to participate. If a gang member participates in one crime, that member can’t participate in another crime. Let’s call a profitable scheme any subset of these crimes that generates at least P profit, and the total number of gang members participating in that subset of crimes is at most G. How many schemes can be chosen? Since the answer may be very large, return it modulo 10^9 + 7. 题目链接：https://leetcode.com/problems/profitable-schemes/ Difficulty: hard Example 1:Input: G = 5, P = 3, group = [2,2], profit = [2,3] Output: 2 Explanation: To make a profit of at least 3, the gang could either commit crimes 0 and 1, or just crime 1. In total, there are 2 schemes. Example 2:Input: G = 10, P = 5, group = [2,3,5], profit = [6,7,8] Output: 7 Explanation: To make a profit of at least 5, the gang could commit any crimes, as long as they commit one. There are 7 possible schemes: (0), (1), (2), (0,1), (0,2), (1,2), and (0,1,2). Note: 1 &lt;= G &lt;= 100 0 &lt;= P &lt;= 100 1 &lt;= group[i] &lt;= 100 0 &lt;= profit[i] &lt;= 100 1 &lt;= group.length = profit.length &lt;= 100 分析 反面教材-&gt;递归,updating 参考代码class Solution: def profitableSchemes(self, G, P, group, profit): length=len(group) target=0 def _inter(index,sumG,sumP): if(sumG+group[index]&lt;=G and sumP+profit[index]&gt;=P): nonlocal target target+=1 if(index+1&lt;length): _inter(index+1,sumG,sumP) if(sumG+group[index]&lt;=G): _inter(index+1,sumG+group[index],sumP+profit[index]) _inter(0,0,0) return target]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Dynamic Programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[878.Nth Magical Number]]></title>
+    <url>%2F2018%2F07%2F30%2F878-Nth-Magical-Number%2F</url>
+    <content type="text"><![CDATA[DescriptionA positive integer is magical if it is divisible by either A or B. Return the N-th magical number. Since the answer may be very large, return it modulo 10^9 + 7. 题目链接：https://leetcode.com/problems/nth-magical-number/ Difficulty: hard Example 1:Input: N = 1, A = 2, B = 3 Output: 2 Example 2:Input: N = 4, A = 2, B = 3 Output: 6 Example 3:Input: N = 5, A = 2, B = 4 Output: 10 Example 4:Input: N = 3, A = 6, B = 4 Output: 8 Note: 1 &lt;= N &lt;= 10^9 2 &lt;= A &lt;= 40000 2 &lt;= B &lt;= 40000 分析 updating 参考代码class Solution: def nthMagicalNumber(self, N, A, B): def getMiniMul(x,y): a=b=min(x,y) while(True): if(a%x==0 and a%y==0): return a a+=b if(A==B): return (A*N)%(10**9+7) M=getMiniMul(A,B) length=int(M/A+M/B-(M%A==0 and M%B==0)) index=(N-1)%length+1 a=int(index*B/(A+B)) b=int(index*A/(A+B)) target=min(A*(a+1),B*(b+1)) index=(N-1)//length*M+target return index if index &lt; (10**9+7) else index%(10**9+7)]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
+        <tag>Binary Search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[877.Stone Game]]></title>
+    <url>%2F2018%2F07%2F30%2F877-Stone-Game%2F</url>
+    <content type="text"><![CDATA[DescriptionAlex and Lee play a game with piles of stones. There are an even number of piles arranged in a row, and each pile has a positive integer number of stones piles[i]. The objective of the game is to end with the most stones. The total number of stones is odd, so there are no ties. Alex and Lee take turns, with Alex starting first. Each turn, a player takes the entire pile of stones from either the beginning or the end of the row. This continues until there are no more piles left, at which point the person with the most stones wins. Assuming Alex and Lee play optimally, return True if and only if Alex wins the game. 题目链接：https://leetcode.com/problems/stone-game/ Difficulty: medium Example 1:Input: [5,3,4,5] Output: true Explanation: Alex starts first, and can only take the first 5 or the last 5. Say he takes the first 5, so that the row becomes [3, 4, 5]. If Lee takes 3, then the board is [4, 5], and Alex takes 5 to win with 10 points. If Lee takes the last 5, then the board is [3, 4], and Alex takes 4 to win with 9 points. This demonstrated that taking the first 5 was a winning move for Alex, so we return true. Note: 2 &lt;= piles.length &lt;= 500 piles.length is even. 1 &lt;= piles[i] &lt;= 500 sum(piles) is odd. 分析 updating 参考代码class Solution: def stoneGame(self, piles): index=piles[0] for pile in piles: if(index!=pile): return True return False]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
+        <tag>Dynamic Programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[876.Middle of the Linked List]]></title>
+    <url>%2F2018%2F07%2F30%2F876-Middle-of-the-Linked-List%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a non-empty, singly linked list with head node head, return a middle node of linked list. If there are two middle nodes, return the second middle node. 题目链接：https://leetcode.com/problems/middle-of-the-linked-list/ Difficulty: easy Example 1:Input: [1,2,3,4,5] Output: Node 3 from this list (Serialization: [3,4,5]) The returned node has value 3. (The judge&apos;s serialization of this node is [3,4,5]). Note that we returned a ListNode object ans, such that: ans.val = 3, ans.next.val = 4, ans.next.next.val = 5, and ans.next.next.next = NULL. Example 2:Input: [1,2,3,4,5,6] Output: Node 4 from this list (Serialization: [4,5,6]) Since the list has two middle nodes with values 3 and 4, we return the second one. Note: The number of nodes in the given list will be between 1 and 100. 分析 updating 参考代码Definition for singly-linked list. class ListNode: def __init__(self, x): self.val = x self.next = None class Solution: def middleNode(self, head): a=head b=head b=b.next while(b!=None): a=a.next b=b.next if(b!=None): b=b.next return a]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Linked List</tag>
       </tags>
   </entry>
   <entry>
