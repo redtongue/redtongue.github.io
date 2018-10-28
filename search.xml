@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[932.Beautiful Array]]></title>
+    <url>%2F2018%2F10%2F28%2F932-Beautiful-Array%2F</url>
+    <content type="text"><![CDATA[DescriptionFor some fixed N, an array A is beautiful if it is a permutation of the integers 1, 2, …, N, such that: For every i &lt; j, there is no k with i &lt; k &lt; j such that A[k] * 2 = A[i] + A[j]. Given N, return any beautiful array A. (It is guaranteed that one exists.) 题目链接：https://leetcode.com/problems/beautiful-array/ Difficulty: medium Example 1:Input: 4 Output: [2,1,4,3] Example 2:Input: 5 Output: [3,1,2,5,4] Note: 1 &lt;= N &lt;= 1000 分析 updating 参考代码updating]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[931.Minimum Falling Path Sum]]></title>
+    <url>%2F2018%2F10%2F28%2F931-Minimum-Falling-Path-Sum%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a square array of integers A, we want the minimum sum of a falling path through A. A falling path starts at any element in the first row, and chooses one element from each row. The next row’s choice must be in a column that is different from the previous row’s column by at most one. 题目链接：https://leetcode.com/problems/minimum-falling-path-sum/ Difficulty: medium Example 1:Input: [[1,2,3],[4,5,6],[7,8,9]] Output: 12 Explanation: The possible falling paths are: .[1,4,7], [1,4,8], [1,5,7], [1,5,8], [1,5,9] .[2,4,7], [2,4,8], [2,5,7], [2,5,8], [2,5,9], [2,6,8], [2,6,9] .[3,5,7], [3,5,8], [3,5,9], [3,6,8], [3,6,9] The falling path with the smallest sum is [1,4,7], so the answer is 12. Note: 1 &lt;= A.length == A[0].length &lt;= 100 -100 &lt;= A[i][j] &lt;= 100 分析 由题意知，从一行的一点到下一行，只有三种情况，当前列、当前列的前一列、当前列的后一列，由此反推，到达下一行的一点的上一点也只有三种情况，故由此可以分步得到以每个点结尾的最小路径和； 定义tar存储每一行每个点结尾的最小路径和，其中长度是A的长度加2，补齐两端是为了在计算两端点路径时，也可以统一计算三个路径的最小值； 返回最后一行对应点的最小路径和。 参考代码class Solution: def minFallingPathSum(self, A): tar=[0]*(len(A[0])+2) tar[0]=10000 tar[-1]=10000 for a in A: t=[0]*(len(A[0])+2) t[0]=10000 t[-1]=10000 for i in range(len(a)): t[i+1]=min(tar[i],tar[i+1],tar[i+2])+a[i] tar=t return min(tar[1:-1])]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[930.Binary Subarrays With Sum]]></title>
+    <url>%2F2018%2F10%2F28%2F930-Binary-Subarrays-With-Sum%2F</url>
+    <content type="text"><![CDATA[DescriptionIn an array A of 0s and 1s, how many non-empty subarrays have sum S? 题目链接：https://leetcode.com/problems/binary-subarrays-with-sum/ Difficulty: medium Example 1:Input: A = [1,0,1,0,1], S = 2 Output: 4 Explanation: The 4 subarrays are bolded below: [1,0,1,0,1] [1,0,1,0,1] [1,0,1,0,1] [1,0,1,0,1] Note: A.length &lt;= 30000 0 &lt;= S &lt;= A.length A[i] is either 0 or 1. 分析 若是得到每个字串的和，时间复杂度为 $O(n^2)$ ,A的长度是30000，时间会超限； 遍历A得到以每个位置结尾的字串（从头开始）的和，存入字典d中，key：字串和，value：满足key和的字串总数； 遍历的同时计算满足要求的字串，1.当前字串和为S，s（满足要求的字串数目）加一，2.s加上字串和为当前字串和index与S的差值的字串数目； 返回s。 参考代码class Solution: def numSubarraysWithSum(self, A, S): d={} s=0 index=0 for i in range(len(A)): if(A[i]==1): index+=1 if(index==S): s+=1 if((index-S) in d): s+=d[index-S] if(index in d): d[index]+=1 else: d[index]=1 return s]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[929.Unique Email Addresses]]></title>
+    <url>%2F2018%2F10%2F28%2F929-Unique-Email-Addresses%2F</url>
+    <content type="text"><![CDATA[DescriptionEvery email consists of a local name and a domain name, separated by the @ sign. For example, in alice@leetcode.com, alice is the local name, and leetcode.com is the domain name. Besides lowercase letters, these emails may contain ‘.’s or ‘+’s. If you add periods (‘.’) between some characters in the local name part of an email address, mail sent there will be forwarded to the same address without dots in the local name. For example, “alice.z@leetcode.com“ and “alicez@leetcode.com“ forward to the same email address. (Note that this rule does not apply for domain names.) If you add a plus (‘+’) in the local name, everything after the first plus sign will be ignored. This allows certain emails to be filtered, for example m.y+name@email.com will be forwarded to my@email.com. (Again, this rule does not apply for domain names.) It is possible to use both of these rules at the same time. Given a list of emails, we send one email to each address in the list. How many different addresses actually receive mails? 题目链接：https://leetcode.com/problems/unique-email-addresses/ Difficulty: easy Example 1:Input: [&quot;test.email+alex@leetcode.com&quot;,&quot;test.e.mail+bob.cathy@leetcode.com&quot;,&quot;testemail+david@lee.tcode.com&quot;] Output: 2 Explanation: &quot;testemail@leetcode.com&quot; and &quot;testemail@lee.tcode.com&quot; actually receive mails Note: 1 &lt;= emails[i].length &lt;= 100 1 &lt;= emails.length &lt;= 100 Each emails[i] contains exactly one ‘@’ character. 分析 每一个email中只包含一个“@”，利用“@”将local name and a domain name分开； 由题意知，每个localname中“.”是可以忽略的，“+”后面的是不需要的，故将localname中的“.”与“+”之后的内容去掉； domain name是不需要修改的，将localname和domainname合并加入到set中； 返回set的长度。 参考代码class Solution: def numUniqueEmails(self, emails): D=set() for tar in emails: n1,n2=tar.split(&apos;@&apos;) n1=n1.split(&apos;+&apos;)[0] n1=n1.replace(&apos;.&apos;,&apos;&apos;) D.add(n1+n2) return len(D)]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[四则运算表达式求值（利用前缀后缀表达式）]]></title>
     <url>%2F2018%2F10%2F24%2F%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC%EF%BC%88%E5%88%A9%E7%94%A8%E5%89%8D%E7%BC%80%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%89%2F</url>
     <content type="text"><![CDATA[中缀表达式中缀表达式就是常见的运算表达式，如(3+4)*5-6 前缀表达式前缀表达式又称波兰式，前缀表达式的运算符位于操作数之前 比如:- * + 3 4 5 6 前缀表达式的计算机求值从右至左扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时， 弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 op 次顶元素）， 并将结果入栈；重复上述过程直到表达式最左端，最后运算得出的值即为表达式的结果 例子（- * + 3 4 5 6） 从右至左扫描，将6、5、4、3压入堆栈 遇到+运算符，因此弹出3和4（3为栈顶元素，4为次顶元素，注意与后缀表达式做比较），计算出3+4的值，得7，再将7入栈 接下来是*运算符，因此弹出7和5，计算出7×5=35，将35入栈 最后是-运算符，计算出35-6的值，即29，由此得出最终结果 将中缀表达式转换为前缀表达式 初始化两个栈:运算符栈s1，储存中间结果的栈s2 从右至左扫描中缀表达式 遇到操作数时，将其压入s2 遇到运算符时，比较其与s1栈顶运算符的优先级 如果s1为空，或栈顶运算符为右括号“)”，则直接将此运算符入栈 否则，若优先级比栈顶运算符的较高或相等，也将运算符压入s1 否则，将s1栈顶的运算符弹出并压入到s2中，再次转到(4-1)与s1中新的栈顶运算符相比较 遇到括号时 如果是右括号“)”，则直接压入s1 如果是左括号“(”，则依次弹出S1栈顶的运算符，并压入S2，直到遇到右括号为止，此时将这一对括号丢弃 重复步骤2至5，直到表达式的最左边 将s1中剩余的运算符依次弹出并压入s2 依次弹出s2中的元素并输出，结果即为中缀表达式对应的前缀表达式 具体过程例如:1+((2+3)*4)-5具体过程，如下表 扫描到的元素 S2 S1 说明 5 5 空 数字，直接入栈 - 5 - s1为空，运算符直接入栈 ) 5 -) 右括号直接入栈 4 54 -) 数字，直接入栈 * 54 -)* s1栈顶是右括号，直接入栈 ) 54 -)*) 右括号直接入栈 ) 5 4 -)x) 右括号直接入栈 3 5 4 3 -)x) 数字 + 5 4 3 -)x)+ s1栈顶是右括号，直接入栈 2 5 4 3 2 -)x)+ 数字 ( 5 4 3 2 + -)x 左括号，弹出运算符直至遇到右括号 ( 5 4 3 2 + * - 同上 + 5 4 3 2 + * -+ 优先级与-相同，入栈 1 5 4 3 2 + * 1 -+ 数字 到达最左端 5 4 3 2 + * 1 + - 空 s1剩余运算符 结果是:- + 1 × + 2 3 4 5后缀表达式后缀表达式又称逆波兰表达式,与前缀表达式相似，只是运算符位于操作数之后 后缀表达式计算机求值与前缀表达式类似，只是顺序是从左至右： 从左至右扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数， 用运算符对它们做相应的计算（次顶元素 op 栈顶元素），并将结果入栈； 重复上述过程直到表达式最右端，最后运算得出的值即为表达式的结果 例子（3 4 + 5 * 6 -） 从左至右扫描，将3和4压入堆栈； 遇到+运算符，因此弹出4和3（4为栈顶元素，3为次顶元素，注意与前缀表达式做比较），计算出3+4的值，得7，再将7入栈； 将5入栈； 接下来是×运算符，因此弹出5和7，计算出7×5=35，将35入栈； 将6入栈； 最后是-运算符，计算出35-6的值，即29，由此得出最终结果。 将中缀表达式转换为后缀表达式 初始化两个栈：运算符栈s1和储存中间结果的栈s2； 从左至右扫描中缀表达式； 遇到操作数时，将其压s2； 遇到运算符时，比较其与s1栈顶运算符的优先级： 如果s1为空，或栈顶运算符为左括号“(”，则直接将此运算符入栈； 否则，若优先级比栈顶运算符的高，也将运算符压入s1（注意转换为前缀表达式时是优先级较高或相同，而这里则不包括相同的情况）； 否则，将s1栈顶的运算符弹出并压入到s2中，再次转到(4-1)与s1中新的栈顶运算符相比较； 遇到括号时： 如果是左括号“(”，则直接压入s1； 如果是右括号“)”，则依次弹出s1栈顶的运算符，并压入s2，直到遇到左括号为止，此时将这一对括号丢弃； 重复步骤2至5，直到表达式的最右边； 将s1中剩余的运算符依次弹出并压入s2； 依次弹出s2中的元素并输出，结果的逆序即为中缀表达式对应的后缀表达式（转换为前缀表达式时不用逆序） 具体过程例如，将中缀表达式“1+((2+3)*4)-5”转换为后缀表达式的过程如下： 扫描到的元素 S2 S1 说明 1 1 空 数字，直接入栈 + 1 + s1为空，运算符直接入栈 ( 1 + ( 左括号，直接入栈 ( 1 + ( ( 同上 2 1 2 + ( ( 数字 + 1 2 + ( ( + s1栈顶为左括号，运算符直接入栈 3 1 2 3 + ( ( + 数字 ) 1 2 3 + + ( 右括号，弹出运算符直至遇到左括号 * 1 2 3 + + ( * s1栈顶为左括号，运算符直接入栈 4 1 2 3 + 4 + ( * 数字 ) 1 2 3 + 4 * + 右括号，弹出运算符直至遇到左括号 - 1 2 3 + 4 * + - -与+优先级相同，因此弹出+，再压入- 5 1 2 3 + 4 * + 5 - 数字 到达最右端 1 2 3 + 4 * + 5 - 空 s1中剩余的运算符 因此结果为“1 2 3 + 4 × + 5 -”备注参考 https://www.cnblogs.com/chensongxian/p/7059802.html 代码是自己有python搞得，transform可以去除空格，一般题目里面有这样的需求。 源代码class Solution: def calculator(self,s): li=self.transform(s) print(&apos;li&apos;,li) forward=self.forward(li) print(&quot;forward&quot;,forward) result1=self.calForward(forward) print(&quot;result1:&quot;,result1) back=self.back(li) print(&quot;back&quot;,back) result2=self.calBack(back) print(&quot;result2:&quot;,result2) def calBack(self,back):#计算后缀表达式 s=[] for i in range(len(back)): if(isinstance(back[i],int)): s.append(back[i]) else: b=s.pop() a=s.pop() s.append(self.cal(a,b,back[i])) if(len(s)==0): return None return s[-1] def back(self,li):#得到后缀表达式 s1=[] s2=[] for i in range(len(li)): if(isinstance(li[i],int)):#li[i]是数字 s2.append(li[i]) elif(li[i] in &apos;+-*/&apos;):#li[i]是运算符 while(True): if(len(s1)==0 or s1[-1]==&apos;(&apos;):#s1为空或栈顶为‘(’，压栈 s1.append(li[i]) break elif(self.get(li[i])&gt;self.get(s1[-1])):#优先级大于等于栈顶，压栈 s1.append(li[i]) break else:#s1的栈顶元素压入s2，重复上述步骤 s2.append(s1.pop()) else: if(li[i]==&apos;(&apos;):#右括号压栈 s1.append(li[i]) else:#左括号，将s1栈顶元素压入s2，直至遇到右括号 tar=s1.pop() while(tar!=&apos;(&apos;): s2.append(tar) tar=s1.pop() while(s1): s2.append(s1.pop()) return s2 def calForward(self,forward):#计算前缀表达式 s=[] for i in range(len(forward)): if(isinstance(forward[i],int)): s.append(forward[i]) else: a=s.pop() b=s.pop() s.append(self.cal(a,b,forward[i])) if(len(s)==0): return None return s[-1] def forward(self,li):#得到前缀表达式 s1=[] s2=[] for i in range(len(li)-1,-1,-1): if(isinstance(li[i],int)):#li[i]是数字 s2.append(li[i]) elif(li[i] in &apos;+-*/&apos;):#li[i]是运算符 while(True): if(len(s1)==0 or s1[-1]==&apos;)&apos;):#s1为空或栈顶为‘）’，压栈 s1.append(li[i]) break elif(self.get(li[i])&gt;=self.get(s1[-1])):#优先级大于等于栈顶，压栈 s1.append(li[i]) break else:#s1的栈顶元素压入s2，重复上述步骤 s2.append(s1.pop()) else: if(li[i]==&apos;)&apos;):#右括号压栈 s1.append(li[i]) else:#左括号，将s1栈顶元素压入s2，直至遇到右括号 tar=s1.pop() while(tar!=&apos;)&apos;): s2.append(tar) tar=s1.pop() while(s1): s2.append(s1.pop()) return s2 def transform(self,s):#转换字符串，得到数字和运算符的链表形式 li=[] judge=False index=0 for tar in s: if(tar==&apos; &apos;): continue elif(tar in &apos;+-*/()&apos;): if(judge): li.append(index) judge=False index=0 li.append(tar) else: index=index*10+int(tar) judge=True if(judge): li.append(index) return li def cal(self,a,b,ch):#计算 if(ch==&apos;+&apos;): return a+b elif(ch==&apos;-&apos;): return a-b elif(ch==&apos;*&apos;): return a*b elif(ch==&apos;/&apos;): return a/b else: return 0 def get(self,ch):#得到优先级 if(ch in &apos;+-&apos;): return 1 elif(ch in &apos;*/&apos;): return 3 else: return 0]]></content>
@@ -173,8 +217,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -445,8 +489,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
         <tag>Binary Search</tag>
       </tags>
   </entry>
@@ -904,8 +948,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
