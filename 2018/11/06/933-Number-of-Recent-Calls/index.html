@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="Description                        Write a class RecentCounter to count recent requests.It has only one method: ping(int t), where t represents some time in milliseconds.Return the number of pings tha">
+<meta name="description" content="DescriptionWrite a class RecentCounter to count recent requests. It has only one method: ping(int t), where t represents some time in milliseconds. Return the number of pings that have been made from">
 <meta name="keywords" content="code,Queue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="933.Number of Recent Calls（最近的请求次数）">
 <meta property="og:url" content="https://redtongue.github.io/2018/11/06/933-Number-of-Recent-Calls/index.html">
 <meta property="og:site_name" content="Redtongue">
-<meta property="og:description" content="Description                        Write a class RecentCounter to count recent requests.It has only one method: ping(int t), where t represents some time in milliseconds.Return the number of pings tha">
+<meta property="og:description" content="DescriptionWrite a class RecentCounter to count recent requests. It has only one method: ping(int t), where t represents some time in milliseconds. Return the number of pings that have been made from">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-06T11:53:45.546Z">
+<meta property="og:updated_time" content="2018-11-06T12:02:06.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="933.Number of Recent Calls（最近的请求次数）">
-<meta name="twitter:description" content="Description                        Write a class RecentCounter to count recent requests.It has only one method: ping(int t), where t represents some time in milliseconds.Return the number of pings tha">
+<meta name="twitter:description" content="DescriptionWrite a class RecentCounter to count recent requests. It has only one method: ping(int t), where t represents some time in milliseconds. Return the number of pings that have been made from">
 
 
 
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-06T19:53:45+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-06T20:02:06+08:00">
                 2018-11-06
               </time>
             
@@ -415,8 +415,17 @@
       
 
       
-        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><html><br>    <table style="margin-left: auto; margin-right: auto;"><br>        <tr><br>            <td><br>Write a class RecentCounter to count recent requests.<br><br>It has only one method: ping(int t), where t represents some time in milliseconds.<br><br>Return the number of pings that have been made from 3000 milliseconds ago until now.<br><br>Any ping with time in [t - 3000, t] will count, including the current ping.<br><br>It is guaranteed that every call to ping uses a strictly larger value of t than before.<br>            </td><br>            <td><br>写一个 RecentCounter 类来计算最近的请求。<br><br>它只有一个方法：ping(int t)，其中 t 代表以毫秒为单位的某个时间。<br><br>返回从 3000 毫秒前到现在的 ping 数。<br><br>任何处于 [t - 3000, t] 时间范围之内的 ping 都将会被计算在内，包括当前（指 t 时刻）的 ping。<br><br>保证每次对 ping 的调用都使用比之前更大的 t 值。<br>            </td><br>        </tr><br>    </table><br></html>
-
+        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Write a class RecentCounter to count recent requests.</p>
+<p>It has only one method: ping(int t), where t represents some time in milliseconds.</p>
+<p>Return the number of pings that have been made from 3000 milliseconds ago until now.</p>
+<p>Any ping with time in [t - 3000, t] will count, including the current ping.</p>
+<p>It is guaranteed that every call to ping uses a strictly larger value of t than before.</p>
+<hr>
+<p>写一个 RecentCounter 类来计算最近的请求。</p>
+<p>它只有一个方法：ping(int t)，其中 t 代表以毫秒为单位的某个时间。</p>
+<p>返回从 3000 毫秒前到现在的 ping 数。</p>
+<p>任何处于 [t - 3000, t] 时间范围之内的 ping 都将会被计算在内，包括当前（指 t 时刻）的 ping。</p>
+<p>保证每次对 ping 的调用都使用比之前更大的 t 值。</p>
 <p>题目链接：<a href="https://leetcode.com/problems/number-of-recent-calls/" title="https://leetcode.com/problems/number-of-recent-calls/" target="_blank" rel="noopener">https://leetcode.com/problems/number-of-recent-calls/</a></p>
 <h4 id="Difficulty-easy"><a href="#Difficulty-easy" class="headerlink" title="Difficulty: easy"></a>Difficulty: easy</h4><a id="more"></a>
 <h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h3><pre><code>Input: inputs = [&quot;RecentCounter&quot;,&quot;ping&quot;,&quot;ping&quot;,&quot;ping&quot;,&quot;ping&quot;], inputs = [[],[1],[100],[3001],[3002]]

@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="Description                        You want to form a target string of lowercase letters.At the beginning, your sequence is target.length ‘?’ marks.  You also have a stamp of lowercase letters.On each">
+<meta name="description" content="DescriptionYou want to form a target string of lowercase letters. At the beginning, your sequence is target.length ‘?’ marks.  You also have a stamp of lowercase letters. On each turn, you may place t">
 <meta name="keywords" content="code,Greedy,Sting">
 <meta property="og:type" content="article">
 <meta property="og:title" content="936.Stamping The Sequence（戳印序列）">
 <meta property="og:url" content="https://redtongue.github.io/2018/11/06/936-Stamping-The-Sequence/index.html">
 <meta property="og:site_name" content="Redtongue">
-<meta property="og:description" content="Description                        You want to form a target string of lowercase letters.At the beginning, your sequence is target.length ‘?’ marks.  You also have a stamp of lowercase letters.On each">
+<meta property="og:description" content="DescriptionYou want to form a target string of lowercase letters. At the beginning, your sequence is target.length ‘?’ marks.  You also have a stamp of lowercase letters. On each turn, you may place t">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-06T11:52:18.559Z">
+<meta property="og:updated_time" content="2018-11-06T12:07:33.438Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="936.Stamping The Sequence（戳印序列）">
-<meta name="twitter:description" content="Description                        You want to form a target string of lowercase letters.At the beginning, your sequence is target.length ‘?’ marks.  You also have a stamp of lowercase letters.On each">
+<meta name="twitter:description" content="DescriptionYou want to form a target string of lowercase letters. At the beginning, your sequence is target.length ‘?’ marks.  You also have a stamp of lowercase letters. On each turn, you may place t">
 
 
 
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-06T19:52:18+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-06T20:07:33+08:00">
                 2018-11-06
               </time>
             
@@ -415,8 +415,21 @@
       
 
       
-        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><html><br>    <table style="margin-left: auto; margin-right: auto;"><br>        <tr><br>            <td><br>You want to form a target string of lowercase letters.<br><br>At the beginning, your sequence is target.length ‘?’ marks.  You also have a stamp of lowercase letters.<br><br>On each turn, you may place the stamp over the sequence, and replace every letter in the sequence with the corresponding letter from the stamp.  You can make up to 10 <em> target.length turns.<br><br>For example, if the initial sequence is “?????”, and your stamp is “abc”,  then you may make “abc??”, “?abc?”, “??abc” in the first turn.  (Note that the stamp must be fully contained in the boundaries of the sequence in order to stamp.)<br><br>If the sequence is possible to stamp, then return an array of the index of the left-most letter being stamped at each turn.  If the sequence is not possible to stamp, return an empty array.<br><br>For example, if the sequence is “ababc”, and the stamp is “abc”, then we could return the answer [0, 2], corresponding to the moves “?????” -&gt; “abc??” -&gt; “ababc”.<br><br>Also, if the sequence is possible to stamp, it is guaranteed it is possible to stamp within 10 </em> target.length moves.  Any answers specifying more than this number of moves will not be accepted.<br>            </td><br>            <td><br>你想要用小写字母组成一个目标字符串 target。<br><br>开始的时候，序列由 target.length 个 ‘?’ 记号组成。而你有一个小写字母印章 stamp。<br><br>在每个回合，你可以将印章放在序列上，并将序列中的每个字母替换为印章上的相应字母。你最多可以进行 10 <em> target.length  个回合。<br><br>举个例子，如果初始序列为 “?????”，而你的印章 stamp 是 “abc”，那么在第一回合，你可以得到 “abc??”、”?abc?”、”??abc”。（请注意，印章必须完全包含在序列的边界内才能盖下去。）<br><br>如果可以印出序列，那么返回一个数组，该数组由每个回合中被印下的最左边字母的索引组成。如果不能印出序列，就返回一个空数组。<br><br>例如，如果序列是 “ababc”，印章是 “abc”，那么我们就可以返回与操作 “?????” -&gt; “abc??” -&gt; “ababc” 相对应的答案 [0, 2]；<br><br>另外，如果可以印出序列，那么需要保证可以在 10 </em> target.length 个回合内完成。任何超过此数字的答案将不被接受。<br>            </td><br>        </tr><br>    </table><br></html>
-
+        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>You want to form a target string of lowercase letters.</p>
+<p>At the beginning, your sequence is target.length ‘?’ marks.  You also have a stamp of lowercase letters.</p>
+<p>On each turn, you may place the stamp over the sequence, and replace every letter in the sequence with the corresponding letter from the stamp.  You can make up to 10 * target.length turns.</p>
+<p>For example, if the initial sequence is “?????”, and your stamp is “abc”,  then you may make “abc??”, “?abc?”, “??abc” in the first turn.  (Note that the stamp must be fully contained in the boundaries of the sequence in order to stamp.)</p>
+<p>If the sequence is possible to stamp, then return an array of the index of the left-most letter being stamped at each turn.  If the sequence is not possible to stamp, return an empty array.</p>
+<p>For example, if the sequence is “ababc”, and the stamp is “abc”, then we could return the answer [0, 2], corresponding to the moves “?????” -&gt; “abc??” -&gt; “ababc”.</p>
+<p>Also, if the sequence is possible to stamp, it is guaranteed it is possible to stamp within 10 * target.length moves.  Any answers specifying more than this number of moves will not be accepted.</p>
+<hr>
+<p>你想要用小写字母组成一个目标字符串 target。 </p>
+<p>开始的时候，序列由 target.length 个 ‘?’ 记号组成。而你有一个小写字母印章 stamp。</p>
+<p>在每个回合，你可以将印章放在序列上，并将序列中的每个字母替换为印章上的相应字母。你最多可以进行 10 * target.length  个回合。</p>
+<p>举个例子，如果初始序列为 “?????”，而你的印章 stamp 是 “abc”，那么在第一回合，你可以得到 “abc??”、”?abc?”、”??abc”。（请注意，印章必须完全包含在序列的边界内才能盖下去。）</p>
+<p>如果可以印出序列，那么返回一个数组，该数组由每个回合中被印下的最左边字母的索引组成。如果不能印出序列，就返回一个空数组。</p>
+<p>例如，如果序列是 “ababc”，印章是 “abc”，那么我们就可以返回与操作 “?????” -&gt; “abc??” -&gt; “ababc” 相对应的答案 [0, 2]；</p>
+<p>另外，如果可以印出序列，那么需要保证可以在 10 * target.length 个回合内完成。任何超过此数字的答案将不被接受。</p>
 <p>题目链接：<a href="https://leetcode.com/problems/stamping-the-sequence/" title="https://leetcode.com/problems/stamping-the-sequence/" target="_blank" rel="noopener">https://leetcode.com/problems/stamping-the-sequence/</a></p>
 <h4 id="Difficulty-hard"><a href="#Difficulty-hard" class="headerlink" title="Difficulty: hard"></a>Difficulty: hard</h4><a id="more"></a>
 <h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h3><pre><code>Input: stamp = &quot;abc&quot;, target = &quot;ababc&quot;
