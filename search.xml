@@ -583,9 +583,9 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Binary Search</tag>
         <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
@@ -939,8 +939,8 @@
       <tags>
         <tag>code</tag>
         <tag>剑指Offer</tag>
-        <tag>链表</tag>
         <tag>二叉树</tag>
+        <tag>链表</tag>
       </tags>
   </entry>
   <entry>
@@ -1029,8 +1029,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Binary Search</tag>
         <tag>Math</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
@@ -1346,8 +1346,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -1361,6 +1361,56 @@
         <tag>code</tag>
         <tag>Tree</tag>
         <tag>Depth-first Search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[871.Minimum Number of Refueling Stops]]></title>
+    <url>%2F2018%2F07%2F16%2F871-Minimum-Number-of-Refueling-Stops%2F</url>
+    <content type="text"><![CDATA[DescriptionA car travels from a starting position to a destination which is target miles east of the starting position. Along the way, there are gas stations. Each station[i] represents a gas station that is station[i][0] miles east of the starting position, and has station[i][1] liters of gas. The car starts with an infinite tank of gas, which initially has startFuel liters of fuel in it. It uses 1 liter of gas per 1 mile that it drives. When the car reaches a gas station, it may stop and refuel, transferring all the gas from the station into the car. What is the least number of refueling stops the car must make in order to reach its destination? If it cannot reach the destination, return -1. Note that if the car reaches a gas station with 0 fuel left, the car can still refuel there. If the car reaches the destination with 0 fuel left, it is still considered to have arrived. 题目链接：https://leetcode.com/problems/minimum-number-of-refueling-stops/ Difficulty: hard Example 1:Input: target = 1, startFuel = 1, stations = [] Output: 0 Explanation: We can reach the target without refueling. Example 2:Input: target = 100, startFuel = 1, stations = [[10,100]] Output: -1 Explanation: We can&apos;t reach the target (or even the first gas station). Example 3:Input: target = 100, startFuel = 10, stations = [[10,60],[20,30],[30,30],[60,40]] Output: 2 Explanation: We start with 10 liters of fuel. We drive to position 10, expending 10 liters of fuel. We refuel from 0 liters to 60 liters of gas. Then, we drive from position 10 to position 60 (expending 50 liters of fuel), and refuel from 10 liters to 50 liters of gas. We then drive to and reach the target. We made 2 refueling stops along the way, so we return 2. Note: 1 &lt;= target, startFuel, stations[i][1] &lt;= 10^9 0 &lt;= stations.length &lt;= 500 0 &lt; stations[0][0] &lt; stations[1][0] &lt; … &lt; stations[stations.length-1][0] &lt; target 分析 updating 参考代码class Solution: def minRefuelStops(self, target, startFuel, stations): def _inter(fuel,stations,index): if(len(stations)==0): if(fuel&gt;=target): return index else: return -1 else: position,fu=stations[0] if(fuel &lt; position): return -1 else: x1=_inter(fuel+fu,stations[1:],index+1) x2=_inter(fuel,stations[1:],index) if(x1 != -1): if(x2!=-1): return min(x1,x2) else: return x1 else: return x2 return _inter(startFuel,stations,0)]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Dynamic Programming</tag>
+        <tag>Heap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[870.Advantage Shuffle]]></title>
+    <url>%2F2018%2F07%2F16%2F870-Advantage-Shuffle%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven two arrays A and B of equal size, the advantage of A with respect to B is the number of indices i for which A[i] &gt; B[i]. Return any permutation of A that maximizes its advantage with respect to B. 题目链接：https://leetcode.com/problems/advantage-shuffle/ Difficulty: medium Example 1:Input: A = [2,7,11,15], B = [1,10,4,11] Output: [2,11,7,15] Example 2:Input: A = [12,24,8,32], B = [13,25,32,11] Output: [24,32,8,12] Note: 1 &lt;= A.length = B.length &lt;= 10000 0 &lt;= A[i] &lt;= 10^9 0 &lt;= B[i] &lt;= 10^9 分析 updating 参考代码class Solution: def advantageCount(self, A, B): s_a=sorted(A) s_b=sorted(B) assigned={b:[] for b in B} li=[] j=0 for a in s_a: if(a &gt; s_b[j]): assigned[s_b[j]].append(a) j += 1 else: li.append(a) return [assigned[b].pop() if assigned[b] else li.pop() for b in B]]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+        <tag>Greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[869.Reordered Power of 2]]></title>
+    <url>%2F2018%2F07%2F16%2F869-Reordered-Power-of-2%2F</url>
+    <content type="text"><![CDATA[DescriptionStarting with a positive integer N, we reorder the digits in any order (including the original order) such that the leading digit is not zero. Return true if and only if we can do this in a way such that the resulting number is a power of 2. 题目链接：https://leetcode.com/problems/reordered-power-of-2/ Difficulty: medium Example 1:Input: 1 Output: true Example 2:Input: 10 Output: false Example 3:Input: 16 Output: true Example 4:Input: 24 Output: false Example 5:Input: 46 Output: true Note: 1 &lt;= N &lt;= 10^9 分析 updating 参考代码class Solution: def reorderedPowerOf2(self, N): li=[] for i in range(30): li.append(str(2**i)) def judge(a,b): if(len(a) == len(b)): A=list(a) B=list(b) for index in A: if(index in B): B.remove(index) else: return False return True return False for i in range(len(li)): if(judge(li[i],str(N))): return True return False]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[868.Binary Gap]]></title>
+    <url>%2F2018%2F07%2F16%2F868-Binary-Gap%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a positive integer N, find and return the longest distance between two consecutive 1’s in the binary representation of N. If there aren’t two consecutive 1’s, return 0. 题目链接：https://leetcode.com/problems/binary-gap/ Difficulty: easy Example 1:Input: 22 Output: 2 Explanation: 22 in binary is 0b10110. In the binary representation of 22, there are three ones, and two consecutive pairs of 1&apos;s. The first consecutive pair of 1&apos;s have distance 2. The second consecutive pair of 1&apos;s have distance 1. The answer is the largest of these two distances, which is 2. Example 2:Input: 5 Output: 2 Explanation: 5 in binary is 0b101. Example 3:Input: 6 Output: 1 Explanation: 6 in binary is 0b110. Example 4:Input: 8 Output: 0 Explanation: 8 in binary is 0b1000. There aren&apos;t any consecutive pairs of 1&apos;s in the binary representation of 8, so we return 0. Note: 1 &lt;= N &lt;= 10^9 分析 updating 参考代码class Solution: def binaryGap(self, N): judge=False index=0 Max=0 while(N &gt; 0): if(N%2==1): if(judge): Max=max(Max,index+1) index=0 judge=True else: index += 1 N = N//2 return Max]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
 </search>
