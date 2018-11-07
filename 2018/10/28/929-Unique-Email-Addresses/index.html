@@ -89,14 +89,14 @@
 <meta name="description" content="DescriptionEvery email consists of a local name and a domain name, separated by the @ sign. For example, in alice@leetcode.com, alice is the local name, and leetcode.com is the domain name. Besides lo">
 <meta name="keywords" content="code">
 <meta property="og:type" content="article">
-<meta property="og:title" content="929.Unique Email Addresses">
+<meta property="og:title" content="929.Unique Email Addresses（独特的电子邮件地址）">
 <meta property="og:url" content="https://redtongue.github.io/2018/10/28/929-Unique-Email-Addresses/index.html">
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionEvery email consists of a local name and a domain name, separated by the @ sign. For example, in alice@leetcode.com, alice is the local name, and leetcode.com is the domain name. Besides lo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-28T11:15:39.061Z">
+<meta property="og:updated_time" content="2018-11-07T02:42:15.903Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="929.Unique Email Addresses">
+<meta name="twitter:title" content="929.Unique Email Addresses（独特的电子邮件地址）">
 <meta name="twitter:description" content="DescriptionEvery email consists of a local name and a domain name, separated by the @ sign. For example, in alice@leetcode.com, alice is the local name, and leetcode.com is the domain name. Besides lo">
 
 
@@ -133,7 +133,7 @@
 
 
 
-  <title>929.Unique Email Addresses | Redtongue</title>
+  <title>929.Unique Email Addresses（独特的电子邮件地址） | Redtongue</title>
   
 
 
@@ -321,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">929.Unique Email Addresses</h1>
+          <h1 class="post-title" itemprop="name headline">929.Unique Email Addresses（独特的电子邮件地址）</h1>
         
 
         <div class="post-meta">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-28T19:15:39+08:00">
-                2018-10-28
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:42:15+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -422,6 +422,14 @@
 <p>If you add a plus (‘+’) in the local name, everything after the first plus sign will be ignored. This allows certain emails to be filtered, for example <a href="mailto:m.y+name@email.com" target="_blank" rel="noopener">m.y+name@email.com</a> will be forwarded to <a href="mailto:my@email.com" target="_blank" rel="noopener">my@email.com</a>.  (Again, this rule does not apply for domain names.)</p>
 <p>It is possible to use both of these rules at the same time.</p>
 <p>Given a list of emails, we send one email to each address in the list.  How many different addresses actually receive mails? </p>
+<hr>
+<p>每封电子邮件都由一个本地名称和一个域名组成，以 @ 符号分隔。</p>
+<p>例如，在 <a href="mailto:alice@leetcode.com" target="_blank" rel="noopener">alice@leetcode.com</a>中， alice 是本地名称，而 leetcode.com 是域名。</p>
+<p>除了小写字母，这些电子邮件还可能包含 ‘,’ 或 ‘+’。</p>
+<p>如果在电子邮件地址的本地名称部分中的某些字符之间添加句点（’.’），则发往那里的邮件将会转发到本地名称中没有点的同一地址。例如，”<a href="mailto:alice.z@leetcode.com" target="_blank" rel="noopener">alice.z@leetcode.com</a>” 和 “<a href="mailto:alicez@leetcode.com" target="_blank" rel="noopener">alicez@leetcode.com</a>” 会转发到同一电子邮件地址。 （请注意，此规则不适用于域名。）</p>
+<p>如果在本地名称中添加加号（’+’），则会忽略第一个加号后面的所有内容。这允许过滤某些电子邮件，例如 <a href="mailto:m.y+name@email.com" target="_blank" rel="noopener">m.y+name@email.com</a> 将转发到 <a href="mailto:my@email.com" target="_blank" rel="noopener">my@email.com</a>。 （同样，此规则不适用于域名。）</p>
+<p>可以同时使用这两个规则。</p>
+<p>给定电子邮件列表 emails，我们会向列表中的每个地址发送一封电子邮件。实际收到邮件的不同地址有多少？</p>
 <p>题目链接：<a href="https://leetcode.com/problems/unique-email-addresses/" title="https://leetcode.com/problems/unique-email-addresses/" target="_blank" rel="noopener">https://leetcode.com/problems/unique-email-addresses/</a></p>
 <h4 id="Difficulty-easy"><a href="#Difficulty-easy" class="headerlink" title="Difficulty: easy"></a>Difficulty: easy</h4><a id="more"></a>
 <h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h3><pre><code>Input: [&quot;test.email+alex@leetcode.com&quot;,&quot;test.e.mail+bob.cathy@leetcode.com&quot;,&quot;testemail+david@lee.tcode.com&quot;]
@@ -499,8 +507,8 @@ def numUniqueEmails(self, emails):
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/28/930-Binary-Subarrays-With-Sum/" rel="prev" title="930.Binary Subarrays With Sum">
-                930.Binary Subarrays With Sum <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/28/930-Binary-Subarrays-With-Sum/" rel="prev" title="930.Binary Subarrays With Sum（和相同的二元子数组）">
+                930.Binary Subarrays With Sum（和相同的二元子数组） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -589,7 +597,7 @@ def numUniqueEmails(self, emails):
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

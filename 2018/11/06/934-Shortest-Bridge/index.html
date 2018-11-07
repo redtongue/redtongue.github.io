@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionIn a given 2D binary array A, there are two islands.  (An island is a 4-directionally connected group of 1s not connected to any other 1s.) Now, we may change 0s to 1s so as to connect the">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-06T12:02:23.800Z">
+<meta property="og:updated_time" content="2018-11-07T01:54:59.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="934.Shortest Bridge（最短的桥）">
 <meta name="twitter:description" content="DescriptionIn a given 2D binary array A, there are two islands.  (An island is a 4-directionally connected group of 1s not connected to any other 1s.) Now, we may change 0s to 1s so as to connect the">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-06T20:02:23+08:00">
-                2018-11-06
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T09:54:59+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -435,10 +435,74 @@ Output: 1
 <li>A[i][j] == 0 or A[i][j] == 1</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li><h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><p> updating</p>
-</li>
+<li>每个岛的位置标志都是1，首先将两个岛分开，其中一个岛标1，另外一个标2（上下左右不相连即为两个岛）；</li>
+<li>找到一个为1的点作为初始点标为2，存入list，遍历上下左右四个相邻点，若为则加入到list中；</li>
+<li>遍历list，重复2（也可以利用队列，每次pop一个元素，我的代码中有index游标遍历list）；</li>
+<li>将值为1的点的坐标加到D1中，值为2的点的坐标加到D2中；</li>
+<li>直接比较D1和中D2中每个点的距离，返回最小值，时间复杂度为 $O(n^2)$ ,时间会超限；</li>
+<li>首先将D1中的点node及其距离d（初始为0）加入到queue中，node放入done中（遍历完的点）；</li>
+<li>遍历queue，若node在D2中则返回d（即为最小距离）</li>
+<li>反之，将node上下左右相邻四个点中不在done中的点，d+1，加入到queue中；</li>
+<li>重复7，8;</li>
+<li>因为是多点到多点的最短路径，所以没有采用单点的深度优先遍历。</li>
 </ol>
-
+<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution:
+def shortestBridge(self, A):
+    row,col=len(A),len(A[0])
+    li=[]
+    x,y=0,0
+    for i in range(row*col):
+        if(A[i//col][i%col]==1):
+            A[i//col][i%col]=2
+            li.append((i//col,i%col))
+            x,y=i//col,i%col
+            break
+    index=0
+    while(index&lt;len(li)):
+        x,y=li[index]
+        if(x-1&gt;=0 and A[x-1][y]==1):
+            li.append((x-1,y))
+            A[x-1][y]=2
+        if(y-1&gt;=0 and A[x][y-1]==1):
+            li.append((x,y-1))
+            A[x][y-1]=2
+        if(x+1&lt;row and A[x+1][y]==1):
+            li.append((x+1,y))
+            A[x+1][y]=2
+        if(y+1&lt;col and A[x][y+1]==1):
+            li.append((x,y+1))
+            A[x][y+1]=2
+        index+=1
+    D1=set()
+    D2=set()
+    for i in range(row):
+        for j in range(col):
+            if(A[i][j]==1):
+                D1.add((i,j))
+            elif(A[i][j]==2):
+                D2.add((i,j))
+    done=set(D1)
+    queue=[[d,0]for d in D1]
+    i=0
+    while(len(queue[i:])):
+        node,d=queue[i]
+        i+=1
+        if(node in D2):
+            return d-1
+        x,y=node
+        if(x-1&gt;=0 and (x-1,y) not in done):
+            queue.append([(x-1,y),d+1])
+            done.add((x-1,y))
+        if(y-1&gt;=0 and (x,y-1) not in done):
+            queue.append([(x,y-1),d+1])
+            done.add((x,y-1))
+        if(x+1&lt;row and (x+1,y) not in done):
+            queue.append([(x+1,y),d+1])
+            done.add((x+1,y))
+        if(y+1&lt;col and (x,y+1) not in done):
+            queue.append([(x,y+1),d+1])
+            done.add((x,y+1))
+</code></pre>
       
     </div>
     
@@ -583,7 +647,7 @@ Output: 1
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

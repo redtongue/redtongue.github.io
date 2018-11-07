@@ -322,7 +322,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/23/927-Three-Equal-Parts/" itemprop="url">927.Three Equal Parts</a></h1>
+                <a class="post-title-link" href="/2018/10/23/927-Three-Equal-Parts/" itemprop="url">927.Three Equal Parts（三等分）</a></h1>
         
 
         <div class="post-meta">
@@ -350,8 +350,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-25T21:28:37+08:00">
-                2018-10-25
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:47:57+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -409,8 +409,25 @@
         
           <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given an array A of 0s and 1s, divide the array into 3 non-empty parts such that all of these parts represent the same binary value.</p>
 <p>If it is possible, return any [i, j] with i+1 &lt; j, such that:</p>
-<p>A[0], A[1], …, A[i] is the first part;<br>A[i+1], A[i+2], …, A[j-1] is the second part, and<br>A[j], A[j+1], …, A[A.length - 1] is the third part.<br>All three parts have equal binary value.<br>If it is not possible, return [-1, -1].</p>
+<ul>
+<li>A[0], A[1], …, A[i] is the first part;</li>
+<li>A[i+1], A[i+2], …, A[j-1] is the second part, and</li>
+<li>A[j], A[j+1], …, A[A.length - 1] is the third part.</li>
+<li>All three parts have equal binary value.</li>
+</ul>
+<p>If it is not possible, return [-1, -1].</p>
 <p>Note that the entire part is used when considering what binary value it represents.  For example, [1,1,0] represents 6 in decimal, not 3.  Also, leading zeros are allowed, so [0,1,1] and [1,1] represent the same value.</p>
+<hr>
+<p>给定一个由 0 和 1 组成的数组 A，将数组分成 3 个非空的部分，使得所有这些部分表示相同的二进制值。</p>
+<p>如果可以做到，请返回任何 [i, j]，其中 i+1 &lt; j，这样一来：</p>
+<ul>
+<li>A[0], A[1], …, A[i] 组成第一部分；</li>
+<li>A[i+1], A[i+2], …, A[j-1] 作为第二部分；</li>
+<li>A[j], A[j+1], …, A[A.length - 1] 是第三部分。</li>
+<li>这三个部分所表示的二进制值相等。</li>
+</ul>
+<p>如果无法做到，就返回 [-1, -1]。</p>
+<p>注意，在考虑每个部分所表示的二进制时，应当将其看作一个整体。例如，[1,1,0] 表示十进制中的 6，而不会是 3。此外，前导零也是被允许的，所以 [0,1,1] 和 [1,1] 表示相同的值。</p>
 <p>题目链接：<a href="https://leetcode.com/problems/three-equal-parts/" title="https://leetcode.com/problems/three-equal-parts/" target="_blank" rel="noopener">https://leetcode.com/problems/three-equal-parts/</a></p>
 <h4 id="Difficulty-hard"><a href="#Difficulty-hard" class="headerlink" title="Difficulty: hard"></a>Difficulty: hard</h4>
           <!--noindex-->
@@ -487,7 +504,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/23/926-Flip-String-to-Monotone-Increasing/" itemprop="url">926.Flip String to Monotone Increasing</a></h1>
+                <a class="post-title-link" href="/2018/10/23/926-Flip-String-to-Monotone-Increasing/" itemprop="url">926.Flip String to Monotone Increasing（将字符串翻转到单调递增）</a></h1>
         
 
         <div class="post-meta">
@@ -515,8 +532,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-23T22:47:58+08:00">
-                2018-10-23
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:46:48+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -575,6 +592,10 @@
           <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>A string of ‘0’s and ‘1’s is monotone increasing if it consists of some number of ‘0’s (possibly 0), followed by some number of ‘1’s (also possibly 0.)</p>
 <p>We are given a string S of ‘0’s and ‘1’s, and we may flip any ‘0’ to a ‘1’ or a ‘1’ to a ‘0’.</p>
 <p>Return the minimum number of flips to make S monotone increasing.</p>
+<hr>
+<p>如果一个由 ‘0’ 和 ‘1’ 组成的字符串，是以一些 ‘0’（可能没有 ‘0’）后面跟着一些 ‘1’（也可能没有 ‘1’）的形式组成的，那么该字符串是单调递增的。</p>
+<p>我们给出一个由字符 ‘0’ 和 ‘1’ 组成的字符串 S，我们可以将任何 ‘0’ 翻转为 ‘1’ 或者将 ‘1’ 翻转为 ‘0’。</p>
+<p>返回使 S 单调递增的最小翻转次数。</p>
 <p>题目链接：<a href="https://leetcode.com/problems/flip-string-to-monotone-increasing/" title="https://leetcode.com/problems/flip-string-to-monotone-increasing/" target="_blank" rel="noopener">https://leetcode.com/problems/flip-string-to-monotone-increasing/</a></p>
 <h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
           <!--noindex-->
@@ -651,7 +672,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/23/925-Long-Pressed-Name/" itemprop="url">925.Long Pressed Name</a></h1>
+                <a class="post-title-link" href="/2018/10/23/925-Long-Pressed-Name/" itemprop="url">925.Long Pressed Name（长按键入）</a></h1>
         
 
         <div class="post-meta">
@@ -679,8 +700,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-23T22:41:52+08:00">
-                2018-10-23
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:46:23+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -738,6 +759,9 @@
         
           <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Your friend is typing his name into a keyboard.  Sometimes, when typing a character c, the key might get long pressed, and the character will be typed 1 or more times.</p>
 <p>You examine the typed characters of the keyboard.  Return True if it is possible that it was your friends name, with some characters (possibly none) being long pressed.</p>
+<hr>
+<p>你的朋友正在使用键盘输入他的名字 name。偶尔，在键入字符 c 时，按键可能会被长按，而字符可能被输入 1 次或多次。</p>
+<p>你将会检查键盘输入的字符 typed。如果它对应的可能是你的朋友的名字（其中一些字符可能被长按），那么就返回 True。</p>
 <p>题目链接：<a href="https://leetcode.com/problems/long-pressed-name/" title="https://leetcode.com/problems/long-pressed-name/" target="_blank" rel="noopener">https://leetcode.com/problems/long-pressed-name/</a></p>
 <h4 id="Difficulty-easy"><a href="#Difficulty-easy" class="headerlink" title="Difficulty: easy"></a>Difficulty: easy</h4>
           <!--noindex-->
@@ -814,7 +838,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/14/924-Minimize-Malware-Spread/" itemprop="url">924.Minimize Malware Spread</a></h1>
+                <a class="post-title-link" href="/2018/10/14/924-Minimize-Malware-Spread/" itemprop="url">924.Minimize Malware Spread（尽量减少恶意软件的传播）</a></h1>
         
 
         <div class="post-meta">
@@ -842,8 +866,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-14T21:34:39+08:00">
-                2018-10-14
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:52:01+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -904,6 +928,12 @@
 <p>Suppose M(initial) is the final number of nodes infected with malware in the entire network, after the spread of malware stops.</p>
 <p>We will remove one node from the initial list.  Return the node that if removed, would minimize M(initial).  If multiple nodes could be removed to minimize M(initial), return such a node with the smallest index.</p>
 <p>Note that if a node was removed from the initial list of infected nodes, it may still be infected later as a result of the malware spread.</p>
+<hr>
+<p>在节点网络中，只有当 graph[i][j] = 1 时，每个节点 i 能够直接连接到另一个节点 j。</p>
+<p>一些节点 initial 最初被恶意软件感染。只要两个节点直接连接，且其中至少一个节点受到恶意软件的感染，那么两个节点都将被恶意软件感染。这种恶意软件的传播将继续，直到没有更多的节点可以被这种方式感染。</p>
+<p>假设 M(initial) 是在恶意软件停止传播之后，整个网络中感染恶意软件的最终节点数。</p>
+<p>我们可以从初始列表中删除一个节点。如果移除这一节点将最小化 M(initial)， 则返回该节点。如果有多个节点满足条件，就返回索引最小的节点。</p>
+<p>请注意，如果某个节点已从受感染节点的列表 initial 中删除，它以后可能仍然因恶意软件传播而受到感染。</p>
 <p>题目链接：<a href="https://leetcode.com/problems/minimize-malware-spread/description/" title="https://leetcode.com/problems/minimize-malware-spread/description/" target="_blank" rel="noopener">https://leetcode.com/problems/minimize-malware-spread/description/</a></p>
 <h4 id="Difficulty-hard"><a href="#Difficulty-hard" class="headerlink" title="Difficulty: hard"></a>Difficulty: hard</h4>
           <!--noindex-->
@@ -980,7 +1010,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/14/923-3Sum-With-Multiplicity/" itemprop="url">923.3Sum With Multiplicity</a></h1>
+                <a class="post-title-link" href="/2018/10/14/923-3Sum-With-Multiplicity/" itemprop="url">923.3Sum With Multiplicity（三数之和的多种可能）</a></h1>
         
 
         <div class="post-meta">
@@ -1008,8 +1038,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-15T18:42:47+08:00">
-                2018-10-15
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:51:39+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -1067,6 +1097,9 @@
         
           <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given an integer array A, and an integer target, return the number of tuples i, j, k  such that i &lt; j &lt; k and A[i] + A[j] + A[k] == target.</p>
 <p>As the answer can be very large, return it modulo 10^9 + 7.</p>
+<hr>
+<p>给定一个整数数组 A，以及一个整数 target 作为目标值，返回满足 i &lt; j &lt; k 且 A[i] + A[j] + A[k] == target 的元组 i, j, k 的数量。</p>
+<p>由于结果会非常大，请返回 结果除以 10^9 + 7 的余数。</p>
 <p>题目链接：<a href="https://leetcode.com/problems/3sum-with-multiplicity/description/" title="https://leetcode.com/problems/3sum-with-multiplicity/description/" target="_blank" rel="noopener">https://leetcode.com/problems/3sum-with-multiplicity/description/</a></p>
 <h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
           <!--noindex-->
@@ -1143,7 +1176,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/14/922-Sort-Array-By-Parity-II/" itemprop="url">922.Sort Array By Parity II</a></h1>
+                <a class="post-title-link" href="/2018/10/14/922-Sort-Array-By-Parity-II/" itemprop="url">922.Sort Array By Parity II（按奇偶排序数组 II）</a></h1>
         
 
         <div class="post-meta">
@@ -1171,8 +1204,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-14T21:04:22+08:00">
-                2018-10-14
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:51:14+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -1231,6 +1264,10 @@
           <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given an array A of non-negative integers, half of the integers in A are odd, and half of the integers are even.</p>
 <p>Sort the array so that whenever A[i] is odd, i is odd; and whenever A[i] is even, i is even.</p>
 <p>You may return any answer array that satisfies this condition.</p>
+<hr>
+<p>给定一个非负整数数组 A， A 中一半整数是奇数，一半整数是偶数。</p>
+<p>对数组进行排序，以便当 A[i] 为奇数时，i 也是奇数；当 A[i] 为偶数时， i 也是偶数。</p>
+<p>你可以返回任何满足上述条件的数组作为答案。</p>
 <p>题目链接：<a href="https://leetcode.com/problems/sort-array-by-parity-ii/description/" title="https://leetcode.com/problems/sort-array-by-parity-ii/description/" target="_blank" rel="noopener">https://leetcode.com/problems/sort-array-by-parity-ii/description/</a></p>
 <h4 id="Difficulty-easy"><a href="#Difficulty-easy" class="headerlink" title="Difficulty: easy"></a>Difficulty: easy</h4>
           <!--noindex-->
@@ -1307,7 +1344,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/14/921-Minunum-Add-to-Make-Parentheses-Valid/" itemprop="url">921.Minunum Add to Make Parentheses Valid</a></h1>
+                <a class="post-title-link" href="/2018/10/14/921-Minunum-Add-to-Make-Parentheses-Valid/" itemprop="url">921.Minunum Add to Make Parentheses Valid（使括号有效的最少添加）</a></h1>
         
 
         <div class="post-meta">
@@ -1335,8 +1372,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-14T21:04:14+08:00">
-                2018-10-14
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:50:53+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -1400,6 +1437,15 @@
 <li>It can be written as (A), where A is a valid string.</li>
 </ul>
 <p>Given a parentheses string, return the minimum number of parentheses we must add to make the resulting string valid.</p>
+<hr>
+<p>给定一个由 ‘(‘ 和 ‘)’ 括号组成的字符串 S，我们需要添加最少的括号（ ‘(‘ 或是 ‘)’，可以在任何位置），以使得到的括号字符串有效。</p>
+<p>从形式上讲，只有满足下面几点之一，括号字符串才是有效的：</p>
+<ul>
+<li>它是一个空字符串，或者</li>
+<li>它可以被写成 AB （A 与 B 连接）, 其中 A 和 B 都是有效字符串，或者</li>
+<li>它可以被写作 (A)，其中 A 是有效字符串。</li>
+</ul>
+<p>给定一个括号字符串，返回为使结果字符串有效而必须添加的最少括号数。</p>
 <p>题目链接：<a href="https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/description/" title="https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/description/" target="_blank" rel="noopener">https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/description/</a></p>
 <h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
           <!--noindex-->
@@ -1457,7 +1503,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/01/916-Word-Subsets/">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/08/920-Number-of-Music-Playlists/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yunxiang wang">
@@ -1476,7 +1522,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/01/916-Word-Subsets/" itemprop="url">916.Word Subsets</a></h1>
+                <a class="post-title-link" href="/2018/10/08/920-Number-of-Music-Playlists/" itemprop="url">920.Number of Music Playlists</a></h1>
         
 
         <div class="post-meta">
@@ -1488,8 +1534,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-01T17:18:55+08:00">
-                2018-10-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-08T10:58:35+08:00">
+                2018-10-08
               </time>
             
 
@@ -1504,8 +1550,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-03T17:48:36+08:00">
-                2018-10-03
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T11:08:53+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -1561,15 +1607,17 @@
 
       
         
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>We are given two arrays A and B of words.  Each word is a string of lowercase letters.</p>
-<p>Now, say that word b is a subset of word a if every letter in b occurs in a, including multiplicity.  For example, “wrr” is a subset of “warrior”, but is not a subset of “world”.</p>
-<p>Now say a word a from A is universal if for every b in B, b is a subset of a. </p>
-<p>Return a list of all universal words in A.  You can return the words in any order.</p>
-<p>题目链接：<a href="https://leetcode.com/problems/word-subsets/description/" title="https://leetcode.com/problems/word-subsets/description/" target="_blank" rel="noopener">https://leetcode.com/problems/word-subsets/description/</a></p>
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Your music player contains N different songs and she wants to listen to L (not necessarily different) songs during your trip.  You create a playlist so that:</p>
+<ul>
+<li>Every song is played at least once</li>
+<li>A song can only be played again only if K other songs have been played</li>
+</ul>
+<p>Return the number of possible playlists.  As the answer can be very large, return it modulo 10^9 + 7.</p>
+<p>题目链接：<a href="https://leetcode.com/problems/number-of-music-playlists/" title="https://leetcode.com/problems/number-of-music-playlists/" target="_blank" rel="noopener">https://leetcode.com/problems/number-of-music-playlists/</a></p>
 <h4 id="Difficulty-hard"><a href="#Difficulty-hard" class="headerlink" title="Difficulty: hard"></a>Difficulty: hard</h4>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/10/01/916-Word-Subsets/#more" rel="contents">
+            <a class="btn" href="/2018/10/08/920-Number-of-Music-Playlists/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1622,7 +1670,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/01/915-Partition-Array-into-Disjoint-Intervals/">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/08/919-Complete-Binary-Tree-Inserter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yunxiang wang">
@@ -1641,7 +1689,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/01/915-Partition-Array-into-Disjoint-Intervals/" itemprop="url">915.Partition Array into Disjoint Intervals</a></h1>
+                <a class="post-title-link" href="/2018/10/08/919-Complete-Binary-Tree-Inserter/" itemprop="url">919.Complete Binary Tree Inserter</a></h1>
         
 
         <div class="post-meta">
@@ -1653,8 +1701,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-01T17:14:50+08:00">
-                2018-10-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-08T10:58:04+08:00">
+                2018-10-08
               </time>
             
 
@@ -1669,8 +1717,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-03T17:41:38+08:00">
-                2018-10-03
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T11:06:32+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -1726,18 +1774,18 @@
 
       
         
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given an array A, partition it into two (contiguous) subarrays left and right so that:</p>
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.</p>
+<p>Write a data structure CBTInserter that is initialized with a complete binary tree and supports the following operations:</p>
 <ul>
-<li>Every element in left is less than or equal to every element in right.</li>
-<li>left and right are non-empty.</li>
-<li>left has the smallest possible size.</li>
+<li>CBTInserter(TreeNode root) initializes the data structure on a given tree with head node root;</li>
+<li>CBTInserter.insert(int v) will insert a TreeNode into the tree with value node.val = v so that the tree remains complete, and returns the value of the parent of the inserted TreeNode;</li>
+<li>CBTInserter.get_root() will return the head node of the tree.</li>
 </ul>
-<p>Return the length of left after such a partitioning.  It is guaranteed that such a partitioning exists.</p>
-<p>题目链接：<a href="https://leetcode.com/problems/partition-array-into-disjoint-intervals/description/" title="https://leetcode.com/problems/partition-array-into-disjoint-intervals/description/" target="_blank" rel="noopener">https://leetcode.com/problems/partition-array-into-disjoint-intervals/description/</a></p>
+<p>题目链接：<a href="https://leetcode.com/problems/complete-binary-tree-inserter/" title="https://leetcode.com/problems/complete-binary-tree-inserter/" target="_blank" rel="noopener">https://leetcode.com/problems/complete-binary-tree-inserter/</a></p>
 <h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/10/01/915-Partition-Array-into-Disjoint-Intervals/#more" rel="contents">
+            <a class="btn" href="/2018/10/08/919-Complete-Binary-Tree-Inserter/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1790,7 +1838,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/01/914-X-of-a-Kind-in-a-Deck-of-Cards/">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/08/918-Maximum-Sum-Circular-Subarray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yunxiang wang">
@@ -1809,7 +1857,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/01/914-X-of-a-Kind-in-a-Deck-of-Cards/" itemprop="url">914.X of a Kind in a Deck of Cards</a></h1>
+                <a class="post-title-link" href="/2018/10/08/918-Maximum-Sum-Circular-Subarray/" itemprop="url">918.Maximum Sum Circular Subarray</a></h1>
         
 
         <div class="post-meta">
@@ -1821,8 +1869,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-01T17:10:23+08:00">
-                2018-10-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-08T10:57:35+08:00">
+                2018-10-08
               </time>
             
 
@@ -1837,8 +1885,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-03T17:34:46+08:00">
-                2018-10-03
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T11:04:23+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -1894,17 +1942,14 @@
 
       
         
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>In a deck of cards, each card has an integer written on it.</p>
-<p>Return true if and only if you can choose X &gt;= 2 such that it is possible to split the entire deck into 1 or more groups of cards, where:</p>
-<ul>
-<li>Each group has exactly X cards.</li>
-<li>All the cards in each group have the same integer.</li>
-</ul>
-<p>题目链接：<a href="https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/description/" title="https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/description/" target="_blank" rel="noopener">https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/description/</a></p>
-<h4 id="Difficulty-easy"><a href="#Difficulty-easy" class="headerlink" title="Difficulty: easy"></a>Difficulty: easy</h4>
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a circular array C of integers represented by A, find the maximum possible sum of a non-empty subarray of C.</p>
+<p>Here, a circular array means the end of the array connects to the beginning of the array.  (Formally, C[i] = A[i] when 0 &lt;= i &lt; A.length, and C[i+A.length] = C[i] when i &gt;= 0.)</p>
+<p>Also, a subarray may only include each element of the fixed buffer A at most once.  (Formally, for a subarray C[i], C[i+1], …, C[j], there does not exist i &lt;= k1, k2 &lt;= j with k1 % A.length = k2 % A.length.)</p>
+<p>题目链接：<a href="https://leetcode.com/problems/maximum-sum-circular-subarray/" title="https://leetcode.com/problems/maximum-sum-circular-subarray/" target="_blank" rel="noopener">https://leetcode.com/problems/maximum-sum-circular-subarray/</a></p>
+<h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/10/01/914-X-of-a-Kind-in-a-Deck-of-Cards/#more" rel="contents">
+            <a class="btn" href="/2018/10/08/918-Maximum-Sum-Circular-Subarray/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1998,7 +2043,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

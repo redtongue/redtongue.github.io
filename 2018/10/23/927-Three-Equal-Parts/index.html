@@ -89,14 +89,14 @@
 <meta name="description" content="DescriptionGiven an array A of 0s and 1s, divide the array into 3 non-empty parts such that all of these parts represent the same binary value. If it is possible, return any [i, j] with i+1 &amp;lt; j, su">
 <meta name="keywords" content="code">
 <meta property="og:type" content="article">
-<meta property="og:title" content="927.Three Equal Parts">
+<meta property="og:title" content="927.Three Equal Parts（三等分）">
 <meta property="og:url" content="https://redtongue.github.io/2018/10/23/927-Three-Equal-Parts/index.html">
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionGiven an array A of 0s and 1s, divide the array into 3 non-empty parts such that all of these parts represent the same binary value. If it is possible, return any [i, j] with i+1 &amp;lt; j, su">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-25T13:28:37.962Z">
+<meta property="og:updated_time" content="2018-11-07T02:47:57.392Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="927.Three Equal Parts">
+<meta name="twitter:title" content="927.Three Equal Parts（三等分）">
 <meta name="twitter:description" content="DescriptionGiven an array A of 0s and 1s, divide the array into 3 non-empty parts such that all of these parts represent the same binary value. If it is possible, return any [i, j] with i+1 &amp;lt; j, su">
 
 
@@ -133,7 +133,7 @@
 
 
 
-  <title>927.Three Equal Parts | Redtongue</title>
+  <title>927.Three Equal Parts（三等分） | Redtongue</title>
   
 
 
@@ -321,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">927.Three Equal Parts</h1>
+          <h1 class="post-title" itemprop="name headline">927.Three Equal Parts（三等分）</h1>
         
 
         <div class="post-meta">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-25T21:28:37+08:00">
-                2018-10-25
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:47:57+08:00">
+                2018-11-07
               </time>
             
           </span>
@@ -417,8 +417,25 @@
       
         <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given an array A of 0s and 1s, divide the array into 3 non-empty parts such that all of these parts represent the same binary value.</p>
 <p>If it is possible, return any [i, j] with i+1 &lt; j, such that:</p>
-<p>A[0], A[1], …, A[i] is the first part;<br>A[i+1], A[i+2], …, A[j-1] is the second part, and<br>A[j], A[j+1], …, A[A.length - 1] is the third part.<br>All three parts have equal binary value.<br>If it is not possible, return [-1, -1].</p>
+<ul>
+<li>A[0], A[1], …, A[i] is the first part;</li>
+<li>A[i+1], A[i+2], …, A[j-1] is the second part, and</li>
+<li>A[j], A[j+1], …, A[A.length - 1] is the third part.</li>
+<li>All three parts have equal binary value.</li>
+</ul>
+<p>If it is not possible, return [-1, -1].</p>
 <p>Note that the entire part is used when considering what binary value it represents.  For example, [1,1,0] represents 6 in decimal, not 3.  Also, leading zeros are allowed, so [0,1,1] and [1,1] represent the same value.</p>
+<hr>
+<p>给定一个由 0 和 1 组成的数组 A，将数组分成 3 个非空的部分，使得所有这些部分表示相同的二进制值。</p>
+<p>如果可以做到，请返回任何 [i, j]，其中 i+1 &lt; j，这样一来：</p>
+<ul>
+<li>A[0], A[1], …, A[i] 组成第一部分；</li>
+<li>A[i+1], A[i+2], …, A[j-1] 作为第二部分；</li>
+<li>A[j], A[j+1], …, A[A.length - 1] 是第三部分。</li>
+<li>这三个部分所表示的二进制值相等。</li>
+</ul>
+<p>如果无法做到，就返回 [-1, -1]。</p>
+<p>注意，在考虑每个部分所表示的二进制时，应当将其看作一个整体。例如，[1,1,0] 表示十进制中的 6，而不会是 3。此外，前导零也是被允许的，所以 [0,1,1] 和 [1,1] 表示相同的值。</p>
 <p>题目链接：<a href="https://leetcode.com/problems/three-equal-parts/" title="https://leetcode.com/problems/three-equal-parts/" target="_blank" rel="noopener">https://leetcode.com/problems/three-equal-parts/</a></p>
 <h4 id="Difficulty-hard"><a href="#Difficulty-hard" class="headerlink" title="Difficulty: hard"></a>Difficulty: hard</h4><a id="more"></a>
 <h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h3><pre><code>Input: [1,0,1,0,1]
@@ -511,8 +528,8 @@ def threeEqualParts(self, A):
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/23/926-Flip-String-to-Monotone-Increasing/" rel="next" title="926.Flip String to Monotone Increasing">
-                <i class="fa fa-chevron-left"></i> 926.Flip String to Monotone Increasing
+              <a href="/2018/10/23/926-Flip-String-to-Monotone-Increasing/" rel="next" title="926.Flip String to Monotone Increasing（将字符串翻转到单调递增）">
+                <i class="fa fa-chevron-left"></i> 926.Flip String to Monotone Increasing（将字符串翻转到单调递增）
               </a>
             
           </div>
@@ -521,8 +538,8 @@ def threeEqualParts(self, A):
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/23/928-Minmize-Malware-Spread-II/" rel="prev" title="928.Minmize Malware Spread II">
-                928.Minmize Malware Spread II <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/23/928-Minmize-Malware-Spread-II/" rel="prev" title="928.Minmize Malware Spread II（尽量减少恶意软件的传播 II）">
+                928.Minmize Malware Spread II（尽量减少恶意软件的传播 II） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -611,7 +628,7 @@ def threeEqualParts(self, A):
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

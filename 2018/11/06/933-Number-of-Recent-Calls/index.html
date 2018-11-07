@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionWrite a class RecentCounter to count recent requests. It has only one method: ping(int t), where t represents some time in milliseconds. Return the number of pings that have been made from">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-06T12:02:06.769Z">
+<meta property="og:updated_time" content="2018-11-06T12:15:23.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="933.Number of Recent Calls（最近的请求次数）">
 <meta name="twitter:description" content="DescriptionWrite a class RecentCounter to count recent requests. It has only one method: ping(int t), where t represents some time in milliseconds. Return the number of pings that have been made from">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-06T20:02:06+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-06T20:15:23+08:00">
                 2018-11-06
               </time>
             
@@ -436,12 +436,17 @@ Output: [null,1,2,3,3]
 <li>Each call to ping will have 1 &lt;= t &lt;= 10^9.</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li><h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><p> class RecentCounter:</p>
-<p> def <strong>init</strong>(self):</p>
-<pre><code>self.li=[]
-</code></pre></li>
+<li>用list存储所有的t；</li>
+<li>ping是，删除list中所有小于t-3000的值；</li>
+<li>返回list的长度。</li>
 </ol>
-<pre><code>def ping(self, t):
+<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class RecentCounter:
+
+def __init__(self):
+    self.li=[]
+
+
+def ping(self, t):
     self.li.append(t)
     index=0
     while(True):
@@ -494,8 +499,8 @@ Output: [null,1,2,3,3]
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/28/932-Beautiful-Array/" rel="next" title="932.Beautiful Array">
-                <i class="fa fa-chevron-left"></i> 932.Beautiful Array
+              <a href="/2018/10/28/932-Beautiful-Array/" rel="next" title="932.Beautiful Array（漂亮数组）">
+                <i class="fa fa-chevron-left"></i> 932.Beautiful Array（漂亮数组）
               </a>
             
           </div>
@@ -594,7 +599,7 @@ Output: [null,1,2,3,3]
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
