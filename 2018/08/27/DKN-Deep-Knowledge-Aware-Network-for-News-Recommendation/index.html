@@ -94,12 +94,12 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="用知识图谱表示，结合CNN，利用attention module帮助识别用户的多兴趣，进行新闻推荐 论文地址:https://arxiv.org/abs/1801.08284 参考：Qiu Fengyu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://redtongue.github.io/2018/08/27/DKN-Deep-Knowledge-Aware-Network-for-News-Recommendation/1.png">
-<meta property="og:updated_time" content="2018-08-27T06:26:47.564Z">
+<meta property="og:image" content="https://github.com/redtongue/redtongue.github.io/blob/master/images/DKN1.png">
+<meta property="og:updated_time" content="2018-11-13T03:24:53.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DKN:Deep Knowledge-Aware Network for News Recommendation">
 <meta name="twitter:description" content="用知识图谱表示，结合CNN，利用attention module帮助识别用户的多兴趣，进行新闻推荐 论文地址:https://arxiv.org/abs/1801.08284 参考：Qiu Fengyu">
-<meta name="twitter:image" content="https://redtongue.github.io/2018/08/27/DKN-Deep-Knowledge-Aware-Network-for-News-Recommendation/1.png">
+<meta name="twitter:image" content="https://github.com/redtongue/redtongue.github.io/blob/master/images/DKN1.png">
 
 
 
@@ -351,8 +351,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-27T14:26:47+08:00">
-                2018-08-27
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-13T11:24:53+08:00">
+                2018-11-13
               </time>
             
           </span>
@@ -423,7 +423,7 @@
 <a id="more"></a>
 <h2 id="ABSTRACT"><a href="#ABSTRACT" class="headerlink" title="ABSTRACT"></a>ABSTRACT</h2><p>在线新闻推荐系统主要解决新闻信息过载的问题，同时尽可能提升用户的使用体验，注重个性化。一般来说，新闻的语言是<strong>高度凝练</strong>的，有许多命名实体，并且包含了很多的常识。目前现有的一些推荐算法不关注、或者说无法理解新闻中的一些“知识”以及我们所了解的常识，仅仅通过一些简单的模式匹配、主题相关进行机械的推荐，不具有理论上的扩展性。此外，<strong>新闻具有时效性的特征</strong>，用户的口味也会 <strong>随着时间变化</strong>，为解决这些问题，本文提出了 DKN 模型，将知识图谱表示融入新闻推荐中。DKN 是一个预测点击率的基于内容的深度推荐模型。DKN 的核心是一个多通道、命名实体对齐的、融合了知识的卷积神经网络（KCNN），从语义和知识层面上来表示新闻。KCNN 把新闻中的词和实体作为通道（channel），并且在卷积过程中显式地监督两者的对齐关系。为了处理用户喜好的多样性，加入了 Attention 动态地对用户阅读历史进行加权，选择候选新闻。在大量的相关实验中，取得了最好的结果。</p>
 <h3 id="KEYWORDS"><a href="#KEYWORDS" class="headerlink" title="KEYWORDS"></a>KEYWORDS</h3><p>新闻推荐，知识图谱表示，深度神经网络，注意力模型</p>
-<h2 id="INTRODUCTION"><a href="#INTRODUCTION" class="headerlink" title="INTRODUCTION"></a>INTRODUCTION</h2><p>随着网络的发展，现在人们阅读新闻的习惯已经从传统的纸媒、电视转向网络，如<a href="https://news.google.com" title="https://news.google.com" target="_blank" rel="noopener">Google News</a>和<a href="https://www.bing.com/news" title="https://www.bing.com/news" target="_blank" rel="noopener">Bing News</a>在线新闻网站，收集各种各样的新闻资源提供给读者。网络新闻平台的一个常见问题是，文章的数量可能会被淹没，从而减轻信息过载的影响，从而帮助读者获取阅读兴趣并提出个性化建议。<br><img src="1.png" alt=" Illustration of two pieces of news connected throughknowledgeentities"></p>
+<h2 id="INTRODUCTION"><a href="#INTRODUCTION" class="headerlink" title="INTRODUCTION"></a>INTRODUCTION</h2><p>随着网络的发展，现在人们阅读新闻的习惯已经从传统的纸媒、电视转向网络，如<a href="https://news.google.com" title="https://news.google.com" target="_blank" rel="noopener">Google News</a>和<a href="https://www.bing.com/news" title="https://www.bing.com/news" target="_blank" rel="noopener">Bing News</a>在线新闻网站，收集各种各样的新闻资源提供给读者。网络新闻平台的一个常见问题是，文章的数量可能会被淹没，从而减轻信息过载的影响，从而帮助读者获取阅读兴趣并提出个性化建议。<br><img src="https://github.com/redtongue/redtongue.github.io/blob/master/images/DKN1.png" alt=" Illustration of two pieces of news connected throughknowledgeentities"></p>
 <p>总的来说，新闻推荐更为突出的主要有以下三个挑战：</p>
 <ol>
 <li>跟电影和酒店相比，新闻具有很强的时间敏感性，容易过期，过时的新闻很快就会被更新的新闻所取代。从而传统基于 ID 的协同过滤方法就很有限了；</li>

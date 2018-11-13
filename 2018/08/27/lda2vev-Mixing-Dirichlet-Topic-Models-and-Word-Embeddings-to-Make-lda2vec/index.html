@@ -94,12 +94,12 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="结合主题信息和词潜入，生成包含主题信息的向量化表示lda2vec. 论文地址:https://arxiv.org/abs/1605.02019 ABSTRACT">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://redtongue.github.io/2018/08/27/lda2vev-Mixing-Dirichlet-Topic-Models-and-Word-Embeddings-to-Make-lda2vec/1.png">
-<meta property="og:updated_time" content="2018-08-30T02:31:37.111Z">
+<meta property="og:image" content="https://github.com/redtongue/redtongue.github.io/blob/master/images/lda2vec1.png">
+<meta property="og:updated_time" content="2018-11-13T03:24:46.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lda2vev:Mixing Dirichlet Topic Models and Word Embeddings to Make lda2vec">
 <meta name="twitter:description" content="结合主题信息和词潜入，生成包含主题信息的向量化表示lda2vec. 论文地址:https://arxiv.org/abs/1605.02019 ABSTRACT">
-<meta name="twitter:image" content="https://redtongue.github.io/2018/08/27/lda2vev-Mixing-Dirichlet-Topic-Models-and-Word-Embeddings-to-Make-lda2vec/1.png">
+<meta name="twitter:image" content="https://github.com/redtongue/redtongue.github.io/blob/master/images/lda2vec1.png">
 
 
 
@@ -351,8 +351,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-30T10:31:37+08:00">
-                2018-08-30
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-13T11:24:46+08:00">
+                2018-11-13
               </time>
             
           </span>
@@ -422,7 +422,7 @@
 <h2 id="ABSTRACT"><a href="#ABSTRACT" class="headerlink" title="ABSTRACT"></a>ABSTRACT</h2><a id="more"></a>
 <p>已经证明分布式密集词向量在捕捉语言中的标记级语义和句法规则方面是有效的，而主题模型可以在文档上形成可解释的表示。在这项工作中，我们描述了lda2vec，它是一个与Dirichlet分布的主题向量的潜在文档级别混合学习密集词向量的模型。与连续密集的文档表示形式相反，该表达式通过非负单纯形约束产生稀疏的，可解释的文档混合。我们的方法很容易整合到现有的自动分化框架中，并允许无人监督的文档表示适合科学家使用，同时学习单词向量及它们之间的线性关系。</p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>主题模型因其能够将文档集合组织为一组较小的突出主题而受到欢迎。 与密集的分布式表示形式相反，这些文档和主题表示通常可以被人类访问，并且更容易被解释。 这种解释性提供了额外的选项来突出我们的文档系统中的模式和结构。 例如，使用潜在狄利克雷分配（LDA）主题模型可以揭示文档中的词汇集合（Blei et al。，2003），强调时间趋势（Charlin et al。，2015），并推断补充产品的网络（McAuley et al。 。，2015）。 见Blei等人。 （2010年），概述计算机视觉，遗传标记，调查数据和社交网络数据等领域的主题建模。</p>
-<p><img src="1.png" alt="lda2vec builds representations over both words and documents by mixing word2vec’s skipgram architecture with Dirichlet-optimized sparse topic mixtures"></p>
+<p><img src="https://github.com/redtongue/redtongue.github.io/blob/master/images/lda2vec1.png" alt="lda2vec builds representations over both words and documents by mixing word2vec’s skipgram architecture with Dirichlet-optimized sparse topic mixtures"></p>
 <p>图1：lda2vec通过将word2vec的skip gram体系结构与Dirichlet优化的稀疏主题混合体相结合，在单词和文档上构建表示。 文中描述了图中出现的各种组件和转换。</p>
 <p>对于构建文档表示的密集向量方法也存在：Le和Mikolov（2014）提出了可以预测段落中词袋的段落向量，Kiros et al（2015）构建了在给定句子之前和之后重构句子序列的向量，并且Ghosh等人 （2016）构建了预测后续句子特征的语境LSTMs。 概率主题模型倾向于将文档形成为主题的稀疏混合成员，而神经网络模型倾向于将文档建模为密集向量。 由于其稀疏性和低维性，来自前者的陈述更容易检查，并且更直接地产生关于基础系统的高层次直觉（尽管不是没有危害，参见Chang等人（2009））。 本文探讨混合稀疏文档表示密集词和主题向量的混合方法。</p>
 <p>不幸的是，制定一个新的概率主题模型需要得到一个新的近似值，这个过程需要大量的专业知识，并且必须根据每个模型进行定制。 因此，原型开发非常耗时，必须仔细考虑对模型体系结构的更改。 但是，使用现代自动分化框架，从业者可以将开发时间集中在模型设计上，而不是模型近似值。 这加快了评估哪些模型特征相关的过程。 这项工作利用Chainer（Tokui等，2015）框架来快速开发模型，同时使我们能够利用GPU来显着提高计算速度。</p>
