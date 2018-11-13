@@ -347,6 +347,132 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[[nowcoder66]机器人的运动范围]]></title>
+    <url>%2F2018%2F09%2F22%2Fnowcoder66-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4%2F</url>
+    <content type="text"><![CDATA[题目描述地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于k的格子。 例如，当k为18时，机器人能够进入方格（35,37），因为3+5+3+7 = 18。但是，它不能进入方格（35,38），因为3+5+3+8 = 19。请问该机器人能够达到多少个格子？ 题目链接： https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8 分析 参考代码# -*- coding:utf-8 -*- class Solution: def movingCount(self, threshold, rows, cols): # write code here if(threshold &lt; 0): return 0 ma=[[&apos;0&apos; for j in range(cols)] for i in range(rows)] #ma[0][0]=&apos;#&apos; Sum=self.Find(ma,rows,cols,threshold,0,0) return Sum def Find(self,ma,rows,cols,threshold,i,j): def judge(i,j,threshold): s=0 while(i&gt;0): s+=i%10 i//=10 while(j&gt;0): s+=j%10 j//=10 return bool(s&gt;threshold) if(i&lt;0 or j&lt;0 or i&gt;=rows or j&gt;=cols): return 0 if(ma[i][j]==&apos;#&apos; or judge(i,j,threshold)): return 0 a=b=c=d=0 ma[i][j]=&apos;#&apos; a=self.Find(ma,rows,cols,threshold,i+1,j) b=self.Find(ma,rows,cols,threshold,i-1,j) c=self.Find(ma,rows,cols,threshold,i,j+1) d=self.Find(ma,rows,cols,threshold,i,j-1) return a+b+c+d+1]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder65]矩阵中的路径]]></title>
+    <url>%2F2018%2F09%2F22%2Fnowcoder65-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84%2F</url>
+    <content type="text"><![CDATA[题目描述请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 X 4 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。 题目链接： https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc 分析 参考代码# -*- coding:utf-8 -*- class Solution: def hasPath(self, matrix, rows, cols, path): # write code here if(len(path)&lt;=0): return True for i in range(rows): for j in range(cols): if(matrix[i*cols+j]==path[0]): if(self.find(list(matrix),rows,cols,path[1:],i,j)): return True return False def find(self,ma,row,col,path,i,j): if(len(path)==0): return True ma[i*col+j]=&apos;#&apos; k=[False,False,False,False] if(j+1&lt;col and ma[i*col+j+1]==path[0]): k[0] = self.find(ma,row,col,path[1:],i,j+1) if(j-1&gt;=0 and ma[i*col+j-1]==path[0]): k[1] = self.find(ma,row,col,path[1:],i,j-1) if(i-1&gt;=0 and ma[(i-1)*col+j]==path[0]): k[2] = self.find(ma,row,col,path[1:],i-1,j) if(i+1&lt;row and ma[(i+1)*col+j]==path[0]): k[3] = self.find(ma,row,col,path[1:],i+1,j) return bool(sum(k))]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder64]滑动窗口的最大值]]></title>
+    <url>%2F2018%2F09%2F22%2Fnowcoder64-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC%2F</url>
+    <content type="text"><![CDATA[题目描述给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及滑动窗口的大小3，那么一共存在6个滑动窗口，他们的最大值分别为{4,4,6,6,6,5}； 针对数组{2,3,4,2,6,2,5,1}的滑动窗口有以下6个： {[2,3,4],2,6,2,5,1}， {2,[3,4,2],6,2,5,1}， {2,3,[4,2,6],2,5,1}， {2,3,4,[2,6,2],5,1}， {2,3,4,2,[6,2,5],1}， {2,3,4,2,6,[2,5,1]}。 题目链接： https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788 分析 参考代码# -*- coding:utf-8 -*- class Solution: def maxInWindows(self, num, size): # write code here if(size&lt;=0 or size&gt;len(num)): return [] m=max(num[:size]) l=[m] for i in range(1,len(num)-size+1): if(num[i+size-1]&gt;=m): m=num[i+size-1] l.append(m) else: if(num[i-1]&lt;m): l.append(m) else: m=max(num[i:i+size]) l.append(m) return l]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder63]数据流中的中位数]]></title>
+    <url>%2F2018%2F09%2F22%2Fnowcoder63-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[题目描述如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。我们使用Insert()方法读取数据流，使用GetMedian()方法获取当前读取数据的中位数。 题目链接： https://www.nowcoder.com/practice/9be0172896bd43948f8a32fb954e1be1 分析 参考代码# -*- coding:utf-8 -*- class Solution: def __init__(self): self.li=[] self.length=0 def Insert(self, num): # write code here for i in range(len(self.li)): if(self.li[i]&gt;num): self.li=self.li[:i]+[num]+self.li[i:] self.length+=1 break else: self.li=self.li+[num] self.length+=1 def GetMedian(self,data): # write code here if(self.length%2==1): return self.li[self.length//2] else: return float(self.li[self.length//2]+self.li[self.length//2-1])/2]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder62]二叉搜索树的第k个结点]]></title>
+    <url>%2F2018%2F09%2F22%2Fnowcoder62-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%AC%ACk%E4%B8%AA%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[题目描述给定一棵二叉搜索树，请找出其中的第k小的结点。例如， （5，3，7，2，4，6，8） 中，按结点数值大小顺序第三小结点的值为4。 题目链接： https://www.nowcoder.com/practice/ef068f602dde4d28aab2b210e859150a 分析 参考代码# -*- coding:utf-8 -*- class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: # 返回对应节点TreeNode def KthNode(self, pRoot, k): if(pRoot==None or k&lt;=0): return None li=[pRoot] l=[pRoot.val] while(li): index=li[0] li=li[1:] if(index.left!=None): li.append(index.left) l.append(index.left.val) if(index.right!=None): li.append(index.right) l.append(index.right.val) l.sort() if(k&gt;len(l)): return None target=l[k-1] li=[pRoot] while(li): index=li[0] li=li[1:] if(index.val==target): return index if(index.left!=None): li.append(index.left) if(index.right!=None): li.append(index.right)]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder61]序列化二叉树]]></title>
+    <url>%2F2018%2F09%2F15%2Fnowcoder61-%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目描述请实现两个函数，分别用来序列化和反序列化二叉树 题目链接： https://www.nowcoder.com/practice/cf7e25aa97c04cc1a68c8f040e71fb84 分析 参考代码-*- coding:utf-8 -*- class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: def Serialize(self, root): # write code here s=&apos;&apos; if(root==None): return s li=[root] l=[] st=&apos;&apos; s=str(root.val)+&apos;,&apos; while(li or l): if(not li): li=l if(st): s+=st st=&apos;&apos; l=[] if(not li): continue ro=li[0]; li=li[1:] if(ro.left!=None): l.append(ro.left) st+=str(ro.left.val)+&apos;,&apos; else: st+=&apos;#,&apos; if(ro.right!=None): l.append(ro.right) st+=str(ro.right.val)+&apos;,&apos; else: st+=&apos;#,&apos; return s[:-1] def Deserialize(self, s): if(len(s)==0): return None s=s.split(&apos;,&apos;) head=TreeNode(int(s[0])) q=head li=[q] i=1 length=len(s) while(li and i&lt;length): index=li[0] li=li[1:] if(i&lt;length and s[i]!=&apos;#&apos;): q=TreeNode(int(s[i])) li.append(q) index.left=q i+=1 if(i&lt;length and s[i]!=&apos;#&apos;): q=TreeNode(int(s[i])) li.append(q) index.right=q i+=1 return head]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder60]把二叉树打印成多行]]></title>
+    <url>%2F2018%2F09%2F15%2Fnowcoder60-%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%93%E5%8D%B0%E6%88%90%E5%A4%9A%E8%A1%8C%2F</url>
+    <content type="text"><![CDATA[题目描述从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。 题目链接： https://www.nowcoder.com/practice/445c44d982d04483b04a54f298796288 分析 参考代码-*- coding:utf-8 -*- class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: # 返回二维列表[[1,2],[4,5]] def Print(self, pRoot): li=[pRoot] l=[] r_li=[] if(pRoot==None): return r_li r_li.append([pRoot.val]) while(li or l): if(not li): li=l if(l): r_li.append([i.val for i in l]) l=[] if(not li): continue ro=li[0]; li=li[1:] if(ro.left!=None): l.append(ro.left) if(ro.right!=None): l.append(ro.right) return r_li]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder59]按之字形顺序打印二叉树]]></title>
+    <url>%2F2018%2F09%2F15%2Fnowcoder59-%E6%8C%89%E4%B9%8B%E5%AD%97%E5%BD%A2%E9%A1%BA%E5%BA%8F%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目描述请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。 题目链接： https://www.nowcoder.com/practice/91b69814117f4e8097390d107d2efbe0 分析 参考代码-*- coding:utf-8 -*- class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: def Print(self, pRoot): li=[pRoot] l=[] index=0 r_li=[] if(pRoot==None): return r_li r_li.append([pRoot.val]) while(li or l): if(not li): li=l if(l): index+=1 if(index%2==1): l.reverse() r_li.append([i.val for i in l]) l.reverse() else: r_li.append([i.val for i in l]) l=[] if(not li): continue ro=li[0]; li=li[1:] if(ro.left!=None): l.append(ro.left) if(ro.right!=None): l.append(ro.right) return r_li]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder58]对称二叉树]]></title>
+    <url>%2F2018%2F09%2F15%2Fnowcoder58-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目描述请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。 题目链接： https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb 分析 参考代码-*- coding:utf-8 -*- class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: def isSymmetrical(self, pRoot): # write code here if(pRoot==None): return True li=[pRoot] left_li=[pRoot] right_li=[pRoot] while(li): index=li[0] li=li[1:] if(index==None): continue if(True): li.append(index.left) left_li.append(index.left) if(True): li.append(index.right) left_li.append(index.right) li=[pRoot] l=[] while(li or l): if(not li): li=l l=[] index=li[0] li=li[1:] if(index==None): continue if(True): l.append(index.right) right_li.append(index.right) if(True): l.append(index.left) right_li.append(index.left) for i,j in zip(left_li,right_li): #print(i,j) if(i!=None): if(j==None): return False else: if(i.val!=j.val): return None else: if(j!=None): return False return True]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder57]二叉树的下一个结点]]></title>
+    <url>%2F2018%2F09%2F15%2Fnowcoder57-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[题目描述给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。 题目链接： https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e 分析 参考代码-*- coding:utf-8 -*- class TreeLinkNode: def __init__(self, x): self.val = x self.left = None self.right = None self.next = None class Solution: def GetNext(self, pNode): # write code here if(pNode.right==None): if(pNode.next==None): return None p=pNode.next if(p.left==pNode): return p else: q=pNode while(p.right==q and p.next!=None): p=p.next q=q.next if(p.left==q): return p return None else: p=pNode.right while(p.left!=None): p=p.left return p]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[903.Valid Permutaions for DI Sequence]]></title>
     <url>%2F2018%2F09%2F10%2F903-Valid-Permutaions-for-DI-Sequence%2F</url>
     <content type="text"><![CDATA[DescriptionWe are given S, a length n string of characters from the set {‘D’, ‘I’}. (These letters stand for “decreasing” and “increasing”.) A valid permutation is a permutation P[0], P[1], …, P[n] of integers {0, 1, …, n}, such that for all i: If S[i] == ‘D’, then P[i] &gt; P[i+1], and; If S[i] == ‘I’, then P[i] &lt; P[i+1]. How many valid permutations are there? Since the answer may be large, return your answer modulo 10^9 + 7. 题目链接：https://leetcode.com/problems/valid-permutations-for-di-sequence/description/ Difficulty: hard Example 1:Input: &quot;DID&quot; Output: 5 Explanation: The 5 valid permutations of (0, 1, 2, 3) are: (1, 0, 3, 2) (2, 0, 3, 1) (2, 1, 3, 0) (3, 0, 2, 1) (3, 1, 2, 0) Note: 1 &lt;= S.length &lt;= 200 S consists only of characters from the set {‘D’, ‘I’}. 分析 题意：每次可以交换第index（小于等于K）个字母到最后一个，可以交换任意次，是的结果为最小字典顺序； 当K&gt;=2时，相当于时间复杂度为$O(n_2)$的排序算法，当然可能小于$O(n_2)$，最后结果一定是字典顺序；大致过程：每次移到最后相当于字符串循环，每次将待排序字符放在第一位，循环后面的字符串，直到待排序字符排好序，加入循环字符串，以此类推； 当K==1时，相当于首尾相连，找到最小字典顺序字串，简单做法：字符串复制两份，遍历一半，截取length长度的字串，找出最小字典顺序字串。 参考代码]]></content>
@@ -393,6 +519,58 @@
       <tags>
         <tag>code</tag>
         <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder56]删除链表中重复的结点]]></title>
+    <url>%2F2018%2F09%2F08%2Fnowcoder56-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[题目描述在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为 1-&gt;2-&gt;5 题目链接： https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef 分析 参考代码-*- coding:utf-8 -*- class ListNode: def __init__(self, x): self.val = x self.next = None class Solution: def deleteDuplication(self, pHead): # write code here d=set() single=set() p=pHead while(p!=None): if(p.val not in d): d.add(p.val) single.add(p.val) else: if(p.val in single): single.remove(p.val) p=p.next p=pHead realHead=None real=None i=0 while(p): i+=1 if(p.val in single): if(realHead==None): realHead=p real=p else: real.next=p real=p p=p.next if(real!=None): real.next=None return realHead]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder55]链表中环的入口结点]]></title>
+    <url>%2F2018%2F09%2F08%2Fnowcoder55-%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%8E%AF%E7%9A%84%E5%85%A5%E5%8F%A3%E7%BB%93%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[题目描述给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。 题目链接： https://www.nowcoder.com/practice/253d2c59ec3e4bc68da16833f79a38e4 分析 参考代码 -*- coding:utf-8 -*- class ListNode: def __init__(self, x): self.val = x self.next = None class Solution: def EntryNodeOfLoop(self, pHead): # write code here if(not pHead or not pHead.next): return None p1=pHead p2=pHead while(p2!=None and p2.next!=None): p1=p1.next p2=p2.next.next if(p2==p1): p1=pHead while(p1!=p2): p1=p1.next p2=p2.next return p1 return None]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder54]字符流中第一个不重复的字符]]></title>
+    <url>%2F2018%2F09%2F08%2Fnowcoder54-%E5%AD%97%E7%AC%A6%E6%B5%81%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%B8%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%97%E7%AC%A6%2F</url>
+    <content type="text"><![CDATA[题目描述请实现一个函数用来找出字符流中第一个只出现一次的字符。例如，当从字符流中只读出前两个字符”go”时，第一个只出现一次的字符是”g”。当从该字符流中读出前六个字符“google”时，第一个只出现一次的字符是”l”。 题目链接： https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720 输出描述 如果当前字符流没有存在出现一次的字符，返回#字符。 分析 参考代码# -*- coding:utf-8 -*- class Solution: # 返回对应char def __init__(self): self.li=[] self.d=set() self.single=[] def FirstAppearingOnce(self): # write code here for index in self.li[-1]: if(index in self.d): if(index in self.single): self.single.remove(index) else: self.d.add(index) self.single.append(index) if(self.single): return self.single[0] else: return &apos;#&apos; def Insert(self, char): # write code here self.li.append(char)]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[nowcoder53]表示数值的字符串]]></title>
+    <url>%2F2018%2F09%2F08%2Fnowcoder53-%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[题目描述请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串”+100”,”5e2”,”-123”,”3.1416”和”-1E-16”都表示数值。 但是”12e”,”1a3.14”,”1.2.3”,”+-5”和”12e+4.3”都不是。 题目链接： https://www.nowcoder.com/practice/6f8c901d091949a5837e24bb82a731f2 分析 参考代码# -*- coding:utf-8 -*- class Solution: # s字符串 def isNumeric(self, s): # write code here if(len(s)==0): return False ii=0 li=[str(x) for x in range(10)] if(s[0] in [&apos;+&apos;,&apos;-&apos;]): ii=1 judge=0 for i in range(ii,len(s)): if(s[i]==&apos;.&apos;): if(not judge): judge=1 else: return False elif(s[i] in [&apos;e&apos;,&apos;E&apos;]): i+=1 if(i&lt;len(s)): if(s[i] in [&apos;+&apos;,&apos;-&apos;]+li): i+=1 while(i&lt;len(s)): if(s[i] not in li): return False i+=1 break break else: return False elif(s[i] not in li): return False return True]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>剑指Offer</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -1402,8 +1580,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
