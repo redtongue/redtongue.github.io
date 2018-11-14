@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Git 和 Github]]></title>
+    <url>%2F2018%2F11%2F14%2FGit-%E5%92%8C-Github%2F</url>
+    <content type="text"><![CDATA[以下教程没用具体的代码截图，言简意赅，都是具体的操作，就是为了自己以后当作笔记来看，可以参考廖雪峰 Git 教程安装Git在Windows上安装Git，可以从Git官网直接下载安装程序，（网速慢的朋友这里），然后按默认选项安装即可。 安装完成后，在开始菜单中打开Git Bash，输入如下命令： $ git config --global user.name &quot;Your Name&quot; $ git config --global user.email &quot;email@example.com&quot; 相当于自报家门，注意git config命令的–global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。 创建版本库首先创建一个新目录，进入到到新目录，在Git Bash中输入如下命令： $ git init Git就把仓库建好了，会多了一“.git”目录，如果没有看到，可能是隐藏了，右键查看，取消隐藏就可以了。 新建文件，修改内容，如下命令提交到Git仓库： $ git add readme.txt readme.txt是需要提交的文件，可以用“.”代表所有需要提交的文件。 如下命令告诉Git仓库将文件提交到仓库： $ git commit -m &quot;解释标识这次提交&quot; “解释标识这次提交”想怎么写就怎么写，为了自己以后看的明白，还是写的清楚一些，最好是这次提交修改了什么内容。 commit之前可以多次add，add后面多个文件可以空格隔开。 管理版本版本回退版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用git log命令查看： 版本回退，“HEAD”表示当前版本，上一个版本就是“HEAD^”,上上一个就是“HEAD^”，上一百个个就是“HEAD~100”。 如下命令是回退到上一个版本： $ git reset --hard HEAD^ 也可以返回前面的版本： $ git reset --hard 1094a “1094a”是版本的commit_id，可以通过git log 查看，不用写全，只需要写出前几位几个。 工作区和暂存区Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。 工作区（Working Directory） 就是你在电脑里能看到的目录 版本库（Repository） 工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。 Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。 分支和HEAD的概念我们以后再讲。 前面讲了我们把文件往Git版本库里添加的时候，是分两步执行的： 第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区； 第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。 因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。 你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。 管理更改什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。 修改之后add，再修改，commit时只会commit第一次修改的内容，每一次add对应一个commit或者多个add对应一个commit。 提交之后可以使用如下命令查看仓库文件与本地文件的区别： $ git diff HEAD -- readme.txt 上面查看的是readme.txt的区别。 撤销修改两种情况，一种是只是本地修改了，没有git add： $ git checkout -- readme.txt 如上，放弃readme.txt的修改。 第二种是已经git add了： $ git reset HEAD readme.txt 如上，把暂存区的修改撤销掉（unstage），重新放回工作区； $ git checkout -- readme.txt 再利用checkout放弃本地的修改。 删除文件将本地文件删除，再将仓库中的文件删除： git rm test.txt 如上删除。 将本地文件删除，删错了，从仓库中找回来： $ git checkout -- test.txt git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。 远程仓库GitHub是个神奇的网站，从名字就可以看出，这个网站就是提供Git仓库托管服务的，所以，只要注册一个GitHub账号，就可以免费获得Git远程仓库。 第0步：申请GitHUb账号。 第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key： $ ssh-keygen -t rsa -C &quot;youremail@example.com&quot; 如果一切顺利的话，可以在用户主目录（如C:\Users\red_tongue）里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。 第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面： 然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容： 当然，GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。 在GitHub上免费托管的Git仓库，任何人都可以看到，私人的收费的。 添加远程仓库首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：如test 目前，在GitHub上的这个test仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。 现在，我们根据GitHub的提示，在本地的test仓库下运行命令： $ git remote add origin git@github.com:redtongue/test.git redtongue修改为自己相应的账户名。 下一步，就可以把本地库的所有内容推送到远程库上： $ git push -u origin master 把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。 由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。 从远程克隆准备好远程库，下一步是用命令git clone克隆一个本地库： $ git clone git@github.com:redtongue/test.git 注意把Git库的地址换成你自己的，然后进入test目录看看。 分支管理]]></content>
+      <categories>
+        <category>whatever</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[940.Distinct Subsequences II(不同的子序列 II)]]></title>
     <url>%2F2018%2F11%2F11%2F940-Distinct-Subsequences-II%2F</url>
     <content type="text"><![CDATA[DescriptionGiven a string S, count the number of distinct, non-empty subsequences of S . Since the result may be large, return the answer modulo 10^9 + 7. 给定一个字符串 S，计算 S 的不同非空子序列的个数。 因为结果可能很大，所以返回答案模 10^9 + 7. 题目链接：https://leetcode.com/problems/distinct-subsequences-ii/ Difficulty: hard Example 1:Input: &quot;abc&quot; Output: 7 Explanation: The 7 distinct subsequences are &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;ab&quot;, &quot;ac&quot;, &quot;bc&quot;, and &quot;abc&quot;. Example 2:Input: &quot;aba&quot; Output: 6 Explanation: The 6 distinct subsequences are &quot;a&quot;, &quot;b&quot;, &quot;ab&quot;, &quot;ba&quot;, &quot;aa&quot; and &quot;aba&quot;. Example 3:Input: &quot;aaa&quot; Output: 3 Explanation: The 3 distinct subsequences are &quot;a&quot;, &quot;aa&quot; and &quot;aaa&quot;. Note: S contains only lowercase letters. 1 &lt;= S.length &lt;= 2000 分析 分析得，以每个字母结尾的字串是上一个字串和加1（1是指只有该字母）； 所以用D存储以每个字母结尾的字串和； 遍历S，更新每个字母对应的以此结尾的字串和，用Sum记录所有的字串和； 返回Sum。 参考代码class Solution: def distinctSubseqII(self, S): if(len(S)==1): return 1 Sum=1 old={} old[S[0]]=1 for s in S[1:]: if(s in old): tar=old[s] old[s]=Sum+1 Sum+=(Sum+1-tar) else: old[s]=Sum+1 Sum*=2 Sum+=1 Sum=Sum%(10**9+7) return Sum]]></content>
@@ -1186,8 +1197,8 @@
       <tags>
         <tag>code</tag>
         <tag>剑指Offer</tag>
-        <tag>二叉树</tag>
         <tag>链表</tag>
+        <tag>二叉树</tag>
       </tags>
   </entry>
   <entry>
@@ -1593,8 +1604,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Array</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>

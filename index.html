@@ -303,6 +303,237 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/11/14/Git-和-Github/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yunxiang wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redtongue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/14/Git-和-Github/" itemprop="url">Git 和 Github</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-14T20:22:55+08:00">
+                2018-11-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-14T21:09:21+08:00">
+                2018-11-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/whatever/" itemprop="url" rel="index">
+                    <span itemprop="name">whatever</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>以下教程没用具体的代码截图，言简意赅，都是具体的操作，就是为了自己以后当作笔记来看，可以参考<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰</a></p>
+<h2 id="Git-教程"><a href="#Git-教程" class="headerlink" title="Git 教程"></a>Git 教程</h2><h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>在Windows上安装Git，可以从Git官网直接<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">下载安装程序</a>，（网速慢的朋友<a href="https://pan.baidu.com/s/1sd-0JoDgGRlt3_3uzlUFUg" target="_blank" rel="noopener">这里</a>），然后按默认选项安装即可。</p>
+<p>安装完成后，在开始菜单中打开Git Bash，输入如下命令：</p>
+<pre><code>$ git config --global user.name &quot;Your Name&quot;
+$ git config --global user.email &quot;email@example.com&quot;
+</code></pre><p>相当于自报家门，注意git config命令的–global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。</p>
+<h3 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h3><p>首先创建一个新目录，进入到到新目录，在Git Bash中输入如下命令：</p>
+<pre><code>$ git init
+</code></pre><p>Git就把仓库建好了，会多了一“.git”目录，如果没有看到，可能是隐藏了，右键查看，取消隐藏就可以了。</p>
+<p>新建文件，修改内容，如下命令提交到Git仓库：</p>
+<pre><code>$ git add readme.txt
+</code></pre><p>readme.txt是需要提交的文件，可以用“.”代表所有需要提交的文件。</p>
+<p>如下命令告诉Git仓库将文件提交到仓库：</p>
+<pre><code>$ git commit -m &quot;解释标识这次提交&quot;
+</code></pre><p>“解释标识这次提交”想怎么写就怎么写，为了自己以后看的明白，还是写的清楚一些，最好是这次提交修改了什么内容。</p>
+<p>commit之前可以多次add，add后面多个文件可以空格隔开。</p>
+<h3 id="管理版本"><a href="#管理版本" class="headerlink" title="管理版本"></a>管理版本</h3><h4 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h4><p>版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用<br><strong>git log</strong>命令查看：</p>
+<p>版本回退，“HEAD”表示当前版本，上一个版本就是“HEAD^”,上上一个就是“HEAD^”，上一百个个就是“HEAD~100”。</p>
+<p>如下命令是回退到上一个版本：</p>
+<pre><code>$ git reset --hard HEAD^
+</code></pre><p>也可以返回前面的版本：</p>
+<pre><code>$ git reset --hard 1094a
+</code></pre><p>“1094a”是版本的commit_id，可以通过git log 查看，不用写全，只需要写出前几位几个。</p>
+<h4 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h4><p>Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。</p>
+<p><strong>工作区（Working Directory）</strong></p>
+<p>就是你在电脑里能看到的目录</p>
+<p><strong>版本库（Repository）</strong></p>
+<p>工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。</p>
+<p>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。</p>
+<p><img src="/2018/11/14/Git-和-Github/版本库.png" alt="版本库"></p>
+<p>分支和HEAD的概念我们以后再讲。</p>
+<p>前面讲了我们把文件往Git版本库里添加的时候，是分两步执行的：</p>
+<p>第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
+<p>第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
+<p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。</p>
+<p>你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。</p>
+<h4 id="管理更改"><a href="#管理更改" class="headerlink" title="管理更改"></a>管理更改</h4><p>什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</p>
+<p>修改之后add，再修改，commit时只会commit第一次修改的内容，每一次add对应一个commit或者多个add对应一个commit。</p>
+<p>提交之后可以使用如下命令查看仓库文件与本地文件的区别：</p>
+<pre><code>$ git diff HEAD -- readme.txt
+</code></pre><p>上面查看的是readme.txt的区别。</p>
+<h4 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h4><p>两种情况，一种是只是本地修改了，没有git add：</p>
+<pre><code>$ git checkout -- readme.txt
+</code></pre><p>如上，放弃readme.txt的修改。</p>
+<p>第二种是已经git add了：</p>
+<pre><code>$ git reset HEAD readme.txt
+</code></pre><p>如上，把暂存区的修改撤销掉（unstage），重新放回工作区；</p>
+<pre><code>$ git checkout -- readme.txt
+</code></pre><p>再利用checkout放弃本地的修改。</p>
+<h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4><p>将本地文件删除，再将仓库中的文件删除：</p>
+<pre><code>git rm test.txt
+</code></pre><p>如上删除。</p>
+<p>将本地文件删除，删错了，从仓库中找回来：</p>
+<pre><code>$ git checkout -- test.txt
+</code></pre><p>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
+<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><p>GitHub是个神奇的网站，从名字就可以看出，这个网站就是提供Git仓库托管服务的，所以，只要注册一个GitHub账号，就可以免费获得Git远程仓库。</p>
+<p>第0步：申请GitHUb账号。</p>
+<p>第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：</p>
+<pre><code>$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;
+</code></pre><p>如果一切顺利的话，可以在用户主目录（如C:\Users\red_tongue）里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
+<p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：</p>
+<p>然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：</p>
+<p>当然，GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</p>
+<p>在GitHub上免费托管的Git仓库，任何人都可以看到，私人的收费的。</p>
+<h4 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h4><p>首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：如test</p>
+<p>目前，在GitHub上的这个test仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。</p>
+<p>现在，我们根据GitHub的提示，在本地的test仓库下运行命令：</p>
+<pre><code>$ git remote add origin git@github.com:redtongue/test.git
+</code></pre><p>redtongue修改为自己相应的账户名。</p>
+<p>下一步，就可以把本地库的所有内容推送到远程库上：</p>
+<pre><code>$ git push -u origin master
+</code></pre><p>把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。</p>
+<p>由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<h4 id="从远程克隆"><a href="#从远程克隆" class="headerlink" title="从远程克隆"></a>从远程克隆</h4><p>准备好远程库，下一步是用命令git clone克隆一个本地库：</p>
+<pre><code>$ git clone git@github.com:redtongue/test.git
+</code></pre><p>注意把Git库的地址换成你自己的，然后进入test目录看看。</p>
+<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/11/11/940-Distinct-Subsequences-II/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1822,175 +2053,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/28/932-Beautiful-Array/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yunxiang wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redtongue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/28/932-Beautiful-Array/" itemprop="url">932.Beautiful Array（漂亮数组）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-28T19:09:52+08:00">
-                2018-10-28
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:44:54+08:00">
-                2018-11-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>For some fixed N, an array A is beautiful if it is a permutation of the integers 1, 2, …, N, such that:</p>
-<p>For every i &lt; j, there is no k with i &lt; k &lt; j such that A[k] * 2 = A[i] + A[j].</p>
-<p>Given N, return any beautiful array A.  (It is guaranteed that one exists.)</p>
-<hr>
-<p>对于某些固定的 N，如果数组 A 是整数 1, 2, …, N 组成的排列，使得：</p>
-<p>对于每个 i &lt; j，都不存在 k 满足 i &lt; k &lt; j 使得 A[k] * 2 = A[i] + A[j]。</p>
-<p>那么数组 A 是漂亮数组。</p>
-<p>给定 N，返回任意漂亮数组 A（保证存在一个）。</p>
-<p>题目链接：<a href="https://leetcode.com/problems/beautiful-array/" title="https://leetcode.com/problems/beautiful-array/" target="_blank" rel="noopener">https://leetcode.com/problems/beautiful-array/</a></p>
-<h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/28/932-Beautiful-Array/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2045,7 +2107,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">134</span>
+                  <span class="site-state-item-count">135</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
