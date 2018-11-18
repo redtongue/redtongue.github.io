@@ -1046,8 +1046,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-15T15:46:41+08:00">
-                2018-11-15
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-18T22:00:24+08:00">
+                2018-11-18
               </time>
             
           </span>
@@ -1103,168 +1103,16 @@
 
       
         
-          
-            <p>以下教程没用具体的代码截图，言简意赅，都是具体的操作，就是为了自己以后当作笔记来看，可以参考<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰</a></p>
+          <p>以下教程没用具体的代码截图，言简意赅，都是具体的操作，就是为了自己以后当作笔记来看，可以参考<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰</a></p>
 <h2 id="Git-教程"><a href="#Git-教程" class="headerlink" title="Git 教程"></a>Git 教程</h2><h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>在Windows上安装Git，可以从Git官网直接<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">下载安装程序</a>，（网速慢的朋友<a href="https://pan.baidu.com/s/1sd-0JoDgGRlt3_3uzlUFUg" target="_blank" rel="noopener">这里</a>），然后按默认选项安装即可。</p>
 <p>安装完成后，在开始菜单中打开Git Bash，输入如下命令：</p>
-<pre><code>$ git config --global user.name &quot;Your Name&quot;
-$ git config --global user.email &quot;email@example.com&quot;
-</code></pre><p>相当于自报家门，注意git config命令的–global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。</p>
-<h3 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h3><p>首先创建一个新目录，进入到到新目录，在Git Bash中输入如下命令：</p>
-<pre><code>$ git init
-</code></pre><p>Git就把仓库建好了，会多了一“.git”目录，如果没有看到，可能是隐藏了，右键查看，取消隐藏就可以了。</p>
-<p>新建文件，修改内容，如下命令提交到Git仓库：</p>
-<pre><code>$ git add readme.txt
-</code></pre><p>readme.txt是需要提交的文件，可以用“.”代表所有需要提交的文件。</p>
-<p>如下命令告诉Git仓库将文件提交到仓库：</p>
-<pre><code>$ git commit -m &quot;解释标识这次提交&quot;
-</code></pre><p>“解释标识这次提交”想怎么写就怎么写，为了自己以后看的明白，还是写的清楚一些，最好是这次提交修改了什么内容。</p>
-<p>commit之前可以多次add，add后面多个文件可以空格隔开。</p>
-<h3 id="管理版本"><a href="#管理版本" class="headerlink" title="管理版本"></a>管理版本</h3><h4 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h4><p>版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用<br><strong>git log</strong>命令查看：</p>
-<p>版本回退，“HEAD”表示当前版本，上一个版本就是“HEAD^”,上上一个就是“HEAD^”，上一百个个就是“HEAD~100”。</p>
-<p>如下命令是回退到上一个版本：</p>
-<pre><code>$ git reset --hard HEAD^
-</code></pre><p>也可以返回前面的版本：</p>
-<pre><code>$ git reset --hard 1094a
-</code></pre><p>“1094a”是版本的commit_id，可以通过git log 查看，不用写全，只需要写出前几位几个。</p>
-<h4 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h4><p>Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。</p>
-<p><strong>工作区（Working Directory）</strong></p>
-<p>就是你在电脑里能看到的目录</p>
-<p><strong>版本库（Repository）</strong></p>
-<p>工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。</p>
-<p>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。</p>
-<p><img src="/2018/11/14/Git-和-Github/版本库.png" alt="版本库"></p>
-<p>分支和HEAD的概念我们以后再讲。</p>
-<p>前面讲了我们把文件往Git版本库里添加的时候，是分两步执行的：</p>
-<p>第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
-<p>第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
-<p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。</p>
-<p>你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。</p>
-<h4 id="管理更改"><a href="#管理更改" class="headerlink" title="管理更改"></a>管理更改</h4><p>什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</p>
-<p>修改之后add，再修改，commit时只会commit第一次修改的内容，每一次add对应一个commit或者多个add对应一个commit。</p>
-<p>提交之后可以使用如下命令查看仓库文件与本地文件的区别：</p>
-<pre><code>$ git diff HEAD -- readme.txt
-</code></pre><p>上面查看的是readme.txt的区别。</p>
-<h4 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h4><p>两种情况，一种是只是本地修改了，没有git add：</p>
-<pre><code>$ git checkout -- readme.txt
-</code></pre><p>如上，放弃readme.txt的修改。</p>
-<p>第二种是已经git add了：</p>
-<pre><code>$ git reset HEAD readme.txt
-</code></pre><p>如上，把暂存区的修改撤销掉（unstage），重新放回工作区；</p>
-<pre><code>$ git checkout -- readme.txt
-</code></pre><p>再利用checkout放弃本地的修改。</p>
-<h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4><p>将本地文件删除，再将仓库中的文件删除：</p>
-<pre><code>git rm test.txt
-</code></pre><p>如上删除。</p>
-<p>将本地文件删除，删错了，从仓库中找回来：</p>
-<pre><code>$ git checkout -- test.txt
-</code></pre><p>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
-<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><p>GitHub是个神奇的网站，从名字就可以看出，这个网站就是提供Git仓库托管服务的，所以，只要注册一个GitHub账号，就可以免费获得Git远程仓库。</p>
-<p>第0步：申请GitHUb账号。</p>
-<p>第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：</p>
-<pre><code>$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;
-</code></pre><p>如果一切顺利的话，可以在用户主目录（如C:\Users\red_tongue）里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
-<p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：</p>
-<p>然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：</p>
-<p>当然，GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</p>
-<p>在GitHub上免费托管的Git仓库，任何人都可以看到，私人的收费的。</p>
-<h4 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h4><p>首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：如test</p>
-<p>目前，在GitHub上的这个test仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。</p>
-<p>现在，我们根据GitHub的提示，在本地的test仓库下运行命令：</p>
-<pre><code>$ git remote add origin git@github.com:redtongue/test.git
-</code></pre><p>redtongue修改为自己相应的账户名。</p>
-<p>下一步，就可以把本地库的所有内容推送到远程库上：</p>
-<pre><code>$ git push -u origin master
-</code></pre><p>把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。</p>
-<p>由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
-<h4 id="从远程克隆"><a href="#从远程克隆" class="headerlink" title="从远程克隆"></a>从远程克隆</h4><p>准备好远程库，下一步是用命令git clone克隆一个本地库：</p>
-<pre><code>$ git clone git@github.com:redtongue/test.git
-</code></pre><p>注意把Git库的地址换成你自己的，然后进入test目录看看。</p>
-<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><p>有了分支，你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。</p>
-<h4 id="创建与合并分支"><a href="#创建与合并分支" class="headerlink" title="创建与合并分支"></a>创建与合并分支</h4><p>每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即master分支。HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。</p>
-<p>一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支，以及当前分支的提交点：</p>
-<p><img src="/2018/11/14/Git-和-Github/branch.png" alt="分支"></p>
-<p>每次提交，master分支都会向前移动一步，这样，随着你不断提交，master分支的线也越来越长。</p>
-<p>当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上：</p>
-<p><img src="/2018/11/14/Git-和-Github/branch2.png" alt="dev分支"></p>
-<p>创建分支，合并分支，都是操作指针，速度很快。</p>
-<p>首先，我们创建dev分支，然后切换到dev分支：</p>
-<pre><code>$ git checkout -b dev
-</code></pre><p>等价：</p>
-<pre><code>$ git branch dev
-$ git checkout dev
-</code></pre><p>然后，用git branch命令查看当前分支：</p>
-<pre><code>$ git branch
-</code></pre><p>dev分支的工作完成，切换回master分支：</p>
-<pre><code>$ git checkout master
-</code></pre><p>然后，我们把dev分支的工作成果合并到master分支上：</p>
-<pre><code>$ git merge dev
-</code></pre><p>合并完成后，就可以放心地删除dev分支了：</p>
-<pre><code>$ git branch -d dev
-</code></pre><h4 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h4><p>如上在两个分支做完修改之后，使用git merge [branch name] 合并之后会提示</p>
-<pre><code>CONFLICT (content): Merge conflict in readme.txt
-Automatic merge failed; fix conflicts and then commit the result.
-</code></pre><p>冲突的文件是readme.txt，查看readme.txt会发现，Git用&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出不同分支的内容，修改为自己需要的内容，再提交：</p>
-<pre><code>$ git add readme.txt 
-$ git commit -m &quot;conflict fixed&quot;
-[master cf810e4] conflict fixed
-</code></pre><p>当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。</p>
-<p>解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。</p>
-<p>用git log –graph命令可以看到分支合并图。</p>
-<p>用带参数的git log也可以看到分支的合并情况：</p>
-<pre><code>$ git log --graph --pretty=oneline --abbrev-commit
-</code></pre><h4 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h4><p>通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。</p>
-<p>如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。</p>
-<p>如下是–no-ff方式的git merge：</p>
-<pre><code>$ git merge --no-ff -m &quot;merge with no-ff&quot; dev
-</code></pre><p>将修改后的dev分支合并到master上，因为本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去。</p>
-<p>在实际开发中，我们应该按照几个基本原则进行分支管理：</p>
-<p>首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；</p>
-<p>那在哪干活呢？干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；</p>
-<p>你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了。</p>
-<p>所以，团队合作的分支看起来就像这样：</p>
-<p><img src="/2018/11/14/Git-和-Github/branch3.png" alt="分支策略"></p>
-<p>合并分支时，加上–no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。</p>
-<h4 id="Bug-分支"><a href="#Bug-分支" class="headerlink" title="Bug 分支"></a>Bug 分支</h4><p>软件开发中，bug就像家常便饭一样。有了bug就需要修复，在Git中，由于分支是如此的强大，所以，每个bug都可以通过一个新的临时分支来修复，修复后，合并分支，然后将临时分支删除。<strong>但是</strong>当前正在dev上进行的工作还没有提交：</p>
-<pre><code>$ git stash
-</code></pre><p>利用stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作。</p>
-<p>首先确定要在哪个分支上修复bug，假定需要在master分支上修复，就从master创建临时分支，修改之后，合并到master分支上。</p>
-<p>再回到dev分支上干原来的活。</p>
-<p>用git stash list命令看看存储的工作现场。</p>
-<p>工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：</p>
-<p>一是用<strong>git stash apply</strong>恢复，但是恢复后，stash内容并不删除，你需要用<strong>git stash drop</strong>来删除；</p>
-<p>另一种方式是用<strong>git stash pop</strong>，恢复的同时把stash内容也删了。</p>
-<p>你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：</p>
-<pre><code>$ git stash apply stash@{0}
-</code></pre><h4 id="Feature分支"><a href="#Feature分支" class="headerlink" title="Feature分支"></a>Feature分支</h4><p>每添加一个新功能，最好新建一个feature分支，在上面开发，完成后，合并，最后，删除该feature分支。</p>
-<p>创建分支，修改文件，add，commit，最后合并：</p>
-<pre><code>$ git checkout -b feature-vulcan
-$ git add vulcan.py
-$ git commit -m &quot;add feature vulcan&quot;
-$ git checkout dev（切回dev，准备合并）
-合并。。。。。
-</code></pre><p>合并之前想删除，强行删除：</p>
-<pre><code>$ git branch -D feature-vulcan
-</code></pre><p>分支还没有被合并，如果删除，将丢失掉修改，如果要强行删除，需要使用大写的-D参数。</p>
-<h4 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h4><p>要查看远程库的信息，用git remote：</p>
-<p>或者，用git remote -v显示更详细的信息：</p>
-<p>推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：</p>
-<pre><code>$ git push origin master
-</code></pre><p>如果要推送其他分支，比如dev，就改成：</p>
-<pre><code>$ git push origin dev
-</code></pre><p><strong>抓取分支</strong></p>
-<pre><code>$ git clone git@github.com:redtongue/test.git
-</code></pre><p>当你的小伙伴从远程库clone时，默认情况下，你的小伙伴只能看到本地的master分支。</p>
-<p>要在dev分支上开发，就必须创建远程origin的dev分支到本地，于是他用这个命令创建本地dev分支：</p>
-<pre><code>$ git checkout -b dev origin/dev
-</code></pre><p>就可以在dev上继续修改，然后，时不时地把dev分支push到远程：</p>
-<pre><code>$ git add env.txt
-
-$ git commit -m &quot;add env&quot;
-
-$ git push origin dev
-</code></pre>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/14/Git-和-Github/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
