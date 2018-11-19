@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf1.png">
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf2.png">
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf3.png">
-<meta property="og:updated_time" content="2018-11-19T08:44:43.953Z">
+<meta property="og:updated_time" content="2018-11-19T08:52:46.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DeepInf:Social Influence Prediction with Deep Learning">
 <meta name="twitter:description" content="结合深度学习预测每个用户的社交影响。 论文地址:https://arxiv.org/abs/1807.05560 ABSTRACT">
@@ -353,7 +353,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-19T16:44:43+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-19T16:52:46+08:00">
                 2018-11-19
               </time>
             
@@ -452,7 +452,7 @@
 </blockquote>
 <p>利用每个用户检索到的 $\overline{\Gamma_v^r}$ 和 $\overline{S_v^t}$ ，我们设计了一个有效的神经网络模型，将 $\overline{\Gamma_v^r}$ 中的结构属性和 $\overline{S_v^t}$  中的动作状态结合起来。 神经网络模型的输出是自我用户v的隐藏表示，然后用于预测她的动作状态- $s_v^{t+∆t}$  。如图2所示，所提出的神经网络模型由网络嵌入层、实例归一化层、输入层、若干图形卷积或图形关注层以及输出层组成。 在本节中，我们逐一介绍这些层，并逐步构建模型。</p>
 <p><strong>嵌入层：</strong>随着最近出现的表示学习[5]，网络嵌入技术得到了广泛的研究，以发现网络结构属性并将其编码为低维潜在空间。 更正式地，网络嵌入学习嵌入矩阵 $X∈R^{(D×|V|)}$ ，每列对应于网络G中的顶点（用户）的表示。在所提出的模型中，我们使用预训练 嵌入层将用户u映射到她的D维表示 $x_u∈R^D$ ，如图2（b）所示。</p>
-<p><strong>实例规范化：</strong>实例规范化是最近提出的图像样式转移技术[47]。 我们在社会影响力预测任务中采用这种技术。 如图2（c）所示，对于每个用户 $u∈Γ ̅_v^r$ ，在从嵌入层检索她的表示 $x_u$  之后，实例标准化 $y_u$ 由下式给出：</p>
+<p><strong>实例规范化：</strong>实例规范化是最近提出的图像样式转移技术[47]。 我们在社会影响力预测任务中采用这种技术。 如图2（c）所示，对于每个用户 $\overline{\Gamma_v^r}$ ，在从嵌入层检索她的表示 $x_u$  之后，实例标准化 $y_u$ 由下式给出：</p>
 <p>$$y_ud=\frac{(x_ud-μ_d)}{\sqrt{σ_d^2+ε}} \tag{3}$$</p>
 <p>对于每个嵌入维度d = 1，···，D，其中</p>
 <p>$$μ_d=\frac{1}{n}$$ </p>
@@ -468,7 +468,7 @@
 <p>其中 $W∈R^{F’×F’}$ ， $B∈R^{F’}$ 是模型参数，g是非线性激活函数，A（G）是捕获图G的结构信息的n×n矩阵。 GCN将A（G）实例化为与标准化图Laplaican [10]密切相关的静态矩阵：</p>
 <p>$$A_GCN (G)=D^{-\frac{1}{2}} AD^{-\frac{1}{2}} \tag{6}$$</p>
 <p>其中A是G的邻接矩阵，D = diag（A1）是度矩阵。</p>
-<p><strong>Multi-head Graph Attention :</strong>图注意（GAT）是最近提出的技术，它将注意机制引入GCN。 GAT通过自我关注机制定义矩阵 $A_GAT（G）=[a_ij]_{n×n}$ 。 更正式地，注意系数 $e_ij$ 首先由注意函数attn计算：R^{F’}×R^{F’}→R，其测量顶点j对顶点i的重要性：</p>
+<p><strong>Multi-head Graph Attention :</strong>图注意（GAT）是最近提出的技术，它将注意机制引入GCN。 GAT通过自我关注机制定义矩阵 $A_GAT（G）=[a_ij]_{n×n}$ 。 更正式地，注意系数 $e_ij$ 首先由注意函数attn计算： $R^{F’}×R^{F’}→R$ ，其测量顶点j对顶点i的重要性：</p>
 <p>$$e_ij=attn(W h_i  ,W h_j)$$</p>
 <p>与将计算所有实例对之间的注意系数的传统自注意机制不同，GAT仅评估 $e_ij$ 为 $（i，j）∈E（\overline{G_v ^ r}）$ 或i = j，即（i， j）是边或自循环。 通过这样做，它能够更好地利用和捕获图形结构信息。 之后，为了使顶点之间的系数相当，采用softmax函数来归一化注意系数</p>
 <p>$$a_ij=softmax(e_ij )=\frac{exp⁡(e_ij)}{\sum_{k∈\Gamma_i^1} exp⁡(e_ik)}$$</p>
