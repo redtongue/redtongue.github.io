@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf1.png">
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf2.png">
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf3.png">
-<meta property="og:updated_time" content="2018-11-19T07:20:49.743Z">
+<meta property="og:updated_time" content="2018-11-19T08:44:43.953Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DeepInf:Social Influence Prediction with Deep Learning">
 <meta name="twitter:description" content="结合深度学习预测每个用户的社交影响。 论文地址:https://arxiv.org/abs/1807.05560 ABSTRACT">
@@ -353,7 +353,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-19T15:20:49+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-19T16:44:43+08:00">
                 2018-11-19
               </time>
             
@@ -439,7 +439,7 @@
 <p>鉴于上述定义，我们引入了社会影响地点，这相当于一种封闭的世界假设：用户的社会决策和行动仅受到网络内近邻的影响，而假设外部来源不存在。</p>
 <p><strong>问题1：社交影响点</strong> v的行动状态的概率取决于她的r-ego网络 $G_v^r$ 和她的r-neighbors的行动状态。 更正式地，给定 $G_v^r$ 和 $s_v^t={s_u^t:u∈\Gamma_v^r {v}}$ ，社会影响地点旨在量化在给定时间间隔Δt之后v的激活概率：</p>
 <p>$$P(s_v^{t+∆t} | G_v^r,S_v^t)$$</p>
-<p>实际上，假设我们有N个实例，每个实例是一个3元组（v，a，t），其中v是用户，a是社交动作，t是时间戳。 对于这样的3元组（v，a，t），我们也知道v的r-ego网络 $G_v^r$ ，v的r-neighbors- $S_v^t$ 的动作状态，以及v在t +Δt的未来动作状态 ，即 $s_v^{t+∆t}$。 然后我们将社会影响预测表示为二元图分类问题，可以通过最小化以下负对数似然目标w.r.t模型参数θ来解决：</p>
+<p>实际上，假设我们有N个实例，每个实例是一个3元组（v，a，t），其中v是用户，a是社交动作，t是时间戳。 对于这样的3元组（v，a，t），我们也知道v的r-ego网络 $G_v^r$ ，v的r-neighbors- $S_v^t$ 的动作状态，以及v在t +Δt的未来动作状态 ，即 $s_v^{t+∆t}$。 然后我们将社会影响预测表示为二元图分类问题，可以通过最小化以下关于模型参数θ的负对数似然目标来解决：</p>
 <p>$$\iota(θ)=-\sum_{i=1}^{N}log⁡(P_θ (s_{v_i}^{t_i+∆t} | G_{v_i}^r,S_{v_i}^{t_i})) \tag{1}$$</p>
 <p>特别是，在这项工作中，我们假设Δt足够大，也就是说，我们想要在观察窗口的末尾预测自我用户v的行动状态。</p>
 <h2 id="MODEL-FRAMEWORK"><a href="#MODEL-FRAMEWORK" class="headerlink" title="MODEL FRAMEWORK"></a>MODEL FRAMEWORK</h2><p>在本节中，我们正式提出DeepInf，一种基于深度学习的模型，用于参数化方程1中的概率，并自动检测社会影响的机制和动态。 该框架首先对固定大小的子网络进行采样，作为每个r-ego网络的代理（参见第3.1节）。 然后将采样的子网络馈入具有小批量学习的深度神经网络（参见第3.2节）。 最后，将模型输出与基础事实进行比较，以最小化负对数似然损失。</p>
@@ -450,9 +450,9 @@
 <blockquote>
 <p>Figure 2: Model Framework of DeepInf. </p>
 </blockquote>
-<p>利用每个用户检索到的 $\overline{\Gamma_v^r}$ 和 $\overline{S_v^t}$ ，我们设计了一个有效的神经网络模型，将 $\overline{\Gamma_v^r}$ 中的结构属性和 $\overline{S_v^t}$  中的动作状态结合起来。 神经网络模型的输出是自我用户v的隐藏表示，然后用于预测她的动作状态- $s_v^{t+∆t}$  。如图2所示，所提出的神经网络模型由网络嵌入组成。 层，实例规范化层，输入层，若干图形卷积或图形关注层，以及输出层。 在本节中，我们逐一介绍这些层，并逐步构建模型。</p>
-<p><strong>嵌入层：</strong>随着最近出现的表示学习[5]，网络嵌入技术得到了广泛的研究，以发现网络结构属性并将其编码为低维潜在空间。 更正式地，网络嵌入学习嵌入矩阵 $X∈R^(D×|V| )$ ，每列对应于网络G中的顶点（用户）的表示。在所提出的模型中，我们使用预训练 嵌入层将用户u映射到她的D维表示 $x_u∈R^D$ ，如图2（b）所示。</p>
-<p>实例规范化：实例规范化是最近提出的图像样式转移技术[47]。 我们在社会影响力预测任务中采用这种技术。 如图2（c）所示，对于每个用户 $u∈Γ ̅_v^r$ ，在从嵌入层检索她的表示 $x_u$  之后，实例标准化 $y_u$ 由下式给出：</p>
+<p>利用每个用户检索到的 $\overline{\Gamma_v^r}$ 和 $\overline{S_v^t}$ ，我们设计了一个有效的神经网络模型，将 $\overline{\Gamma_v^r}$ 中的结构属性和 $\overline{S_v^t}$  中的动作状态结合起来。 神经网络模型的输出是自我用户v的隐藏表示，然后用于预测她的动作状态- $s_v^{t+∆t}$  。如图2所示，所提出的神经网络模型由网络嵌入层、实例归一化层、输入层、若干图形卷积或图形关注层以及输出层组成。 在本节中，我们逐一介绍这些层，并逐步构建模型。</p>
+<p><strong>嵌入层：</strong>随着最近出现的表示学习[5]，网络嵌入技术得到了广泛的研究，以发现网络结构属性并将其编码为低维潜在空间。 更正式地，网络嵌入学习嵌入矩阵 $X∈R^{(D×|V|)}$ ，每列对应于网络G中的顶点（用户）的表示。在所提出的模型中，我们使用预训练 嵌入层将用户u映射到她的D维表示 $x_u∈R^D$ ，如图2（b）所示。</p>
+<p><strong>实例规范化：</strong>实例规范化是最近提出的图像样式转移技术[47]。 我们在社会影响力预测任务中采用这种技术。 如图2（c）所示，对于每个用户 $u∈Γ ̅_v^r$ ，在从嵌入层检索她的表示 $x_u$  之后，实例标准化 $y_u$ 由下式给出：</p>
 <p>$$y_ud=\frac{(x_ud-μ_d)}{\sqrt{σ_d^2+ε}} \tag{3}$$</p>
 <p>对于每个嵌入维度d = 1，···，D，其中</p>
 <p>$$μ_d=\frac{1}{n}$$ </p>
@@ -463,12 +463,12 @@
 <p><img src="/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf3.png" alt="DeepInf3.png"></p>
 <p>这里 $μ_d$ 和 $σ_d$ 是平均值和方差，ε是数值稳定性的小数。直观地，这种归一化可以去除特定于实例的均值和方差，这促使下游模型关注用户在潜在嵌入空间中的相对位置而不是其绝对位置。 正如我们稍后将在第5节中看到的那样，实例规范化可以帮助避免在训练期间过度拟合。</p>
 <p><strong>输入层：</strong>如图2（d）所示，输入层为每个用户构造一个特征向量。 除了归一化的低维嵌入来自上游实例规范化层之外，它还考虑了两个二进制变量。 第一个变量表示用户的动作状态，另一个表示用户是否是自我用户。 此外，输入图层还涵盖了所有其他自定义顶点要素，例如结构要素，内容要素和人口统计要素。</p>
-<p>基于GCN的网络编码：图形卷积网络（GCN）是用于图形结构化数据的半监督学习算法。 通过堆叠多个GCN层来构建GCN模型。 每个GCN层的输入是顶点特征矩阵，$H∈R^（n×F)$，其中n是顶点的数量，F是特征的数量。 由 $h_i ^ T$ 表示的H的每一行与顶点相关联。 一般来说，GCN层的本质是非线性变换，输出 $H’∈R^（n×F’)$ 如下：</p>
+<p><strong>基于GCN的网络编码：</strong>图形卷积网络（GCN）是用于图形结构化数据的半监督学习算法。 通过堆叠多个GCN层来构建GCN模型。 每个GCN层的输入是顶点特征矩阵，$H∈R^{(n×F)}$，其中n是顶点的数量，F是特征的数量。 由 $h_i ^ T$ 表示的H的每一行与顶点相关联。 一般来说，GCN层的本质是非线性变换，输出 $H’∈R^{(n×F’)}$ 如下：</p>
 <p>$$H’=GCN(H)=g(A(G)HW^T+b) \tag{5}$$</p>
 <p>其中 $W∈R^{F’×F’}$ ， $B∈R^{F’}$ 是模型参数，g是非线性激活函数，A（G）是捕获图G的结构信息的n×n矩阵。 GCN将A（G）实例化为与标准化图Laplaican [10]密切相关的静态矩阵：</p>
 <p>$$A_GCN (G)=D^{-\frac{1}{2}} AD^{-\frac{1}{2}} \tag{6}$$</p>
 <p>其中A是G的邻接矩阵，D = diag（A1）是度矩阵。</p>
-<p><strong>Multi-head Graph Attention :</strong>图注意（GAT）是最近提出的技术，它将注意机制引入GCN。 GAT通过自我关注机制定义矩阵 $A_GAT（G）=[a_ij]_{n×n}$ 。 更正式地，注意系数 $e_ij$ 首先由注意函数attn计算：R ^ F’×R ^ F’→R，其测量顶点j对顶点i的重要性：</p>
+<p><strong>Multi-head Graph Attention :</strong>图注意（GAT）是最近提出的技术，它将注意机制引入GCN。 GAT通过自我关注机制定义矩阵 $A_GAT（G）=[a_ij]_{n×n}$ 。 更正式地，注意系数 $e_ij$ 首先由注意函数attn计算：R^{F’}×R^{F’}→R，其测量顶点j对顶点i的重要性：</p>
 <p>$$e_ij=attn(W h_i  ,W h_j)$$</p>
 <p>与将计算所有实例对之间的注意系数的传统自注意机制不同，GAT仅评估 $e_ij$ 为 $（i，j）∈E（\overline{G_v ^ r}）$ 或i = j，即（i， j）是边或自循环。 通过这样做，它能够更好地利用和捕获图形结构信息。 之后，为了使顶点之间的系数相当，采用softmax函数来归一化注意系数</p>
 <p>$$a_ij=softmax(e_ij )=\frac{exp⁡(e_ij)}{\sum_{k∈\Gamma_i^1} exp⁡(e_ik)}$$</p>
@@ -479,7 +479,7 @@
 <p>$$H’=g(Aggregate(A_1 (G)HW_1^T,…,A_K (G)HW_K^T )+b) \tag{8}$$</p>
 <p>我们连接每个单头注意的输出以聚合它们，除了最后一层的平均运算符。</p>
 <p><strong>输出层和损失函数:</strong>该层（见图2（f））为每个用户输出一个二维表示，我们将自我用户的表示与真值进行比较，然后如公式2所述优化对数似然损失。</p>
-<p><strong>小批量学习：</strong>当从r-ego网络采样时，我们强制采样的子网络具有固定大小n。 受益于这种同质性，我们可以在这里应用小批量学习进行有效的培训。 如图2（a）所示，在每次迭代中，我们首先将B实例随机抽样为小批量。 然后我们优化我们的模型w.r.t. 采样的小批量。 这种方法比全批量学习运行得快得多，并且在优化期间仍然引入了足够的噪声。</p>
+<p><strong>小批量学习：</strong>当从r-ego网络采样时，我们强制采样的子网络具有固定大小n。 受益于这种同质性，我们可以在这里应用小批量学习进行有效的培训。 如图2（a）所示，在每次迭代中，我们首先将B实例随机抽样为小批量。 然后我们针对采样的小批量优化我们的模型。 这种方法比全批量学习运行得快得多，并且在优化期间仍然引入了足够的噪声。</p>
 <h2 id="EXPERIMENT-SETUP"><a href="#EXPERIMENT-SETUP" class="headerlink" title="EXPERIMENT SETUP"></a>EXPERIMENT SETUP</h2><p>设置我们使用大规模实际数据集建立实验，以定量评估提出的DeepInf框架。</p>
 <h3 id="Datasets"><a href="#Datasets" class="headerlink" title="Datasets"></a>Datasets</h3><table>
 <thead>
