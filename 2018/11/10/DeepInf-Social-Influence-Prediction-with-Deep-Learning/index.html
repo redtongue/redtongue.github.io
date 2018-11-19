@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf1.png">
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf2.png">
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf3.png">
-<meta property="og:updated_time" content="2018-11-19T08:52:46.641Z">
+<meta property="og:updated_time" content="2018-11-19T11:19:37.079Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DeepInf:Social Influence Prediction with Deep Learning">
 <meta name="twitter:description" content="结合深度学习预测每个用户的社交影响。 论文地址:https://arxiv.org/abs/1807.05560 ABSTRACT">
@@ -353,7 +353,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-19T16:52:46+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-19T19:19:37+08:00">
                 2018-11-19
               </time>
             
@@ -436,8 +436,8 @@
 <p>本文的其余部分安排如下：第2节制定社会影响预测问题。 第3节详细介绍了拟议的框架。 在第4节和第5节，我们进行了广泛的实验和案例研究。 最后，第6节总结了相关工作，第7节总结了这项工作。</p>
 <h2 id="PROBLEM-FORMULATION"><a href="#PROBLEM-FORMULATION" class="headerlink" title="PROBLEM FORMULATION"></a>PROBLEM FORMULATION</h2><p>定义2.1。 r-neighbors和r-ego network设G =（V，E）是一个静态社交网络，其中V表示用户集和E⊆V×V表示关系集。 对于用户v，其r-neighbors被定义为 $\Gamma_v^r = {u:d(u,v)≤r}$ 其中d（u，v）是最短路径距离（就跳数而言） 用户v的r-ego network是由 $\Gamma_v^r$ 引起的子网络，由 $G_v^r$ 表示。</p>
 <p><strong>定义2.2</strong> 社交活动社交网络中的用户执行社交活动，例如转推。 在每个时间戳t，我们观察到用户u的二元动作状态， $s_u^t∈{0,1}$ ，其中 $s_u^t=1$ 表示用户u在时间戳t之前或之后执行了此动作，并且 $s_u^t=0$ 表示用户尚未执行此操作。 这样的动作日志可以从许多社交网络获得，例如Twitter中的“转发”动作和学术社交网络中的引用动作。</p>
-<p>鉴于上述定义，我们引入了社会影响地点，这相当于一种封闭的世界假设：用户的社会决策和行动仅受到网络内近邻的影响，而假设外部来源不存在。</p>
-<p><strong>问题1：社交影响点</strong> v的行动状态的概率取决于她的r-ego网络 $G_v^r$ 和她的r-neighbors的行动状态。 更正式地，给定 $G_v^r$ 和 $s_v^t={s_u^t:u∈\Gamma_v^r {v}}$ ，社会影响地点旨在量化在给定时间间隔Δt之后v的激活概率：</p>
+<p>鉴于上述定义，我们引入了社会影响局部性<br>，这相当于一种封闭的世界假设：用户的社会决策和行动仅受到网络内近邻的影响，而假设外部来源不存在。</p>
+<p><strong>问题1：社交影响局部性</strong> v的行动状态的概率取决于她的r-ego网络 $G_v^r$ 和她的r-neighbors的行动状态。 更正式地，给定 $G_v^r$ 和 $s_v^t={s_u^t:u∈\Gamma_v^r {v}}$ ，社会影响局部性旨在量化在给定时间间隔Δt之后v的激活概率：</p>
 <p>$$P(s_v^{t+∆t} | G_v^r,S_v^t)$$</p>
 <p>实际上，假设我们有N个实例，每个实例是一个3元组（v，a，t），其中v是用户，a是社交动作，t是时间戳。 对于这样的3元组（v，a，t），我们也知道v的r-ego网络 $G_v^r$ ，v的r-neighbors- $S_v^t$ 的动作状态，以及v在t +Δt的未来动作状态 ，即 $s_v^{t+∆t}$。 然后我们将社会影响预测表示为二元图分类问题，可以通过最小化以下关于模型参数θ的负对数似然目标来解决：</p>
 <p>$$\iota(θ)=-\sum_{i=1}^{N}log⁡(P_θ (s_{v_i}^{t_i+∆t} | G_{v_i}^r,S_{v_i}^{t_i})) \tag{1}$$</p>
@@ -550,11 +550,11 @@
 <p>Table2:List of features used in this work.</p>
 <h3 id="Comparison-Methods"><a href="#Comparison-Methods" class="headerlink" title="Comparison Methods"></a>Comparison Methods</h3><p>我们将DeepInf与几个基线进行比较。<br><strong>Logistic回归（LR）:</strong>我们使用逻辑回归（LR）来训练分类模型。 该模型考虑了三类特征：（1）自我用户的顶点特征; （2）针对自我用户的预训练网络嵌入（DeepWalk [36]）; （3）手工制作的网络功能。 我们使用的功能列于表2中。</p>
 <p><strong>支持向量机（SVM）:</strong>我们还使用支持向量机（SVM）（线性核）作为分类模型。 该模型使用与逻辑回归（LR）相同的特征。</p>
-<p><strong>PSCN:</strong>当我们将社会影响地点预测模型化为图分类问题时，我们将我们的框架与最先进的图分类模型PSCN [34]进行比较。对于每个图，PSCN根据用户定义的排名函数（例如，度和中介中心性）选择w个顶点。 然后，对于每个选定的顶点，它根据广度优先搜索顺序组装其邻近的顶部k。 对于每个图，上述过程构造具有F通道的长度为w×k的顶点序列，其中F是每个顶点的特征数。 最后，PSCN在其上应用1维卷积层。</p>
+<p><strong>PSCN:</strong>当我们将社会影响局部性预测模型化为图分类问题时，我们将我们的框架与最先进的图分类模型PSCN [34]进行比较。对于每个图，PSCN根据用户定义的排名函数（例如，度和中介中心性）选择w个顶点。 然后，对于每个选定的顶点，它根据广度优先搜索顺序组装其邻近的顶部k。 对于每个图，上述过程构造具有F通道的长度为w×k的顶点序列，其中F是每个顶点的特征数。 最后，PSCN在其上应用1维卷积层。</p>
 <p><strong>DeepInf及其变体：</strong>我们实现了DeepInf的两个变体，分别由DeepInf-GCN和DeepInf-GAT表示。 DeepInfGCN使用图卷积层作为我们框架的构建块，即在公式5中设置 $A(G)=D^{-\frac{1}{2}} AD^{-\frac{1}{2}}$ 。 DeepInf-GAT使用图表注意，如公式7所示。但是，DeepInf和PSCN都只接受顶点级特征。 由于此限制，我们不在这两个模型中使用自我网络功能。 相反，我们希望DeepInf能够自动发现自我网络特征和其他预测信号。</p>
 <p><strong>超参数设置和实现细节：</strong>对于我们的框架DeepInf，我们首先以重启概率0.8执行随机游走，并且采样子网的大小设置为50.对于嵌入层，64维网络嵌入使用DeepWalk进行预训练[36]。然后我们选择为DeepInf使用三层GCN或GAT结构，第一和第二GCN / GAT层都包含128个隐藏单元，而第三层（输出层）包含2个用于二进制预测的隐藏单元。特别是对于具有多头图关注度的DeepInf，第一层和第二层都由K = 8个注意头组成，每个计算16个隐藏单元（总共8×16 = 128个隐藏单元）。对于详细的模型配置，我们采用指数线性单位（ELU）[11]作为非线性（方程5中的函数д）。所有参数都用Glorot初始化[18]初始化，并使用Adagrad [16]优化器进行训练，学习率为0.1（Digg数据集为0.05），权重衰减为 $5e^{-4}$（Digg数据集为 $1e^{-3}$），辍学率为0.2。我们分别使用75％，12.5％，12.5％的实例进行培训，验证和测试;所有数据集中的小批量大小都设置为1024。<br>至于PSCN，在我们的实验中，我们发现推荐的中介中心性排名函数在预测社会影响方面效果不佳。我们转而使用从自我用户开始的广度优先搜索顺序作为排名函数。当BFS订单不是唯一的时，我们首先通过对活跃用户进行排名来打破关系。我们通过验证选择w = 16和k = 5，然后应用两个1维卷积层。第一个转换层有16个输出通道，步幅为5，内核大小为5.第二个转换层有8个输出通道，步长为1，内核大小为1.第二层的输出则为进入完全连接的层以预测标签。</p>
 <p>最后，我们允许PSCN和DeepInf在训练数据上运行最多500个时期，并且通过在验证集上使用损失提前停止来选择最佳模型。 我们在<a href="https://github.com/xptree/DeepInf上发布了PSCN和DeepInf的代码，这两个代码都是用PyTorch实现的。" target="_blank" rel="noopener">https://github.com/xptree/DeepInf上发布了PSCN和DeepInf的代码，这两个代码都是用PyTorch实现的。</a></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在这项工作中，我们研究社会影响地点问题。 我们从深度学习的角度阐述了这个问题，并通过结合最近开发的网络嵌入，图形卷积和自我关注技术，提出了基于图形的学习框架DeepInf。 我们在四个社交和信息网络-OAG，Digg，Twitter和微博上测试提议的框架。 我们广泛的实验分析表明，DeepInf在预测社会影响地点方面明显优于具有丰富手工工艺特征的基线。 这项工作探讨了网络表征学习在社会影响力分析中的潜力，并首次尝试解释社会影响力的动态。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在这项工作中，我们研究社会影响局部性问题。 我们从深度学习的角度阐述了这个问题，并通过结合最近开发的网络嵌入，图形卷积和自我关注技术，提出了基于图形的学习框架DeepInf。 我们在四个社交和信息网络-OAG，Digg，Twitter和微博上测试提议的框架。 我们广泛的实验分析表明，DeepInf在预测社会影响局部性方面明显优于具有丰富手工工艺特征的基线。 这项工作探讨了网络表征学习在社会影响力分析中的潜力，并首次尝试解释社会影响力的动态。</p>
 <p>提出的DeepInf背后的一般思想可以扩展到许多网络挖掘任务。 我们的DeepInf可以有效地汇总网络中的本地区域。 然后，可以将这样的概括表示馈送到各种下游应用中，例如链路预测，相似性搜索，网络对齐等。因此，我们希望探索这个有希望的方向以用于将来的工作。 另一个激动人心的方向是近邻的采样。 在这项工作中，我们在没有考虑任何辅助信息的情况下执行随机重启。 同时，采样程序与神经网络模型松散耦合。 通过利用强化学习将抽样和学习结合起来也是令人兴奋的。</p>
 
       
