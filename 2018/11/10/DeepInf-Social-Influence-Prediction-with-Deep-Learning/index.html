@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf1.png">
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf2.png">
 <meta property="og:image" content="https://redtongue.github.io/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf3.png">
-<meta property="og:updated_time" content="2018-11-13T03:36:46.995Z">
+<meta property="og:updated_time" content="2018-11-19T07:20:49.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DeepInf:Social Influence Prediction with Deep Learning">
 <meta name="twitter:description" content="结合深度学习预测每个用户的社交影响。 论文地址:https://arxiv.org/abs/1807.05560 ABSTRACT">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-13T11:36:46+08:00">
-                2018-11-13
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-19T15:20:49+08:00">
+                2018-11-19
               </time>
             
           </span>
@@ -423,12 +423,12 @@
 <p>论文地址:<a href="https://arxiv.org/abs/1807.05560" target="_blank" rel="noopener">https://arxiv.org/abs/1807.05560</a></p>
 <h2 id="ABSTRACT"><a href="#ABSTRACT" class="headerlink" title="ABSTRACT"></a>ABSTRACT</h2><a id="more"></a>
 <p>脸书、推特、微信和微博等社交信息网络活动成为日常生活的重要组成部分，我们可以接触朋友的行为，同样的被他们影响。因此，对每一个用户的社交影响的有效预测对于如在线推荐和广告等各种应用至关重要。</p>
-<p>传统的社交影响预测方法通常设计各种手工规则来提取用户和网络的特征。但是，这种方式的有效性严重依赖于领域专家的知识。结果，很难将他们泛化到不同的领域。受到最近深度神经网络在各种计算应用中的成功的启发，我们设计了一个端到端框架DeepInf1，以学习用户的潜在特征表示来预测社会影响。 通常，DeepInf将用户的本地网络作为图形神经网络的输入，用于学习其潜在的社交表示。 我们设计了将网络结构和用户特定功能纳入卷积神经网络和注意力网络的策略。 代表不同类型的社交和信息网络的Open Academic Graph，Twitter，Weibo和Digg的大量实验表明，提出的端到端模型DeepInf明显优于传统的基于特征工程的方法，表明了表示的有效性 学习社交应用</p>
+<p>传统的社交影响预测方法通常设计各种手工规则来提取用户和网络的特征。但是，这种方式的有效性严重依赖于领域专家的知识。结果，很难将他们泛化到不同的领域。受到最近深度神经网络在各种计算应用中的成功的启发，我们设计了一个端到端框架DeepInf1，以学习用户的潜在特征表示来预测社会影响。 通常，DeepInf将用户的本地网络作为图形神经网络的输入，用于学习其潜在的社交表示。 我们设计了将网络结构和用户特定特征纳入卷积神经网络和注意力网络的策略。 代表不同类型的社交和信息网络的Open Academic Graph，Twitter，Weibo和Digg的大量实验表明，提出的端到端模型DeepInf明显优于传统的基于特征工程的方法，表明了社交应用的有效表示学习。</p>
 <h2 id="INTRODUCTION"><a href="#INTRODUCTION" class="headerlink" title="INTRODUCTION"></a>INTRODUCTION</h2><p>社会影响力无处不在，不仅在我们的日常生活中，而且在虚拟的网络空间。 社会影响一词通常指的是一个人的情绪，观点或行为受到他人影响的现象。 随着在线和移动社交平台的全球渗透，人们目睹了社会影响力在各个领域的影响，如总统选举[7]，广告[3,24]和创新采用[42]。 到目前为止，毫无疑问，社会影响已经成为推动我们社会决策的普遍而复杂的力量，明确需要方法论来描述，理解和量化社会影响的潜在机制和动态。</p>
-<p>实际上，在文献中已经对社会影响预测做了大量工作[26,32,42,43]。 例如，Matsubara等人 [32]通过精心设计从经典的“易感染的”（SI）模型扩展的微分方程，研究社会影响的动态; 最近，Li等人[26] 提出了一种通过结合递归神经网络（RNN）和表示学习来推断级联大小的端到端预测器。 所有这些方法主要旨在预测社会影响的全球或聚合模式，例如时间范围内的级联大小。 然而，在诸如广告和推荐的许多在线应用中，有效地预测每个个体的社交影响，即用户级社交影响预测是至关重要的。</p>
+<p>实际上，在文献中已经对社会影响预测做了大量工作[26,32,42,43]。 例如，Matsubara等人 [32]通过精心设计从经典的“易感染的”（SI）模型扩展的微分方程，研究社会影响的动态; 最近，Li等人[26] 提出了一种通过结合递归神经网络（RNN）和表示学习来推断级联大小的端到端预测器。 所有这些方法主要旨在预测社会影响的全局或聚合模式，例如时间范围内的级联大小。 然而，在诸如广告和推荐的许多在线应用中，有效地预测每个个体的社交影响，即用户级社交影响预测是至关重要的。</p>
 <p><img src="/2018/11/10/DeepInf-Social-Influence-Prediction-with-Deep-Learning/DeepInf1.png" alt="DeepInf1.png"></p>
 <blockquote>
-<p>Figure 1: A motivating example of social influence locality prediction. The goal is to predict v’s action status, given 1) theobservedactionstatuses(blackandgraycirclesareused to indicate “active” and “inactive”, respectively) of her near neighborsand2)thelocalnetworksheisembeddedin.</p>
+<p>图1：社会影响局部性预测的一个激励性例子。目标是预测v的活动状态，给定 1）她近邻的观察活动状态（黑色和灰色的圆圈分别用来表示“活动”和“不活动”）和 2）他嵌入的本地网络。</p>
 </blockquote>
 <p>在本文中，我们关注用户级社会影响力的预测。 我们的目标是在给定近邻居的行动状态和她的本地结构信息的情况下预测用户的行动状态。 例如，在图1中，对于中央用户v，如果她的一些朋友（black circles）购买了产品，她将来会购买相同的产品吗？ 上述问题在现实世界的应用中很普遍，因为它经常被观察到其复杂性和非线性，例如[2]中的“S形”曲线和[46]中着名的“结构多样性”。 上述观察激发了许多用户级影响预测模型，其中大多数[27,53,54]考虑了复杂的手工制作的特征，这需要对特定领域的广泛了解，并且通常难以推广到不同的领域。</p>
 <p>受到最近神经网络在表示学习中的成功启发，我们设计了一种端到端的方法来自动发现社会影响中的隐藏和预测信号。 通过将网络嵌入[37]，图形卷积[25]和图形注意机制[49]构建到一个统一的框架中，我们期望端到端模型可以比使用特征工程的传统方法获得更好的性能。 具体而言，我们提出了一个基于深度学习的框架DeepInf，将影响动态和网络结构表示为潜在空间。 为了预测用户v的动作状态，我们首先通过随机漫步重新开始对她的本地邻居进行采样。 在获得如图1所示的本地网络之后，我们利用图形卷积和注意技术来学习潜在的预测信号。</p>
