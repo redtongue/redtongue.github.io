@@ -9,6 +9,7 @@
       </categories>
       <tags>
         <tag>code</tag>
+        <tag>Greedy</tag>
       </tags>
   </entry>
   <entry>
@@ -20,6 +21,8 @@
       </categories>
       <tags>
         <tag>code</tag>
+        <tag>Depth-first Search</tag>
+        <tag>Union Find</tag>
       </tags>
   </entry>
   <entry>
@@ -31,6 +34,7 @@
       </categories>
       <tags>
         <tag>code</tag>
+        <tag>Stack</tag>
       </tags>
   </entry>
   <entry>
@@ -42,6 +46,7 @@
       </categories>
       <tags>
         <tag>code</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
