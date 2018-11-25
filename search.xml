@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[948.Bag of Tokens(令牌放置)]]></title>
+    <url>%2F2018%2F11%2F25%2F948-Bag-of-Tokens%2F</url>
+    <content type="text"><![CDATA[DescriptionYou have an initial power P, an initial score of 0 points, and a bag of tokens. Each token can be used at most once, has a value token[i], and has potentially two ways to use it. If we have at least token[i] power, we may play the token face up, losing token[i] power, and gaining 1 point. If we have at least 1 point, we may play the token face down, gaining token[i] power, and losing 1 point. Return the largest number of points we can have after playing any number of tokens. 你的初始能量为 P，初始分数为 0，只有一包令牌。 令牌的值为 token[i]，每个令牌最多只能使用一次，可能的两种使用方法如下： 如果你至少有 token[i] 点能量，可以将令牌置为正面朝上，失去 token[i] 点能量，并得到 1 分。 如果我们至少有 1 分，可以将令牌置为反面朝上，获得 token[i] 点能量，并失去 1 分。 在使用任意数量的令牌后，返回我们可以得到的最大分数。 题目链接：https://leetcode.com/problems/bag-of-tokens/ Difficulty: medium Example 1:Input: tokens = [100], P = 50 Output: 0 Example 2:Input: tokens = [100,200], P = 150 Output: 1 Example 3:Input: tokens = [100,200,300,400], P = 200 Output: 2 Note: tokens.length &lt;= 1000 0 &lt;= tokens[i] &lt; 10000 0 &lt;= P &lt; 10000 分析 得分原则：能量够的情况下，尽量得分；反正尽量获取更多能量； 将tokens排序，若剩余能量不小于最小token的情况下，将令牌置为正面朝上，得一分；反之若是分数大于零，将最大能量的令牌置为反面朝上，减一分；记录当前得分，以及中间过程中出现过的最大得分； 操作完所有的token或者不能再操作token之时，返回最大得分。 参考代码class Solution: def bagOfTokensScore(self, tokens, P): tokens.sort() i,j=0,len(tokens)-1 points=0 power=P m_p=0 while(i&lt;=j): if(power&gt;=tokens[i]): points+=1 power-=tokens[i] i+=1 m_p=max(m_p,points) elif(points&gt;0): points-=1 power+=tokens[j] j-=1 else: break return m_p]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[947.Most Stonees Removed with Same Row or Column(移除最多的同行或同列石头)]]></title>
+    <url>%2F2018%2F11%2F25%2F947-Most-Stonees-Removed-with-Same-Row-or-Column%2F</url>
+    <content type="text"><![CDATA[DescriptionOn a 2D plane, we place stones at some integer coordinate points. Each coordinate point may have at most one stone. Now, a move consists of removing a stone that shares a column or row with another stone on the grid. What is the largest possible number of moves we can make? 在二维平面上，我们将石头放置在一些整数坐标点上。每个坐标点上最多只能有一块石头。 现在，move 操作将会移除与网格上的另一块石头共享一列或一行的石头。 我们最多能执行多少次 move 操作？ 题目链接：https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/ Difficulty: hard Example 1:Input: stones = [[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]] Output: 5 Example 2:Input: stones = [[0,0],[0,2],[1,1],[2,0],[2,2]] Output: 3 Example 3:Input: stones = [[0,0]] Output: 0 Note: 1 &lt;= stones.length &lt;= 1000 0 &lt;= stones[i][j] &lt; 10000 分析 根据题意，所有的操作次数等于所有点数减去所有区域块数； 区域块的划分原则：将横坐标或纵坐标相同的点，划分到同一个区域； 用Dict_x和Dict_y存储所有点坐标的，key是横坐标（或纵坐标），value是该横坐标（或纵坐标）对应的所有点的纵坐标（或横坐标）； 定义DFS，遍历某一点的相邻点（横坐标或纵坐标相同），从Dict_x和Dict_y中移出，以此得到区域块数； 返回操作总次数。 参考代码class Solution: def removeStones(self, stones): import collections Dict_x=collections.defaultdict(list) Dict_y=collections.defaultdict(list) for stone in stones: Dict_x[stone[0]].append(stone[1]) Dict_y[stone[1]].append(stone[0]) s=0 def dfs(stone): x,y=stone for tar in Dict_x[x]: Dict_x[x].remove(tar) dfs([x,tar]) for tar in Dict_y[y]: Dict_y[y].remove(tar) dfs([tar,y]) for stone in stones: if(stone[1] in Dict_x[stone[0]]): s+=1 dfs(stone) return len(stones)-s]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[946.Validate Stack Sequence(验证栈序列)]]></title>
+    <url>%2F2018%2F11%2F25%2F946-Validate-Stack-Sequence%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven two sequences pushed and popped with distinct values, return true if and only if this could have been the result of a sequence of push and pop operations on an initially empty stack. 给定 pushed 和 popped 两个序列，只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时，返回 true；否则，返回 false 。 题目链接：https://leetcode.com/problems/validate-stack-sequences/ Difficulty: medium Example 1:Input: pushed = [1,2,3,4,5], popped = [4,5,3,2,1] Output: true Explanation: We might do the following sequence: push(1), push(2), push(3), push(4), pop() -&gt; 4, push(5), pop() -&gt; 5, pop() -&gt; 3, pop() -&gt; 2, pop() -&gt; 1 Example 2:Input: pushed = [1,2,3,4,5], popped = [4,3,5,1,2] Output: false Explanation: 1 cannot be popped before 2. Note: 0 &lt;= pushed.length == popped.length &lt;= 1000 0 &lt;= pushed[i], popped[i] &lt; 1000 pushed is a permutation of popped. pushed and popped have distinct values. 分析 模拟栈的操作，以此来匹配进栈序列和出栈序列； 若栈为空或者栈顶元素不等于当前出栈数字：将进栈数字压入栈（若没有进栈数字了，返回False），循环2； pop出栈顶元素； 遍历完所有出栈数字，返回True。 参考代码class Solution: def validateStackSequences(self, pushed, popped): i=0 stack=[] for pop in popped: while(len(stack)==0 or stack[-1]!=pop): if(i&lt;len(pushed)): stack.append(pushed[i]) i+=1 else: return False stack=stack[:-1] return True]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[945.Minimum Increment to Make Array Unique(使数组唯一的最小增量)]]></title>
+    <url>%2F2018%2F11%2F25%2F945-Minimum-Increment-to-Make-Array-Unique%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven an array of integers A, a move consists of choosing any A[i], and incrementing it by 1. Return the least number of moves to make every value in A unique. 给定整数数组 A，每次 move 操作将会选择任意 A[i]，并将其递增 1。 返回使 A 中的每个值都是唯一的最少操作次数。 题目链接：https://leetcode.com/problems/minimum-increment-to-make-array-unique/ Difficulty: medium Example 1:Input: [1,2,2] Output: 1 Explanation: After 1 move, the array could be [1, 2, 3]. Example 2:Input: [3,2,1,2,1,7] Output: 6 Explanation: After 6 moves, the array could be [3, 4, 1, 2, 5, 7]. It can be shown with 5 or less moves that it is impossible for the array to have all unique values. Note: 0 &lt;= A.length &lt;= 40000 0 &lt;= A[i] &lt; 40000 分析 根据题意是将数组中重复的数字调整（增加）到数组中不存在的数，返回增加的次数（每次增加1）； 将数组A排序，依次遍历，若当前数字比前一个大，则继续； 反之，调整当前数字到比前一个数字大（排序数组中调整是加1）； 记录所有调整操作的次数，返回。 参考代码class Solution: def minIncrementForUnique(self, A): A.sort() s=0 index=0 for a in A: if(a&lt;index): s+=(index-a) index+=1 else: index=a+1 return s]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[944.Delete Columns to Make Sorted(删除列以使之有序)]]></title>
     <url>%2F2018%2F11%2F18%2F944-Delete-Columns-to-Make-Sorted%2F</url>
     <content type="text"><![CDATA[DescriptionWe are given an array A of N lowercase letter strings, all of the same length. Now, we may choose any set of deletion indices, and for each string, we delete all the characters in those indices. For example, if we have a string “abcdef” and deletion indices {0, 2, 3}, then the final string after deletion is “bef”. Suppose we chose a set of deletion indices D such that after deletions, each remaining column in A is in non-decreasing sorted order. Formally, the c-th column is [A[0][c], A[1][c], …, A[A.length-1][c]] Return the minimum possible value of D.length. 给出由 N 个小写字母串组成的数组 A，所有小写字母串的长度都相同。 现在，我们可以选择任何一组删除索引，对于每个字符串，我们将删除这些索引中的所有字符。 举个例子，如果字符串为 “abcdef”，且删除索引是 {0, 2, 3}，那么删除之后的最终字符串为 “bef”。 假设我们选择了一组删除索引 D，在执行删除操作之后，A 中剩余的每一列都是有序的。 形式上，第 c 列为 [A[0][c], A[1][c], …, A[A.length-1][c]] 返回 D.length 的最小可能值。 题目链接：https://leetcode.com/problems/delete-columns-to-make-sorted/ Difficulty: medium Example 1:Input: [&quot;cba&quot;,&quot;daf&quot;,&quot;ghi&quot;] Output: 1 Example 2:Input: [&quot;a&quot;,&quot;b&quot;] Output: 0 Example 3:Input: [&quot;zyx&quot;,&quot;wvu&quot;,&quot;tsr&quot;] Output: 3 Note: 1 &lt;= A.length &lt;= 100 1 &lt;= A[i].length &lt;= 1000 分析 按题意，D的最小长度就是A的不是有序的列的个数； 取得A中每个项的最小长度m； 遍历[0:m]列，若该列无序，则该列索引在D中； 返回所有满足要求的索引的和。 参考代码class Solution: def minDeletionSize(self, A): M=1000 for a in A: M=min(M,len(a)) s=0 for m in range(M): for i in range(1,len(A)): if(A[i][m]&lt;A[i-1][m]): s+=1 break return s]]></content>
@@ -552,8 +596,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Math</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -889,8 +933,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Math</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Binary Search</tag>
       </tags>
   </entry>
@@ -1348,8 +1392,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Math</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -1652,8 +1696,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -1691,8 +1735,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Greedy</tag>
         <tag>Array</tag>
+        <tag>Greedy</tag>
       </tags>
   </entry>
   <entry>
