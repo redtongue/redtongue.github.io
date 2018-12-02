@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[952.Largest Component Size by Common Factor(按公因数计算最大组件大小)]]></title>
+    <url>%2F2018%2F12%2F02%2F952-Largest-Component-Size-by-Common-Factor%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a non-empty array of unique positive integers A, consider the following graph: There are A.length nodes, labelled A[0] to A[A.length - 1]; There is an edge between A[i] and A[j] if and only if A[i] and A[j] share a common factor greater than 1. Return the size of the largest connected component in the graph. 给定一个由不同正整数的组成的非空数组 A，考虑下面的图： 有 A.length 个节点，按从 A[0] 到 A[A.length - 1] 标记； 只有当 A[i] 和 A[j] 共用一个大于 1 的公因数时，A[i] 和 A[j] 之间才有一条边。 返回图中最大连通组件的大小。 题目链接：https://leetcode.com/problems/largest-component-size-by-common-factor/ Difficulty: hard Example 1:Input: [4,6,15,35] Output: 4 Example 2:Input: [20,50,9,63] Output: 2 Example 3:Input: [2,3,6,7,4,12,21,39] Output: 8 Note: 1 &lt;= A.length &lt;= 20000 1 &lt;= A[i] &lt;= 100000 分析 updating 参考代码updating]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
+        <tag>Union Find</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[951.Flip Equivalent Binary Trees(翻转等价二叉树)]]></title>
+    <url>%2F2018%2F12%2F02%2F951-Flip-Equivalent-Binary-Trees%2F</url>
+    <content type="text"><![CDATA[DescriptionFor a binary tree T, we can define a flip operation as follows: choose any node, and swap the left and right child subtrees. A binary tree X is flip equivalent to a binary tree Y if and only if we can make X equal to Y after some number of flip operations. Write a function that determines whether two binary trees are flip equivalent. The trees are given by root nodes root1 and root2. 我们可以为二叉树 T 定义一个翻转操作，如下所示：选择任意节点，然后交换它的左子树和右子树。 只要经过一定次数的翻转操作后，能使 X 等于 Y，我们就称二叉树 X 翻转等价于二叉树 Y。 编写一个判断两个二叉树是否是翻转等价的函数。这些树由根节点 root1 和 root2 给出。 题目链接：https://leetcode.com/problems/flip-equivalent-binary-trees/ Difficulty: medium Example 1:Input: root1 = [1,2,3,4,5,6,null,null,null,7,8], root2 = [1,3,2,null,6,4,5,null,null,null,null,8,7] Output: true Explanation: We flipped at nodes with values 1, 3, and 5. Note: Each tree will have at most 100 nodes. Each value in each tree will be a unique integer in the range [0, 99]. 分析 updating 参考代码Definition for a binary tree node. class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: def flipEquiv(self, root1, root2): if(root1==None and root2==None): return True elif(root1!=None and root2!=None): if(root1.val!=root2.val): return False else: return (self.flipEquiv(root1.left,root2.left) and self.flipEquiv(root1.right,root2.right)) or (self.flipEquiv(root1.left,root2.right) and self.flipEquiv(root1.right,root2.left)) else: return False]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Tree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[950.Reveal Cards In Increasing Order(按递增顺序显示卡牌)]]></title>
+    <url>%2F2018%2F12%2F02%2F950-Reveal-Cards-In-Increasing-Order%2F</url>
+    <content type="text"><![CDATA[DescriptionIn a deck of cards, every card has a unique integer. You can order the deck in any order you want. Initially, all the cards start face down (unrevealed) in one deck. Now, you do the following steps repeatedly, until all cards are revealed: Take the top card of the deck, reveal it, and take it out of the deck. If there are still cards in the deck, put the next top card of the deck at the bottom of the deck. If there are still unrevealed cards, go back to step 1. Otherwise, stop. Return an ordering of the deck that would reveal the cards in increasing order. The first entry in the answer is considered to be the top of the deck. 牌组中的每张卡牌都对应有一个唯一的整数。你可以按你想要的顺序对这套卡片进行排序。 最初，这些卡牌在牌组里是正面朝下的（即，未显示状态）。 现在，重复执行以下步骤，直到显示所有卡牌为止： 从牌组顶部抽一张牌，显示它，然后将其从牌组中移出。 如果牌组中仍有牌，则将下一张处于牌组顶部的牌放在牌组的底部。 如果仍有未显示的牌，那么返回步骤 1。否则，停止行动。 返回能以递增顺序显示卡牌的牌组顺序。 答案中的第一张牌被认为处于牌堆顶部。 题目链接：https://leetcode.com/problems/reveal-cards-in-increasing-order/ Difficulty: medium Example 1:Input: [17,13,11,2,3,5,7] Output: [2,13,3,11,5,17,7] Explanation: We get the deck in the order [17,13,11,2,3,5,7] (this order doesn&apos;t matter), and reorder it. After reordering, the deck starts as [2,13,3,11,5,17,7], where 2 is the top of the deck. We reveal 2, and move 13 to the bottom. The deck is now [3,11,5,17,7,13]. We reveal 3, and move 11 to the bottom. The deck is now [5,17,7,13,11]. We reveal 5, and move 17 to the bottom. The deck is now [7,13,11,17]. We reveal 7, and move 13 to the bottom. The deck is now [11,17,13]. We reveal 11, and move 17 to the bottom. The deck is now [13,17]. We reveal 13, and move 17 to the bottom. The deck is now [17]. We reveal 17. Since all the cards revealed are in increasing order, the answer is correct. Note: 1 &lt;= A.length &lt;= 1000 1 &lt;= A[i] &lt;= 10^6 A[i] != A[j] for all i != j 分析 由题意知，是每显示一张卡片，将下一张（如果有）放到最后面； 相当于在一排位置上，循环填坑，每次跳两个位置，被占用的坑忽略； 首先将数组排序，按顺序填入坑中；形如[-,-,-,-,-,-,-]中填入[2,3,5,7,11,13,17]; 接下来每次填入一个数字的结果如下：[2,-,-,-,-,-,-]-&gt;[2,-,3,-,-,-,-]-&gt;[2,-,3,-,5,-,-]-&gt;[2,-,3,-,5,-,7]-&gt;[2,-,3,11,5,-,7]-&gt;[2,13,3,11,5,-,7]-&gt;[2,13,3,11,5,17,7]; 如上即是返回结果。 参考代码class Solution: def deckRevealedIncreasing(self, deck): deck.sort() A=[0]*len(deck) index=0 judge=[i for i in range(len(deck))] for i in range(len(A)): A[judge[index]]=deck[i] judge=judge[:index]+judge[index+1:] index+=1 if(len(judge)): index%=len(judge) return A]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[949.Largest Time for Given Digits(给定数字能组成的最大时间)]]></title>
+    <url>%2F2018%2F12%2F02%2F949-Largest-Time-for-Given-Digits%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven an array of 4 digits, return the largest 24 hour time that can be made. The smallest 24 hour time is 00:00, and the largest is 23:59. Starting from 00:00, a time is larger if more time has elapsed since midnight. Return the answer as a string of length 5. If no valid time can be made, return an empty string. 给定一个由 4 位数字组成的数组，返回可以设置的符合 24 小时制的最大时间。 最小的 24 小时制时间是 00:00，而最大的是 23:59。从 00:00 （午夜）开始算起，过得越久，时间越大。 以长度为 5 的字符串返回答案。如果不能确定有效时间，则返回空字符串。 题目链接：https://leetcode.com/problems/largest-time-for-given-digits/ Difficulty: easy Example 1:Input: [1,2,3,4] Output: &quot;23:41&quot; Example 2:Input: [5,5,5,5] Output: &quot;&quot; Note: A.length == 4 0 &lt;= A[i] &lt;= 9 分析 直接暴力列出所有可能的时间，共有432*1=24中，判断合法时间，返回最大时间； 合法时间的原则是：时间的小时要小于24，时间的分钟要小于60； 遍历所有可能性，返回满足条件的最大时间；无满足条件，返回“”。 参考代码class Solution: def largestTimeFromDigits(self, A): if(sum(A)==0): return &quot;00:00&quot; li=[&quot;0&quot;,&quot;0&quot;] for i in range(4): for j in range(4): for k in range(4): for q in range(4): if(i!=j and i!=k and i!=q and j!=k and j!=q and k!=q): h=str(A[i])+str(A[j]) m=str(A[k])+str(A[q]) if(int(h)&lt;24 and int(m) &lt; 60): if(int(h)&gt;int(li[0]) or (int(h)==int(li[0]) and int(m) &gt; int(li[1]))): li=[h,m] if((int(li[0])+int(li[1]))==0): return &quot;&quot; else: return li[0]+&quot;:&quot;+li[1]]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[948.Bag of Tokens(令牌放置)]]></title>
     <url>%2F2018%2F11%2F25%2F948-Bag-of-Tokens%2F</url>
     <content type="text"><![CDATA[DescriptionYou have an initial power P, an initial score of 0 points, and a bag of tokens. Each token can be used at most once, has a value token[i], and has potentially two ways to use it. If we have at least token[i] power, we may play the token face up, losing token[i] power, and gaining 1 point. If we have at least 1 point, we may play the token face down, gaining token[i] power, and losing 1 point. Return the largest number of points we can have after playing any number of tokens. 你的初始能量为 P，初始分数为 0，只有一包令牌。 令牌的值为 token[i]，每个令牌最多只能使用一次，可能的两种使用方法如下： 如果你至少有 token[i] 点能量，可以将令牌置为正面朝上，失去 token[i] 点能量，并得到 1 分。 如果我们至少有 1 分，可以将令牌置为反面朝上，获得 token[i] 点能量，并失去 1 分。 在使用任意数量的令牌后，返回我们可以得到的最大分数。 题目链接：https://leetcode.com/problems/bag-of-tokens/ Difficulty: medium Example 1:Input: tokens = [100], P = 50 Output: 0 Example 2:Input: tokens = [100,200], P = 150 Output: 1 Example 3:Input: tokens = [100,200,300,400], P = 200 Output: 2 Note: tokens.length &lt;= 1000 0 &lt;= tokens[i] &lt; 10000 0 &lt;= P &lt; 10000 分析 得分原则：能量够的情况下，尽量得分；反正尽量获取更多能量； 将tokens排序，若剩余能量不小于最小token的情况下，将令牌置为正面朝上，得一分；反之若是分数大于零，将最大能量的令牌置为反面朝上，减一分；记录当前得分，以及中间过程中出现过的最大得分； 操作完所有的token或者不能再操作token之时，返回最大得分。 参考代码class Solution: def bagOfTokensScore(self, tokens, P): tokens.sort() i,j=0,len(tokens)-1 points=0 power=P m_p=0 while(i&lt;=j): if(power&gt;=tokens[i]): points+=1 power-=tokens[i] i+=1 m_p=max(m_p,points) elif(points&gt;0): points-=1 power+=tokens[j] j-=1 else: break return m_p]]></content>
@@ -437,8 +486,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Array</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -889,8 +938,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Array</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
