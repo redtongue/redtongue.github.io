@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[956.Tallest Billboard]]></title>
+    <url>%2F2018%2F12%2F09%2F956-Tallest-Billboard%2F</url>
+    <content type="text"><![CDATA[DescriptionYou are installing a billboard and want it to have the largest height. The billboard will have two steel supports, one on each side. Each steel support must be an equal height. You have a collection of rods which can be welded together. For example, if you have rods of lengths 1, 2, and 3, you can weld them together to make a support of length 6. Return the largest possible height of your billboard installation. If you cannot support the billboard, return 0. 你正在安装一个广告牌，并希望它高度最大。这块广告牌将有两个钢制支架，两边各一个。每个钢支架的高度必须相等。 你有一堆可以焊接在一起的钢筋 rods。举个例子，如果钢筋的长度为 1、2 和 3，则可以将它们焊接在一起形成长度为 6 的支架。 返回广告牌的最大可能安装高度。如果没法安装广告牌，请返回 0。 题目链接：https://leetcode.com/problems/tallest-billboard/ Difficulty: hard Example 1:Input: [1,2,3,6] Output: 6 Explanation: We have two disjoint subsets {1,2,3} and {6}, which have the same sum = 6. Example 2:Input: [1,2,3,4,5,6] Output: 10 Explanation: We have two disjoint subsets {2,3,5} and {4,6}, which have the same sum = 10. Example 3:Input: [1,2] Output: 0 Explanation: The billboard cannot be supported, so we return 0. Note: 0 &lt;= rods.length &lt;= 20 1 &lt;= rods[i] &lt;= 1000 The sum of rods is at most 5000. 分析 updating（Solution） 参考代码from functools import lru_cache class Solution: def tallestBillboard(self, rods): @lru_cache(None) def dp(i, s): if i == len(rods): return 0 if s == 0 else float(&apos;-inf&apos;) return max(dp(i + 1, s), dp(i + 1, s - rods[i]), dp(i + 1, s + rods[i]) + rods[i]) return dp(0, 0)]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Dynamic Programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[955.Delete Columns to Make Sorted II(删列造序 ||)]]></title>
+    <url>%2F2018%2F12%2F09%2F955-Delete-Columns-to-Make-Sorted-II%2F</url>
+    <content type="text"><![CDATA[DescriptionWe are given an array A of N lowercase letter strings, all of the same length. Now, we may choose any set of deletion indices, and for each string, we delete all the characters in those indices. For example, if we have an array A = [&quot;abcdef&quot;,&quot;uvwxyz&quot;] and deletion indices {0, 2, 3}, then the final array after deletions is [&quot;bef&quot;,&quot;vyz&quot;]. Suppose we chose a set of deletion indices D such that after deletions, the final array has its elements in lexicographic order (A[0] &lt;= A[1] &lt;= A[2] ... &lt;= A[A.length - 1]). Return the minimum possible value of D.length. 给定由 N 个小写字母字符串组成的数组 A，其中每个字符串长度相等。 选取一个删除索引序列，对于 A 中的每个字符串，删除对应每个索引处的字符。 比如，有 A = [&quot;abcdef&quot;, &quot;uvwxyz&quot;]，删除索引序列 {0, 2, 3}，删除后 A 为[&quot;bef&quot;, &quot;vyz&quot;]。 假设，我们选择了一组删除索引 D，那么在执行删除操作之后，最终得到的数组的元素是按 字典序（A[0] &lt;= A[1] &lt;= A[2] ... &lt;= A[A.length - 1]）排列的，然后请你返回 D.length 的最小可能值。 题目链接：https://leetcode.com/problems/delete-columns-to-make-sorted-ii/ Difficulty: medium Example 1:Input: [&quot;ca&quot;,&quot;bb&quot;,&quot;ac&quot;] Output: 1 Explanation: After deleting the first column, A = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]. Now A is in lexicographic order (ie. A[0] &lt;= A[1] &lt;= A[2]). We require at least 1 deletion since initially A was not in lexicographic order, so the answer is 1. Example 2:Input: [&quot;xc&quot;,&quot;yb&quot;,&quot;za&quot;] Output: 0 Explanation: A is already in lexicographic order, so we don&apos;t need to delete anything. Note that the rows of A are not necessarily in lexicographic order: ie. it is NOT necessarily true that (A[0][0] &lt;= A[0][1] &lt;= ...) Example 3:Input: [&quot;zyx&quot;,&quot;wvu&quot;,&quot;tsr&quot;] Output: 3 Explanation: We have to delete every column. Note: 1 &lt;= A.length &lt;= 100 1 &lt;= A[i].length &lt;= 100 分析 定义judge，存储当前数与下一个数的字典序关系，若等于0，当前字母串的字典在下一个字母串的前面； 若sum（judge）=0即所有字母串的字典序都在下一个字母串的前面，返回s（须删除的序列数）； 遍历A[0],判断每一列是否应该被删除，遍历A，若符合字典序，继续遍历，反之，若不满足字典序，s+1，break； 每次遍历结束，调整judge，符合字典序，置0； 返回s。 参考代码class Solution: def minDeletionSize(self, A): s=0 judge=[1]*(len(A)-1) for i in range(len(A[0])): if(sum(judge)==0): return s for j in range(len(A)-1): if(judge[j]==0): continue if(A[j][i]&gt;A[j+1][i]): s+=1 break else: for j in range(len(A)-1): if(A[j][i]&lt;A[j+1][i]): judge[j]=0 return s]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[954.Array of Doubled Pairs(二倍数对数组)]]></title>
+    <url>%2F2018%2F12%2F09%2F954-Array-of-Doubled-Pairs%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven an array of integers A with even length, return true if and only if it is possible to reorder it such that A[2 * i + 1] = 2 * A[2 * i] for every 0 &lt;= i &lt; len(A) / 2. 给定一个长度为偶数的整数数组 A，只有对 A 进行重组后可以满足 “对于每个 0 &lt;= i &lt; len(A) / 2，都有 A[2 * i + 1] = 2 * A[2 * i]” 时，返回 true；否则，返回 false。 题目链接：https://leetcode.com/problems/array-of-doubled-pairs/ Difficulty: medium Example 1:Input: [3,1,3,6] Output: false Example 2:Input: [2,1,2,6] Output: false Example 3:Input: [4,-2,2,-4] Output: true Explanation: We can take two groups, [-2,-4] and [2,4] to form [-2,-4,2,4] or [2,4,-2,-4]. Example 4:Input: [1,2,4,16,8,4] Output: false Note: 0 &lt;= A.length &lt;= 30000 A.length is even -100000 &lt;= A[i] &lt;= 100000 分析 先将A排序； 分为两种情况，负数和正数； 负数：遍历，若遍历完lii，当前数加入到lii，反之，比较，若当前数a小于lii[ii]的一半，加入到lii，若等于，ii后移，若大于，返回False； 正数：遍历，若遍历完li，当前数加入到li，反之，比较，若当前数a小于li[i]的两倍，加入到li，若等于，i后移，若大于，返回False； 若lii和li为空，返回True； 返回False。 参考代码class Solution: def canReorderDoubled(self, A): A.sort() li=[] i=0 lii=[] ii=0 for a in A: if(a&lt;0): if(ii==len(lii)): lii.append(a) else: if(a&lt;lii[ii]/2): lii.append(a) elif(a==lii[ii]/2): ii+=1 else: return False continue if(ii!=len(lii)): return False if(i==len(li)): li.append(a) else: if(a&lt;2*li[i]): li.append(a) elif(a==2*li[i]): i+=1 else: return False if(i==len(li) and ii==len(lii)): return True return False]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+        <tag>Hash Table</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[953.Verifying an Alien Dictionary(验证外星语词典)]]></title>
+    <url>%2F2018%2F12%2F09%2F953-Verifying-an-Alien-Dictionary%2F</url>
+    <content type="text"><![CDATA[DescriptionIn an alien language, surprisingly they also use english lowercase letters, but possibly in a different order. The order of the alphabet is some permutation of lowercase letters. Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographicaly in this alien language. 某种外星语也使用英文小写字母，但可能顺序 order 不同。字母表的顺序（order）是一些小写字母的排列。 给定一组用外星语书写的单词 words，以及其字母表的顺序 order，只有当给定的单词在这种外星语中按字典序排列时，返回 true；否则，返回 false。 题目链接：https://leetcode.com/problems/verifying-an-alien-dictionary/ Difficulty: easy Example 1:Input: words = [&quot;hello&quot;,&quot;leetcode&quot;], order = &quot;hlabcdefgijkmnopqrstuvwxyz&quot; Output: true Explanation: As &apos;h&apos; comes before &apos;l&apos; in this language, then the sequence is sorted. Example 2:Input: words = [&quot;word&quot;,&quot;world&quot;,&quot;row&quot;], order = &quot;worldabcefghijkmnpqstuvxyz&quot; Output: false Explanation: As &apos;d&apos; comes after &apos;l&apos; in this language, then words[0] &gt; words[1], hence the sequence is unsorted. Example 3:Input: words = [&quot;apple&quot;,&quot;app&quot;], order = &quot;abcdefghijklmnopqrstuvwxyz&quot; Output: false Explanation: The first three characters &quot;app&quot; match, and the second string is shorter (in size.) According to lexicographical rules &quot;apple&quot; &gt; &quot;app&quot;, because &apos;l&apos; &gt; &apos;∅&apos;, where &apos;∅&apos; is defined as the blank character which is less than any other character (More info). Note: 1 &lt;= words.length &lt;= 100 1 &lt;= words[i].length &lt;= 20 order.length == 26 All characters in words[i] and order are english lowercase letters. 分析 定义一个判断符合‘order’顺序的函数judge，遍历w1，w2，若w1在大于w2，返回False，若w1在小于w2，返回True，反之继续； 将‘order’存入字典，保存其序号，用于judge中判断； 遍历‘words’，用judge判断，若存在逆序，返回False； 返回True。 参考代码class Solution: def isAlienSorted(self, words, order): def judge(w1,w2,o): i=0 while(i&lt;len(w1) and i &lt; len(w2)): if(o[w1[i]] &lt; o[w2[i]]): return True elif(o[w1[i]]&gt;o[w2[i]]): return False else: i+=1 if(i&lt;len(w1)): return False else: return True o={} for i in range(len(order)): o[order[i]]=i for i in range(len(words)-1): if(not judge(words[i],words[i+1],o)): return False return True]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Hash Table</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[952.Largest Component Size by Common Factor(按公因数计算最大组件大小)]]></title>
     <url>%2F2018%2F12%2F02%2F952-Largest-Component-Size-by-Common-Factor%2F</url>
     <content type="text"><![CDATA[DescriptionGiven a non-empty array of unique positive integers A, consider the following graph: There are A.length nodes, labelled A[0] to A[A.length - 1]; There is an edge between A[i] and A[j] if and only if A[i] and A[j] share a common factor greater than 1. Return the size of the largest connected component in the graph. 给定一个由不同正整数的组成的非空数组 A，考虑下面的图： 有 A.length 个节点，按从 A[0] 到 A[A.length - 1] 标记； 只有当 A[i] 和 A[j] 共用一个大于 1 的公因数时，A[i] 和 A[j] 之间才有一条边。 返回图中最大连通组件的大小。 题目链接：https://leetcode.com/problems/largest-component-size-by-common-factor/ Difficulty: hard Example 1:Input: [4,6,15,35] Output: 4 Example 2:Input: [20,50,9,63] Output: 2 Example 3:Input: [2,3,6,7,4,12,21,39] Output: 8 Note: 1 &lt;= A.length &lt;= 20000 1 &lt;= A[i] &lt;= 100000 分析 updating 参考代码updating]]></content>
@@ -486,8 +535,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Array</tag>
         <tag>Math</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
@@ -938,8 +987,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Array</tag>
         <tag>Math</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
@@ -1343,8 +1392,8 @@
       <tags>
         <tag>code</tag>
         <tag>剑指Offer</tag>
-        <tag>链表</tag>
         <tag>二叉树</tag>
+        <tag>链表</tag>
       </tags>
   </entry>
   <entry>
@@ -1750,8 +1799,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Array</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
