@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[960.Delete Columns to Make Sorted III]]></title>
+    <url>%2F2018%2F12%2F19%2F960-Delete-Columns-to-Make-Sorted-III%2F</url>
+    <content type="text"><![CDATA[DescriptionWe are given an array A of N lowercase letter strings, all of the same length. Now, we may choose any set of deletion indices, and for each string, we delete all the characters in those indices. For example, if we have an array A = [&quot;babca&quot;,&quot;bbazb&quot;] and deletion indices {0, 1, 4}, then the final array after deletions is [&quot;bc&quot;,&quot;az&quot;]. Suppose we chose a set of deletion indices D such that after deletions, the final array has every element (row) in lexicographic order. For clarity, A[0] is in lexicographic order (ie. A[0][0] &lt;= A[0][1] &lt;= ... &lt;= A[0][A[0].length - 1]), A[1] is in lexicographic order (ie. A[1][0] &lt;= A[1][1] &lt;= ... &lt;= A[1][A[1].length - 1]), and so on. Return the minimum possible value of D.length. 给定由 N 个小写字母字符串组成的数组 A，其中每个字符串长度相等。 选取一个删除索引序列，对于 A 中的每个字符串，删除对应每个索引处的字符。 比如，有 A = [&quot;babca&quot;,&quot;bbazb&quot;]，删除索引序列 {0, 1, 4}，删除后 A 为[&quot;bc&quot;,&quot;az&quot;]。 假设，我们选择了一组删除索引 D，那么在执行删除操作之后，最终得到的数组的行中的每个元素都是按字典序排列的。 清楚起见，A[0] 是按字典序排列的（即，A[0][0] &lt;= A[0][1] &lt;= ... &lt;= A[0][A[0].length - 1]），A[1] 是按字典序排列的（即，A[1][0] &lt;= A[1][1] &lt;= ... &lt;= A[1][A[1].length - 1]），依此类推。 请你返回 D.length 的最小可能值。 题目链接：https://leetcode.com/problems/delete-columns-to-make-sorted-iii/ Difficulty: hard Example 1:Input: [&quot;babca&quot;,&quot;bbazb&quot;] Output: 3 Explanation: After deleting columns 0, 1, and 4, the final array is A = [&quot;bc&quot;, &quot;az&quot;]. Both these rows are individually in lexicographic order (ie. A[0][0] &lt;= A[0][1] and A[1][0] &lt;= A[1][1]). Note that A[0] &gt; A[1] - the array A isn&apos;t necessarily in lexicographic order. Example 2:Input: [&quot;edcba&quot;] Output: 4 Explanation: If we delete less than 4 columns, the only row won&apos;t be lexicographically sorted. Example 3:Input: [&quot;ghi&quot;,&quot;def&quot;,&quot;abc&quot;] Output: 0 Explanation: All rows are already lexicographically sorted. Note: 1 &lt;= A.length &lt;= 100 1 &lt;= A[i].length &lt;= 100 分析 updating（Solution） 参考代码class Solution(object): def minDeletionSize(self, A): W = len(A[0]) dp = [1] * W for i in xrange(W-2, -1, -1): for j in xrange(i+1, W): if all(row[i] &lt;= row[j] for row in A): dp[i] = max(dp[i], 1 + dp[j]) return W - max(dp)]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Dynamic Programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[959.Regions Cut By Slashes]]></title>
+    <url>%2F2018%2F12%2F19%2F959-Regions-Cut-By-Slashes%2F</url>
+    <content type="text"><![CDATA[DescriptionIn a N x N grid composed of 1 x 1 squares, each 1 x 1 square consists of a/, \, or blank space. These characters divide the square into contiguous regions. (Note that backslash characters are escaped, so a \ is represented as “\“.) Return the number of regions. 在由 1 x 1 方格组成的 N x N 网格 grid 中，每个 1 x 1 方块由 /、\ 或空格构成。这些字符会将方块划分为一些共边的区域。 （请注意，反斜杠字符是转义的，因此 \ 用 “\“ 表示。）。 题目链接：https://leetcode.com/problems/regions-cut-by-slashes/ Difficulty: medium Example 1:Input: [ &quot; /&quot;, &quot;/ &quot; ] Output: 2 Explanation: The 2x2 grid is as follows: .png) Example 2:Input: [ &quot; /&quot;, &quot; &quot; ] Output: 1 Explanation: The 2x2 grid is as follows: .png) Example 3:Input: [ &quot;\\/&quot;, &quot;/\\&quot; ] Output: 4 Explanation: (Recall that because \ characters are escaped, &quot;\\/&quot; refers to \/, and &quot;/\\&quot; refers to /\.) The 2x2 grid is as follows: Example 4:Input: [ &quot;/\\&quot;, &quot;\\/&quot; ] Output: 5 Explanation: (Recall that because \ characters are escaped, &quot;/\\&quot; refers to /\, and &quot;\\/&quot; refers to \/.) The 2x2 grid is as follows: Example 5:Input: [ &quot;//&quot;, &quot;/ &quot; ] Output: 3 Explanation: The 2x2 grid is as follows: Note: 1 &lt;= grid.length == grid[0].length &lt;= 30 grid[i][j] is either ‘/‘, ‘\’, or ‘ ‘. 分析 updating（Solution） 参考代码class DSU: def __init__(self, N): self.p = range(N) def find(self, x): if self.p[x] != x: self.p[x] = self.find(self.p[x]) return self.p[x] def union(self, x, y): xr = self.find(x) yr = self.find(y) self.p[xr] = yr class Solution(object): def regionsBySlashes(self, grid): N = len(grid) dsu = DSU(4 * N * N) for r, row in enumerate(grid): for c, val in enumerate(row): root = 4 * (r*N + c) if val in &apos;/ &apos;: dsu.union(root + 0, root + 1) dsu.union(root + 2, root + 3) if val in &apos;\ &apos;: dsu.union(root + 0, root + 2) dsu.union(root + 1, root + 3) # north/south if r+1 &lt; N: dsu.union(root + 3, (root+4*N) + 0) if r-1 &gt;= 0: dsu.union(root + 0, (root-4*N) + 3) # east/west if c+1 &lt; N: dsu.union(root + 2, (root+4) + 1) if c-1 &gt;= 0: dsu.union(root + 1, (root-4) + 2) return sum(dsu.find(x) == x for x in xrange(4*N*N))]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Depth-first Search</tag>
+        <tag>Union Find</tag>
+        <tag>Graph</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[958.Check Completeness of a Binary Tree]]></title>
+    <url>%2F2018%2F12%2F19%2F958-Check-Completeness-of-a-Binary-Tree%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a binary tree, determine if it is a complete binary tree. Definition of a complete binary tree from Wikipedia: In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h. 给定一个二叉树，确定它是否是一个完全二叉树。 百度百科中对完全二叉树的定义如下： 若设二叉树的深度为 h，除第 h 层外，其它各层 (1～h-1) 的结点数都达到最大个数，第 h 层所有的结点都连续集中在最左边，这就是完全二叉树。（注：第 h 层可能包含 1~ 2h 个节点。） 题目链接：https://leetcode.com/problems/check-completeness-of-a-binary-tree/ Difficulty: medium Example 1: Input: [1,2,3,4,5,6] Output: true Explanation: Every level before the last is full (ie. levels with node-values {1} and {2, 3}), and all nodes in the last level ({4, 5, 6}) are as far left as possible. Example 2: Input: [1,2,3,4,5,null,7] Output: false Explanation: The node with value 7 isn&apos;t as far left as possible. Note: The tree will have between 1 and 100 nodes. 分析 updating 参考代码Definition for a binary tree node. class TreeNode: def __init__(self, x): self.val = x self.left = None self.right = None class Solution: def isCompleteTree(self, root): if(root==None): return True li=[root] judge=False while(len(li)&gt;0): ro=li[0] li=li[1:] if(ro==None): break if(judge): if(ro.left): return False if(ro.left==None): judge=True li.append(ro.left) if(judge): if(ro.right): return False if(ro.right==None): judge=True li.append(ro.right) return True]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Tree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[957.Prison Cells After Days（N 天后的牢房）]]></title>
+    <url>%2F2018%2F12%2F19%2F957-Prison-Cells-After-Days%2F</url>
+    <content type="text"><![CDATA[DescriptionThere are 8 prison cells in a row, and each cell is either occupied or vacant. Each day, whether the cell is occupied or vacant changes according to the following rules: If a cell has two adjacent neighbors that are both occupied or both vacant, then the cell becomes occupied. Otherwise, it becomes vacant. (Note that because the prison is a row, the first and the last cells in the row can’t have two adjacent neighbors.) We describe the current state of the prison in the following way:cells[i] == 1 if the i-th cell is occupied, else cells[i] == 0. Given the initial state of the prison, return the state of the prison after N days (and N such changes described above.) 8 间牢房排成一排，每间牢房不是有人住就是空着。 每天，无论牢房是被占用或空置，都会根据以下规则进行更改： 如果一间牢房的两个相邻的房间都被占用或都是空的，那么该牢房就会被占用。否则，它就会被空置。（请注意，由于监狱中的牢房排成一行，所以行中的第一个和最后一个房间无法有两个相邻的房间。） 我们用以下方式描述监狱的当前状态：如果第 i 间牢房被占用，则 cell[i]==1，否则 cell[i]==0。 根据监狱的初始状态，在 N 天后返回监狱的状况（和上述 N 种变化）。 题目链接：https://leetcode.com/problems/prison-cells-after-n-days/ Difficulty: medium Example 1:Input: cells = [0,1,0,1,1,0,0,1], N = 7 Output: [0,0,1,1,0,0,0,0] Explanation: The following table summarizes the state of the prison on each day: Day 0: [0, 1, 0, 1, 1, 0, 0, 1] Day 1: [0, 1, 1, 0, 0, 0, 0, 0] Day 2: [0, 0, 0, 0, 1, 1, 1, 0] Day 3: [0, 1, 1, 0, 0, 1, 0, 0] Day 4: [0, 0, 0, 0, 0, 1, 0, 0] Day 5: [0, 1, 1, 1, 0, 1, 0, 0] Day 6: [0, 0, 1, 0, 1, 1, 0, 0] Day 7: [0, 0, 1, 1, 0, 0, 0, 0] Example 2:Input: cells = [1,0,0,1,0,0,1,0], N = 1000000000 Output: [0,0,1,1,1,1,1,0] Note: cells.length == 8 cells[i] is in {0, 1} 1 &lt;= N &lt;= 10^9 分析 updating（Solution） 参考代码class Solution(object): def prisonAfterNDays(self, cells, N): def nextday(cells): return [int(i &gt; 0 and i &lt; 7 and cells[i-1] == cells[i+1]) for i in xrange(8)] seen = {} while N &gt; 0: c = tuple(cells) if c in seen: N %= seen[c] - N seen[c] = N if N &gt;= 1: N -= 1 cells = nextday(cells) return cells]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Hash Table</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[956.Tallest Billboard]]></title>
     <url>%2F2018%2F12%2F09%2F956-Tallest-Billboard%2F</url>
     <content type="text"><![CDATA[DescriptionYou are installing a billboard and want it to have the largest height. The billboard will have two steel supports, one on each side. Each steel support must be an equal height. You have a collection of rods which can be welded together. For example, if you have rods of lengths 1, 2, and 3, you can weld them together to make a support of length 6. Return the largest possible height of your billboard installation. If you cannot support the billboard, return 0. 你正在安装一个广告牌，并希望它高度最大。这块广告牌将有两个钢制支架，两边各一个。每个钢支架的高度必须相等。 你有一堆可以焊接在一起的钢筋 rods。举个例子，如果钢筋的长度为 1、2 和 3，则可以将它们焊接在一起形成长度为 6 的支架。 返回广告牌的最大可能安装高度。如果没法安装广告牌，请返回 0。 题目链接：https://leetcode.com/problems/tallest-billboard/ Difficulty: hard Example 1:Input: [1,2,3,6] Output: 6 Explanation: We have two disjoint subsets {1,2,3} and {6}, which have the same sum = 6. Example 2:Input: [1,2,3,4,5,6] Output: 10 Explanation: We have two disjoint subsets {2,3,5} and {4,6}, which have the same sum = 10. Example 3:Input: [1,2] Output: 0 Explanation: The billboard cannot be supported, so we return 0. Note: 0 &lt;= rods.length &lt;= 20 1 &lt;= rods[i] &lt;= 1000 The sum of rods is at most 5000. 分析 updating（Solution） 参考代码from functools import lru_cache class Solution: def tallestBillboard(self, rods): @lru_cache(None) def dp(i, s): if i == len(rods): return 0 if s == 0 else float(&apos;-inf&apos;) return max(dp(i + 1, s), dp(i + 1, s - rods[i]), dp(i + 1, s + rods[i]) + rods[i]) return dp(0, 0)]]></content>
@@ -1392,8 +1442,8 @@
       <tags>
         <tag>code</tag>
         <tag>剑指Offer</tag>
-        <tag>二叉树</tag>
         <tag>链表</tag>
+        <tag>二叉树</tag>
       </tags>
   </entry>
   <entry>
@@ -1799,8 +1849,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
