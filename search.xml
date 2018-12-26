@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[964.Least Operators to Express Number(表示数字的最少运算符)]]></title>
+    <url>%2F2018%2F12%2F23%2F964-Least-Operators-to-Express-Number%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a single positive integer x, we will write an expression of the form x (op1) x (op2) x (op3) x ... where each operator op1, op2, etc. is either addition, subtraction, multiplication, or division (+, -, *, or /). For example, with x = 3, we might write 3 * 3 / 3 + 3 - 3 which is a value of 3. When writing such an expression, we adhere to the following conventions: The division operator (/) returns rational numbers. There are no parentheses placed anywhere. We use the usual order of operations: multiplication and division happens before addition and subtraction. It’s not allowed to use the unary negation operator (-). For example, “x - x“ is a valid expression as it only uses subtraction, but “-x + x“ is not because it uses negation. We would like to write an expression with the least number of operators such that the expression equals the given target. Return the least number of operators used. 给定一个正整数 x，我们将会写出一个形如 x (op1) x (op2) x (op3) x … 的表达式，其中每个运算符 op1，op2，… 可以是加、减、乘、除（+，-，，或是 /）之一。例如，对于 x = 3，我们可以写出表达式 3 3 / 3 + 3 - 3，该式的值为 3 。 在写这样的表达式时，我们需要遵守下面的惯例： 除运算符（/）返回有理数。 任何地方都没有括号。 我们使用通常的操作顺序：乘法和除法发生在加法和减法之前。 不允许使用一元否定运算符（-）。例如，“x - x” 是一个有效的表达式，因为它只使用减法，但是 “-x + x” 不是，因为它使用了否定运算符。 我们希望编写一个能使表达式等于给定的目标值 target 且运算符最少的表达式。返回所用运算符的最少数量。 题目链接：https://leetcode.com/problems/least-operators-to-express-number/ Difficulty: hard Example 1:Input: x = 3, target = 19 Output: 5 Explanation: 3 * 3 + 3 * 3 + 3 / 3. The expression contains 5 operations. Example 2:Input: x = 5, target = 501 Output: 8 Explanation: 5 * 5 * 5 * 5 - 5 * 5 * 5 + 5 / 5. The expression contains 8 operations. Example 3:Input: x = 100, target = 100000000 Output: 3 Explanation: 100 * 100 * 100 * 100. The expression contains 3 operations. Note: 2 &lt;= x &lt;= 100 1 &lt;= target &lt;= 2 * 10^8 分析 updating（Solution） 参考代码from functools import lru_cache class Solution(object): def leastOpsExpressTarget(self, x, target): cost = list(range(40)) cost[0] = 2 @lru_cache(None) def dp(i, targ): if targ == 0: return 0 if targ == 1: return cost[i] if i &gt;= 39: return float(&apos;inf&apos;) t, r = divmod(targ, x) return min(r * cost[i] + dp(i+1, t), (x-r) * cost[i] + dp(i+1, t+1)) return dp(0, target) - 1]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[963.Minimum Area Rectangle II(最小面积矩形 II)]]></title>
+    <url>%2F2018%2F12%2F23%2F963-Minimum-Area-Rectangle-II%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a set of points in the xy-plane, determine the minimum area of any rectangle formed from these points, with sides not necessarily parallel to the x and y axes. If there isn’t any rectangle, return 0. 给定在 xy 平面上的一组点，确定由这些点组成的任何矩形的最小面积，其中矩形的边不一定平行于 x 轴和 y 轴。 如果没有任何矩形，就返回 0。 题目链接：https://leetcode.com/problems/minimum-area-rectangle-ii/ Difficulty: medium Example 1: Input: [[1,2],[2,1],[1,0],[0,1]] Output: 2.00000 Explanation: The minimum area rectangle occurs at [1,2],[2,1],[1,0],[0,1], with an area of 2. Example 2: Input: [[0,1],[2,1],[1,1],[1,0],[2,0]] Output: 1.00000 Explanation: The minimum area rectangle occurs at [1,0],[1,1],[2,1],[2,0], with an area of 1. Example 3: Input: [[0,3],[1,2],[3,1],[1,3],[2,1]] Output: 0 Explanation: There is no possible rectangle to form from these points. Example 4: Input: [[3,1],[1,1],[0,1],[2,1],[3,3],[3,2],[0,2],[2,3]] Output: 2.00000 Explanation: The minimum area rectangle occurs at [2,1],[2,3],[3,3],[3,1], with an area of 2. Note: 1 &lt;= points.length &lt;= 50 0 &lt;= points[i][0] &lt;= 40000 0 &lt;= points[i][1] &lt;= 40000 All points are distinct. Answers within 10^-5 of the actual value will be accepted as correct. 分析 updating（Solution） 参考代码class Solution(object): def minAreaFreeRect(self, points): EPS = 1e-7 points = set(map(tuple, points)) ans = float(&apos;inf&apos;) for p1, p2, p3 in itertools.permutations(points, 3): p4 = p2[0] + p3[0] - p1[0], p2[1] + p3[1] - p1[1] if p4 in points: v21 = complex(p2[0] - p1[0], p2[1] - p1[1]) v31 = complex(p3[0] - p1[0], p3[1] - p1[1]) if abs(v21.real * v31.real + v21.imag * v31.imag) &lt; EPS: area = abs(v21) * abs(v31) if area &lt; ans: ans = area return ans if ans &lt; float(&apos;inf&apos;) else 0]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
+        <tag>Geometry</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[962.Maximum Width Ramp(最大宽度坡)]]></title>
+    <url>%2F2018%2F12%2F23%2F962-Maximum-Width-Ramp%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven an array A of integers, a ramp is a tuple (i, j) for which i &lt; j and A[i] &lt;= A[j]. The width of such a ramp is j - i. Find the maximum width of a ramp in A. If one doesn’t exist, return 0. 给定一个整数数组 A，坡是元组 (i, j)，其中 i &lt; j 且 A[i] &lt;= A[j]。这样的坡的宽度为 j - i。 找出 A 中的坡的最大宽度，如果不存在，返回 0 。 题目链接：https://leetcode.com/problems/maximum-width-ramp/ Difficulty: medium Example 1:Input: [6,0,8,2,1,5] Output: 4 Explanation: The maximum width ramp is achieved at (i, j) = (1, 5): A[1] = 0 and A[5] = 5. Example 2:Input: [9,8,1,0,1,9,4,0,4,1] Output: 7 Explanation: The maximum width ramp is achieved at (i, j) = (2, 9): A[2] = 1 and A[9] = 1. Note: 2 &lt;= A.length &lt;= 50000 0 &lt;= A[i] &lt;= 50000 分析 updating（Solution） 参考代码class Solution(object): def maxWidthRamp(self, A): ans = 0 m = float(&apos;inf&apos;) for i in sorted(range(len(A)), key = A.__getitem__): ans = max(ans, i - m) m = min(m, i) return ans]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[961.N-Repeated Element in Size 2N Array（重复 N 次的元素）]]></title>
+    <url>%2F2018%2F12%2F23%2F961-N-Repeated-Element-in-Size-2N-Array%2F</url>
+    <content type="text"><![CDATA[DescriptionIn a array A of size 2N, there are N+1 unique elements, and exactly one of these elements is repeated N times. Return the element repeated N times. 在大小为 2N 的数组 A 中有 N+1 个不同的元素，其中有一个元素重复了 N 次。 返回重复了 N 次的那个元素。 题目链接：https://leetcode.com/problems/n-repeated-element-in-size-2n-array Difficulty: easy Example 1:Input: [1,2,3,3] Output: 3 Example 2:Input: [2,1,2,5,3,2] Output: 2 Example 3:Input: [5,1,5,2,5,3,5,4] Output: 5 Note: 4 &lt;= A.length &lt;= 10000 0 &lt;= A[i] &lt; 10000 A.length is even 分析 updating 参考代码class Solution: def repeatedNTimes(self, A): D=set() for a in A: if(a not in D): D.add(a) else: return a return]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Hash Table</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[960.Delete Columns to Make Sorted III]]></title>
     <url>%2F2018%2F12%2F19%2F960-Delete-Columns-to-Make-Sorted-III%2F</url>
     <content type="text"><![CDATA[DescriptionWe are given an array A of N lowercase letter strings, all of the same length. Now, we may choose any set of deletion indices, and for each string, we delete all the characters in those indices. For example, if we have an array A = [&quot;babca&quot;,&quot;bbazb&quot;] and deletion indices {0, 1, 4}, then the final array after deletions is [&quot;bc&quot;,&quot;az&quot;]. Suppose we chose a set of deletion indices D such that after deletions, the final array has every element (row) in lexicographic order. For clarity, A[0] is in lexicographic order (ie. A[0][0] &lt;= A[0][1] &lt;= ... &lt;= A[0][A[0].length - 1]), A[1] is in lexicographic order (ie. A[1][0] &lt;= A[1][1] &lt;= ... &lt;= A[1][A[1].length - 1]), and so on. Return the minimum possible value of D.length. 给定由 N 个小写字母字符串组成的数组 A，其中每个字符串长度相等。 选取一个删除索引序列，对于 A 中的每个字符串，删除对应每个索引处的字符。 比如，有 A = [&quot;babca&quot;,&quot;bbazb&quot;]，删除索引序列 {0, 1, 4}，删除后 A 为[&quot;bc&quot;,&quot;az&quot;]。 假设，我们选择了一组删除索引 D，那么在执行删除操作之后，最终得到的数组的行中的每个元素都是按字典序排列的。 清楚起见，A[0] 是按字典序排列的（即，A[0][0] &lt;= A[0][1] &lt;= ... &lt;= A[0][A[0].length - 1]），A[1] 是按字典序排列的（即，A[1][0] &lt;= A[1][1] &lt;= ... &lt;= A[1][A[1].length - 1]），依此类推。 请你返回 D.length 的最小可能值。 题目链接：https://leetcode.com/problems/delete-columns-to-make-sorted-iii/ Difficulty: hard Example 1:Input: [&quot;babca&quot;,&quot;bbazb&quot;] Output: 3 Explanation: After deleting columns 0, 1, and 4, the final array is A = [&quot;bc&quot;, &quot;az&quot;]. Both these rows are individually in lexicographic order (ie. A[0][0] &lt;= A[0][1] and A[1][0] &lt;= A[1][1]). Note that A[0] &gt; A[1] - the array A isn&apos;t necessarily in lexicographic order. Example 2:Input: [&quot;edcba&quot;] Output: 4 Explanation: If we delete less than 4 columns, the only row won&apos;t be lexicographically sorted. Example 3:Input: [&quot;ghi&quot;,&quot;def&quot;,&quot;abc&quot;] Output: 0 Explanation: All rows are already lexicographically sorted. Note: 1 &lt;= A.length &lt;= 100 1 &lt;= A[i].length &lt;= 100 分析 updating（Solution） 参考代码class Solution(object): def minDeletionSize(self, A): W = len(A[0]) dp = [1] * W for i in xrange(W-2, -1, -1): for j in xrange(i+1, W): if all(row[i] &lt;= row[j] for row in A): dp[i] = max(dp[i], 1 + dp[j]) return W - max(dp)]]></content>
@@ -749,8 +799,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1086,8 +1136,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
         <tag>Binary Search</tag>
       </tags>
   </entry>
@@ -1442,8 +1492,8 @@
       <tags>
         <tag>code</tag>
         <tag>剑指Offer</tag>
-        <tag>链表</tag>
         <tag>二叉树</tag>
+        <tag>链表</tag>
       </tags>
   </entry>
   <entry>
@@ -1545,8 +1595,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1849,8 +1899,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Array</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
