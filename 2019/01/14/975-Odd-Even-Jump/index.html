@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="code,Math,Array," />
+  <meta name="keywords" content="code,Dynamic Programming,Stack," />
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="DescriptionGiven an array A of positive lengths, return the largest perimeter of a triangle with non-zero area, formed from 3 of these lengths. If it is impossible to form any triangle of non-zero are">
-<meta name="keywords" content="code,Math,Array">
+<meta name="description" content="DescriptionYou are given an integer array A.  From some starting index, you can make a series of jumps.  The (1st, 3rd, 5th, …) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6t">
+<meta name="keywords" content="code,Dynamic Programming,Stack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="976.Largest Perimeter Triangle（三角形的最大周长）">
-<meta property="og:url" content="https://redtongue.github.io/2019/01/18/976-Largest-Perimeter-Triangle/index.html">
+<meta property="og:title" content="975.Odd Even Jump(奇偶跳)">
+<meta property="og:url" content="https://redtongue.github.io/2019/01/14/975-Odd-Even-Jump/index.html">
 <meta property="og:site_name" content="Redtongue">
-<meta property="og:description" content="DescriptionGiven an array A of positive lengths, return the largest perimeter of a triangle with non-zero area, formed from 3 of these lengths. If it is impossible to form any triangle of non-zero are">
+<meta property="og:description" content="DescriptionYou are given an integer array A.  From some starting index, you can make a series of jumps.  The (1st, 3rd, 5th, …) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6t">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-18T08:43:03.441Z">
+<meta property="og:updated_time" content="2019-01-18T08:46:40.966Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="976.Largest Perimeter Triangle（三角形的最大周长）">
-<meta name="twitter:description" content="DescriptionGiven an array A of positive lengths, return the largest perimeter of a triangle with non-zero area, formed from 3 of these lengths. If it is impossible to form any triangle of non-zero are">
+<meta name="twitter:title" content="975.Odd Even Jump(奇偶跳)">
+<meta name="twitter:description" content="DescriptionYou are given an integer array A.  From some starting index, you can make a series of jumps.  The (1st, 3rd, 5th, …) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6t">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://redtongue.github.io/2019/01/18/976-Largest-Perimeter-Triangle/"/>
+  <link rel="canonical" href="https://redtongue.github.io/2019/01/14/975-Odd-Even-Jump/"/>
 
 
 
 
 
-  <title>976.Largest Perimeter Triangle（三角形的最大周长） | Redtongue</title>
+  <title>975.Odd Even Jump(奇偶跳) | Redtongue</title>
   
 
 
@@ -304,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2019/01/18/976-Largest-Perimeter-Triangle/">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2019/01/14/975-Odd-Even-Jump/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yunxiang wang">
@@ -321,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">976.Largest Perimeter Triangle（三角形的最大周长）</h1>
+          <h1 class="post-title" itemprop="name headline">975.Odd Even Jump(奇偶跳)</h1>
         
 
         <div class="post-meta">
@@ -333,8 +333,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-18T16:40:25+08:00">
-                2019-01-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-14T16:34:15+08:00">
+                2019-01-14
               </time>
             
 
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-18T16:43:03+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-18T16:46:40+08:00">
                 2019-01-18
               </time>
             
@@ -386,8 +386,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/18/976-Largest-Perimeter-Triangle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/01/18/976-Largest-Perimeter-Triangle/" itemprop="commentsCount"></span>
+                <a href="/2019/01/14/975-Odd-Even-Jump/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/01/14/975-Odd-Even-Jump/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -415,35 +415,94 @@
       
 
       
-        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given an array <code>A</code> of positive lengths, return the largest perimeter of a triangle with <code>non-zero area</code>, formed from 3 of these lengths.</p>
-<p>If it is impossible to form any triangle of non-zero area, return <code>0</code>.</p>
+        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>You are given an integer array <code>A</code>.  From some starting index, you can make a series of jumps.  The (1st, 3rd, 5th, …) jumps in the series are called odd numbered jumps, and the (2nd, 4th, 6th, …) jumps in the series are called even numbered jumps.</p>
+<p>You may from index <code>i</code> jump forward to index j (with <code>i &lt; j</code>) in the following way:</p>
+<ul>
+<li>During odd numbered jumps (ie. jumps 1, 3, 5, …), you jump to the index j such that A[i] &lt;= A[j] and A[j] is the smallest possible value.  If there are multiple such indexes j, you can only jump to the smallest such index j.</li>
+<li>During even numbered jumps (ie. jumps 2, 4, 6, …), you jump to the index j such that A[i] &gt;= A[j] and A[j] is the largest possible value.  If there are multiple such indexes j, you can only jump to the smallest such index j.</li>
+<li>(It may be the case that for some index i, there are no legal jumps.)</li>
+</ul>
+<p>A starting index is good if, starting from that index, you can reach the end of the array (index A.length - 1) by jumping some number of times (possibly 0 or more than once.)</p>
+<p>Return the number of good starting indexes.</p>
 <hr>
-<p>给定由一些正数（代表长度）组成的数组 <code>A</code>，返回由其中三个长度组成的、<code>面积不为零</code>的三角形的最大周长。</p>
-<p>如果不能形成任何面积不为零的三角形，返回 <code>0</code>。</p>
-<p>题目链接：<a href="https://leetcode.com/problems/largest-perimeter-triangle/" title="https://leetcode.com/problems/largest-perimeter-triangle/" target="_blank" rel="noopener">https://leetcode.com/problems/largest-perimeter-triangle/</a></p>
-<h4 id="Difficulty-easy"><a href="#Difficulty-easy" class="headerlink" title="Difficulty: easy"></a>Difficulty: easy</h4><a id="more"></a>
-<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h3><pre><code>Input: [2,1,2]
-Output: 5
-</code></pre><h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2:"></a>Example 2:</h3><pre><code>Input: [1,2,1]
-Output: 0
-</code></pre><h3 id="Example-3"><a href="#Example-3" class="headerlink" title="Example 3:"></a>Example 3:</h3><pre><code>Input: [3,2,3,4]
-Output: 10
-</code></pre><h3 id="Example-4"><a href="#Example-4" class="headerlink" title="Example 4:"></a>Example 4:</h3><pre><code>Input: [3,6,2,3]
-Output: 8
+<p>给定一个整数数组 A，你可以从某一起始索引出发，跳跃一定次数。在你跳跃的过程中，第 1、3、5… 次跳跃称为奇数跳跃，而第 2、4、6… 次跳跃称为偶数跳跃。</p>
+<p>你可以按以下方式从索引 i 向后跳转到索引 j（其中 i &lt; j）：</p>
+<ul>
+<li>在进行奇数跳跃时（如，第 1，3，5… 次跳跃），你将会跳到索引 j，使得 A[i] &lt;= A[j]，A[j] 是可能的最小值。如果存在多个这样的索引 j，你只能跳到满足要求的最小索引 j 上。</li>
+<li>在进行偶数跳跃时（如，第 2，4，6… 次跳跃），你将会跳到索引 j，使得 A[i] =&gt; A[j]，A[j] 是可能的最大值。如果存在多个这样的索引 j，你只能跳到满足要求的最小索引 j 上。</li>
+<li>（对于某些索引 i，可能无法进行合乎要求的跳跃。）</li>
+</ul>
+<p>如果从某一索引开始跳跃一定次数（可能是 0 次或多次），就可以到达数组的末尾（索引 A.length - 1），那么该索引就会被认为是好的起始索引。</p>
+<p>返回好的起始索引的数量。</p>
+<p>题目链接：<a href="https://leetcode.com/problems/odd-even-jump/" title="https://leetcode.com/problems/odd-even-jump/" target="_blank" rel="noopener">https://leetcode.com/problems/odd-even-jump/</a></p>
+<h4 id="Difficulty-hard"><a href="#Difficulty-hard" class="headerlink" title="Difficulty: hard"></a>Difficulty: hard</h4><a id="more"></a>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h3><pre><code>Input: [10,13,12,14,15]
+Output: 2
+Explanation: 
+From starting index i = 0, we can jump to i = 2 (since A[2] is the smallest among A[1], A[2], A[3], A[4] that is greater or equal to A[0]), then we can&apos;t jump any more.
+From starting index i = 1 and i = 2, we can jump to i = 3, then we can&apos;t jump any more.
+From starting index i = 3, we can jump to i = 4, so we&apos;ve reached the end.
+From starting index i = 4, we&apos;ve reached the end already.
+In total, there are 2 different starting indexes (i = 3, i = 4) where we can reach the end with some number of jumps.
+</code></pre><h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2:"></a>Example 2:</h3><pre><code>Input: [2,3,1,1,4]
+Output: 3
+Explanation: 
+From starting index i = 0, we make jumps to i = 1, i = 2, i = 3:
+
+During our 1st jump (odd numbered), we first jump to i = 1 because A[1] is the smallest value in (A[1], A[2], A[3], A[4]) that is greater than or equal to A[0].
+
+During our 2nd jump (even numbered), we jump from i = 1 to i = 2 because A[2] is the largest value in (A[2], A[3], A[4]) that is less than or equal to A[1].  A[3] is also the largest value, but 2 is a smaller index, so we can only jump to i = 2 and not i = 3.
+
+During our 3rd jump (odd numbered), we jump from i = 2 to i = 3 because A[3] is the smallest value in (A[3], A[4]) that is greater than or equal to A[2].
+
+We can&apos;t jump from i = 3 to i = 4, so the starting index i = 0 is not good.
+
+In a similar manner, we can deduce that:
+From starting index i = 1, we jump to i = 4, so we reach the end.
+From starting index i = 2, we jump to i = 3, and then we can&apos;t jump anymore.
+From starting index i = 3, we jump to i = 4, so we reach the end.
+From starting index i = 4, we are already at the end.
+In total, there are 3 different starting indexes (i = 1, i = 3, i = 4) where we can reach the end with some number of jumps.
+</code></pre><h3 id="Example-3"><a href="#Example-3" class="headerlink" title="Example 3:"></a>Example 3:</h3><pre><code>Input: [5,1,3,4,2]
+Output: 3
+Explanation: 
+We can reach the end from starting indexes 1, 2, and 4.
 </code></pre><h3 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h3><ul>
-<li>3 &lt;= A.length &lt;= 10000</li>
-<li>1 &lt;= A[i] &lt;= 10^6</li>
+<li>1 &lt;= A.length &lt;= 20000</li>
+<li>0 &lt;= A[i] &lt; 100000</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul>
 <li>updating（Solution）</li>
 </ul>
 <h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution(object):
-def largestPerimeter(self, A):
-    A.sort()
-    for i in xrange(len(A) - 3, -1, -1):
-        if A[i] + A[i+1] &gt; A[i+2]:
-            return A[i] + A[i+1] + A[i+2]
-    return 0
+def oddEvenJumps(self, A):
+    N = len(A)
+
+    def make(B):
+        ans = [None] * N
+        stack = []  # invariant: stack is decreasing
+        for i in B:
+            while stack and i &gt; stack[-1]:
+                ans[stack.pop()] = i
+            stack.append(i)
+        return ans
+
+    B = sorted(range(N), key = lambda i: A[i])
+    oddnext = make(B)
+    B.sort(key = lambda i: -A[i])
+    evennext = make(B)
+
+    odd = [False] * N
+    even = [False] * N
+    odd[N-1] = even[N-1] = True
+
+    for i in xrange(N-2, -1, -1):
+        if oddnext[i] is not None:
+            odd[i] = even[oddnext[i]]
+        if evennext[i] is not None:
+            even[i] = odd[evennext[i]]
+
+    return sum(odd)
 </code></pre>
       
     </div>
@@ -474,9 +533,9 @@ def largestPerimeter(self, A):
           
             <a href="/tags/code/" rel="tag"><i class="fa fa-tag"></i> code</a>
           
-            <a href="/tags/Math/" rel="tag"><i class="fa fa-tag"></i> Math</a>
+            <a href="/tags/Dynamic-Programming/" rel="tag"><i class="fa fa-tag"></i> Dynamic Programming</a>
           
-            <a href="/tags/Array/" rel="tag"><i class="fa fa-tag"></i> Array</a>
+            <a href="/tags/Stack/" rel="tag"><i class="fa fa-tag"></i> Stack</a>
           
         </div>
       
@@ -489,8 +548,8 @@ def largestPerimeter(self, A):
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/18/975-Odd-Even-Jump/" rel="next" title="975.Odd Even Jump(奇偶跳)">
-                <i class="fa fa-chevron-left"></i> 975.Odd Even Jump(奇偶跳)
+              <a href="/2019/01/14/974-Subarray-Sums-Divisible-by-K/" rel="next" title="974.Subarray Sums Divisible by K(和可被 K 整除的子数组)">
+                <i class="fa fa-chevron-left"></i> 974.Subarray Sums Divisible by K(和可被 K 整除的子数组)
               </a>
             
           </div>
@@ -498,6 +557,10 @@ def largestPerimeter(self, A):
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/14/976-Largest-Perimeter-Triangle/" rel="prev" title="976.Largest Perimeter Triangle（三角形的最大周长）">
+                976.Largest Perimeter Triangle（三角形的最大周长） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -656,7 +719,7 @@ def largestPerimeter(self, A):
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Difficulty-easy"><span class="nav-number">1.0.1.</span> <span class="nav-text">Difficulty: easy</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-number">1.1.</span> <span class="nav-text">Example 1:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-2"><span class="nav-number">1.2.</span> <span class="nav-text">Example 2:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-3"><span class="nav-number">1.3.</span> <span class="nav-text">Example 3:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-4"><span class="nav-number">1.4.</span> <span class="nav-text">Example 4:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Note"><span class="nav-number">1.5.</span> <span class="nav-text">Note:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考代码"><span class="nav-number">3.</span> <span class="nav-text">参考代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Difficulty-hard"><span class="nav-number">1.0.1.</span> <span class="nav-text">Difficulty: hard</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-number">1.1.</span> <span class="nav-text">Example 1:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-2"><span class="nav-number">1.2.</span> <span class="nav-text">Example 2:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-3"><span class="nav-number">1.3.</span> <span class="nav-text">Example 3:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Note"><span class="nav-number">1.4.</span> <span class="nav-text">Note:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考代码"><span class="nav-number">3.</span> <span class="nav-text">参考代码</span></a></li></ol></div>
             
 
           </div>
