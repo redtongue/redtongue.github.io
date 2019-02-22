@@ -95,7 +95,7 @@
 <meta property="og:description" content="DescriptionIn a given grid, each cell can have one of three values:  the value 0 representing an empty cell;   the value 1 representing a fresh orange;   the value 2 representing a rotten orange.  Eve">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://redtongue.github.io/2019/02/17/994-Rotting-Oranges/oranges.png">
-<meta property="og:updated_time" content="2019-02-18T13:57:26.496Z">
+<meta property="og:updated_time" content="2019-02-22T03:16:23.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="994.Rotting Oranges（腐烂的橘子 ）">
 <meta name="twitter:description" content="DescriptionIn a given grid, each cell can have one of three values:  the value 0 representing an empty cell;   the value 1 representing a fresh orange;   the value 2 representing a rotten orange.  Eve">
@@ -351,8 +351,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-18T21:57:26+08:00">
-                2019-02-18
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-22T11:16:23+08:00">
+                2019-02-22
               </time>
             
           </span>
@@ -458,7 +458,9 @@ Explanation:  Since there are already no fresh oranges at minute 0, the answer i
 <li>grid[i][j] is only 0, 1, or 2.</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul>
-<li>updating</li>
+<li>用size记录好橘子的个数，每分钟（即每次循环）遍历所有坏橘子，将其周围的好橘子感染变坏，同时修改size值以及grid中相应的数字；</li>
+<li>直至size等于0或者不再改变，停止循环；</li>
+<li>size等于零，返回time，反之，说明有橘子没有变坏，返回-1.</li>
 </ul>
 <h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution(object):
 def orangesRotting(self, grid):

@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionIn an array A containing only 0s and 1s, a K-bit flip consists of choosing a (contiguous) subarray of length K and simultaneously changing every 0 in the subarray to 1, and every 1 in the s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-18T13:57:32.110Z">
+<meta property="og:updated_time" content="2019-02-22T03:30:09.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="995.Minimum Number of K Consecutive Bit Flips(K 连续位的最小翻转次数 )">
 <meta name="twitter:description" content="DescriptionIn an array A containing only 0s and 1s, a K-bit flip consists of choosing a (contiguous) subarray of length K and simultaneously changing every 0 in the subarray to 1, and every 1 in the s">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-18T21:57:32+08:00">
-                2019-02-18
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-22T11:30:09+08:00">
+                2019-02-22
               </time>
             
           </span>
@@ -439,7 +439,12 @@ Flip A[5],A[6],A[7]: A becomes [1,1,1,1,1,1,1,1]
 <li>1 &lt;= K &lt;= A.length</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul>
-<li>updating</li>
+<li>用li记录每个位需要翻转的情况（初始为零），遍历每个位，index记录当前位的翻转情况；</li>
+<li>遇到某一位反转之后为0，则说明该点需要翻转以此，首先将index对1取异或（相当于0变成1，1变成0），再将K位之后对应的li对1取异或，若超出li的长度说明，不能将所有的数字翻转成1，返回-1，Sum加一；</li>
+<li>遇到某一位反转之后为1，继续下一位；</li>
+<li>遍历完成，返回记录的翻转次数Sum。</li>
+<li>时间复杂度为O(n).</li>
+<li>错误分析：用li记录每个位翻转情况，遍历，遇到需要翻转的位，将后续K位的翻转情况记录，即对应li中的记录取异或，答案正确，但是时间复杂度为O(nk),时间超限。</li>
 </ul>
 <h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution(object):
 def minKBitFlips(self, A, K):
