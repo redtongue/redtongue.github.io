@@ -303,6 +303,691 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/12/19/960-Delete-Columns-to-Make-Sorted-III/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yunxiang wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redtongue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/19/960-Delete-Columns-to-Make-Sorted-III/" itemprop="url">960.Delete Columns to Make Sorted III</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-19T22:26:16+08:00">
+                2018-12-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-19T22:30:25+08:00">
+                2018-12-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>We are given an array <code>A</code> of <code>N</code> lowercase letter strings, all of the same length.</p>
+<p>Now, we may choose any set of deletion indices, and for each string, we delete all the characters in those indices.</p>
+<p>For example, if we have an array <code>A = [&quot;babca&quot;,&quot;bbazb&quot;]</code> and deletion indices <code>{0, 1, 4}</code>, then the final array after deletions is <code>[&quot;bc&quot;,&quot;az&quot;]</code>.</p>
+<p>Suppose we chose a set of deletion indices D such that after deletions, the final array has every element (row) in lexicographic order.</p>
+<p>For clarity, <code>A[0]</code> is in lexicographic order (ie. <code>A[0][0] &lt;= A[0][1] &lt;= ... &lt;= A[0][A[0].length - 1]</code>), <code>A[1]</code> is in lexicographic order (ie. <code>A[1][0] &lt;= A[1][1] &lt;= ... &lt;= A[1][A[1].length - 1]</code>), and so on.</p>
+<p>Return the minimum possible value of <code>D.length</code>.</p>
+<hr>
+<p>给定由 <code>N</code> 个小写字母字符串组成的数组 <code>A</code>，其中每个字符串长度相等。</p>
+<p>选取一个删除索引序列，对于 <code>A</code> 中的每个字符串，删除对应每个索引处的字符。</p>
+<p>比如，有 <code>A = [&quot;babca&quot;,&quot;bbazb&quot;]</code>，删除索引序列 <code>{0, 1, 4}</code>，删除后 <code>A</code> 为<code>[&quot;bc&quot;,&quot;az&quot;]</code>。</p>
+<p>假设，我们选择了一组删除索引 <code>D</code>，那么在执行删除操作之后，最终得到的数组的行中的每个元素都是按字典序排列的。</p>
+<p>清楚起见，<code>A[0]</code> 是按字典序排列的（即，<code>A[0][0] &lt;= A[0][1] &lt;= ... &lt;= A[0][A[0].length - 1]</code>），<code>A[1]</code> 是按字典序排列的（即，<code>A[1][0] &lt;= A[1][1] &lt;= ... &lt;= A[1][A[1].length - 1]</code>），依此类推。</p>
+<p>请你返回 <code>D.length</code> 的最小可能值。</p>
+<p>题目链接：<a href="https://leetcode.com/problems/delete-columns-to-make-sorted-iii/" title="https://leetcode.com/problems/delete-columns-to-make-sorted-iii/" target="_blank" rel="noopener">https://leetcode.com/problems/delete-columns-to-make-sorted-iii/</a></p>
+<h4 id="Difficulty-hard"><a href="#Difficulty-hard" class="headerlink" title="Difficulty: hard"></a>Difficulty: hard</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/19/960-Delete-Columns-to-Make-Sorted-III/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/12/19/959-Regions-Cut-By-Slashes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yunxiang wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redtongue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/19/959-Regions-Cut-By-Slashes/" itemprop="url">959.Regions Cut By Slashes</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-19T22:16:47+08:00">
+                2018-12-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-19T22:52:48+08:00">
+                2018-12-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>In a <code>N x N</code> grid composed of <code>1 x 1</code> squares, each 1 x 1 square consists of a<br><code>/</code>, <code>\</code>, or blank space.  These characters divide the square into contiguous regions.</p>
+<p>(Note that backslash characters are escaped, so a <code>\</code> is represented as “\“.)</p>
+<p>Return the number of regions.</p>
+<hr>
+<p>在由 <code>1 x 1</code> 方格组成的 <code>N x N</code> 网格 grid 中，每个 1 x 1 方块由 <code>/</code>、<code>\</code> 或空格构成。这些字符会将方块划分为一些共边的区域。</p>
+<p>（请注意，反斜杠字符是转义的，因此 <code>\</code> 用 “\“ 表示。）。</p>
+<p>题目链接：<a href="https://leetcode.com/problems/regions-cut-by-slashes/" title="https://leetcode.com/problems/regions-cut-by-slashes/" target="_blank" rel="noopener">https://leetcode.com/problems/regions-cut-by-slashes/</a></p>
+<h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/19/959-Regions-Cut-By-Slashes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/12/19/958-Check-Completeness-of-a-Binary-Tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yunxiang wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redtongue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/19/958-Check-Completeness-of-a-Binary-Tree/" itemprop="url">958.Check Completeness of a Binary Tree</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-19T22:09:19+08:00">
+                2018-12-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-19T22:15:40+08:00">
+                2018-12-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a binary tree, determine if it is a complete binary tree.</p>
+<p>Definition of a complete binary tree from <a href="http://en.wikipedia.org/wiki/Binary_tree#Types_of_binary_trees" target="_blank" rel="noopener">Wikipedia</a>:</p>
+<p>In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.</p>
+<hr>
+<p>给定一个二叉树，确定它是否是一个完全二叉树。</p>
+<p><a href="https://baike.baidu.com/item/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91/7773232?fr=aladdin" target="_blank" rel="noopener">百度百科</a>中对完全二叉树的定义如下：</p>
+<p>若设二叉树的深度为 h，除第 h 层外，其它各层 (1～h-1) 的结点数都达到最大个数，第 h 层所有的结点都连续集中在最左边，这就是完全二叉树。（注：第 h 层可能包含 1~ 2h 个节点。）</p>
+<p>题目链接：<a href="https://leetcode.com/problems/check-completeness-of-a-binary-tree/" title="https://leetcode.com/problems/check-completeness-of-a-binary-tree/" target="_blank" rel="noopener">https://leetcode.com/problems/check-completeness-of-a-binary-tree/</a></p>
+<h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/19/958-Check-Completeness-of-a-Binary-Tree/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/12/19/957-Prison-Cells-After-Days/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yunxiang wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redtongue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/19/957-Prison-Cells-After-Days/" itemprop="url">957.Prison Cells After Days（N 天后的牢房）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-19T22:03:51+08:00">
+                2018-12-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-19T22:08:22+08:00">
+                2018-12-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>There are 8 prison cells in a row, and each cell is either occupied or vacant.</p>
+<p>Each day, whether the cell is occupied or vacant changes according to the following rules:</p>
+<ul>
+<li>If a cell has two adjacent neighbors that are both occupied or both vacant, then the cell becomes occupied.</li>
+<li>Otherwise, it becomes vacant.</li>
+</ul>
+<p>(Note that because the prison is a row, the first and the last cells in the row can’t have two adjacent neighbors.)</p>
+<p>We describe the current state of the prison in the following way:<br><code>cells[i] == 1</code> if the i-th cell is occupied, else <code>cells[i] == 0</code>.</p>
+<p>Given the initial state of the prison, return the state of the prison after <code>N</code> days (and <code>N</code> such changes described above.)</p>
+<hr>
+<p>8 间牢房排成一排，每间牢房不是有人住就是空着。</p>
+<p>每天，无论牢房是被占用或空置，都会根据以下规则进行更改：</p>
+<p>如果一间牢房的两个相邻的房间都被占用或都是空的，那么该牢房就会被占用。<br>否则，它就会被空置。<br>（请注意，由于监狱中的牢房排成一行，所以行中的第一个和最后一个房间无法有两个相邻的房间。）</p>
+<p>我们用以下方式描述监狱的当前状态：如果第 <code>i</code> 间牢房被占用，则 <code>cell[i]==1</code>，否则 <code>cell[i]==0</code>。</p>
+<p>根据监狱的初始状态，在 <code>N</code> 天后返回监狱的状况（和上述 <code>N</code> 种变化）。</p>
+<p>题目链接：<a href="https://leetcode.com/problems/prison-cells-after-n-days/" title="https://leetcode.com/problems/prison-cells-after-n-days/" target="_blank" rel="noopener">https://leetcode.com/problems/prison-cells-after-n-days/</a></p>
+<h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/19/957-Prison-Cells-After-Days/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/12/09/956-Tallest-Billboard/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1301,700 +1986,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/12/02/950-Reveal-Cards-In-Increasing-Order/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yunxiang wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redtongue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/02/950-Reveal-Cards-In-Increasing-Order/" itemprop="url">950.Reveal Cards In Increasing Order(按递增顺序显示卡牌)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-02T21:24:48+08:00">
-                2018-12-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-11T22:06:01+08:00">
-                2018-12-11
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>In a deck of cards, every card has a unique integer.  You can order the deck in any order you want.</p>
-<p>Initially, all the cards start face down (unrevealed) in one deck.</p>
-<p>Now, you do the following steps repeatedly, until all cards are revealed:</p>
-<ul>
-<li>Take the top card of the deck, reveal it, and take it out of the deck.</li>
-<li>If there are still cards in the deck, put the next top card of the deck at the bottom of the deck.</li>
-<li>If there are still unrevealed cards, go back to step 1.  Otherwise, stop.</li>
-</ul>
-<p>Return an ordering of the deck that would reveal the cards in increasing order.</p>
-<p>The first entry in the answer is considered to be the top of the deck.</p>
-<hr>
-<p>牌组中的每张卡牌都对应有一个唯一的整数。你可以按你想要的顺序对这套卡片进行排序。</p>
-<p>最初，这些卡牌在牌组里是正面朝下的（即，未显示状态）。</p>
-<p>现在，重复执行以下步骤，直到显示所有卡牌为止：</p>
-<ul>
-<li>从牌组顶部抽一张牌，显示它，然后将其从牌组中移出。</li>
-<li>如果牌组中仍有牌，则将下一张处于牌组顶部的牌放在牌组的底部。</li>
-<li>如果仍有未显示的牌，那么返回步骤 1。否则，停止行动。</li>
-</ul>
-<p>返回能以递增顺序显示卡牌的牌组顺序。</p>
-<p>答案中的第一张牌被认为处于牌堆顶部。</p>
-<p>题目链接：<a href="https://leetcode.com/problems/reveal-cards-in-increasing-order/" title="https://leetcode.com/problems/reveal-cards-in-increasing-order/" target="_blank" rel="noopener">https://leetcode.com/problems/reveal-cards-in-increasing-order/</a></p>
-<h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/02/950-Reveal-Cards-In-Increasing-Order/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/12/02/949-Largest-Time-for-Given-Digits/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yunxiang wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redtongue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/02/949-Largest-Time-for-Given-Digits/" itemprop="url">949.Largest Time for Given Digits(给定数字能组成的最大时间)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-02T21:21:27+08:00">
-                2018-12-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-11T22:06:08+08:00">
-                2018-12-11
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given an array of 4 digits, return the largest 24 hour time that can be made.</p>
-<p>The smallest 24 hour time is 00:00, and the largest is 23:59.  Starting from 00:00, a time is larger if more time has elapsed since midnight.</p>
-<p>Return the answer as a string of length 5.  If no valid time can be made, return an empty string.</p>
-<hr>
-<p>给定一个由 4 位数字组成的数组，返回可以设置的符合 24 小时制的最大时间。</p>
-<p>最小的 24 小时制时间是 00:00，而最大的是 23:59。从 00:00 （午夜）开始算起，过得越久，时间越大。</p>
-<p>以长度为 5 的字符串返回答案。如果不能确定有效时间，则返回空字符串。</p>
-<p>题目链接：<a href="https://leetcode.com/problems/largest-time-for-given-digits/" title="https://leetcode.com/problems/largest-time-for-given-digits/" target="_blank" rel="noopener">https://leetcode.com/problems/largest-time-for-given-digits/</a></p>
-<h4 id="Difficulty-easy"><a href="#Difficulty-easy" class="headerlink" title="Difficulty: easy"></a>Difficulty: easy</h4>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/02/949-Largest-Time-for-Given-Digits/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/11/25/948-Bag-of-Tokens/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yunxiang wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redtongue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/25/948-Bag-of-Tokens/" itemprop="url">948.Bag of Tokens(令牌放置)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T12:08:45+08:00">
-                2018-11-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-11T22:06:17+08:00">
-                2018-12-11
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>You have an initial power P, an initial score of 0 points, and a bag of tokens.</p>
-<p>Each token can be used at most once, has a value token[i], and has potentially two ways to use it.</p>
-<ul>
-<li>If we have at least token[i] power, we may play the token face up, losing token[i] power, and gaining 1 point.</li>
-<li>If we have at least 1 point, we may play the token face down, gaining token[i] power, and losing 1 point.</li>
-</ul>
-<p>Return the largest number of points we can have after playing any number of tokens.</p>
-<hr>
-<p>你的初始能量为 P，初始分数为 0，只有一包令牌。</p>
-<p>令牌的值为 token[i]，每个令牌最多只能使用一次，可能的两种使用方法如下：</p>
-<ul>
-<li>如果你至少有 token[i] 点能量，可以将令牌置为正面朝上，失去 token[i] 点能量，并得到 1 分。</li>
-<li>如果我们至少有 1 分，可以将令牌置为反面朝上，获得 token[i] 点能量，并失去 1 分。</li>
-</ul>
-<p>在使用任意数量的令牌后，返回我们可以得到的最大分数。</p>
-<p>题目链接：<a href="https://leetcode.com/problems/bag-of-tokens/" title="https://leetcode.com/problems/bag-of-tokens/" target="_blank" rel="noopener">https://leetcode.com/problems/bag-of-tokens/</a></p>
-<h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/25/948-Bag-of-Tokens/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/11/25/947-Most-Stonees-Removed-with-Same-Row-or-Column/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yunxiang wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redtongue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/25/947-Most-Stonees-Removed-with-Same-Row-or-Column/" itemprop="url">947.Most Stonees Removed with Same Row or Column(移除最多的同行或同列石头)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T12:06:07+08:00">
-                2018-11-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-11T22:06:26+08:00">
-                2018-12-11
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>On a 2D plane, we place stones at some integer coordinate points.  Each coordinate point may have at most one stone.</p>
-<p>Now, a move consists of removing a stone that shares a column or row with another stone on the grid.</p>
-<p>What is the largest possible number of moves we can make?</p>
-<hr>
-<p>在二维平面上，我们将石头放置在一些整数坐标点上。每个坐标点上最多只能有一块石头。</p>
-<p>现在，move 操作将会移除与网格上的另一块石头共享一列或一行的石头。</p>
-<p>我们最多能执行多少次 move 操作？</p>
-<p>题目链接：<a href="https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/" title="https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/" target="_blank" rel="noopener">https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/</a></p>
-<h4 id="Difficulty-hard"><a href="#Difficulty-hard" class="headerlink" title="Difficulty: hard"></a>Difficulty: hard</h4>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/25/947-Most-Stonees-Removed-with-Same-Row-or-Column/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2049,7 +2040,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">171</span>
+                  <span class="site-state-item-count">175</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

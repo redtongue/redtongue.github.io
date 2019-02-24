@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[1001.Grid Illumination（网格照明）]]></title>
+    <url>%2F2019%2F02%2F24%2F1001-Grid-Illumination%2F</url>
+    <content type="text"><![CDATA[DescriptionOn a N x N grid of cells, each cell (x, y) with 0 &lt;= x &lt; N and 0 &lt;= y &lt; N has a lamp. Initially, some number of lamps are on. lamps[i] tells us the location of the i-th lamp that is on. Each lamp that is on illuminates every square on its x-axis, y-axis, and both diagonals (similar to a Queen in chess). For the i-th query queries[i] = (x, y), the answer to the query is 1 if the cell (x, y) is illuminated, else 0. After each query (x, y) [in the order given by queries], we turn off any lamps that are at cell (x, y) or are adjacent 8-directionally (ie., share a corner or edge with cell (x, y).) Return an array of answers. Each value answer[i] should be equal to the answer of the i-th query queries[i]. 在 N x N 的网格上，每个单元格 (x, y) 上都有一盏灯，其中 0 &lt;= x &lt; N 且 0 &lt;= y &lt; N。 最初，一定数量的灯是亮着的。lamps[i] 告诉我们亮着的第 i 盏灯的位置。每盏灯都照亮其所在 x 轴、y 轴和两条对角线上的每个正方形（类似于国际象棋中的皇后）。 对于第 i 次查询 queries[i] = (x, y)，如果单元格 (x, y) 是被照亮的，则查询结果为 1，否则为 0 。 在每个查询 (x, y) 之后 [按照查询的顺序]，我们关闭位于单元格 (x, y) 上或其相邻 8 个方向上（与单元格 (x, y) 共享一个角或边）的任何灯。 返回答案数组 answer。每个值 answer[i] 应等于第 i 次查询 queries[i] 的结果。 题目链接：https://leetcode.com/problems/grid-illumination/ Difficulty: hard Example 1:输入：N = 5, lamps = [[0,0],[4,4]], queries = [[1,1],[1,0]] 输出：[1,0] 解释： 在执行第一次查询之前，我们位于 [0, 0] 和 [4, 4] 灯是亮着的。 表示哪些单元格亮起的网格如下所示，其中 [0, 0] 位于左上角： 1 1 1 1 1 1 1 0 0 1 1 0 1 0 1 1 0 0 1 1 1 1 1 1 1 然后，由于单元格 [1, 1] 亮着，第一次查询返回 1。在此查询后，位于 [0，0] 处的灯将关闭，网格现在如下所示： 1 0 0 0 1 0 1 0 0 1 0 0 1 0 1 0 0 0 1 1 1 1 1 1 1 在执行第二次查询之前，我们只有 [4, 4] 处的灯亮着。现在，[1, 0] 处的查询返回 0，因为该单元格不再亮着。 Note: 1 &lt;= N &lt;= 10^9 0 &lt;= lamps.length &lt;= 20000 0 &lt;= queries.length &lt;= 20000 lamps[i].length == queries[i].length == 2 分析 updating（我觉得题目有问题，下面是我当时提交的代码，但是没有通过，手动验证测试用例，我觉得我没错[苦笑]） 参考代码class Solution(object): def gridIllumination(self, N, lamps, queries): answer=[] def get(a,b,x,y): if(a==x or b==y): return True if(abs(a-x)==abs(b-y)): return True return False for query in queries: judge=False for lamp in lamps: if(get(lamp[0],lamp[1],query[0],query[1])): lamps.remove(lamp) if(not judge): judge=True if(judge): answer.append(1) else: answer.append(0) return answer]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Hash Table</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[999.Available Captures for Rook（车的可用捕获量）]]></title>
+    <url>%2F2019%2F02%2F24%2F999-Available-Captures-for-Rook%2F</url>
+    <content type="text"><![CDATA[DescriptionOn an 8 x 8 chessboard, there is one white rook. There also may be empty squares, white bishops, and black pawns. These are given as characters ‘R’, ‘.’, ‘B’, and ‘p’ respectively. Uppercase characters represent white pieces, and lowercase characters represent black pieces. The rook moves as in the rules of Chess: it chooses one of four cardinal directions (north, east, west, and south), then moves in that direction until it chooses to stop, reaches the edge of the board, or captures an opposite colored pawn by moving to the same square it occupies. Also, rooks cannot move into the same square as other friendly bishops. Return the number of pawns the rook can capture in one move. 在一个 8 x 8 的棋盘上，有一个白色车（rook）。也可能有空方块，白色的象（bishop）和黑色的卒（pawn）。它们分别以字符 “R”，“.”，“B” 和 “p” 给出。大写字符表示白棋，小写字符表示黑棋。 车按国际象棋中的规则移动：它选择四个基本方向中的一个（北，东，西和南），然后朝那个方向移动，直到它选择停止、到达棋盘的边缘或移动到同一方格来捕获该方格上颜色相反的卒。另外，车不能与其他友方（白色）象进入同一个方格。 返回车能够在一次移动中捕获到的卒的数量。 题目链接：https://leetcode.com/problems/available-captures-for-rook/ Difficulty: easy Example 1: Input: [[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;R&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]] Output: 3 Explanation: In this example the rook is able to capture all the pawns. Example 2: Input: [[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;p&quot;,&quot;p&quot;,&quot;B&quot;,&quot;p&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;p&quot;,&quot;B&quot;,&quot;R&quot;,&quot;B&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;p&quot;,&quot;p&quot;,&quot;B&quot;,&quot;p&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]] Output: 0 Explanation: Bishops are blocking the rook to capture any pawn. Example 3: Input: [[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;p&quot;,&quot;p&quot;,&quot;.&quot;,&quot;R&quot;,&quot;.&quot;,&quot;p&quot;,&quot;B&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;B&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]] Output: 3 Explanation: The rook can capture the pawns at positions b5, d6 and f5. Note: board.length == board[i].length == 8 board[i][j] is either ‘R’, ‘.’, ‘B’, or ‘p’ There is exactly one cell with board[i][j] == ‘R’ 分析 找到白色车（R）的位置，分别向八个方向寻找卒（p）； 若某个方向上碰到某个象（B）或者棋盘的边缘，则停止该方向的寻找； 若找到卒，Sum加一； 返回Sum。 参考代码class Solution(object): def numRookCaptures(self, board): row,col=0,0 for i in range(8): for j in range(8): if(board[i][j]==&apos;R&apos;): row=i col=j break Sum=0 for i in range(row-1,-1,-1): if(board[i][col]==&quot;B&quot;): break if(board[i][col]==&quot;p&quot;): Sum+=1 break for i in range(row+1,8): if(board[i][col]==&quot;B&quot;): break if(board[i][col]==&quot;p&quot;): Sum+=1 break for j in range(col-1,-1,-1): if(board[row][j]==&quot;B&quot;): break if(board[row][j]==&quot;p&quot;): Sum+=1 break for j in range(col+1,8): if(board[row][j]==&quot;B&quot;): break if(board[row][j]==&quot;p&quot;): Sum+=1 break return Sum]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[998.Maximum Binary Tree II（最大二叉树 II）]]></title>
+    <url>%2F2019%2F02%2F24%2F998-Maximum-Binary-Tree-II%2F</url>
+    <content type="text"><![CDATA[DescriptionWe are given the root node of a maximum tree: a tree where every node has a value greater than any other value in its subtree. Just as in the previous problem, the given tree was constructed from an list A (root = Construct(A)) recursively with the following Construct(A) routine: If A is empty, return null. Otherwise, let A[i] be the largest element of A. Create a root node with value A[i]. The left child of root will be Construct([A[0], A[1], ..., A[i-1]]) The right child of root will be Construct([A[i+1], A[i+2], ..., A[A.length - 1]]) Return root. Note that we were not given A directly, only a root node root = Construct(A). Suppose B is a copy of A with the value val appended to it. It is guaranteed that B has unique values. Return Construct(B). 最大树定义：一个树，其中每个节点的值都大于其子树中的任何其他值。 给出最大树的根节点 root。 就像之前的问题那样，给定的树是从表 A（root = Construct(A)）递归地使用下述 Construct(A) 例程构造的： 如果 A 为空，返回 null 否则，令 A[i] 作为 A 的最大元素。创建一个值为 A[i] 的根节点 root root 的左子树将被构建为 Construct([A[0], A[1], ..., A[i-1]]) root 的右子树将被构建为 Construct([A[i+1], A[i+2], ..., A[A.length - 1]]) 返回 root 请注意，我们没有直接给定 A，只有一个根节点 root = Construct(A). 假设 B 是 A 的副本，并附加值 val。保证 B 中的值是不同的。 返回 Construct(B)。 题目链接：https://leetcode.com/problems/maximum-binary-tree-ii/ Difficulty: medium Example 1: Input: root = [4,1,3,null,null,2], val = 5 Output: [5,4,null,1,3,null,null,2] Explanation: A = [1,4,2,3], B = [1,4,2,3,5] Example 2: Input: root = [5,2,4,null,1], val = 3 Output: [5,2,4,null,1,null,3] Explanation: A = [2,1,5,4], B = [2,1,5,4,3] Example 3: Input: root = [5,2,3,null,1], val = 4 Output: [5,2,4,null,1,3] Explanation: A = [2,1,5,3], B = [2,1,5,3,4] Note: 1 &lt;= B.length &lt;= 100 分析 由题意知，对于任意子树，根节点大于所有子节点，且每次插入的节点中序遍历序列的尾部，则节点x应插入到某节点a的右子树上（a的值大于x的值），当前位置子树移到a的左子树上； 若x大于root的值，则x左根节点，root左x的左子树； 找到ro1、ro2，其中ro1的值大于x的值，ro2的值小于x的值，ro2是ro1的右子树，x做ro1的右节点，ro2做x的左节点； 若ro2为None，x做ro1的右节点； 返回root。 参考代码Definition for a binary tree node. class TreeNode(object): def __init__(self, x): self.val = x self.left = None self.right = None class Solution(object): def insertIntoMaxTree(self, root, val): p=TreeNode(val) if(root==None): return p if(val&gt;=root.val): p.left=root return p ro1=root ro2=ro1.right while(ro2!=None): if(val&gt;ro2.val): ro1.right=p p.left=ro2 return root else: ro1=ro2 ro2=ro1.right ro1.right=p return root]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Tree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[997.Find the Town Judge（找到小镇的法官）]]></title>
+    <url>%2F2019%2F02%2F24%2F997-Find-the-Town-Judge%2F</url>
+    <content type="text"><![CDATA[DescriptionIn a town, there are N people labelled from 1 to N. There is a rumor that one of these people is secretly the town judge. If the town judge exists, then: The town judge trusts nobody. Everybody (except for the town judge) trusts the town judge. There is exactly one person that satisfies properties 1 and 2. You are given trust, an array of pairs trust[i] = [a, b] representing that the person labelled a trusts the person labelled b. If the town judge exists and can be identified, return the label of the town judge. Otherwise, return -1. 在一个小镇里，按从 1 到 N 标记了 N 个人。传言称，这些人中有一个是小镇上的秘密法官。 如果小镇的法官真的存在，那么： 小镇的法官不相信任何人。 每个人（除了小镇法官外）都信任小镇的法官。 只有一个人同时满足属性 1 和属性 2 。 给定数组 trust，该数组由信任对 trust[i] = [a, b] 组成，表示标记为 a 的人信任标记为 b 的人。 如果小镇存在秘密法官并且可以确定他的身份，请返回该法官的标记。否则，返回 -1。 题目链接：https://leetcode.com/problems/find-the-town-judge/ Difficulty: easy Example 1:Input: N = 2, trust = [[1,2]] Output: 2 Example 2:Input: N = 3, trust = [[1,3],[2,3]] Output: 3 Example 3:Input: N = 3, trust = [[1,3],[2,3],[3,1]] Output: -1 Example 4:Input: N = 3, trust = [[1,2],[2,3]] Output: -1 Example 5:Input: N = 4, trust = [[1,3],[1,4],[2,3],[2,4],[4,3]] Output: 3 Note: 1 &lt;= N &lt;= 1000 trust.length &lt;= 10000 trust[i] are all different trust[i][0] != trust[i][1] 1 &lt;= trust[i][0], trust[i][1] &lt;= N 分析 初始化字典A，每一项代表每个人被那些人信任； 对于任意trust，a信任b，从A中删除a； 同时若b在A中，则将a添加为信任b的list中； 返回A中被信任N-1次的人，若无，返回-1。 参考代码class Solution: def findJudge(self, N: int, trust: List[List[int]]) -&gt; int: A={} for i in range(N): A[i+1]=[] for t in trust: x,y=t if(x in A): A.pop(x) if(y in A): A[y].append(x) for a in A: if(len(A[a])==N-1): return a return -1]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Graph</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[996.Number of Sequareful Arrays(正方形数组的数目)]]></title>
     <url>%2F2019%2F02%2F17%2F996-Number-of-Sequareful-Arrays%2F</url>
     <content type="text"><![CDATA[DescriptionGiven an array A of non-negative integers, the array is squareful if for every pair of adjacent elements, their sum is a perfect square. Return the number of permutations of A that are squareful. Two permutations A1 and A2 differ if and only if there is some index i such that A1[i] != A2[i]. 给定一个非负整数数组 A，如果该数组每对相邻元素之和是一个完全平方数，则称这一数组为正方形数组。 返回 A 的正方形排列的数目。两个排列 A1 和 A2 不同的充要条件是存在某个索引 i，使得 A1[i] != A2[i]。 题目链接：https://leetcode.com/problems/number-of-squareful-arrays/ Difficulty: hard Example 1:Input: [1,17,8] Output: 2 Explanation: [1,8,17] and [17,8,1] are the valid permutations. Example 2:Input: [2,2,2] Output: 1 Note: 1 &lt;= A.length &lt;= 12 0 &lt;= A[i] &lt;= 1e9 分析 Solution 参考代码class Solution(object): def numSquarefulPerms(self, A): N = len(A) count = collections.Counter(A) graph = {x: [] for x in count} for x in count: for y in count: if int((x+y)**.5 + 0.5) ** 2 == x+y: graph[x].append(y) def dfs(x, todo): count[x] -= 1 if todo == 0: ans = 1 else: ans = 0 for y in graph[x]: if count[y]: ans += dfs(y, todo - 1) count[x] += 1 return ans return sum(dfs(x, len(A) - 1) for x in count)]]></content>
@@ -287,8 +335,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Array</tag>
         <tag>Hash Table</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
@@ -2053,8 +2101,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
