@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[1004.Max Consecutive Ones III（最大连续1的个数 III）]]></title>
+    <url>%2F2019%2F03%2F03%2F1004-Max-Consecutive-Ones-III%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven an array A of 0s and 1s, we may change up to K values from 0 to 1.Return the length of the longest (contiguous) subarray that contains only 1s. 给定一个由若干 0 和 1 组成的数组 A，我们最多可以将 K 个值从 0 变成 1 。返回仅包含 1 的最长（连续）子数组的长度。 题目链接：https://leetcode.com/problems/max-consecutive-ones-iii/ Difficulty: medium Example 1:Input: A = [1,1,1,0,0,0,1,1,1,1,0], K = 2 Output: 6 Explanation: [1,1,1,0,0,1,1,1,1,1,1] Bolded numbers were flipped from 0 to 1. The longest subarray is underlined. Example 2:Input: A = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], K = 3 Output: 10 Explanation: [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1] Bolded numbers were flipped from 0 to 1. The longest subarray is underlined. Note: 1 &lt;= A.length &lt;= 20000 0 &lt;= K &lt;= A.length A[i] is 0 or 1 分析 压缩A，遍历A，存储每一部分0或1的个数，形如例一：li=[(1,3),(0,3),(1,4),(0,1)]; 从前往后遍历，得到包含最多1部分的组合，其中0部分的长度要小于K； 记录每一次遍历得到的最大长度（即1的长度加上可变换的0的长度）； 可变换0的长度是min（K，当前连续段中0的最大个数（1部分中间的0加上两端的0）） 返回最大长度； 注意，不能直接返回1部分的长度加K，其中的0可能没有这么多。 参考代码class Solution(object): def longestOnes(self, A, K): li=[] index=A[0] s=0 for a in A: if(a==index): s+=1 else: li.append((index,s)) s=1 index=a li.append((index,s)) if(len(li)==1): return K index = 0 if(li[0][0]==0): index=1 s=0 Max=0 for i in range(index,len(li),2): j=i s=li[i][1] k=0 j+=2 while(j&lt;len(li) and (k+li[j-1][1])&lt;=K): s+=li[j][1] k+=li[j-1][1] j+=2 ok=0 if(i&gt;=1): ok+=li[i-1][1] if(j-1&lt;len(li)): ok+=li[j-1][1] mid=min(K-k,ok) kk=k+mid Max=max((s+kk),Max) return Max]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Two Pointers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1003.Check If Word Is Valid After Substitutions（检查替换后的词是否有效）]]></title>
+    <url>%2F2019%2F03%2F03%2F1003-Check-If-Word-Is-Valid-After-Substitutions%2F</url>
+    <content type="text"><![CDATA[DescriptionWe are given that the string &quot;abc&quot; is valid. From any valid string V, we may split V into two pieces X and Y such that X + Y (X concatenated with Y) is equal to V. (X or Y may be empty.) Then, X + &quot;abc&quot; + Y is also valid. If for example S = &quot;abc&quot;, then examples of valid strings are: &quot;abc&quot;, &quot;aabcbc&quot;, &quot;abcabc&quot;, &quot;abcabcababcc&quot;. Examples of invalid strings are: &quot;abccba&quot;, &quot;ab&quot;, &quot;cababc&quot;, &quot;bac&quot;. Return true if and only if the given string S is valid. 给定有效字符串 &quot;abc&quot;。 对于任何有效的字符串 V，我们可以将 V 分成两个部分 X 和 Y，使得 X + Y（X 与 Y 连接）等于 V。（X 或 Y 可以为空。）那么，X + &quot;abc&quot; + Y 也同样是有效的。 例如，如果 S = &quot;abc&quot;，则有效字符串的示例是：&quot;abc&quot;，&quot;aabcbc&quot;，&quot;abcabc&quot;，&quot;abcabcababcc&quot;。无效字符串的示例是：&quot;abccba&quot;，&quot;ab&quot;，&quot;cababc&quot;，&quot;bac&quot;。 如果给定字符串 S 有效，则返回 true；否则，返回 false。 题目链接：https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/ Difficulty: medium Example 1:Input: &quot;aabcbc&quot; Output: true Explanation: We start with the valid string &quot;abc&quot;. Then we can insert another &quot;abc&quot; between &quot;a&quot; and &quot;bc&quot;, resulting in &quot;a&quot; + &quot;abc&quot; + &quot;bc&quot; which is &quot;aabcbc&quot;. Example 2:Input: &quot;abcabcababcc&quot; Output: true Explanation: &quot;abcabcabc&quot; is valid after consecutive insertings of &quot;abc&quot;. Then we can insert &quot;abc&quot; before the last letter, resulting in &quot;abcabcab&quot; + &quot;abc&quot; + &quot;c&quot; which is &quot;abcabcababcc&quot;. Example 3:Input: &quot;abccba&quot; Output: false Example 4:Input: &quot;cababc&quot; Output: false Note: 1 &lt;= S.length &lt;= 20000 S[i] is ‘a’, ‘b’, or ‘c’ 分析 每次遍历S，judge为True表示上一次遍历中包含“abc”； 若当前位置加上后两位为“abc”，则指针往后移动三位，judge置为True； 反之加入到s中； 遍历完成，s赋值S； 直至S为“”（返回True），或者某一个遍历没有得到“abc”字串（返回False）。 参考代码class Solution(object): def isValid(self, S): judge=True while(len(S) &gt; 0 and judge): i=0 s=&apos;&apos; judge=False while(i&lt;len(S)): if(i&lt;len(S)-2 and S[i:i+3]==&apos;abc&apos;): i+=3 judge=True else: s+=S[i] i+=1 S=s if(len(S)==0): return True return False]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Stack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1002.Find Common Characters（查找常用字符 ）]]></title>
+    <url>%2F2019%2F03%2F03%2F1002-Find-Common-Characters%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven an array A of strings made only from lowercase letters, return a list of all characters that show up in all strings within the list (including duplicates). For example, if a character occurs 3 times in all strings but not 4 times, you need to include that character three times in the final answer.You may return the answer in any order. 给定仅有小写字母组成的字符串数组 A，返回列表中的每个字符串中都显示的全部字符（包括重复字符）组成的列表。例如，如果一个字符在每个字符串中出现 3 次，但不是 4 次，则需要在最终答案中包含该字符 3 次。你可以按任意顺序返回答案。 题目链接：https://leetcode.com/problems/find-common-characters/ Difficulty: easy Example 1:Input: [&quot;bella&quot;,&quot;label&quot;,&quot;roller&quot;] Output: [&quot;e&quot;,&quot;l&quot;,&quot;l&quot;] Example 2:Input: [&quot;cool&quot;,&quot;lock&quot;,&quot;cook&quot;] Output: [&quot;c&quot;,&quot;o&quot;] Note: 1 &lt;= A.length &lt;= 100 1 &lt;= A[i].length &lt;= 100 A[i][j] is a lowercase letter 分析 遍历A的第一项的每个字母ind，逐次做一下操作； 遍历A其他的项，若包含ind，则将该项中的ind去掉； 若A所有的项都包含ind，则将ind加入到ans中； 返回ans。 参考代码class Solution(object): def commonChars(self, A): ans=[] if(len(A)==1): return list(A[0]) index = A[0] for ind in index: for i in range(1,len(A)): if(ind in A[i]): position=A[i].index(ind) A[i]=A[i][:position]+A[i][position+1:] else: break else: ans.append(ind) return ans]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1000.Minimum Cost to Merge Stones（合并石头的最低成本）]]></title>
+    <url>%2F2019%2F03%2F03%2F1000-Minimum-Cost-to-Merge-Stones%2F</url>
+    <content type="text"><![CDATA[DescriptionThere are N piles of stones arranged in a row. The i-th pile has stones[i] stones.A move consists of merging exactly K consecutive piles into one pile, and the cost of this move is equal to the total number of stones in these K piles.Find the minimum cost to merge all piles of stones into one pile. If it is impossible, return-1. 有 N 堆石头排成一排，第 i 堆中有 stones[i] 块石头。每次移动（move）需要将连续的 K 堆石头合并为一堆，而这个移动的成本为这 K 堆石头的总数。找出把所有石头合并成一堆的最低成本。如果不可能，返回 -1 。 题目链接：https://leetcode.com/problems/minimum-cost-to-merge-stones/ Difficulty: hard Example 1:Input: stones = [3,2,4,1], K = 2 Output: 20 Explanation: We start with [3, 2, 4, 1]. We merge [3, 2] for a cost of 5, and we are left with [5, 4, 1]. We merge [4, 1] for a cost of 5, and we are left with [5, 5]. We merge [5, 5] for a cost of 10, and we are left with [10]. The total cost was 20, and this is the minimum possible. Example 2:Input: stones = [3,2,4,1], K = 3 Output: -1 Explanation: After any merge operation, there are 2 piles left, and we can&apos;t merge anymore. So the task is impossible. Example 3:Input: stones = [3,5,1,2,6], K = 3 Output: 25 Explanation: We start with [3, 5, 1, 2, 6]. We merge [5, 1, 2] for a cost of 8, and we are left with [3, 8, 6]. We merge [3, 8, 6] for a cost of 17, and we are left with [17]. The total cost was 25, and this is the minimum possible. Note: 1 &lt;= stones.length &lt;= 30 2 &lt;= K &lt;= 30 1 &lt;= stones[i] &lt;= 100 分析 updating 参考代码]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Dynamic Programming</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[1001.Grid Illumination（网格照明）]]></title>
     <url>%2F2019%2F02%2F24%2F1001-Grid-Illumination%2F</url>
     <content type="text"><![CDATA[DescriptionOn a N x N grid of cells, each cell (x, y) with 0 &lt;= x &lt; N and 0 &lt;= y &lt; N has a lamp. Initially, some number of lamps are on. lamps[i] tells us the location of the i-th lamp that is on. Each lamp that is on illuminates every square on its x-axis, y-axis, and both diagonals (similar to a Queen in chess). For the i-th query queries[i] = (x, y), the answer to the query is 1 if the cell (x, y) is illuminated, else 0. After each query (x, y) [in the order given by queries], we turn off any lamps that are at cell (x, y) or are adjacent 8-directionally (ie., share a corner or edge with cell (x, y).) Return an array of answers. Each value answer[i] should be equal to the answer of the i-th query queries[i]. 在 N x N 的网格上，每个单元格 (x, y) 上都有一盏灯，其中 0 &lt;= x &lt; N 且 0 &lt;= y &lt; N。 最初，一定数量的灯是亮着的。lamps[i] 告诉我们亮着的第 i 盏灯的位置。每盏灯都照亮其所在 x 轴、y 轴和两条对角线上的每个正方形（类似于国际象棋中的皇后）。 对于第 i 次查询 queries[i] = (x, y)，如果单元格 (x, y) 是被照亮的，则查询结果为 1，否则为 0 。 在每个查询 (x, y) 之后 [按照查询的顺序]，我们关闭位于单元格 (x, y) 上或其相邻 8 个方向上（与单元格 (x, y) 共享一个角或边）的任何灯。 返回答案数组 answer。每个值 answer[i] 应等于第 i 次查询 queries[i] 的结果。 题目链接：https://leetcode.com/problems/grid-illumination/ Difficulty: hard Example 1:输入：N = 5, lamps = [[0,0],[4,4]], queries = [[1,1],[1,0]] 输出：[1,0] 解释： 在执行第一次查询之前，我们位于 [0, 0] 和 [4, 4] 灯是亮着的。 表示哪些单元格亮起的网格如下所示，其中 [0, 0] 位于左上角： 1 1 1 1 1 1 1 0 0 1 1 0 1 0 1 1 0 0 1 1 1 1 1 1 1 然后，由于单元格 [1, 1] 亮着，第一次查询返回 1。在此查询后，位于 [0，0] 处的灯将关闭，网格现在如下所示： 1 0 0 0 1 0 1 0 0 1 0 0 1 0 1 0 0 0 1 1 1 1 1 1 1 在执行第二次查询之前，我们只有 [4, 4] 处的灯亮着。现在，[1, 0] 处的查询返回 0，因为该单元格不再亮着。 Note: 1 &lt;= N &lt;= 10^9 0 &lt;= lamps.length &lt;= 20000 0 &lt;= queries.length &lt;= 20000 lamps[i].length == queries[i].length == 2 分析 updating（我觉得题目有问题，下面是我当时提交的代码，但是没有通过，手动验证测试用例，我觉得我没错[苦笑]） 参考代码class Solution(object): def gridIllumination(self, N, lamps, queries): answer=[] def get(a,b,x,y): if(a==x or b==y): return True if(abs(a-x)==abs(b-y)): return True return False for query in queries: judge=False for lamp in lamps: if(get(lamp[0],lamp[1],query[0],query[1])): lamps.remove(lamp) if(not judge): judge=True if(judge): answer.append(1) else: answer.append(0) return answer]]></content>
@@ -159,8 +207,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Array</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -211,8 +259,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -335,8 +383,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Hash Table</tag>
         <tag>Array</tag>
+        <tag>Hash Table</tag>
       </tags>
   </entry>
   <entry>
@@ -837,8 +885,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Array</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1001,8 +1049,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1289,8 +1337,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Array</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1338,8 +1386,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
         <tag>Binary Search</tag>
       </tags>
   </entry>
@@ -1412,8 +1460,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Greedy</tag>
         <tag>Two Pointers</tag>
+        <tag>Greedy</tag>
       </tags>
   </entry>
   <entry>
@@ -1797,8 +1845,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2101,8 +2149,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Array</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
