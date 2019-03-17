@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[1015.Numbers With 1 Repeated Digit（至少有 1 位重复的数字）]]></title>
+    <url>%2F2019%2F03%2F17%2F1015-Numbers-With-1-Repeated-Digit%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a positive integer N, return the number of positive integers less than or equal to N that have at least 1 repeated digit. 给定正整数 N，返回小于等于 N 且具有至少 1 位重复数字的正整数。 题目链接：https://leetcode.com/problems/numbers-with-1-repeated-digit/ Difficulty: hard Example 1:Input: 20 Output: 1 Explanation: The only positive number (&lt;= 20) with at least 1 repeated digit is 11. Example 2:Input: 100 Output: 10 Explanation: The positive numbers (&lt;= 100) with atleast 1 repeated digit are 11, 22, 33, 44, 55, 66, 77, 88, 99, and 100. Example 3:Input: 1000 Output: 262 Note: 0 &lt;= N &lt; 10^9 分析 updating 参考代码def numDupDigitsAtMostN(self, N): L, res, n = map(int, str(N + 1)) res, n = 0, len(L) def A(m, n): return 1 if n == 0 else A(m, n - 1) * (m - n + 1) for i in range(1, n): res += 9 * A(9, i - 1) s = set() for i, x in enumerate(L): for y in range(0 if i else 1, x): if y not in s: res += A(9 - i, n - i - 1) if x in s: break s.add(x) return N - res]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1014.Capacity To Ship Packages Within D Days（在 D 天内送达包裹的能力）]]></title>
+    <url>%2F2019%2F03%2F17%2F1014-Capacity-To-Ship-Packages-Within-D-Days%2F</url>
+    <content type="text"><![CDATA[DescriptionA conveyor belt has packages that must be shipped from one port to another within D days. The i-th package on the conveyor belt has a weight of weights[i]. Each day, we load the ship with packages on the conveyor belt (in the order given by weights). We may not load more weight than the maximum weight capacity of the ship. Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within D days. 传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。 传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。 返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。 题目链接：https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/ Difficulty: medium Example 1:Input: weights = [1,2,3,4,5,6,7,8,9,10], D = 5 Output: 15 Explanation: A ship capacity of 15 is the minimum to ship all the packages in 5 days like this: 1st day: 1, 2, 3, 4, 5 2nd day: 6, 7 3rd day: 8 4th day: 9 5th day: 10 Note that the cargo must be shipped in the order given, so using a ship of capacity 14 and splitting the packages into parts like (2, 3, 4, 5), (1, 6, 7), (8), (9), (10) is not allowed. Example 2:Input: weights = [3,2,2,4,1,4], D = 3 Output: 6 Explanation: A ship capacity of 6 is the minimum to ship all the packages in 3 days like this: 1st day: 3, 2 2nd day: 2, 4 3rd day: 1, 4 Example 3:Input: weights = [1,2,3,1,1], D = 4 Output: 3 Explanation: 1st day: 1 2nd day: 2 3rd day: 3 4th day: 1, 1 Note: 1 &lt;= D &lt;= weights.length &lt;= 50000 1 &lt;= weights[i] &lt;= 500 分析 updating 参考代码def shipWithinDays(self, weights, D): left, right = max(weights), sum(weights) while left &lt; right: mid, need, cur = (left + right) / 2, 1, 0 for w in weights: if cur + w &gt; mid: need += 1 cur = 0 cur += w if need &gt; D: left = mid + 1 else: right = mid return left]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+        <tag>Binary Search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1013.Pairs of Songs With Total Durations Divisible by 60（总持续时间可被 60 整除的歌曲）]]></title>
+    <url>%2F2019%2F03%2F17%2F1013-Pairs-of-Songs-With-Total-Durations-Divisible-by-60%2F</url>
+    <content type="text"><![CDATA[DescriptionIn a list of songs, the i-th song has a duration of time[i] seconds. Return the number of pairs of songs for which their total duration in seconds is divisible by 60. Formally, we want the number of indices i &lt; j with (time[i] + time[j]) % 60 == 0. 在歌曲列表中，第 i 首歌曲的持续时间为 time[i] 秒。 返回其总持续时间（以秒为单位）可被 60 整除的歌曲对的数量。形式上，我们希望索引的数字 i &lt; j 且有 (time[i] + time[j]) % 60 == 0。 题目链接：https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/ Difficulty: easy Example 1:Input: [30,20,150,100,40] Output: 3 Explanation: Three pairs have a total duration divisible by 60: (time[0] = 30, time[2] = 150): total duration 180 (time[1] = 20, time[3] = 100): total duration 120 (time[1] = 20, time[4] = 40): total duration 60 Example 2:Input: [60,60,60] Output: 3 Explanation: All three pairs have a total duration of 120, which is divisible by 60. Note: 1 &lt;= time.length &lt;= 60000 1 &lt;= time[i] &lt;= 500 分析 若遍历两边计算两个两个数的和是否可以被60整除，时间复杂度为 $O(N^2)$ ，时间会超限； 用字典存储每个时间数字对60的余数； 遍历字典，若key等于0，则只能与同样是0的成对，key为30同理，组合数是从D[d]中选两个的可能组合数； 其他情况，则要寻找与key值相加等于的60的组合，组合数是两边可能情况的乘积； 同时避免重复，只对key小于等于30的数字进行操作； 时间复杂度为 $O(NlogN)$ ,字典的查找时间复杂度是$O(logN)$。 参考代码class Solution(object): def numPairsDivisibleBy60(self, time): import collections D=collections.defaultdict(int) for t in time: D[t%60]+=1 S=0 for d in D: if(d&gt;30): continue if(d==0 or d==30): S+=(D[d]*(D[d]-1)//2) else: if(60-d in D): S+=(D[d]*D[60-d]) return S]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1012.Complement of Base 10 Integer（十进制整数的补码）]]></title>
+    <url>%2F2019%2F03%2F17%2F1012-Complement-of-Base-10-Integer%2F</url>
+    <content type="text"><![CDATA[DescriptionEvery non-negative integer N has a binary representation. For example, 5 can be represented as &quot;101&quot; in binary, 11 as &quot;1011&quot; in binary, and so on. Note that except for N = 0, there are no leading zeroes in any binary representation. The complement of a binary representation is the number in binary you get when changing every 1 to a 0 and 0 to a 1. For example, the complement of “101” in binary is “010” in binary. For a given number N in base-10, return the complement of it’s binary representation as a base-10 integer. 每个非负整数 N 都有其二进制表示。例如， 5 可以被表示为二进制 &quot;101&quot;，11 可以用二进制 &quot;1011&quot; 表示，依此类推。注意，除 N = 0 外，任何二进制表示中都不含前导零。 二进制的补码表示是将每个 1 改为 0 且每个 0 变为 1。例如，二进制数 &quot;101&quot; 的二进制补码为 &quot;010&quot;。 给定十进制数 N，返回其二进制表示的补码所对应的十进制整数。 题目链接：https://leetcode.com/problems/complement-of-base-10-integer/ Difficulty: easy Example 1:Input: 5 Output: 2 Explanation: 5 is &quot;101&quot; in binary, with complement &quot;010&quot; in binary, which is 2 in base-10. Example 2:Input: 7 Output: 0 Explanation: 7 is &quot;111&quot; in binary, with complement &quot;000&quot; in binary, which is 0 in base-10. Example 3:Input: 10 Output: 5 Explanation: 10 is &quot;1010&quot; in binary, with complement &quot;0101&quot; in binary, which is 5 in base-10. Note: 0 &lt;= N &lt; 10^9 分析 考虑二进制的补码与原码的和的二进制表示为全是‘1’； 那么每个数字的原码与补码的和只能是形如1、3、7、15等等，是2的n次幂减一； 故可以得到N的补码的十进制表示。 参考代码class Solution(object): def bitwiseComplement(self, N): tar=1 if(N==0): return 1 while(tar-1&lt;N): tar=tar*2 return tar-N-1]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[1008.Construct Binary Search Tree From Preorder Traversal（先序遍历构造二叉树）]]></title>
     <url>%2F2019%2F03%2F10%2F1008-Construct-Binary-Search-Tree-From-Preorder-Traversal%2F</url>
     <content type="text"><![CDATA[DescriptionReturn the root node of a binary search tree that matches the given preorder traversal. (Recall that a binary search tree is a binary tree where for every node, any descendant of node.left has a value &lt; node.val, and any descendant of node.right has a value &gt; node.val. Also recall that a preorder traversal displays the value of the node first, then traverses node.left, then traverses node.right.) 返回与给定先序遍历 preorder 相匹配的二叉搜索树（binary search tree）的根结点。 (回想一下，二叉搜索树是二叉树的一种，其每个节点都满足以下规则，对于 node.left 的任何后代，值总 &lt; node.val，而 node.right 的任何后代，值总 &gt; node.val。此外，先序遍历首先显示节点的值，然后遍历 node.left，接着遍历 node.right。） 题目链接：https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/ Difficulty: medium Example 1:Input: [8,5,1,7,10,12] Output: [8,5,10,1,7,null,12] Note: 1 &lt;= preorder.length &lt;= 100 The values of preorder are distinct. 分析 前序遍历的规则是根左右，二叉搜索树满足同时根节点大于左子树的所有节点，小于右子树的所有节点； 定义递归过程，若当前遍历序列为空，返回None； 反之，以遍历序列第一个节点作为根节点root，小于根节点的序列作为左子树，大于根节点的序列作为右子树，形如[tar,l1,l2,l3,l4,r1,r2,r3,r4,r5]; 调用自身构造左子树、右子树，与根节点连接，返回根节点。 参考代码Definition for a binary tree node. class TreeNode(object): def __init__(self, x): self.val = x self.left = None self.right = None class Solution(object): def bstFromPreorder(self, preorder): if(len(preorder)==0): return None root=TreeNode(preorder[0]) le=[] ri=[] for i in range(1,len(preorder)): if(preorder[i]&lt;preorder[0]): le.append(preorder[i]) else: ri.append(preorder[i]) left=self.bstFromPreorder(le) right=self.bstFromPreorder(ri) root.left=left root.right=right return root]]></content>
@@ -431,8 +481,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Array</tag>
         <tag>Hash Table</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
@@ -1435,8 +1485,8 @@
       <tags>
         <tag>code</tag>
         <tag>Dynamic Programming</tag>
-        <tag>Math</tag>
         <tag>Binary Search</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1880,8 +1930,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Math</tag>
         <tag>Binary Search</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2197,8 +2247,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Array</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
