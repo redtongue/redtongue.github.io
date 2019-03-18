@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionA conveyor belt has packages that must be shipped from one port to another within D days. The i-th package on the conveyor belt has a weight of weights[i].  Each day, we load the ship with">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T04:32:06.643Z">
+<meta property="og:updated_time" content="2019-03-18T02:59:00.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1014.Capacity To Ship Packages Within D Days（在 D 天内送达包裹的能力）">
 <meta name="twitter:description" content="DescriptionA conveyor belt has packages that must be shipped from one port to another within D days. The i-th package on the conveyor belt has a weight of weights[i].  Each day, we load the ship with">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-17T12:32:06+08:00">
-                2019-03-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-18T10:59:00+08:00">
+                2019-03-18
               </time>
             
           </span>
@@ -454,7 +454,9 @@ Explanation:
 <li>1 &lt;= weights[i] &lt;= 500</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul>
-<li>updating</li>
+<li>若对于最大容量每次增一，时间复杂度是 $O(NK)$,时间会超限，利用二分查找的方法，时间复杂度可以降到 $O(KlogN)$，N是capacity的变换区间，K是包裹数;</li>
+<li>初始capacity的最小值是最大包裹重量，最大值是包裹重量的总和，逐次遍历weights，更新left，mid，right，直到left与right重合；</li>
+<li>返回left。</li>
 </ul>
 <h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>def shipWithinDays(self, weights, D):
     left, right = max(weights), sum(weights)
