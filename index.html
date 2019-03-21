@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2019/03/17/1015-Numbers-With-1-Repeated-Digit/">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2019/03/21/topk：数组中的k项最大值-二维数组中的k项最大值/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yunxiang wang">
@@ -322,7 +322,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/17/1015-Numbers-With-1-Repeated-Digit/" itemprop="url">1015.Numbers With 1 Repeated Digit（至少有 1 位重复的数字）</a></h1>
+                <a class="post-title-link" href="/2019/03/21/topk：数组中的k项最大值-二维数组中的k项最大值/" itemprop="url">topk：数组中的k项最大值//二维数组中的k项最大值</a></h1>
         
 
         <div class="post-meta">
@@ -334,7 +334,269 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-17T12:17:43+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T15:13:32+08:00">
+                2019-03-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T15:40:54+08:00">
+                2019-03-21
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/whatever/" itemprop="url" rel="index">
+                    <span itemprop="name">whatever</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>从n个数字中找出前top-k大的数字是常见的面试题，有如下几种解法：</p>
+<h2 id="暴力解法"><a href="#暴力解法" class="headerlink" title="暴力解法"></a>暴力解法</h2><p>这个基本思路类似于冒泡排序或者插入排序，以此遍历找到最大的数，最后返回k个最大的数，时间复杂度为 $O(NK)$</p>
+<p>形如：</p>
+<pre><code>def getTopk(li,k):
+    for i in range(k):
+        start=0
+        for j in range(start+1,len(li)):
+            if(li[start]&lt;li[j]):
+                li[start],li[j]=li[j],li[start]
+        start+=1
+    return li[:start]
+</code></pre><p>暴力解法不可取，基本就是跪了</p>
+<h2 id="快排解法"><a href="#快排解法" class="headerlink" title="快排解法"></a>快排解法</h2><p>快排的平均时间复杂度为 $O(NlogN)$,利用快速排序的思路可以提高topk的效率</p>
+<p>形如：</p>
+<pre><code>def getTopk(self,li,k):
+    if(len(li)==0):
+        return []
+    left=[a for a in li[1:] if a&gt;li[0]]
+    right=[a for a in li[1:] if a&lt;li[0]]
+    print(left,right)
+    if(len(left) &gt; k):
+        return self.getTopk(left,k)
+    elif(len(left) == k):
+        return left
+    elif(len(left)+1 == k):
+        return left+[li[0]]
+    else:
+        return left+[li[0]]+self.getTopk(right,k-1-len(left))
+</code></pre><ol>
+<li>对快排算法中做如下改动：</li>
+<li>左部分为大于首个数字li[0]的集合，若k小于左部分的长度，将左部分进入下一轮迭代；</li>
+<li>若k等于左部分的长度，直接返回左部分；</li>
+<li>若k等于左部分的长度加一，直接返回左部分加li[0]；</li>
+<li>若k打于左部分的长度加一，直接返回左部分加li[0]加右部分的迭代返回结果，右部分取前k-1-len(left)个；</li>
+<li>返回最终的topk。</li>
+</ol>
+<p>如上是改动的快速排序算法用于获得数组的前k项，时间复杂度最好是 $O(N)$，时间复杂度平均是 $O(KlogN)$，时间复杂度最坏是 $O(NK)$</p>
+<h2 id="堆排解法"><a href="#堆排解法" class="headerlink" title="堆排解法"></a>堆排解法</h2><p>堆排序的平均时间复杂度都为 $O（n*logn）$，它比快排好的地方是，快排在最坏的情况下（数组已有序）时间复杂度为 $O(n^2)$。</p>
+<p>形如：</p>
+<pre><code>def getTopkInHeap(self,li,k):
+    def headAdjust(li,start,end):#最大堆调整
+        left=start*2+1
+        while(left &lt;= end):
+            if(left+1 &lt;= end and li[left] &lt; li[left+1]):
+                left+=1
+            if(li[start] &lt; li[left]):
+                li[start],li[left] = li[left],li[start]
+                start=left
+                left=start*2+1
+            else:
+                break
+
+    def heapSort(li,k,end):
+        for i in range((end-1)//2,-1,-1):
+            headAdjust(li,i,end)
+        for i in range(end,end-k,-1):#取前k个调整到堆底
+            li[i],li[0] = li[0],li[i]
+            headAdjust(li,0,i-1)
+        return li
+
+    return li if k &gt;= len(li) else heapSort(li,k,len(li)-1)[-k:]
+</code></pre><ol>
+<li>定于headAdjust用于调整最大堆，将最大值移至堆顶；</li>
+<li>定于heapSort堆排，首先初始化，调整堆；</li>
+<li>以此取前k个元素调整到堆底，并重新调整堆；</li>
+<li>返回后k个元素，若k大于数组长度，返回数组。</li>
+</ol>
+<p>如上基于堆排算法修改的topk的时间复杂度为 $O(KlogN)$</p>
+<h2 id="堆排获取包含n堆数组的前k项"><a href="#堆排获取包含n堆数组的前k项" class="headerlink" title="堆排获取包含n堆数组的前k项"></a>堆排获取包含n堆数组的前k项</h2><p>对于topk算法难度更进步的是，取n个堆中的最大的k个数，即二维数组的前k项。</p>
+<p>形如：</p>
+<pre><code>def headAdjust(li, position, start, end):#最大堆调整
+        left=start*2+1
+        while(left &lt;= end):
+            if(left+1 &lt;= end and li[left][position[left]] &lt; li[left+1][position[left+1]]):
+                left+=1
+            if(li[start][position[start]] &lt; li[left][position[left]]):
+                li[start],li[left] = li[left],li[start]
+                position[start],position[left] = position[left],position[start]
+                start=left
+                left=start*2+1
+            else:
+                break
+
+    def heapSort(li, position, k, end):
+        for i in range((end-1)//2,-1,-1):
+            headAdjust(li,position,i,end)
+        topk=[]
+        for i in range(k):
+            print(li,position,end)
+            topk.append(li[0][position[0]])
+            position[0]+=1
+            if(position[0]==len(li[0])):#调整
+                li[end],li[0] = li[0],li[end]
+                position[end],position[0] = position[0],position[end]
+                end-=1
+            headAdjust(li,position,0,end)
+        return topk
+    position=[0]*len(li)
+    return [a for l in li for a in l] if k &gt;= sum([len(l) for l in li]) else heapSort(li,position,k,len(li)-1)
+</code></pre><ol>
+<li>定义position记录每堆被提取到的位置，定义headAdjust调整最大堆，将最大值移至堆顶，此时对应的是二维数组；</li>
+<li>定义heapSort堆排，首先初始化最大堆；</li>
+<li>依次取前k项（存在topk中），取走堆顶元素，调整对应的position值；</li>
+<li>若堆顶对应的数组遍历完了，将其调整到堆底，修改end值；</li>
+<li>调整最大堆，返回3；</li>
+<li>返回topk，若k大于二维数组中的数字个数，返回展开的二维数组。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2019/03/17/1015-Numbers-With-Repeated-Digits/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yunxiang wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redtongue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/17/1015-Numbers-With-Repeated-Digits/" itemprop="url">1015.Numbers With Repeated Digits</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-17T12:19:08+08:00">
                 2019-03-17
               </time>
             
@@ -350,8 +612,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-17T12:31:31+08:00">
-                2019-03-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-18T15:58:54+08:00">
+                2019-03-18
               </time>
             
           </span>
@@ -407,14 +669,14 @@
 
       
         
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a positive integer <code>N</code>, return the number of positive integers less than or equal to <code>N</code> that have at least 1 repeated digit.</p>
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a positive integer <code>N</code>, return the number of positive integers less than or equal to <code>N</code> that have at least 1 repeated digit.（test）</p>
 <hr>
 <p>给定正整数 <code>N</code>，返回小于等于 <code>N</code> 且具有至少 1 位重复数字的正整数。</p>
-<p>题目链接：<a href="https://leetcode.com/problems/numbers-with-1-repeated-digit/" title="https://leetcode.com/problems/numbers-with-1-repeated-digit/" target="_blank" rel="noopener">https://leetcode.com/problems/numbers-with-1-repeated-digit/</a></p>
+<p>题目链接：<a href="https://leetcode.com/problems/numbers-with-repeated-digits/" title="https://leetcode.com/problems/numbers-with-repeated-digits/" target="_blank" rel="noopener">https://leetcode.com/problems/numbers-with-repeated-digits/</a></p>
 <h4 id="Difficulty-hard"><a href="#Difficulty-hard" class="headerlink" title="Difficulty: hard"></a>Difficulty: hard</h4>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/17/1015-Numbers-With-1-Repeated-Digit/#more" rel="contents">
+            <a class="btn" href="/2019/03/17/1015-Numbers-With-Repeated-Digits/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1794,176 +2056,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2019/03/03/1003-Check-If-Word-Is-Valid-After-Substitutions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yunxiang wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redtongue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/03/1003-Check-If-Word-Is-Valid-After-Substitutions/" itemprop="url">1003.Check If Word Is Valid After Substitutions（检查替换后的词是否有效）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-03T12:17:44+08:00">
-                2019-03-03
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-03T12:34:41+08:00">
-                2019-03-03
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>We are given that the string <code>&quot;abc&quot;</code> is valid.</p>
-<p>From any valid string <code>V</code>, we may split <code>V</code> into two pieces <code>X</code> and <code>Y</code> such that X + Y (<code>X</code> concatenated with <code>Y</code>) is equal to <code>V</code>.  (<code>X</code> or <code>Y</code> may be empty.)  Then, <code>X + &quot;abc&quot; + Y</code> is also valid.</p>
-<p>If for example <code>S = &quot;abc&quot;</code>, then examples of valid strings are: <code>&quot;abc&quot;</code>, <code>&quot;aabcbc&quot;,</code> <code>&quot;abcabc&quot;</code>, <code>&quot;abcabcababcc&quot;</code>.  Examples of invalid strings are: <code>&quot;abccba&quot;</code>, <code>&quot;ab&quot;</code>, <code>&quot;cababc&quot;</code>, <code>&quot;bac&quot;</code>.</p>
-<p>Return <code>true</code> if and only if the given string <code>S</code> is valid.</p>
-<hr>
-<p>给定有效字符串 <code>&quot;abc&quot;</code>。</p>
-<p>对于任何有效的字符串 <code>V</code>，我们可以将 <code>V</code> 分成两个部分 <code>X</code> 和 <code>Y</code>，使得 <code>X + Y</code>（<code>X</code> 与 <code>Y</code> 连接）等于 <code>V</code>。（<code>X</code> 或 <code>Y</code> 可以为空。）那么，<code>X + &quot;abc&quot; + Y</code> 也同样是有效的。</p>
-<p>例如，如果 <code>S = &quot;abc&quot;</code>，则有效字符串的示例是：<code>&quot;abc&quot;</code>，<code>&quot;aabcbc&quot;</code>，<code>&quot;abcabc&quot;</code>，<code>&quot;abcabcababcc&quot;</code>。无效字符串的示例是：<code>&quot;abccba&quot;</code>，<code>&quot;ab&quot;</code>，<code>&quot;cababc&quot;</code>，<code>&quot;bac&quot;</code>。</p>
-<p>如果给定字符串 <code>S</code> 有效，则返回 <code>true</code>；否则，返回 <code>false</code>。</p>
-<p>题目链接：<a href="https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/" title="https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/" target="_blank" rel="noopener">https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/</a></p>
-<h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/03/1003-Check-If-Word-Is-Valid-After-Substitutions/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2018,7 +2110,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">187</span>
+                  <span class="site-state-item-count">188</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

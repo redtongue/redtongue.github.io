@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[1015.Numbers With 1 Repeated Digit（至少有 1 位重复的数字）]]></title>
-    <url>%2F2019%2F03%2F17%2F1015-Numbers-With-1-Repeated-Digit%2F</url>
-    <content type="text"><![CDATA[DescriptionGiven a positive integer N, return the number of positive integers less than or equal to N that have at least 1 repeated digit. 给定正整数 N，返回小于等于 N 且具有至少 1 位重复数字的正整数。 题目链接：https://leetcode.com/problems/numbers-with-1-repeated-digit/ Difficulty: hard Example 1:Input: 20 Output: 1 Explanation: The only positive number (&lt;= 20) with at least 1 repeated digit is 11. Example 2:Input: 100 Output: 10 Explanation: The positive numbers (&lt;= 100) with atleast 1 repeated digit are 11, 22, 33, 44, 55, 66, 77, 88, 99, and 100. Example 3:Input: 1000 Output: 262 Note: 0 &lt;= N &lt; 10^9 分析 updating 参考代码def numDupDigitsAtMostN(self, N): L, res, n = map(int, str(N + 1)) res, n = 0, len(L) def A(m, n): return 1 if n == 0 else A(m, n - 1) * (m - n + 1) for i in range(1, n): res += 9 * A(9, i - 1) s = set() for i, x in enumerate(L): for y in range(0 if i else 1, x): if y not in s: res += A(9 - i, n - i - 1) if x in s: break s.add(x) return N - res]]></content>
+    <title><![CDATA[topk：数组中的k项最大值//二维数组中的k项最大值]]></title>
+    <url>%2F2019%2F03%2F21%2Ftopk%EF%BC%9A%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84k%E9%A1%B9%E6%9C%80%E5%A4%A7%E5%80%BC-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84k%E9%A1%B9%E6%9C%80%E5%A4%A7%E5%80%BC%2F</url>
+    <content type="text"><![CDATA[从n个数字中找出前top-k大的数字是常见的面试题，有如下几种解法： 暴力解法这个基本思路类似于冒泡排序或者插入排序，以此遍历找到最大的数，最后返回k个最大的数，时间复杂度为 $O(NK)$ 形如： def getTopk(li,k): for i in range(k): start=0 for j in range(start+1,len(li)): if(li[start]&lt;li[j]): li[start],li[j]=li[j],li[start] start+=1 return li[:start] 暴力解法不可取，基本就是跪了 快排解法快排的平均时间复杂度为 $O(NlogN)$,利用快速排序的思路可以提高topk的效率 形如： def getTopk(self,li,k): if(len(li)==0): return [] left=[a for a in li[1:] if a&gt;li[0]] right=[a for a in li[1:] if a&lt;li[0]] print(left,right) if(len(left) &gt; k): return self.getTopk(left,k) elif(len(left) == k): return left elif(len(left)+1 == k): return left+[li[0]] else: return left+[li[0]]+self.getTopk(right,k-1-len(left)) 对快排算法中做如下改动： 左部分为大于首个数字li[0]的集合，若k小于左部分的长度，将左部分进入下一轮迭代； 若k等于左部分的长度，直接返回左部分； 若k等于左部分的长度加一，直接返回左部分加li[0]； 若k打于左部分的长度加一，直接返回左部分加li[0]加右部分的迭代返回结果，右部分取前k-1-len(left)个； 返回最终的topk。 如上是改动的快速排序算法用于获得数组的前k项，时间复杂度最好是 $O(N)$，时间复杂度平均是 $O(KlogN)$，时间复杂度最坏是 $O(NK)$ 堆排解法堆排序的平均时间复杂度都为 $O（n*logn）$，它比快排好的地方是，快排在最坏的情况下（数组已有序）时间复杂度为 $O(n^2)$。 形如： def getTopkInHeap(self,li,k): def headAdjust(li,start,end):#最大堆调整 left=start*2+1 while(left &lt;= end): if(left+1 &lt;= end and li[left] &lt; li[left+1]): left+=1 if(li[start] &lt; li[left]): li[start],li[left] = li[left],li[start] start=left left=start*2+1 else: break def heapSort(li,k,end): for i in range((end-1)//2,-1,-1): headAdjust(li,i,end) for i in range(end,end-k,-1):#取前k个调整到堆底 li[i],li[0] = li[0],li[i] headAdjust(li,0,i-1) return li return li if k &gt;= len(li) else heapSort(li,k,len(li)-1)[-k:] 定于headAdjust用于调整最大堆，将最大值移至堆顶； 定于heapSort堆排，首先初始化，调整堆； 以此取前k个元素调整到堆底，并重新调整堆； 返回后k个元素，若k大于数组长度，返回数组。 如上基于堆排算法修改的topk的时间复杂度为 $O(KlogN)$ 堆排获取包含n堆数组的前k项对于topk算法难度更进步的是，取n个堆中的最大的k个数，即二维数组的前k项。 形如： def headAdjust(li, position, start, end):#最大堆调整 left=start*2+1 while(left &lt;= end): if(left+1 &lt;= end and li[left][position[left]] &lt; li[left+1][position[left+1]]): left+=1 if(li[start][position[start]] &lt; li[left][position[left]]): li[start],li[left] = li[left],li[start] position[start],position[left] = position[left],position[start] start=left left=start*2+1 else: break def heapSort(li, position, k, end): for i in range((end-1)//2,-1,-1): headAdjust(li,position,i,end) topk=[] for i in range(k): print(li,position,end) topk.append(li[0][position[0]]) position[0]+=1 if(position[0]==len(li[0])):#调整 li[end],li[0] = li[0],li[end] position[end],position[0] = position[0],position[end] end-=1 headAdjust(li,position,0,end) return topk position=[0]*len(li) return [a for l in li for a in l] if k &gt;= sum([len(l) for l in li]) else heapSort(li,position,k,len(li)-1) 定义position记录每堆被提取到的位置，定义headAdjust调整最大堆，将最大值移至堆顶，此时对应的是二维数组； 定义heapSort堆排，首先初始化最大堆； 依次取前k项（存在topk中），取走堆顶元素，调整对应的position值； 若堆顶对应的数组遍历完了，将其调整到堆底，修改end值； 调整最大堆，返回3； 返回topk，若k大于二维数组中的数字个数，返回展开的二维数组。]]></content>
+      <categories>
+        <category>whatever</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1015.Numbers With Repeated Digits]]></title>
+    <url>%2F2019%2F03%2F17%2F1015-Numbers-With-Repeated-Digits%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a positive integer N, return the number of positive integers less than or equal to N that have at least 1 repeated digit.（test） 给定正整数 N，返回小于等于 N 且具有至少 1 位重复数字的正整数。 题目链接：https://leetcode.com/problems/numbers-with-repeated-digits/ Difficulty: hard Example 1:Input: 20 Output: 1 Explanation: The only positive number (&lt;= 20) with at least 1 repeated digit is 11. Example 2:Input: 100 Output: 10 Explanation: The positive numbers (&lt;= 100) with atleast 1 repeated digit are 11, 22, 33, 44, 55, 66, 77, 88, 99, and 100. Example 3:Input: 1000 Output: 262 Note: 0 &lt;= N &lt; 10^9 分析 updating 参考代码def numDupDigitsAtMostN(self, N): L, res, n = map(int, str(N + 1)) res, n = 0, len(L) def A(m, n): return 1 if n == 0 else A(m, n - 1) * (m - n + 1) for i in range(1, n): res += 9 * A(9, i - 1) s = set() for i, x in enumerate(L): for y in range(0 if i else 1, x): if y not in s: res += A(9 - i, n - i - 1) if x in s: break s.add(x) return N - res]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -1485,8 +1496,8 @@
       <tags>
         <tag>code</tag>
         <tag>Dynamic Programming</tag>
-        <tag>Binary Search</tag>
         <tag>Math</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
@@ -1930,8 +1941,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Binary Search</tag>
         <tag>Math</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
