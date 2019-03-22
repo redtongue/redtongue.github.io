@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="从n个数字中找出前top-k大的数字是常见的面试题，有如下几种解法： 暴力解法这个基本思路类似于冒泡排序或者插入排序，以此遍历找到最大的数，最后返回k个最大的数，时间复杂度为 $O(NK)$ 形如： def getTopk(li,k):     for i in range(k):         start=0         for j in range(start+1,len(li)):">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-21T07:40:54.137Z">
+<meta property="og:updated_time" content="2019-03-22T01:49:59.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="topk：数组中的k项最大值&#x2F;&#x2F;二维数组中的k项最大值">
 <meta name="twitter:description" content="从n个数字中找出前top-k大的数字是常见的面试题，有如下几种解法： 暴力解法这个基本思路类似于冒泡排序或者插入排序，以此遍历找到最大的数，最后返回k个最大的数，时间复杂度为 $O(NK)$ 形如： def getTopk(li,k):     for i in range(k):         start=0         for j in range(start+1,len(li)):">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T15:40:54+08:00">
-                2019-03-21
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-22T09:49:59+08:00">
+                2019-03-22
               </time>
             
           </span>
@@ -485,7 +485,8 @@
 <p>如上基于堆排算法修改的topk的时间复杂度为 $O(KlogN)$</p>
 <h2 id="堆排获取包含n堆数组的前k项"><a href="#堆排获取包含n堆数组的前k项" class="headerlink" title="堆排获取包含n堆数组的前k项"></a>堆排获取包含n堆数组的前k项</h2><p>对于topk算法难度更进步的是，取n个堆中的最大的k个数，即二维数组的前k项。</p>
 <p>形如：</p>
-<pre><code>def headAdjust(li, position, start, end):#最大堆调整
+<pre><code>def getTopkInNHeap(self,li,position,k):
+    def headAdjust(li, position, start, end):#最大堆调整
         left=start*2+1
         while(left &lt;= end):
             if(left+1 &lt;= end and li[left][position[left]] &lt; li[left+1][position[left+1]]):

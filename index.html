@@ -350,8 +350,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T15:40:54+08:00">
-                2019-03-21
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-22T09:49:59+08:00">
+                2019-03-22
               </time>
             
           </span>
@@ -478,7 +478,8 @@
 <p>如上基于堆排算法修改的topk的时间复杂度为 $O(KlogN)$</p>
 <h2 id="堆排获取包含n堆数组的前k项"><a href="#堆排获取包含n堆数组的前k项" class="headerlink" title="堆排获取包含n堆数组的前k项"></a>堆排获取包含n堆数组的前k项</h2><p>对于topk算法难度更进步的是，取n个堆中的最大的k个数，即二维数组的前k项。</p>
 <p>形如：</p>
-<pre><code>def headAdjust(li, position, start, end):#最大堆调整
+<pre><code>def getTopkInNHeap(self,li,position,k):
+    def headAdjust(li, position, start, end):#最大堆调整
         left=start*2+1
         while(left &lt;= end):
             if(left+1 &lt;= end and li[left][position[left]] &lt; li[left+1][position[left+1]]):
