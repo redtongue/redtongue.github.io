@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[1023.Binary String With Substrings Representing 1 To N（子串能表示从 1 到 N 数字的二进制串）]]></title>
+    <url>%2F2019%2F03%2F25%2F1023-Binary-String-With-Substrings-Representing-1-To-N%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a binary string S (a string consisting only of ‘0’ and ‘1’s) and a positive integer N, return true if and only if for every integer X from 1 to N, the binary representation of X is a substring of S. 给定一个二进制字符串 S（一个仅由若干 ‘0’ 和 ‘1’ 构成的字符串）和一个正整数 N，如果对于从 1 到 N 的每个整数 X，其二进制表示都是 S 的子串，就返回 true，否则返回 false。 题目链接：https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/ Difficulty: medium Example 1:Input: S = &quot;0110&quot;, N = 3 Output: true Example 2:Input: S = &quot;0110&quot;, N = 4 Output: false Note: 1 &lt;= S.length &lt;= 1000 1 &lt;= N &lt;= 10^9 分析 updating 参考代码def queryString(self, S, N): return all(bin(i)[2:] in S for i in xrange(N, N / 2, -1))]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>String</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1022.Smallest Integer Divisible by K（可被 K 整除的最小整数）]]></title>
+    <url>%2F2019%2F03%2F25%2F1022-Smallest-Integer-Divisible-by-K%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a positive integer K, you need find the smallest positive integer N such that N is divisible by K, and N only contains the digit 1. Return the length of N. If there is no such N, return -1. 给定正整数 K，你需要找出可以被 K 整除的、仅包含数字 1 的最小正整数 N。 返回 N 的长度。如果不存在这样的 N，就返回 -1。 题目链接：https://leetcode.com/problems/smallest-integer-divisible-by-k/ Difficulty: medium Example 1:Input: 1 Output: 1 Explanation: The smallest answer is N = 1, which has length 1. Example 2:Input: 2 Output: -1 Explanation: There is no such positive integer N divisible by 2. Example 3:Input: 3 Output: 3 Explanation: The smallest answer is N = 111, which has length 3. Note: 1 &lt;= K &lt;= 10^5 分析 已知任意数字的个位数为li=[1,3,7,9]中任意一个，其任意倍数的个位数不可能为1； 若K的个位数在li中，返回-1； 反之，N表示n位长的数字且每一位都为“1”，判断是否可以整除K； 若整除，返回N的长度，反之，长度加一，回到上一步。 参考代码class Solution(object): def smallestRepunitDivByK(self, K): li=[1,3,7,9] if(K%10 not in li): return -1 index=1 N=1 while(N%K != 0): index+=1 N=N*10+1 return index]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1021.Best Sightseeing Pair（最佳观光组合）]]></title>
+    <url>%2F2019%2F03%2F25%2F1021-Best-Sightseeing-Pair%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven an array A of positive integers, A[i] represents the value of the i-th sightseeing spot, and two sightseeing spots i and j have distance j - i between them. The score of a pair (i &lt; j) of sightseeing spots is (A[i] + A[j] + i - j) : the sum of the values of the sightseeing spots, minus the distance between them. Return the maximum score of a pair of sightseeing spots. 给定正整数数组 A，A[i] 表示第 i 个观光景点的评分，并且两个景点 i 和 j 之间的距离为 j - i。 一对景点（i &lt; j）组成的观光组合的得分为（A[i] + A[j] + i - j）：景点的评分之和减去它们两者之间的距离。 返回一对观光景点能取得的最高分。 题目链接：https://leetcode.com/problems/best-sightseeing-pair/ Difficulty: medium Example 1:Input: [8,1,5,2,6] Output: 11 Explanation: i = 0, j = 2, A[i] + A[j] + i - j = 8 + 5 + 0 - 2 = 11 Note: 2 &lt;= A.length &lt;= 50000 1 &lt;= A[i] &lt;= 1000 分析 updating 参考代码def maxScoreSightseeingPair(self, A): cur = res = 0 for a in A: res = max(res, cur + a) cur = max(cur, a) - 1 return res]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1020.Partition Array Into Three Parts With Equal Sum（将数组分成和相等的三个部分）]]></title>
+    <url>%2F2019%2F03%2F25%2F1020-Partition-Array-Into-Three-Parts-With-Equal-Sum%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven an array A of integers, return true if and only if we can partition the array into three non-empty parts with equal sums. Formally, we can partition the array if we can find indexes i+1 &lt; j with (A[0] + A[1] + ... + A[i] == A[i+1] + A[i+2] + ... + A[j-1] == A[j] + A[j-1] + ... + A[A.length - 1]) 给定一个整数数组 A，只有我们可以将其划分为三个和相等的非空部分时才返回 true，否则返回 false。 形式上，如果我们可以找出索引 i+1 &lt; j 且满足 (A[0] + A[1] + ... + A[i] == A[i+1] + A[i+2] + ... + A[j-1] == A[j] + A[j-1] + ... + A[A.length - 1]) 就可以将数组三等分。 题目链接：https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/ Difficulty: easy Example 1:Input: [0,2,1,-6,6,-7,9,1,2,0,1] Output: true Explanation: 0 + 2 + 1 = -6 + 6 - 7 + 9 + 1 = 2 + 0 + 1 Example 2:Input: [0,2,1,-6,6,7,9,-1,2,0,1] Output: false Example 3:Input: [3,3,6,5,-2,2,5,1,-9,4] Output: true Explanation: 3 + 3 = 6 = 5 - 2 + 2 + 5 + 1 - 9 + 4 Note: 3 &lt;= A.length &lt;= 50000 -10000 &lt;= A[i] &lt;= 10000 分析 若和不能被3整除，返回False，tar=sum(A)/3; index记录当前遍历所有的数字的和，s为和为tar的序列数； 遍历A，index加上当前数字，若index等于tar，s加一，index置零； 若s等于3返回True，反之False。 参考代码class Solution(object): def canThreePartsEqualSum(self, A): N=len(A) tar=sum(A)//3 if(tar*3!=sum(A)): return False index=0 s=0 for i in range(N): index+=A[i] if(index==tar): index=0 s+=1 if(s==3): return True return False]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[topk：数组中的k项最大值//二维数组中的k项最大值]]></title>
     <url>%2F2019%2F03%2F21%2Ftopk%EF%BC%9A%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84k%E9%A1%B9%E6%9C%80%E5%A4%A7%E5%80%BC-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84k%E9%A1%B9%E6%9C%80%E5%A4%A7%E5%80%BC%2F</url>
     <content type="text"><![CDATA[从n个数字中找出前top-k大的数字是常见的面试题，有如下几种解法： 暴力解法这个基本思路类似于冒泡排序或者插入排序，以此遍历找到最大的数，最后返回k个最大的数，时间复杂度为 $O(NK)$ 形如： def getTopk(li,k): for i in range(k): start=0 for j in range(start+1,len(li)): if(li[start]&lt;li[j]): li[start],li[j]=li[j],li[start] start+=1 return li[:start] 暴力解法不可取，基本就是跪了 快排解法快排的平均时间复杂度为 $O(NlogN)$,利用快速排序的思路可以提高topk的效率 形如： def getTopk(self,li,k): if(len(li)==0): return [] left=[a for a in li[1:] if a&gt;li[0]] right=[a for a in li[1:] if a&lt;li[0]] print(left,right) if(len(left) &gt; k): return self.getTopk(left,k) elif(len(left) == k): return left elif(len(left)+1 == k): return left+[li[0]] else: return left+[li[0]]+self.getTopk(right,k-1-len(left)) 对快排算法中做如下改动： 左部分为大于首个数字li[0]的集合，若k小于左部分的长度，将左部分进入下一轮迭代； 若k等于左部分的长度，直接返回左部分； 若k等于左部分的长度加一，直接返回左部分加li[0]； 若k打于左部分的长度加一，直接返回左部分加li[0]加右部分的迭代返回结果，右部分取前k-1-len(left)个； 返回最终的topk。 如上是改动的快速排序算法用于获得数组的前k项，时间复杂度最好是 $O(N)$，时间复杂度平均是 $O(KlogN)$，时间复杂度最坏是 $O(NK)$ 堆排解法堆排序的平均时间复杂度都为 $O（n*logn）$，它比快排好的地方是，快排在最坏的情况下（数组已有序）时间复杂度为 $O(n^2)$。 形如： def getTopkInHeap(self,li,k): def headAdjust(li,start,end):#最大堆调整 left=start*2+1 while(left &lt;= end): if(left+1 &lt;= end and li[left] &lt; li[left+1]): left+=1 if(li[start] &lt; li[left]): li[start],li[left] = li[left],li[start] start=left left=start*2+1 else: break def heapSort(li,k,end): for i in range((end-1)//2,-1,-1): headAdjust(li,i,end) for i in range(end,end-k,-1):#取前k个调整到堆底 li[i],li[0] = li[0],li[i] headAdjust(li,0,i-1) return li return li if k &gt;= len(li) else heapSort(li,k,len(li)-1)[-k:] 定于headAdjust用于调整最大堆，将最大值移至堆顶； 定于heapSort堆排，首先初始化，调整堆； 以此取前k个元素调整到堆底，并重新调整堆； 返回后k个元素，若k大于数组长度，返回数组。 如上基于堆排算法修改的topk的时间复杂度为 $O(KlogN)$ 堆排获取包含n堆数组的前k项对于topk算法难度更进步的是，取n个堆中的最大的k个数，即二维数组的前k项。 形如： def getTopkInNHeap(self,li,position,k): def headAdjust(li, position, start, end):#最大堆调整 left=start*2+1 while(left &lt;= end): if(left+1 &lt;= end and li[left][position[left]] &lt; li[left+1][position[left+1]]): left+=1 if(li[start][position[start]] &lt; li[left][position[left]]): li[start],li[left] = li[left],li[start] position[start],position[left] = position[left],position[start] start=left left=start*2+1 else: break def heapSort(li, position, k, end): for i in range((end-1)//2,-1,-1): headAdjust(li,position,i,end) topk=[] for i in range(k): print(li,position,end) topk.append(li[0][position[0]]) position[0]+=1 if(position[0]==len(li[0])):#调整 li[end],li[0] = li[0],li[end] position[end],position[0] = position[0],position[end] end-=1 headAdjust(li,position,0,end) return topk position=[0]*len(li) return [a for l in li for a in l] if k &gt;= sum([len(l) for l in li]) else heapSort(li,position,k,len(li)-1) 定义position记录每堆被提取到的位置，定义headAdjust调整最大堆，将最大值移至堆顶，此时对应的是二维数组； 定义heapSort堆排，首先初始化最大堆； 依次取前k项（存在topk中），取走堆顶元素，调整对应的position值； 若堆顶对应的数组遍历完了，将其调整到堆底，修改end值； 调整最大堆，返回3； 返回topk，若k大于二维数组中的数字个数，返回展开的二维数组。]]></content>
