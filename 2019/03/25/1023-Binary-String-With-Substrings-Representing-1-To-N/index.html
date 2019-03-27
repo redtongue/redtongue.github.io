@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionGiven a binary string S (a string consisting only of ‘0’ and ‘1’s) and a positive integer N, return true if and only if for every integer X from 1 to N, the binary representation of X is a">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-27T07:15:15.945Z">
+<meta property="og:updated_time" content="2019-03-27T07:43:15.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1023.Binary String With Substrings Representing 1 To N（子串能表示从 1 到 N 数字的二进制串）">
 <meta name="twitter:description" content="DescriptionGiven a binary string S (a string consisting only of ‘0’ and ‘1’s) and a positive integer N, return true if and only if for every integer X from 1 to N, the binary representation of X is a">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-27T15:15:15+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-27T15:43:15+08:00">
                 2019-03-27
               </time>
             
@@ -429,10 +429,51 @@ Output: false
 <li>1 &lt;= N &lt;= 10^9</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul>
-<li>updating</li>
+<li>如下实现了KMP字符串匹配算法，将每个数转换成二进制的字符串表示形式；</li>
+<li>所有的结果与S比较，若全部匹配返回True；</li>
+<li>反之返回False；</li>
+<li>备注：二进制可以用bin(N)得到，匹配也可以直接用in判断，当时担心时间复杂度太高，想多了。</li>
 </ul>
-<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>def queryString(self, S, N):
-    return all(bin(i)[2:] in S for i in xrange(N, N / 2, -1))
+<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>class Solution(object):
+def queryString(self, S, N):
+    def getNext(p):
+        ne=[-1]*len(p)
+        j = 0
+        k = -1
+        while (j &lt; len(p) - 1):
+            if (k == -1 or p[k] == p[j]):
+                j+=1
+                k+=1
+                ne[j] = k
+            else:
+                k = ne[k]
+        return ne
+    def KMP(s,p):
+        ne=getNext(p)
+        i=0
+        j=0
+        while (i &lt; len(s) and j &lt; len(p)):
+            if (j == -1 or s[i] == p[j]):
+                i+=1
+                j+=1
+            else:
+                j = ne[j]
+        if (j == len(p)):
+            return True
+        else:
+            return False
+
+
+    def getN(N):
+        n=&apos;&apos;
+        while(N &gt; 0):
+            if(N%2==0):
+                n=&apos;0&apos;+n
+            else:
+                n=&apos;1&apos;+n
+            N//=2
+        return n
+    return all(KMP(S,getN(i)) for i in range(N, N / 2, -1))
 </code></pre>
       
     </div>

@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionGiven an array A of positive integers, A[i] represents the value of the i-th sightseeing spot, and two sightseeing spots i and j have distance j - i between them. The score of a pair (i &amp;lt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-27T07:15:10.335Z">
+<meta property="og:updated_time" content="2019-03-27T07:31:21.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1021.Best Sightseeing Pair（最佳观光组合）">
 <meta name="twitter:description" content="DescriptionGiven an array A of positive integers, A[i] represents the value of the i-th sightseeing spot, and two sightseeing spots i and j have distance j - i between them. The score of a pair (i &amp;lt">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-27T15:15:10+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-27T15:31:21+08:00">
                 2019-03-27
               </time>
             
@@ -432,7 +432,10 @@ Explanation: i = 0, j = 2, A[i] + A[j] + i - j = 8 + 5 + 0 - 2 = 11
 <li>1 &lt;= A[i] &lt;= 1000</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul>
-<li>updating</li>
+<li>两次遍历，计算两点评分之后，找到最大，这样做时间复杂度为 $O(N^2)$，时间会超限；</li>
+<li>用cur记录当前最大分数，max（cur，a），向后遍历距离加一，再减一；</li>
+<li>用res记录到当前位置的最大值，max（res，cur+a），cur已经把距离都已经减掉了；</li>
+<li>返回res。</li>
 </ul>
 <h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>def maxScoreSightseeingPair(self, A):
     cur = res = 0
