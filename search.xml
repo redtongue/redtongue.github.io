@@ -1,8 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[1023.Binary String With Substrings Representing 1 To N（子串能表示从 1 到 N 数字的二进制串）]]></title>
-    <url>%2F2019%2F03%2F25%2F1023-Binary-String-With-Substrings-Representing-1-To-N%2F</url>
+    <title><![CDATA[1020.Number of Enclaves（飞地的数量）]]></title>
+    <url>%2F2019%2F03%2F31%2F1020-Number-of-Enclaves%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a 2D array A, each cell is 0 (representing sea) or 1 (representing land) A move consists of walking from one land square 4-directionally to another land square, or off the boundary of the grid. Return the number of land squares in the grid for which we cannot walk off the boundary of the grid in any number of moves. 给出一个二维数组 A，每个单元格为 0（代表海）或 1（代表陆地）。 移动是指在陆地上从一个地方走到另一个地方（朝四个方向之一）或离开网格的边界。 返回网格中无法在任意次数的移动中离开网格边界的陆地单元格的数量。 题目链接：https://leetcode.com/problems/number-of-enclaves/ Difficulty: medium Example 1:Input: [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]] Output: 3 Explanation: There are three 1s that are enclosed by 0s, and one 1 that isn&apos;t enclosed because its on the boundary. Example 2:Input: [[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]] Output: 0 Explanation: All 1s are either on the boundary or can reach the boundary. Note: 1 &lt;= A.length &lt;= 500 1 &lt;= A[i].length &lt;= 500 0 &lt;= A[i][j] &lt;= 1 All rows have the same size. 分析 定义walk函数，若当前点对应land，修改为sea，同时将其四个方向相邻的land进入到下一个walk中； judge函数用于判断（x,y）位置是超出数组范围； 遍历数组的四条边缘，将land的点用walk函数修改； 返回A的和，即land的个数。 参考代码class Solution(object): def numEnclaves(self, A): row=len(A) col=len(A[0]) def judge(x,y): return True if(x&gt;=0 and x&lt;row and y&gt;=0 and y&lt;col) else False def walk(x,y): if(judge(x,y) and A[x][y]==1): A[x][y]=0 walk(x-1,y) walk(x+1,y) walk(x,y-1) walk(x,y+1) index=1 for i in [0,row-1]: for j in range(col): if(A[i][j]!=0): walk(i,j) for i in range(row): for j in [0,col-1]: if(A[i][j]!=0): walk(i,j) return sum([sum(a) for a in A])]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Depth-first Search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1019.Next Greater Node In Linked List（链表中的下一个更大节点）]]></title>
+    <url>%2F2019%2F03%2F31%2F1019-Next-Greater-Node-In-Linked-List%2F</url>
+    <content type="text"><![CDATA[DescriptionWe are given a linked list with head as the first node. Let’s number the nodes in the list: node_1, node_2, node_3, … etc. Each node may have a next larger value: for node_i, next_larger(node_i) is the node_j.val such that j &gt; i, node_j.val &gt; node_i.val, and j is the smallest possible choice. If such a j does not exist, the next larger value is 0. Return an array of integers answer, where answer[i] = next_larger(node_{i+1}). Note that in the example inputs (not outputs) below, arrays such as [2,1,5] represent the serialization of a linked list with a head node value of 2, second node value of 1, and third node value of 5. 给出一个以头节点 head 作为第一个节点的链表。链表中的节点分别编号为：node_1, node_2, node_3, … 。 每个节点都可能有下一个更大值（next larger value）：对于 node_i，如果其 next_larger(node_i) 是 node_j.val，那么就有 j &gt; i 且 node_j.val &gt; node_i.val，而 j 是可能的选项中最小的那个。如果不存在这样的 j，那么下一个更大值为 0 。 返回整数答案数组 answer，其中 answer[i] = next_larger(node_{i+1}) 。 注意：在下面的示例中，诸如 [2,1,5] 这样的输入（不是输出）是链表的序列化表示，其头节点的值为 2，第二个节点值为 1，第三个节点值为 5 。 题目链接：https://leetcode.com/problems/next-greater-node-in-linked-list/ Difficulty: medium Example 1:Input: [2,1,5] Output: [5,5,0] Example 2:Input: [2,7,4,3,5] Output: [7,0,5,5,0] Example 3:Input: [1,7,5,1,9,2,5,1] Output: [7,9,9,9,0,5,0,0] Note: 1 &lt;= node.val &lt;= 10^9 for each node in the linked list. The given list has length in the range [0, 10000]. 分析 用index模拟栈存储遍历链表的结果，每一项包含（每个节点val，在链表中的位置pos）； li存储每个节点对应的下一个更大值，初始为0； 遍历链表，若当前head的值大于栈顶元素的val，则当前栈顶元素对应节点的下一个最大节点值为head的val，修改li； 反之，head的val及其对应的pos入站； 直至遍历完链表，返回li。 参考代码#Definition for singly-linked list. class ListNode(object): def __init__(self, x): self.val = x self.next = None class Solution(object): def nextLargerNodes(self, head): h=head length=0 while(h!=None): length+=1 h=h.next if(length==0): return [] li=[0]*length index=[] pos=0 while head != None: if(len(index)!=0 and index[-1][0] &lt; head.val): li[index[-1][1]]=head.val index=index[:-1] else: index.append((head.val,pos)) head=head.next pos+=1 return li]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Stack</tag>
+        <tag>Linked List</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1018.Binary Prefix Divisible By 5（可被 5 整除的二进制前缀）]]></title>
+    <url>%2F2019%2F03%2F31%2F1018-Binary-Prefix-Divisible-By-5%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven an array A of 0s and 1s, consider N_i: the i-th subarray from A[0] to A[i] interpreted as a binary number (from most-significant-bit to least-significant-bit.) Return a list of booleans answer, where answer[i] is true if and only if N_i is divisible by 5. 给定由若干 0 和 1 组成的数组 A。我们定义 N_i：从 A[0] 到 A[i] 的第 i 个子数组被解释为一个二进制数（从最高有效位到最低有效位）。 返回布尔值列表 answer，只有当 N_i 可以被 5 整除时，答案 answer[i] 为 true，否则为 false。 题目链接：https://leetcode.com/problems/binary-prefix-divisible-by-5/ Difficulty: medium Example 1:Input: [0,1,1] Output: [true,false,false] Explanation: The input numbers in binary are 0, 01, 011; which are 0, 1, and 3 in base-10. Only the first number is divisible by 5, so answer[0] is true. Example 2:Input: [1,1,1] Output: [false,false,false] Example 3:Input: [0,1,1,1,1,1] Output: [true,false,false,false,true,false] Example 4:Input: [1,1,1,0,1] Output: [false,false,false,false,false] Note: 1 &lt;= A.length &lt;= 30000 A[i] is 0 or 1 分析 cur记录当前二进制表示的数值，初始为0，ans记录cur能否整除5； 遍历A，cur=cur*2+a，若cur可以整除5，ans增加True，反之False； 返回ans，时间复杂度为 $O(logN)$。 参考代码class Solution(object): def prefixesDivBy5(self, A): ans=[] cur=0 for a in A: cur=cur*2+a if(cur%5==0): ans.append(True) else: ans.append(False) return ans]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1017.Convert to Base-2（负二进制转换）]]></title>
+    <url>%2F2019%2F03%2F31%2F1017-Convert-to-Base-2%2F</url>
+    <content type="text"><![CDATA[DescriptionGiven a number N, return a string consisting of “0”s and “1”s that represents its value in base -2 (negative two). The returned string must have no leading zeroes, unless the string is “0”. 给出数字 N，返回由若干 “0” 和 “1”组成的字符串，该字符串为 N 的负二进制（base -2）表示。 除非字符串就是 “0”，否则返回的字符串中不能含有前导零。 题目链接：https://leetcode.com/problems/convert-to-base-2/ Difficulty: medium Example 1:Input: 2 Output: &quot;110&quot; Explantion: (-2) ^ 2 + (-2) ^ 1 = 2 Example 2:Input: 3 Output: &quot;111&quot; Explantion: (-2) ^ 2 + (-2) ^ 1 + (-2) ^ 0 = 3 Example 3:Input: 4 Output: &quot;100&quot; Explantion: (-2) ^ 2 = 4 Note: 0 &lt;= N &lt;= 10^9 分析 逐步计算负二进制的末位（逆序），其中每一位的数字是正负交替变化的，用index记录当前位的正负情况，初始为-1； 若N是奇数，则当前位是“1”，N加上index，增加当前位的数值； 若N是偶数，则当前位是“0”； N除以2，index取反； 若N不等于0，继续回到第二步； 返回记录结果s。 参考代码class Solution(object): def baseNeg2(self, N): index=-1 s=&quot;&quot; if N==0: return &quot;0&quot; while(N&gt;0): if N%2==1: s=&quot;1&quot;+s N+=index else: s=&quot;0&quot;+s N//=2 index*=-1 return s]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1016.Binary String With Substrings Representing 1 To N（子串能表示从 1 到 N 数字的二进制串）]]></title>
+    <url>%2F2019%2F03%2F25%2F1016-Binary-String-With-Substrings-Representing-1-To-N%2F</url>
     <content type="text"><![CDATA[DescriptionGiven a binary string S (a string consisting only of ‘0’ and ‘1’s) and a positive integer N, return true if and only if for every integer X from 1 to N, the binary representation of X is a substring of S. 给定一个二进制字符串 S（一个仅由若干 ‘0’ 和 ‘1’ 构成的字符串）和一个正整数 N，如果对于从 1 到 N 的每个整数 X，其二进制表示都是 S 的子串，就返回 true，否则返回 false。 题目链接：https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/ Difficulty: medium Example 1:Input: S = &quot;0110&quot;, N = 3 Output: true Example 2:Input: S = &quot;0110&quot;, N = 4 Output: false Note: 1 &lt;= S.length &lt;= 1000 1 &lt;= N &lt;= 10^9 分析 如下实现了KMP字符串匹配算法，将每个数转换成二进制的字符串表示形式； 所有的结果与S比较，若全部匹配返回True； 反之返回False； 备注：二进制可以用bin(N)得到，匹配也可以直接用in判断，当时担心时间复杂度太高，想多了。 参考代码class Solution(object): def queryString(self, S, N): def getNext(p): ne=[-1]*len(p) j = 0 k = -1 while (j &lt; len(p) - 1): if (k == -1 or p[k] == p[j]): j+=1 k+=1 ne[j] = k else: k = ne[k] return ne def KMP(s,p): ne=getNext(p) i=0 j=0 while (i &lt; len(s) and j &lt; len(p)): if (j == -1 or s[i] == p[j]): i+=1 j+=1 else: j = ne[j] if (j == len(p)): return True else: return False def getN(N): n=&apos;&apos; while(N &gt; 0): if(N%2==0): n=&apos;0&apos;+n else: n=&apos;1&apos;+n N//=2 return n return all(KMP(S,getN(i)) for i in range(N, N / 2, -1))]]></content>
       <categories>
         <category>leetcode</category>
@@ -13,8 +62,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1022.Smallest Integer Divisible by K（可被 K 整除的最小整数）]]></title>
-    <url>%2F2019%2F03%2F25%2F1022-Smallest-Integer-Divisible-by-K%2F</url>
+    <title><![CDATA[1015.Smallest Integer Divisible by K（可被 K 整除的最小整数）]]></title>
+    <url>%2F2019%2F03%2F25%2F1015-Smallest-Integer-Divisible-by-K%2F</url>
     <content type="text"><![CDATA[DescriptionGiven a positive integer K, you need find the smallest positive integer N such that N is divisible by K, and N only contains the digit 1. Return the length of N. If there is no such N, return -1. 给定正整数 K，你需要找出可以被 K 整除的、仅包含数字 1 的最小正整数 N。 返回 N 的长度。如果不存在这样的 N，就返回 -1。 题目链接：https://leetcode.com/problems/smallest-integer-divisible-by-k/ Difficulty: medium Example 1:Input: 1 Output: 1 Explanation: The smallest answer is N = 1, which has length 1. Example 2:Input: 2 Output: -1 Explanation: There is no such positive integer N divisible by 2. Example 3:Input: 3 Output: 3 Explanation: The smallest answer is N = 111, which has length 3. Note: 1 &lt;= K &lt;= 10^5 分析 已知任意数字的个位数为li=[1,3,7,9]中任意一个，其任意倍数的个位数不可能为1； 若K的个位数在li中，返回-1； 反之，N表示n位长的数字且每一位都为“1”，判断是否可以整除K； 若整除，返回N的长度，反之，长度加一，回到上一步。 参考代码class Solution(object): def smallestRepunitDivByK(self, K): li=[1,3,7,9] if(K%10 not in li): return -1 index=1 N=1 while(N%K != 0): index+=1 N=N*10+1 return index]]></content>
       <categories>
         <category>leetcode</category>
@@ -25,8 +74,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1021.Best Sightseeing Pair（最佳观光组合）]]></title>
-    <url>%2F2019%2F03%2F25%2F1021-Best-Sightseeing-Pair%2F</url>
+    <title><![CDATA[1014.Best Sightseeing Pair（最佳观光组合）]]></title>
+    <url>%2F2019%2F03%2F25%2F1014-Best-Sightseeing-Pair%2F</url>
     <content type="text"><![CDATA[DescriptionGiven an array A of positive integers, A[i] represents the value of the i-th sightseeing spot, and two sightseeing spots i and j have distance j - i between them. The score of a pair (i &lt; j) of sightseeing spots is (A[i] + A[j] + i - j) : the sum of the values of the sightseeing spots, minus the distance between them. Return the maximum score of a pair of sightseeing spots. 给定正整数数组 A，A[i] 表示第 i 个观光景点的评分，并且两个景点 i 和 j 之间的距离为 j - i。 一对景点（i &lt; j）组成的观光组合的得分为（A[i] + A[j] + i - j）：景点的评分之和减去它们两者之间的距离。 返回一对观光景点能取得的最高分。 题目链接：https://leetcode.com/problems/best-sightseeing-pair/ Difficulty: medium Example 1:Input: [8,1,5,2,6] Output: 11 Explanation: i = 0, j = 2, A[i] + A[j] + i - j = 8 + 5 + 0 - 2 = 11 Note: 2 &lt;= A.length &lt;= 50000 1 &lt;= A[i] &lt;= 1000 分析 两次遍历，计算两点评分之后，找到最大，这样做时间复杂度为 $O(N^2)$，时间会超限； 用cur记录当前最大分数，max（cur，a），向后遍历距离加一，再减一； 用res记录到当前位置的最大值，max（res，cur+a），cur已经把距离都已经减掉了； 返回res。 参考代码def maxScoreSightseeingPair(self, A): cur = res = 0 for a in A: res = max(res, cur + a) cur = max(cur, a) - 1 return res]]></content>
       <categories>
         <category>leetcode</category>
@@ -37,8 +86,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1020.Partition Array Into Three Parts With Equal Sum（将数组分成和相等的三个部分）]]></title>
-    <url>%2F2019%2F03%2F25%2F1020-Partition-Array-Into-Three-Parts-With-Equal-Sum%2F</url>
+    <title><![CDATA[1013.Partition Array Into Three Parts With Equal Sum（将数组分成和相等的三个部分）]]></title>
+    <url>%2F2019%2F03%2F25%2F1013-Partition-Array-Into-Three-Parts-With-Equal-Sum%2F</url>
     <content type="text"><![CDATA[DescriptionGiven an array A of integers, return true if and only if we can partition the array into three non-empty parts with equal sums. Formally, we can partition the array if we can find indexes i+1 &lt; j with (A[0] + A[1] + ... + A[i] == A[i+1] + A[i+2] + ... + A[j-1] == A[j] + A[j-1] + ... + A[A.length - 1]) 给定一个整数数组 A，只有我们可以将其划分为三个和相等的非空部分时才返回 true，否则返回 false。 形式上，如果我们可以找出索引 i+1 &lt; j 且满足 (A[0] + A[1] + ... + A[i] == A[i+1] + A[i+2] + ... + A[j-1] == A[j] + A[j-1] + ... + A[A.length - 1]) 就可以将数组三等分。 题目链接：https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/ Difficulty: easy Example 1:Input: [0,2,1,-6,6,-7,9,1,2,0,1] Output: true Explanation: 0 + 2 + 1 = -6 + 6 - 7 + 9 + 1 = 2 + 0 + 1 Example 2:Input: [0,2,1,-6,6,7,9,-1,2,0,1] Output: false Example 3:Input: [3,3,6,5,-2,2,5,1,-9,4] Output: true Explanation: 3 + 3 = 6 = 5 - 2 + 2 + 5 + 1 - 9 + 4 Note: 3 &lt;= A.length &lt;= 50000 -10000 &lt;= A[i] &lt;= 10000 分析 若和不能被3整除，返回False，tar=sum(A)/3; index记录当前遍历所有的数字的和，s为和为tar的序列数； 遍历A，index加上当前数字，若index等于tar，s加一，index置零； 若s等于3返回True，反之False。 参考代码class Solution(object): def canThreePartsEqualSum(self, A): N=len(A) tar=sum(A)//3 if(tar*3!=sum(A)): return False index=0 s=0 for i in range(N): index+=A[i] if(index==tar): index=0 s+=1 if(s==3): return True return False]]></content>
       <categories>
         <category>leetcode</category>
@@ -60,8 +109,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1015.Numbers With Repeated Digits]]></title>
-    <url>%2F2019%2F03%2F17%2F1015-Numbers-With-Repeated-Digits%2F</url>
+    <title><![CDATA[1012.Numbers With Repeated Digits]]></title>
+    <url>%2F2019%2F03%2F17%2F1012-Numbers-With-Repeated-Digits%2F</url>
     <content type="text"><![CDATA[DescriptionGiven a positive integer N, return the number of positive integers less than or equal to N that have at least 1 repeated digit.（test） 给定正整数 N，返回小于等于 N 且具有至少 1 位重复数字的正整数。 题目链接：https://leetcode.com/problems/numbers-with-repeated-digits/ Difficulty: hard Example 1:Input: 20 Output: 1 Explanation: The only positive number (&lt;= 20) with at least 1 repeated digit is 11. Example 2:Input: 100 Output: 10 Explanation: The positive numbers (&lt;= 100) with atleast 1 repeated digit are 11, 22, 33, 44, 55, 66, 77, 88, 99, and 100. Example 3:Input: 1000 Output: 262 Note: 0 &lt;= N &lt; 10^9 分析 updating 参考代码def numDupDigitsAtMostN(self, N): L, res, n = map(int, str(N + 1)) res, n = 0, len(L) def A(m, n): return 1 if n == 0 else A(m, n - 1) * (m - n + 1) for i in range(1, n): res += 9 * A(9, i - 1) s = set() for i, x in enumerate(L): for y in range(0 if i else 1, x): if y not in s: res += A(9 - i, n - i - 1) if x in s: break s.add(x) return N - res]]></content>
       <categories>
         <category>leetcode</category>
@@ -73,8 +122,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1014.Capacity To Ship Packages Within D Days（在 D 天内送达包裹的能力）]]></title>
-    <url>%2F2019%2F03%2F17%2F1014-Capacity-To-Ship-Packages-Within-D-Days%2F</url>
+    <title><![CDATA[1011.Capacity To Ship Packages Within D Days（在 D 天内送达包裹的能力）]]></title>
+    <url>%2F2019%2F03%2F17%2F1011-Capacity-To-Ship-Packages-Within-D-Days%2F</url>
     <content type="text"><![CDATA[DescriptionA conveyor belt has packages that must be shipped from one port to another within D days. The i-th package on the conveyor belt has a weight of weights[i]. Each day, we load the ship with packages on the conveyor belt (in the order given by weights). We may not load more weight than the maximum weight capacity of the ship. Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within D days. 传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。 传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。 返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。 题目链接：https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/ Difficulty: medium Example 1:Input: weights = [1,2,3,4,5,6,7,8,9,10], D = 5 Output: 15 Explanation: A ship capacity of 15 is the minimum to ship all the packages in 5 days like this: 1st day: 1, 2, 3, 4, 5 2nd day: 6, 7 3rd day: 8 4th day: 9 5th day: 10 Note that the cargo must be shipped in the order given, so using a ship of capacity 14 and splitting the packages into parts like (2, 3, 4, 5), (1, 6, 7), (8), (9), (10) is not allowed. Example 2:Input: weights = [3,2,2,4,1,4], D = 3 Output: 6 Explanation: A ship capacity of 6 is the minimum to ship all the packages in 3 days like this: 1st day: 3, 2 2nd day: 2, 4 3rd day: 1, 4 Example 3:Input: weights = [1,2,3,1,1], D = 4 Output: 3 Explanation: 1st day: 1 2nd day: 2 3rd day: 3 4th day: 1, 1 Note: 1 &lt;= D &lt;= weights.length &lt;= 50000 1 &lt;= weights[i] &lt;= 500 分析 若对于最大容量每次增一，时间复杂度是 $O(NK)$,时间会超限，利用二分查找的方法，时间复杂度可以降到 $O(KlogN)$，N是capacity的变换区间，K是包裹数; 初始capacity的最小值是最大包裹重量，最大值是包裹重量的总和，逐次遍历weights，更新left，mid，right，直到left与right重合； 返回left。 参考代码def shipWithinDays(self, weights, D): left, right = max(weights), sum(weights) while left &lt; right: mid, need, cur = (left + right) / 2, 1, 0 for w in weights: if cur + w &gt; mid: need += 1 cur = 0 cur += w if need &gt; D: left = mid + 1 else: right = mid return left]]></content>
       <categories>
         <category>leetcode</category>
@@ -86,8 +135,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1013.Pairs of Songs With Total Durations Divisible by 60（总持续时间可被 60 整除的歌曲）]]></title>
-    <url>%2F2019%2F03%2F17%2F1013-Pairs-of-Songs-With-Total-Durations-Divisible-by-60%2F</url>
+    <title><![CDATA[1010.Pairs of Songs With Total Durations Divisible by 60（总持续时间可被 60 整除的歌曲）]]></title>
+    <url>%2F2019%2F03%2F17%2F1010-Pairs-of-Songs-With-Total-Durations-Divisible-by-60%2F</url>
     <content type="text"><![CDATA[DescriptionIn a list of songs, the i-th song has a duration of time[i] seconds. Return the number of pairs of songs for which their total duration in seconds is divisible by 60. Formally, we want the number of indices i &lt; j with (time[i] + time[j]) % 60 == 0. 在歌曲列表中，第 i 首歌曲的持续时间为 time[i] 秒。 返回其总持续时间（以秒为单位）可被 60 整除的歌曲对的数量。形式上，我们希望索引的数字 i &lt; j 且有 (time[i] + time[j]) % 60 == 0。 题目链接：https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/ Difficulty: easy Example 1:Input: [30,20,150,100,40] Output: 3 Explanation: Three pairs have a total duration divisible by 60: (time[0] = 30, time[2] = 150): total duration 180 (time[1] = 20, time[3] = 100): total duration 120 (time[1] = 20, time[4] = 40): total duration 60 Example 2:Input: [60,60,60] Output: 3 Explanation: All three pairs have a total duration of 120, which is divisible by 60. Note: 1 &lt;= time.length &lt;= 60000 1 &lt;= time[i] &lt;= 500 分析 若遍历两边计算两个两个数的和是否可以被60整除，时间复杂度为 $O(N^2)$ ，时间会超限； 用字典存储每个时间数字对60的余数； 遍历字典，若key等于0，则只能与同样是0的成对，key为30同理，组合数是从D[d]中选两个的可能组合数； 其他情况，则要寻找与key值相加等于的60的组合，组合数是两边可能情况的乘积； 同时避免重复，只对key小于等于30的数字进行操作； 时间复杂度为 $O(NlogN)$ ,字典的查找时间复杂度是$O(logN)$。 参考代码class Solution(object): def numPairsDivisibleBy60(self, time): import collections D=collections.defaultdict(int) for t in time: D[t%60]+=1 S=0 for d in D: if(d&gt;30): continue if(d==0 or d==30): S+=(D[d]*(D[d]-1)//2) else: if(60-d in D): S+=(D[d]*D[60-d]) return S]]></content>
       <categories>
         <category>leetcode</category>
@@ -98,8 +147,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1012.Complement of Base 10 Integer（十进制整数的补码）]]></title>
-    <url>%2F2019%2F03%2F17%2F1012-Complement-of-Base-10-Integer%2F</url>
+    <title><![CDATA[1009.Complement of Base 10 Integer（十进制整数的补码）]]></title>
+    <url>%2F2019%2F03%2F17%2F1009-Complement-of-Base-10-Integer%2F</url>
     <content type="text"><![CDATA[DescriptionEvery non-negative integer N has a binary representation. For example, 5 can be represented as &quot;101&quot; in binary, 11 as &quot;1011&quot; in binary, and so on. Note that except for N = 0, there are no leading zeroes in any binary representation. The complement of a binary representation is the number in binary you get when changing every 1 to a 0 and 0 to a 1. For example, the complement of “101” in binary is “010” in binary. For a given number N in base-10, return the complement of it’s binary representation as a base-10 integer. 每个非负整数 N 都有其二进制表示。例如， 5 可以被表示为二进制 &quot;101&quot;，11 可以用二进制 &quot;1011&quot; 表示，依此类推。注意，除 N = 0 外，任何二进制表示中都不含前导零。 二进制的补码表示是将每个 1 改为 0 且每个 0 变为 1。例如，二进制数 &quot;101&quot; 的二进制补码为 &quot;010&quot;。 给定十进制数 N，返回其二进制表示的补码所对应的十进制整数。 题目链接：https://leetcode.com/problems/complement-of-base-10-integer/ Difficulty: easy Example 1:Input: 5 Output: 2 Explanation: 5 is &quot;101&quot; in binary, with complement &quot;010&quot; in binary, which is 2 in base-10. Example 2:Input: 7 Output: 0 Explanation: 7 is &quot;111&quot; in binary, with complement &quot;000&quot; in binary, which is 0 in base-10. Example 3:Input: 10 Output: 5 Explanation: 10 is &quot;1010&quot; in binary, with complement &quot;0101&quot; in binary, which is 5 in base-10. Note: 0 &lt;= N &lt; 10^9 分析 考虑二进制的补码与原码的和的二进制表示为全是‘1’； 那么每个数字的原码与补码的和只能是形如1、3、7、15等等，是2的n次幂减一； 故可以得到N的补码的十进制表示。 参考代码class Solution(object): def bitwiseComplement(self, N): tar=1 if(N==0): return 1 while(tar-1&lt;N): tar=tar*2 return tar-N-1]]></content>
       <categories>
         <category>leetcode</category>
@@ -325,8 +374,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Tree</tag>
         <tag>Depth-first Search</tag>
+        <tag>Tree</tag>
       </tags>
   </entry>
   <entry>
@@ -1899,8 +1948,8 @@
       <tags>
         <tag>code</tag>
         <tag>剑指Offer</tag>
-        <tag>链表</tag>
         <tag>二叉树</tag>
+        <tag>链表</tag>
       </tags>
   </entry>
   <entry>
@@ -2319,8 +2368,8 @@
       </categories>
       <tags>
         <tag>code</tag>
-        <tag>Tree</tag>
         <tag>Depth-first Search</tag>
+        <tag>Tree</tag>
       </tags>
   </entry>
   <entry>
