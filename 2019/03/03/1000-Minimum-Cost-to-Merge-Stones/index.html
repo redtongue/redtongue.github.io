@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Redtongue">
 <meta property="og:description" content="DescriptionThere are N piles of stones arranged in a row.  The i-th pile has stones[i] stones.A move consists of merging exactly K consecutive piles into one pile, and the cost of this move is equal t">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-03T04:24:46.095Z">
+<meta property="og:updated_time" content="2019-03-31T09:37:02.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1000.Minimum Cost to Merge Stones（合并石头的最低成本）">
 <meta name="twitter:description" content="DescriptionThere are N piles of stones arranged in a row.  The i-th pile has stones[i] stones.A move consists of merging exactly K consecutive piles into one pile, and the cost of this move is equal t">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-03T12:24:46+08:00">
-                2019-03-03
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-31T17:37:02+08:00">
+                2019-03-31
               </time>
             
           </span>
@@ -444,9 +444,30 @@ The total cost was 25, and this is the minimum possible.
 <li>1 &lt;= stones[i] &lt;= 100</li>
 </ul>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul>
-<li>updating </li>
+<li>prefix[i]代表前i堆石头的总数，dp(i,j)代表把第i堆到第j堆合并成一堆的成本；</li>
+<li>在i，j之间移动mid，每次移动K-1个距离，dp(i,mid)+dp(mid+1,j)代表以mid为界限合并为两队的成本，取最小值；</li>
+<li>若(j - i) % (K - 1)==0即可以合并为一堆，res再加上两堆的石头数（prefix[j+1]-prefix[i]）</li>
+<li>dp(i,j)返回res；</li>
+<li>若n堆不能合并成一堆（(n-1)%(K-1)不等于0），返回-1；</li>
+<li>反之返回dp(0,n-1)</li>
 </ul>
-<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2>
+<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><pre><code>def mergeStones(self, stones, K):
+    n = len(stones)
+    if (n - 1) % (K - 1): return -1
+    prefix = [0] * (n + 1)
+    for i in range(n):
+        prefix[i + 1] = prefix[i] + stones[i]
+
+    import functools
+    @functools.lru_cache(None)
+    def dp(i, j):
+        if j - i + 1 &lt; K: return 0
+        res = min(dp(i, mid) + dp(mid + 1, j) for mid in range(i, j, K - 1))
+        if (j - i) % (K - 1) == 0:
+            res += prefix[j + 1] - prefix[i]
+        return res
+    return dp(0, n - 1)
+</code></pre>
       
     </div>
     
