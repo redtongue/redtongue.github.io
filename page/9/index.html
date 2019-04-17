@@ -303,6 +303,348 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/28/929-Unique-Email-Addresses/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yunxiang wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redtongue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/28/929-Unique-Email-Addresses/" itemprop="url">929.Unique Email Addresses（独特的电子邮件地址）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-28T19:01:30+08:00">
+                2018-10-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T10:42:15+08:00">
+                2018-11-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Every email consists of a local name and a domain name, separated by the @ sign.</p>
+<p>For example, in <a href="mailto:alice@leetcode.com" target="_blank" rel="noopener">alice@leetcode.com</a>, alice is the local name, and leetcode.com is the domain name.</p>
+<p>Besides lowercase letters, these emails may contain ‘.’s or ‘+’s.</p>
+<p>If you add periods (‘.’) between some characters in the local name part of an email address, mail sent there will be forwarded to the same address without dots in the local name.  For example, “<a href="mailto:alice.z@leetcode.com" target="_blank" rel="noopener">alice.z@leetcode.com</a>“ and “<a href="mailto:alicez@leetcode.com" target="_blank" rel="noopener">alicez@leetcode.com</a>“ forward to the same email address.  (Note that this rule does not apply for domain names.)</p>
+<p>If you add a plus (‘+’) in the local name, everything after the first plus sign will be ignored. This allows certain emails to be filtered, for example <a href="mailto:m.y+name@email.com" target="_blank" rel="noopener">m.y+name@email.com</a> will be forwarded to <a href="mailto:my@email.com" target="_blank" rel="noopener">my@email.com</a>.  (Again, this rule does not apply for domain names.)</p>
+<p>It is possible to use both of these rules at the same time.</p>
+<p>Given a list of emails, we send one email to each address in the list.  How many different addresses actually receive mails? </p>
+<hr>
+<p>每封电子邮件都由一个本地名称和一个域名组成，以 @ 符号分隔。</p>
+<p>例如，在 <a href="mailto:alice@leetcode.com" target="_blank" rel="noopener">alice@leetcode.com</a>中， alice 是本地名称，而 leetcode.com 是域名。</p>
+<p>除了小写字母，这些电子邮件还可能包含 ‘,’ 或 ‘+’。</p>
+<p>如果在电子邮件地址的本地名称部分中的某些字符之间添加句点（’.’），则发往那里的邮件将会转发到本地名称中没有点的同一地址。例如，”<a href="mailto:alice.z@leetcode.com" target="_blank" rel="noopener">alice.z@leetcode.com</a>” 和 “<a href="mailto:alicez@leetcode.com" target="_blank" rel="noopener">alicez@leetcode.com</a>” 会转发到同一电子邮件地址。 （请注意，此规则不适用于域名。）</p>
+<p>如果在本地名称中添加加号（’+’），则会忽略第一个加号后面的所有内容。这允许过滤某些电子邮件，例如 <a href="mailto:m.y+name@email.com" target="_blank" rel="noopener">m.y+name@email.com</a> 将转发到 <a href="mailto:my@email.com" target="_blank" rel="noopener">my@email.com</a>。 （同样，此规则不适用于域名。）</p>
+<p>可以同时使用这两个规则。</p>
+<p>给定电子邮件列表 emails，我们会向列表中的每个地址发送一封电子邮件。实际收到邮件的不同地址有多少？</p>
+<p>题目链接：<a href="https://leetcode.com/problems/unique-email-addresses/" title="https://leetcode.com/problems/unique-email-addresses/" target="_blank" rel="noopener">https://leetcode.com/problems/unique-email-addresses/</a></p>
+<h4 id="Difficulty-easy"><a href="#Difficulty-easy" class="headerlink" title="Difficulty: easy"></a>Difficulty: easy</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/28/929-Unique-Email-Addresses/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/24/四则运算表达式求值（利用前缀后缀表达式）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yunxiang wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redtongue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/24/四则运算表达式求值（利用前缀后缀表达式）/" itemprop="url">四则运算表达式求值（利用前缀后缀表达式）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-24T10:37:25+08:00">
+                2018-10-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-24T11:21:37+08:00">
+                2018-10-24
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/whatever/" itemprop="url" rel="index">
+                    <span itemprop="name">whatever</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="中缀表达式"><a href="#中缀表达式" class="headerlink" title="中缀表达式"></a>中缀表达式</h2><pre><code>中缀表达式就是常见的运算表达式，如(3+4)*5-6
+</code></pre><h2 id="前缀表达式"><a href="#前缀表达式" class="headerlink" title="前缀表达式"></a>前缀表达式</h2><pre><code>前缀表达式又称波兰式，前缀表达式的运算符位于操作数之前
+比如:- * + 3 4 5 6
+</code></pre><h3 id="前缀表达式的计算机求值"><a href="#前缀表达式的计算机求值" class="headerlink" title="前缀表达式的计算机求值"></a>前缀表达式的计算机求值</h3><pre><code>从右至左扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，
+弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 op 次顶元素），
+并将结果入栈；重复上述过程直到表达式最左端，最后运算得出的值即为表达式的结果
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/24/四则运算表达式求值（利用前缀后缀表达式）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/23/928-Minmize-Malware-Spread-II/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1662,346 +2004,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/08/920-Number-of-Music-Playlists/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yunxiang wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redtongue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/08/920-Number-of-Music-Playlists/" itemprop="url">920.Number of Music Playlists</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-08T10:58:35+08:00">
-                2018-10-08
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T11:08:53+08:00">
-                2018-11-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Your music player contains N different songs and she wants to listen to L (not necessarily different) songs during your trip.  You create a playlist so that:</p>
-<ul>
-<li>Every song is played at least once</li>
-<li>A song can only be played again only if K other songs have been played</li>
-</ul>
-<p>Return the number of possible playlists.  As the answer can be very large, return it modulo 10^9 + 7.</p>
-<p>题目链接：<a href="https://leetcode.com/problems/number-of-music-playlists/" title="https://leetcode.com/problems/number-of-music-playlists/" target="_blank" rel="noopener">https://leetcode.com/problems/number-of-music-playlists/</a></p>
-<h4 id="Difficulty-hard"><a href="#Difficulty-hard" class="headerlink" title="Difficulty: hard"></a>Difficulty: hard</h4>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/08/920-Number-of-Music-Playlists/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2018/10/08/919-Complete-Binary-Tree-Inserter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yunxiang wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redtongue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/08/919-Complete-Binary-Tree-Inserter/" itemprop="url">919.Complete Binary Tree Inserter</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-08T10:58:04+08:00">
-                2018-10-08
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-07T11:06:32+08:00">
-                2018-11-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.</p>
-<p>Write a data structure CBTInserter that is initialized with a complete binary tree and supports the following operations:</p>
-<ul>
-<li>CBTInserter(TreeNode root) initializes the data structure on a given tree with head node root;</li>
-<li>CBTInserter.insert(int v) will insert a TreeNode into the tree with value node.val = v so that the tree remains complete, and returns the value of the parent of the inserted TreeNode;</li>
-<li>CBTInserter.get_root() will return the head node of the tree.</li>
-</ul>
-<p>题目链接：<a href="https://leetcode.com/problems/complete-binary-tree-inserter/" title="https://leetcode.com/problems/complete-binary-tree-inserter/" target="_blank" rel="noopener">https://leetcode.com/problems/complete-binary-tree-inserter/</a></p>
-<h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/08/919-Complete-Binary-Tree-Inserter/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2051,7 +2058,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">200</span>
+                  <span class="site-state-item-count">202</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

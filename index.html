@@ -303,6 +303,579 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2019/04/17/字节跳动2019春招第二次笔试编程题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yunxiang wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redtongue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/17/字节跳动2019春招第二次笔试编程题/" itemprop="url">字节跳动2019春招第二次笔试编程题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-17T10:19:51+08:00">
+                2019-04-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T11:34:17+08:00">
+                2019-04-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/whatever/" itemprop="url" rel="index">
+                    <span itemprop="name">whatever</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>笔试时间为2019年4月14日，五道编程题。编程题如下：</p>
+<h2 id="1-变身程序员"><a href="#1-变身程序员" class="headerlink" title="1.变身程序员"></a>1.变身程序员</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>公司的程序员不够用了，决定把产品经理都转变为程序员以解决开发时间长的问题。</p>
+<p>在给定的矩形网格中，每个单元格都可以用以下三个值之一：</p>
+<ul>
+<li>值0代表空单元格</li>
+<li>值1代表产品经理</li>
+<li>值2代表程序员</li>
+</ul>
+<p>每分钟，任何与程序员（在四个正方向上）相邻的产品经理都会变成程序员。</p>
+<p>返回知道单元格中没有产品经理为止所必须经过的最小分钟数。</p>
+<p>如果没有可能，返回-1.</p>
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h3><pre><code>不固定多行（行数&lt;=10），每行是按照空格分割的数字（不固定，每行数字个数&lt;=10）
+
+其中每个数组项的取值仅为0,1,2三种
+
+（读取时可以按行读取，知道读取到空行为止，再对读取的所有行做转换处理）
+</code></pre><h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h3><pre><code>如果能够将所有的产品经理变为程序员，则输出最小的分钟数
+
+如果不能够将所有的产品经理变为程序员，则返回-1
+</code></pre><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h4><pre><code>输入：
+0 2
+1 0
+输出：
+-1
+</code></pre><h4 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h4><pre><code>输入：
+1 2 1
+1 1 0
+0 1 1
+输出：
+3
+</code></pre><h4 id="示例3"><a href="#示例3" class="headerlink" title="示例3"></a>示例3</h4><pre><code>输入：
+1 2
+2 1
+1 2
+0 1
+0 1
+1 1
+输出：
+4
+</code></pre><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li>深度优先搜索，区别在每一次（每分钟）只会将程序员周围的产品经理变为程序员，不会迭代下去</li>
+<li>manage记录产品经理的个数，若每一个传播之后，manage不再变化，停止；</li>
+<li>若manage=0返回传播时间，反之返回-1。</li>
+</ul>
+<h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><pre><code>import sys
+if __name__ == &quot;__main__&quot;:
+    def get(A):
+        s=0
+        for a in A:
+            for x in a:
+                if(x==1):
+                    s+=1
+        return s
+
+    lines = sys.stdin.readlines()
+    a=[]
+    for line in lines:
+        a.append(list(map(int,line.split())))
+    s=0
+    print(&quot;a&quot;,a)
+    manage=get(a)
+    row=len(a)
+    col=len(a[0])
+
+    def dfs(x,y):
+        if(x-1&gt;=0 and a[x-1][y]==1):
+            a[x-1][y]=2
+        if(x+1&lt;row and a[x+1][y]==1):
+            a[x+1][y]=2
+        if(y-1&gt;=0 and a[x][y-1]==1):
+            a[x][y-1]=2
+        if(y+1&lt;col and a[x][y+1]==1):
+            a[x][y+1]=2
+        return
+
+    while(manage&gt;0):
+        li=[]
+        for i in range(row):
+            for j in range(col):
+                if(a[i][j]==2):
+                    li.append((i,j))
+        for l in li:
+            dfs(l[0],l[1])
+        nmanage=get(a)
+        print(a)
+        s+=1
+        if(manage==nmanage):
+            break
+        manage=nmanage
+    if(manage==0):
+        print(s)
+    else:
+        print(&apos;-1&apos;)
+</code></pre><h2 id="2-特征提取"><a href="#2-特征提取" class="headerlink" title="2.特征提取"></a>2.特征提取</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>小明是一个算法工程师，同时也是一名铲屎官。某天，他突发奇想，想从猫咪的视频里挖掘一些猫咪的运动信息。为了提取运动信息，他需要从视频的每一帧提取“猫咪特征”。一个猫咪特征是一个两维的vector&lt;x,y&gt;。如果x_1=x_2 and y_1=y_2，那么这俩是同一个特征。</p>
+<p>因此，如果猫咪特征连续一致，可以认为猫咪在运动。也就是说，如果特征&lt;a,b&gt;在持续帧里出现，那么它将构成特征运动。比如，特征&lt;a,b&gt;在第2/3/4/7/8帧出现，那么该特征形成两个特征运动2-3-4和7-8.</p>
+<h3 id="输入描述-1"><a href="#输入描述-1" class="headerlink" title="输入描述"></a>输入描述</h3><pre><code>第一行包含一个正整数N，代表测试用例的个数
+
+每个测试用例的第一行包含一个正整数M，代表视频的帧数
+
+接下来M行，每一行代表一帧，其中，第一个数字是该帧的特征个数，接下来的数字是在特征的取值：比如样例输入第三行里，2表示该帧有两个猫咪特征，&lt;1,1&gt;和&lt;2,2&gt;。所有用例的输入特征总数和&lt;=100000
+
+N满足1&lt;=N&lt;=100000，M满足1&lt;=M&lt;=100000，一帧的特征个数满足&lt;=100000.特征取值均为非负整数
+</code></pre><h3 id="输出描述-1"><a href="#输出描述-1" class="headerlink" title="输出描述"></a>输出描述</h3><pre><code>对于每一个测试用例，输出特征运动的长度作为一行
+</code></pre><h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><h4 id="示例1-1"><a href="#示例1-1" class="headerlink" title="示例1"></a>示例1</h4><pre><code>输入：
+1
+8
+2 1 1 2 2
+2 1 1 1 4
+2 1 1 2 2
+2 2 2 1 4
+0
+0
+1 1 1
+1 1 1
+输出：
+3
+</code></pre><h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><p>如果没有长度大于2的特征运动，返回1</p>
+<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><ul>
+<li>用字典存储每个特征出现的次数，ans记录特征出现的最大次数，初始为0</li>
+<li>遍历每一帧的特征，若字典中存在该特征，则次数加一，反正说明该特征断了，次数置为1，更新ans</li>
+<li>返回ans</li>
+</ul>
+<h3 id="参考代码-1"><a href="#参考代码-1" class="headerlink" title="参考代码"></a>参考代码</h3><pre><code>if __name__ == &quot;__main__&quot;:
+    N=int(input())
+    for n in range(N):
+        M=int(input())
+        d={}
+        ans=1
+        for m in range(M):
+            li=list(map(int,input().split()))
+            s=li[0]
+            newd={}
+            for i in range(s):
+                ind=(li[i*2+1],li[i*2+2])
+                if(ind in d):
+                    newd[ind]=d[ind]+1
+                else:
+                    newd[ind]=+1
+            for nd in newd:
+                ans=max(ans,newd[nd])
+            d=newd
+        print(ans)
+</code></pre><h2 id="3-机器人跳跃问题"><a href="#3-机器人跳跃问题" class="headerlink" title="3.机器人跳跃问题"></a>3.机器人跳跃问题</h2><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p>机器人正在玩一个古老的基于DOS的游戏。游戏中有N+1座建筑—-从0到N编号，从左到右排列。编号为0的建筑高度为0个单位，编号为i的建筑的高度为H(i)个单位。</p>
+<p>起初，机器人在编号为0的建筑处。每一步，它跳到下一个（右边）建筑。假设机器人在第k个建筑，且它现在的能量值是E，下一步它将跳到第k+1建筑。他将会得到或者失去正比于H(K+1)和E之差的能量。如果H(k+1)&gt;E那么机器人就失去H(K+1)-E的能量值，反之它将得到E-H(K+1)的能量值</p>
+<p>游戏目标是到达第N个建筑，在这个过程中，能量值不能为负。现在的问题是机器人以多少能量值开始游戏，才可以保证完成游戏</p>
+<h3 id="输入描述-2"><a href="#输入描述-2" class="headerlink" title="输入描述"></a>输入描述</h3><pre><code>第一行输入，表示一共有N组数据
+
+第二个是N个空格分割的整数，H1,H2,H3,...,Hn代表建筑的高度
+</code></pre><h3 id="输出描述-2"><a href="#输出描述-2" class="headerlink" title="输出描述"></a>输出描述</h3><pre><code>输出一个单独的数表示完成游戏所需的最小单位的初始能量
+</code></pre><h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><h4 id="示例1-2"><a href="#示例1-2" class="headerlink" title="示例1"></a>示例1</h4><pre><code>输入：
+5
+3 4 3 2 4
+输出：
+4
+</code></pre><h4 id="示例2-1"><a href="#示例2-1" class="headerlink" title="示例2"></a>示例2</h4><pre><code>输入：
+3
+4 4 4
+输出：
+4
+</code></pre><h4 id="示例3-1"><a href="#示例3-1" class="headerlink" title="示例3"></a>示例3</h4><pre><code>输入：
+3
+1 6 4
+输出：
+3
+</code></pre><h3 id="备注-1"><a href="#备注-1" class="headerlink" title="备注"></a>备注</h3><p>数据约束：<br>1&lt;=N&lt;=10^5</p>
+<p>1&lt;=H(i)&lt;=10^5</p>
+<h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><ul>
+<li>用二分查找来找到最小能量值，start=0，end=max(H),高度小于能量值时，能量只增不减，座椅最大值为max(H);</li>
+<li>遍历建筑物，更新E值，若中间E小于0，则更新start=mid+1；</li>
+<li>反之end=mid；</li>
+<li>最后返回end。</li>
+</ul>
+<h3 id="参考代码-2"><a href="#参考代码-2" class="headerlink" title="参考代码"></a>参考代码</h3><pre><code>if __name__ == &quot;__main__&quot;:
+    N=int(input())
+    H=list(map(int,input().split()))
+    start=0
+    end=max(H)
+    while(start&lt;end):
+        mid=(start+end)//2
+        E=mid
+        judge=True
+        for h in H:
+            if(E &lt; h):
+                E-=(h-E)
+            else:
+                E+=(E-h)
+            if(E &lt; 0):
+                start=mid+1
+                judge=False
+                break
+        if(judge):
+            end=mid
+    print(end)
+</code></pre><h2 id="4-毕业旅行问题"><a href="#4-毕业旅行问题" class="headerlink" title="4.毕业旅行问题"></a>4.毕业旅行问题</h2><h3 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h3><p>小明目前在做一份毕业旅行的规划。打算从北京出发，分别去若干个城市，然后再回到北京，每个城市之间均乘坐高铁，且每个城市只去以此。由于经费有限，希望能够通过合理的路线安排尽可能的省一些路上的开销。给定一组城市和每对城市之间的火车票的价钱，找到每个城市只访问一次并返回起点的最小花销。</p>
+<h3 id="输入描述-3"><a href="#输入描述-3" class="headerlink" title="输入描述"></a>输入描述</h3><pre><code>城市个数n(1&lt;=n&lt;=20，包括北京)
+
+城市间的车票价钱，n行n列的矩阵m[n][n]
+</code></pre><h3 id="输出描述-3"><a href="#输出描述-3" class="headerlink" title="输出描述"></a>输出描述</h3><pre><code>最小花销s
+</code></pre><h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><h4 id="示例1-3"><a href="#示例1-3" class="headerlink" title="示例1"></a>示例1</h4><pre><code>输入：
+4
+0 2 6 5
+2 0 4 4
+6 4 0 2
+5 4 2 0
+输出：
+13
+说明：
+共四个城市，城市1与城市1的车费是0，城市1和城市2的车费是2，以此类推，无需考虑极端情况。
+</code></pre><h3 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h3><pre><code>updating
+</code></pre><h3 id="参考代码-3"><a href="#参考代码-3" class="headerlink" title="参考代码"></a>参考代码</h3><pre><code>updating
+</code></pre><h2 id="4-过河问题"><a href="#4-过河问题" class="headerlink" title="4.过河问题"></a>4.过河问题</h2><h3 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h3><p>将所有人送到河对面，每次只能做2或3个人，且时间是船上人过河时间的最大值。</p>
+<h3 id="输入描述-4"><a href="#输入描述-4" class="headerlink" title="输入描述"></a>输入描述</h3><pre><code>第一行是整数m，表示测试样例格式
+
+每个测试样例的第一行是一个正整数n，表示参加过河的人数；（2&lt;=n&lt;100000）
+
+第二行是n个正整数a[i]（0&lt;a[i]&lt;100000），表示n个人的单独过河时间
+</code></pre><h3 id="输出描述-4"><a href="#输出描述-4" class="headerlink" title="输出描述"></a>输出描述</h3><pre><code>每个测试样例，输出应该准备的最少过河时间。
+</code></pre><h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><h4 id="示例1-4"><a href="#示例1-4" class="headerlink" title="示例1"></a>示例1</h4><pre><code>输入：
+2
+2
+1 2
+4
+1 1 1 1
+输出：
+2
+3
+</code></pre><h3 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h3><pre><code>updating
+</code></pre><h3 id="参考代码-4"><a href="#参考代码-4" class="headerlink" title="参考代码"></a>参考代码</h3><pre><code>updating
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2019/04/17/快手2019春招笔试编程题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yunxiang wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redtongue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/17/快手2019春招笔试编程题/" itemprop="url">快手2019春招笔试编程题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-17T10:05:46+08:00">
+                2019-04-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T11:25:34+08:00">
+                2019-04-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/whatever/" itemprop="url" rel="index">
+                    <span itemprop="name">whatever</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>笔试时间为2019年4月13日，包括35道单选题、15道多选题、三道编程题。编程题如下：</p>
+<h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><p>给定两个字符串，请编写代码，输出最长公共字串（Longest Common Substring）,是指两个字符串中的最长公共字串，要求字串一定是连续的。</p>
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h3><pre><code>文本格式，2个非空字符串（字母数字组成）,2个字符串以‘，’英文逗号分隔，字符串长度小于等于100
+</code></pre><h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h3><pre><code>整形，为匹配到的最长字串长度
+</code></pre><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>if __name__ == &quot;__main__&quot;:
+    a,b=list(input().split(&apos;,&apos;))
+    m=0
+    for i in range(len(a)):
+        for j in range(len(b)):
+            ii=i
+            jj=j
+            while(ii&lt;len(a) and jj &lt; len(b) and a[ii]==b[jj]):
+                ii+=1
+                jj+=1
+            m=max(m,jj-j)
+    print(m)
+</code></pre><h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><p>从0,1,2,…,n这n+1个数中选择n个数，找出这n个数中缺失的那个数，要求O(N)尽可能的小。</p>
+<h3 id="输入描述-1"><a href="#输入描述-1" class="headerlink" title="输入描述"></a>输入描述</h3><pre><code>给定一个以逗号（，）分割的数字串
+</code></pre><h3 id="输出描述-1"><a href="#输出描述-1" class="headerlink" title="输出描述"></a>输出描述</h3><pre><code>输出缺失的数字
+</code></pre><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><h2 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h2><p>给定</p>
+<h3 id="输入描述-2"><a href="#输入描述-2" class="headerlink" title="输入描述"></a>输入描述</h3><pre><code>第一行一个整数t（1&lt;=t&lt;=5），表示测试用例组数。
+
+对于每组测试用例：
+
+第一行两个用空格隔开的整数n和m（1&lt;=n,m&lt;=100000），分别表示团体个数和关系数量。
+
+接下来一行n个用空格隔开的数，第i个数表示val[i]。
+
+接下来m行，每行三个用空格隔开的整数u,v和cost(u,v)（1&lt;=u,v&lt;=n,1&lt;=val[i],cost(u,v)&lt;=20000）
+</code></pre><h3 id="输出描述-2"><a href="#输出描述-2" class="headerlink" title="输出描述"></a>输出描述</h3><pre><code>输出
+</code></pre><h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><pre><code>import sys 
+for line in sys.stdin:
+    A=set(map(int,line.split(&apos;,&apos;)))
+    s=sum(A)
+    print(len(A)*(len(A)+1)//2-s)
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2019/04/09/1024-Video-Stitching/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1632,341 +2205,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2019/03/25/1016-Binary-String-With-Substrings-Representing-1-To-N/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yunxiang wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redtongue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/25/1016-Binary-String-With-Substrings-Representing-1-To-N/" itemprop="url">1016.Binary String With Substrings Representing 1 To N（子串能表示从 1 到 N 数字的二进制串）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T15:03:51+08:00">
-                2019-03-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-31T15:05:36+08:00">
-                2019-03-31
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a binary string <code>S</code> (a string consisting only of ‘0’ and ‘1’s) and a positive integer N, return true if and only if for every integer X from 1 to <code>N</code>, the binary representation of <code>X</code> is a substring of <code>S</code>.</p>
-<hr>
-<p>给定一个二进制字符串 <code>S</code>（一个仅由若干 ‘0’ 和 ‘1’ 构成的字符串）和一个正整数 <code>N</code>，如果对于从 1 到 N 的每个整数 X，其二进制表示都是 S 的子串，就返回 <code>true</code>，否则返回 <code>false</code>。</p>
-<p>题目链接：<a href="https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/" title="https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/" target="_blank" rel="noopener">https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/</a></p>
-<h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/25/1016-Binary-String-With-Substrings-Representing-1-To-N/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://redtongue.github.io/2019/03/25/1015-Smallest-Integer-Divisible-by-K/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yunxiang wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redtongue">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/25/1015-Smallest-Integer-Divisible-by-K/" itemprop="url">1015.Smallest Integer Divisible by K（可被 K 整除的最小整数）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T14:59:58+08:00">
-                2019-03-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-31T15:05:19+08:00">
-                2019-03-31
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a positive integer <code>K</code>, you need find the smallest positive integer <code>N</code> such that <code>N</code> is divisible by <code>K</code>, and N only contains the digit <code>1</code>.</p>
-<p>Return the length of <code>N</code>.  If there is no such <code>N,</code> return <code>-1</code>.</p>
-<hr>
-<p>给定正整数 <code>K</code>，你需要找出可以被 <code>K</code> 整除的、仅包含数字 <code>1</code> 的最小正整数 <code>N</code>。</p>
-<p>返回 <code>N</code> 的长度。如果不存在这样的 <code>N</code>，就返回 <code>-1</code>。</p>
-<p>题目链接：<a href="https://leetcode.com/problems/smallest-integer-divisible-by-k/" title="https://leetcode.com/problems/smallest-integer-divisible-by-k/" target="_blank" rel="noopener">https://leetcode.com/problems/smallest-integer-divisible-by-k/</a></p>
-<h4 id="Difficulty-medium"><a href="#Difficulty-medium" class="headerlink" title="Difficulty: medium"></a>Difficulty: medium</h4>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/25/1015-Smallest-Integer-Divisible-by-K/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2016,7 +2259,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">200</span>
+                  <span class="site-state-item-count">202</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
